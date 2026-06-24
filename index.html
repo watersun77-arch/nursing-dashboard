@@ -22,12 +22,12 @@ import { getAuth,
                                 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const FB_CONFIG = {
-  apiKey:            "AIzaSyChtGuDpa8re7NWWZjQ_9PUWmpBdKQVYx4",
-  authDomain:        "nursing-dashboard-cbffd.firebaseapp.com",
-  projectId:         "nursing-dashboard-cbffd",
-  storageBucket:     "nursing-dashboard-cbffd.firebasestorage.app",
-  messagingSenderId: "909863200090",
-  appId:             "1:909863200090:web:556d6b73d86b20c1d07f63"
+  apiKey:            "YOUR_API_KEY",
+  authDomain:        "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId:         "YOUR_PROJECT_ID",
+  storageBucket:     "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId:             "YOUR_APP_ID"
 };
 
 // ── 초기화 ──
@@ -4616,7 +4616,7 @@ window.attachFirestoreListeners = function(){
     }
     // Firebase Auth 로그인 (공유 계정 고정)
     if(window.fbLogin){
-      await window.fbLogin("watersun77@naver.com", "1234");
+      await window.fbLogin("watersun77@naver.com", "123456");
     }
     return _orig.apply(this, arguments);
   };
