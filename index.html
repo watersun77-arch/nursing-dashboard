@@ -29,7 +29,7 @@ const FB_CONFIG = {
   messagingSenderId: "909863200090",
   appId:             "1:909863200090:web:556d6b73d86b20c1d07f63"
 };
-         
+
 // ── 초기화 ──
 const fbApp  = initializeApp(FB_CONFIG);
 const db     = getFirestore(fbApp);
@@ -39,6 +39,7 @@ auth.useDeviceLanguage();
 
 // ── 사용자 UID (로그인 후 설정) ──
 let _fbUid = null;
+window._getFbUid = () => _fbUid;
 
 // ── Firestore 문서 경로 헬퍼 ──
 function fbDoc(key){ return doc(db, "dashboard", _fbUid, "data", key); }
@@ -49,7 +50,8 @@ function fbDoc(key){ return doc(db, "dashboard", _fbUid, "data", key); }
 
 // Firestore에 저장 (기존 save 함수 호출 후 클라우드에도 기록)
 window.fbSet = async function(key, value){
-  if(!_fbUid) return;
+  if(!_fbUid && !window._auth?.currentUser) return;
+  if(!_fbUid) _fbUid = window._auth.currentUser.uid;
   try{
     await setDoc(fbDoc(key), { payload: JSON.stringify(value), ts: Date.now() });
   }catch(e){ console.warn("fbSet error:", e); }
@@ -57,7 +59,8 @@ window.fbSet = async function(key, value){
 
 // Firestore에서 불러오기
 window.fbGet = async function(key){
-  if(!_fbUid) return null;
+  if(!_fbUid && !window._auth?.currentUser) return null;
+  if(!_fbUid) _fbUid = window._auth.currentUser.uid;
   try{
     const snap = await getDoc(fbDoc(key));
     if(!snap.exists()) return null;
@@ -104,6 +107,7 @@ window.fbChangePassword = async function(currentPw, newPw){
 onAuthStateChanged(auth, async (user) => {
   if(user){
     _fbUid = user.uid;
+    window._fbUid = user.uid;
     window._fbReady = true;
     // 로그인 완료 후 Firestore에서 전체 데이터 로드
     if(typeof window.loadAllFromFirestore === "function"){
