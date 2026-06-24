@@ -2,25 +2,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>간호학과 학과장 대시보드</title>
-<script type="module">
+<!-- Firebase compat SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script>
 // ════════════════════════════════════════════════════════
-// ██  FIREBASE CONFIG  ──  본인 프로젝트 값으로 교체하세요  ██
+// ██  FIREBASE CONFIG  ██
 // ════════════════════════════════════════════════════════
-import { initializeApp }        from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore,
-         doc, getDoc, setDoc,
-         onSnapshot }           from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth,
-         signInWithEmailAndPassword,
-         signOut,
-         onAuthStateChanged,
-         updatePassword,
-         EmailAuthProvider,
-         reauthenticateWithCredential,
-         browserLocalPersistence,
-         setPersistence }
-                                from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
 const FB_CONFIG = {
   apiKey:            "AIzaSyChtGuDpa8re7NWWZjQ_9PUWmpBdKQVYx4",
   authDomain:        "nursing-dashboard-cbffd.firebaseapp.com",
@@ -30,72 +19,61 @@ const FB_CONFIG = {
   appId:             "1:909863200090:web:556d6b73d86b20c1d07f63"
 };
 
-// ── 초기화 ──
-const fbApp  = initializeApp(FB_CONFIG);
-const db     = getFirestore(fbApp);
-const auth   = getAuth(fbApp);
-// 브라우저 환경 명시
-auth.useDeviceLanguage();
+firebase.initializeApp(FB_CONFIG);
+const _db   = firebase.firestore();
+const _auth = firebase.auth();
+_auth.useDeviceLanguage();
 
-// ── 사용자 UID (로그인 후 설정) ──
-let _fbUid = null;
-window._getFbUid = () => _fbUid;
+// ── Firestore 문서 경로 ──
+function fbDoc(key){
+  return _db.collection("dashboard").doc(window._fbUid).collection("data").doc(key);
+}
 
-// ── Firestore 문서 경로 헬퍼 ──
-function fbDoc(key){ return doc(db, "dashboard", _fbUid, "data", key); }
-
-// ══════════════════════════════════════════════
-// ── Firebase ↔ 대시보드 브릿지 함수 ──
-// ══════════════════════════════════════════════
-
-// Firestore에 저장 (기존 save 함수 호출 후 클라우드에도 기록)
+// ── Firestore 저장 ──
 window.fbSet = async function(key, value){
-  if(!_fbUid && !window._auth?.currentUser) return;
-  if(!_fbUid) _fbUid = window._auth.currentUser.uid;
+  if(!window._fbUid) return;
   try{
-    await setDoc(fbDoc(key), { payload: JSON.stringify(value), ts: Date.now() });
+    await fbDoc(key).set({ payload: JSON.stringify(value), ts: Date.now() });
   }catch(e){ console.warn("fbSet error:", e); }
 };
 
-// Firestore에서 불러오기
+// ── Firestore 불러오기 ──
 window.fbGet = async function(key){
-  if(!_fbUid && !window._auth?.currentUser) return null;
-  if(!_fbUid) _fbUid = window._auth.currentUser.uid;
+  if(!window._fbUid) return null;
   try{
-    const snap = await getDoc(fbDoc(key));
-    if(!snap.exists()) return null;
+    const snap = await fbDoc(key).get();
+    if(!snap.exists) return null;
     return JSON.parse(snap.data().payload);
   }catch(e){ console.warn("fbGet error:", e); return null; }
 };
 
-// ══════════════════════════════════════════════
-// ── Firebase Auth 로그인 ──
-// ══════════════════════════════════════════════
+// ── Firebase 로그인 ──
 window.fbLogin = async function(email, password){
   try{
-    await setPersistence(auth, browserLocalPersistence);
-    const cred = await signInWithEmailAndPassword(auth, email, password);
-    _fbUid = cred.user.uid;
-    return { ok: true, uid: _fbUid };
+    await _auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    const cred = await _auth.signInWithEmailAndPassword(email, password);
+    window._fbUid = cred.user.uid;
+    return { ok: true };
   }catch(e){
     console.error("fbLogin error:", e.code, e.message);
     return { ok: false, code: e.code };
   }
 };
 
+// ── Firebase 로그아웃 ──
 window.fbLogout = async function(){
-  _fbUid = null;
-  await signOut(auth);
+  window._fbUid = null;
+  await _auth.signOut();
 };
 
 // ── 비밀번호 변경 ──
 window.fbChangePassword = async function(currentPw, newPw){
-  const user = auth.currentUser;
+  const user = _auth.currentUser;
   if(!user) return { ok: false, msg: "로그인 상태가 아닙니다." };
   try{
-    const cred = EmailAuthProvider.credential(user.email, currentPw);
-    await reauthenticateWithCredential(user, cred);
-    await updatePassword(user, newPw);
+    const cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPw);
+    await user.reauthenticateWithCredential(cred);
+    await user.updatePassword(newPw);
     return { ok: true };
   }catch(e){
     if(e.code === "auth/wrong-password") return { ok: false, msg: "현재 비밀번호가 올바르지 않습니다." };
@@ -103,32 +81,24 @@ window.fbChangePassword = async function(currentPw, newPw){
   }
 };
 
-// ── 앱 시작 시 Auth 상태 복원 ──
-onAuthStateChanged(auth, async (user) => {
+// ── Auth 상태 복원 ──
+window._fbReady = false;
+window._fbUid   = null;
+
+_auth.onAuthStateChanged(async (user) => {
   if(user){
-    _fbUid = user.uid;
-    window._fbUid = user.uid;
+    window._fbUid   = user.uid;
     window._fbReady = true;
-    // 로그인 완료 후 Firestore에서 전체 데이터 로드
     if(typeof window.loadAllFromFirestore === "function"){
       await window.loadAllFromFirestore();
     }
-    // 실시간 동기화 리스너 등록
-    if(typeof window.attachFirestoreListeners === "function"){
-      window.attachFirestoreListeners();
-    }
   } else {
-    _fbUid = null;
+    window._fbUid   = null;
     window._fbReady = false;
   }
 });
 
-window._fbReady = false;
-window._db      = db;
-window._auth    = auth;
-// onSnapshot을 전역에서 사용할 수 있도록 노출
-window._firestoreAPI = { doc, onSnapshot };
-console.log("✅ Firebase 초기화 완료");
+console.log("✅ Firebase compat 초기화 완료");
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
@@ -4586,21 +4556,19 @@ window.loadAllFromFirestore = async function(){
 
 // 실시간 리스너: 다른 기기에서 변경 시 자동 반영
 window.attachFirestoreListeners = function(){
-  if(!window._db || !window._fbUid) return;
-  const { doc, onSnapshot } = window._firestoreAPI || {};
-  if(!onSnapshot) return;
-  // EV_KEY(일정)만 실시간 리스너 적용 (나머지는 로그인 시 1회 로드로 충분)
-  const evRef = doc(window._db, "dashboard", window._fbUid, "data", EV_KEY);
-  onSnapshot(evRef, snap=>{
-    if(!snap.exists()) return;
-    try{
-      const newEvents = JSON.parse(snap.data().payload);
-      if(JSON.stringify(newEvents) !== JSON.stringify(events)){
-        events = newEvents;
-        if(typeof render === "function") render();
-      }
-    }catch(e){}
-  });
+  if(!window._fbUid) return;
+  // EV_KEY(일정) 실시간 리스너
+  _db.collection("dashboard").doc(window._fbUid).collection("data").doc(EV_KEY)
+    .onSnapshot(snap=>{
+      if(!snap.exists) return;
+      try{
+        const newEvents = JSON.parse(snap.data().payload);
+        if(JSON.stringify(newEvents) !== JSON.stringify(events)){
+          events = newEvents;
+          if(typeof render === "function") render();
+        }
+      }catch(e){}
+    });
 };
 
 // ── Firebase Auth 기반 로그인 연동 ──
