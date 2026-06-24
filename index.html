@@ -16,7 +16,9 @@ import { getAuth,
          onAuthStateChanged,
          updatePassword,
          EmailAuthProvider,
-         reauthenticateWithCredential }
+         reauthenticateWithCredential,
+         browserLocalPersistence,
+         setPersistence }
                                 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const FB_CONFIG = {
@@ -32,6 +34,8 @@ const FB_CONFIG = {
 const fbApp  = initializeApp(FB_CONFIG);
 const db     = getFirestore(fbApp);
 const auth   = getAuth(fbApp);
+// 브라우저 환경 명시
+auth.useDeviceLanguage();
 
 // ── 사용자 UID (로그인 후 설정) ──
 let _fbUid = null;
@@ -66,10 +70,12 @@ window.fbGet = async function(key){
 // ══════════════════════════════════════════════
 window.fbLogin = async function(email, password){
   try{
+    await setPersistence(auth, browserLocalPersistence);
     const cred = await signInWithEmailAndPassword(auth, email, password);
     _fbUid = cred.user.uid;
     return { ok: true, uid: _fbUid };
   }catch(e){
+    console.error("fbLogin error:", e.code, e.message);
     return { ok: false, code: e.code };
   }
 };
