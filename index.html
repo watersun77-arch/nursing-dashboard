@@ -20,13 +20,13 @@ const FB_CONFIG = {
 };
 
 firebase.initializeApp(FB_CONFIG);
-const _db   = firebase.firestore();
-const _auth = firebase.auth();
-_auth.useDeviceLanguage();
+window._db   = firebase.firestore();
+window._auth = firebase.auth();
+window._auth.useDeviceLanguage();
 
 // ── Firestore 문서 경로 ──
 function fbDoc(key){
-  return _db.collection("dashboard").doc(window._fbUid).collection("data").doc(key);
+  return window.window._db.collection("dashboard").doc(window._fbUid).collection("data").doc(key);
 }
 
 // ── Firestore 저장 ──
@@ -50,8 +50,8 @@ window.fbGet = async function(key){
 // ── Firebase 로그인 ──
 window.fbLogin = async function(email, password){
   try{
-    await _auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-    const cred = await _auth.signInWithEmailAndPassword(email, password);
+    await window._auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+    const cred = await window._auth.signInWithEmailAndPassword(email, password);
     window._fbUid = cred.user.uid;
     return { ok: true };
   }catch(e){
@@ -63,12 +63,12 @@ window.fbLogin = async function(email, password){
 // ── Firebase 로그아웃 ──
 window.fbLogout = async function(){
   window._fbUid = null;
-  await _auth.signOut();
+  await window._auth.signOut();
 };
 
 // ── 비밀번호 변경 ──
 window.fbChangePassword = async function(currentPw, newPw){
-  const user = _auth.currentUser;
+  const user = window._auth.currentUser;
   if(!user) return { ok: false, msg: "로그인 상태가 아닙니다." };
   try{
     const cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPw);
@@ -85,7 +85,7 @@ window.fbChangePassword = async function(currentPw, newPw){
 window._fbReady = false;
 window._fbUid   = null;
 
-_auth.onAuthStateChanged(async (user) => {
+window._auth.onAuthStateChanged(async (user) => {
   if(user){
     window._fbUid   = user.uid;
     window._fbReady = true;
@@ -4558,7 +4558,7 @@ window.loadAllFromFirestore = async function(){
 window.attachFirestoreListeners = function(){
   if(!window._fbUid) return;
   // EV_KEY(일정) 실시간 리스너
-  _db.collection("dashboard").doc(window._fbUid).collection("data").doc(EV_KEY)
+  window._db.collection("dashboard").doc(window._fbUid).collection("data").doc(EV_KEY)
     .onSnapshot(snap=>{
       if(!snap.exists) return;
       try{
