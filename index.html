@@ -89,9 +89,12 @@ window._auth.onAuthStateChanged(async (user) => {
   if(user){
     window._fbUid   = user.uid;
     window._fbReady = true;
-    if(typeof window.loadAllFromFirestore === "function"){
-      await window.loadAllFromFirestore();
-    }
+    // DOM 완전히 로드된 후 실행되도록 지연
+    setTimeout(async () => {
+      if(typeof window.loadAllFromFirestore === "function"){
+        await window.loadAllFromFirestore();
+      }
+    }, 500);
   } else {
     window._fbUid   = null;
     window._fbReady = false;
@@ -4617,9 +4620,9 @@ window.addEventListener("DOMContentLoaded",()=>{
     updateCurrentUserDisplay(); updateLoginUserInfo();
     renderWriteDb();
     document.getElementById("loginScreen").style.display="none";
-    // Firebase Auth 상태가 이미 복원된 경우 즉시 로드
+    // Firebase Auth 상태가 이미 복원된 경우 로드
     if(window._fbReady && typeof window.loadAllFromFirestore === "function"){
-      window.loadAllFromFirestore();
+      setTimeout(() => window.loadAllFromFirestore(), 800);
     }
   } else {
     const savedId = applySavedLoginIdToForm();
