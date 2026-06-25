@@ -4550,18 +4550,20 @@ window.loadAllFromFirestore = async function(){
     if(val !== null){ apply(val); loaded++; }
   }
 
-  // 로컬스토리지에도 동기화된 값을 반영
-  if(typeof render === "function") render();
-  if(typeof renderWriteDb === "function") renderWriteDb();
-  if(typeof renderWT === "function") renderWT();
-  if(typeof renderFacultyTimetable === "function") renderFacultyTimetable();
-  if(typeof renderMemos === "function") renderMemos();
-  if(typeof renderGradeMemos === "function") renderGradeMemos();
-  if(typeof renderScholarships === "function") renderScholarships();
-  if(typeof renderContributions === "function") renderContributions();
-  if(typeof renderPracticeStudents === "function") renderPracticeStudents();
-  if(typeof renderPracticeInstitutions === "function") renderPracticeInstitutions();
-  if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
+  // 로컬스토리지에도 동기화된 값을 반영 (렌더링은 약간 지연)
+  setTimeout(() => {
+    if(typeof render === "function") render();
+    if(typeof renderWriteDb === "function") renderWriteDb();
+    if(typeof renderWT === "function") renderWT();
+    if(typeof renderFacultyTimetable === "function") renderFacultyTimetable();
+    if(typeof renderMemos === "function") renderMemos();
+    if(typeof renderGradeMemos === "function") renderGradeMemos();
+    if(typeof renderScholarships === "function") renderScholarships();
+    if(typeof renderContributions === "function") renderContributions();
+    if(typeof renderPracticeStudents === "function") renderPracticeStudents();
+    if(typeof renderPracticeInstitutions === "function") renderPracticeInstitutions();
+    if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
+  }, 300);
   console.log(`✅ Firestore 로드 완료: ${loaded}개 컬렉션`);
   // 화면에 동기화 상태 표시
   const toast = document.createElement('div');
