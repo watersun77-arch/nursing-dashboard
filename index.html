@@ -4446,6 +4446,14 @@ async function tryLogin(){
     const screen = document.getElementById("loginScreen");
     screen.classList.add("hidden");
     setTimeout(()=>{ screen.style.display="none"; }, 500);
+    // Firebase 로그인 후 Firestore 데이터 로드
+    if(window.fbLogin){
+      window.fbLogin("watersun77@naver.com", "123456").then(r=>{
+        if(r.ok && typeof window.loadAllFromFirestore==="function"){
+          window.loadAllFromFirestore();
+        }
+      });
+    }
   } else {
     err.textContent = "아이디 또는 비밀번호가 올바르지 않습니다.";
     err.style.animation="none"; err.offsetHeight; err.style.animation="loginShake .35s ease both";
