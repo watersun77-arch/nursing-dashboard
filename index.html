@@ -4565,12 +4565,7 @@ window.loadAllFromFirestore = async function(){
     if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
   }, 300);
   console.log(`✅ Firestore 로드 완료: ${loaded}개 컬렉션`);
-  // 화면에 동기화 상태 표시
-  const toast = document.createElement('div');
-  toast.textContent = `☁️ Firestore 동기화: ${loaded}개 (uid: ${window._fbUid?.slice(0,8)}...)`;
-  toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:10px 20px;border-radius:20px;z-index:9999;font-size:13px;';
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 5000);
+
 };
 
 // 실시간 리스너: 다른 기기에서 변경 시 자동 반영
