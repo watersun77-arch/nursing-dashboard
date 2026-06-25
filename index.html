@@ -26,25 +26,25 @@ window._auth.useDeviceLanguage();
 
 // ── Firestore 문서 경로 ──
 function fbDoc(key){
-  return window.window._db.collection("dashboard").doc(window._fbUid).collection("data").doc(key);
+  const uid = window._fbUid || window._auth?.currentUser?.uid; if(!uid) return null; window._fbUid = uid; return window._db.collection("dashboard").doc(uid).collection("data").doc(key);
 }
 
 // ── Firestore 저장 ──
 window.fbSet = async function(key, value){
-  if(!window._fbUid) return;
-  try{
-    await fbDoc(key).set({ payload: JSON.stringify(value), ts: Date.now() });
-  }catch(e){ console.warn("fbSet error:", e); }
+  const uid = window._fbUid || window._auth?.currentUser?.uid;
+  if(!uid) return;
+  window._fbUid = uid;
+  const ref = fbDoc(key); if(!ref) return;
+  try{ await ref.set({ payload: JSON.stringify(value), ts: Date.now() }); }catch(e){ console.warn("fbSet error:", e); }
 };
 
 // ── Firestore 불러오기 ──
 window.fbGet = async function(key){
-  if(!window._fbUid) return null;
-  try{
-    const snap = await fbDoc(key).get();
-    if(!snap.exists) return null;
-    return JSON.parse(snap.data().payload);
-  }catch(e){ console.warn("fbGet error:", e); return null; }
+  const uid = window._fbUid || window._auth?.currentUser?.uid;
+  if(!uid) return null;
+  window._fbUid = uid;
+  const ref = fbDoc(key); if(!ref) return null;
+  try{ const snap = await ref.get(); if(!snap.exists) return null; return JSON.parse(snap.data().payload); }catch(e){ console.warn("fbGet error:", e); return null; }
 };
 
 // ── Firebase 로그인 ──
