@@ -938,6 +938,35 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
   @media(max-width:1180px){.write-db-add{grid-template-columns:1fr 1fr}.write-db-add button{padding:10px}.write-db-summary{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.write-db-add{grid-template-columns:1fr}.write-db-filter input{min-width:0;width:100%}.write-db-summary{grid-template-columns:1fr}.write-db-item{padding:9px 10px;gap:6px}.wdb-title{-webkit-line-clamp:2}.write-db-actions button{padding:3px 4px}}
 
+
+
+  /* 접속 로그: 숨김 단축키 전용 화면 */
+  .access-log-card{margin-top:18px;background:linear-gradient(180deg,#fff,var(--paper2));border-left:5px solid var(--accent)}
+  .access-log-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .access-log-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  .access-log-actions button{font-family:inherit;font-weight:800;font-size:13px;border-radius:11px;padding:9px 14px;cursor:pointer;transition:.15s;border:1px solid var(--line2);background:#fff;color:var(--ink-soft)}
+  .access-log-actions button:hover{border-color:var(--accent);color:var(--accent)}
+  .access-log-actions .danger{color:var(--c-exam);border-color:rgba(178,59,59,.25)}
+  .access-summary{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:9px;margin:8px 0 14px}
+  .access-user-card{border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px 14px;box-shadow:0 4px 14px rgba(42,38,34,.04)}
+  .access-user-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px}
+  .access-user-name{font-size:15px;font-weight:900;color:var(--ink)}
+  .access-status{font-size:11px;font-weight:900;border-radius:999px;padding:3px 8px;white-space:nowrap;background:var(--line);color:var(--ink-soft)}
+  .access-status.on{background:rgba(47,143,131,.14);color:var(--c-counsel)}
+  .access-status.off{background:rgba(138,129,112,.14);color:var(--c-note)}
+  .access-meta{font-size:11.5px;color:var(--ink-soft);line-height:1.55;font-variant-numeric:tabular-nums}
+  .access-log-filter{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0 12px}
+  .access-log-filter input,.access-log-filter select{font-family:inherit;font-size:13px;border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 11px;color:var(--ink)}
+  .access-log-filter input{flex:1;min-width:220px}
+  .access-log-list{display:grid;gap:7px}
+  .access-log-item{display:grid;grid-template-columns:110px 1fr 190px;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px}
+  .access-log-user{font-size:14px;font-weight:900;color:var(--accent)}
+  .access-log-title{font-size:13.5px;font-weight:900;color:var(--ink);line-height:1.35}
+  .access-log-sub{font-size:11.5px;color:var(--ink-soft);line-height:1.45;margin-top:2px;font-variant-numeric:tabular-nums}
+  .access-log-time{font-size:12px;font-weight:800;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums;line-height:1.45}
+  .access-empty{text-align:center;color:var(--ink-soft);padding:16px;font-size:13px;border:1px dashed var(--line2);border-radius:14px;background:#fff}
+  @media(max-width:760px){.access-summary{grid-template-columns:1fr}.access-log-item{grid-template-columns:1fr}.access-log-time{text-align:left}}
+
   /* 학생 장학금 관리 */
   .scholar-card{margin-top:18px;background:linear-gradient(180deg,#fff,var(--paper2));border-left:5px solid var(--c-def)}
   .scholar-add{display:grid;grid-template-columns:1fr 110px 90px 1.25fr 110px 120px 110px;gap:8px;margin:12px 0 8px}
@@ -1634,6 +1663,38 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
       <button id="wdbExportCsv" class="export">엑셀용 CSV</button>
     </div>
     <div class="write-db-list" id="writeDbList"></div>
+  </div>
+
+
+
+  <div class="card delay access-log-card" data-view="accessLog">
+    <div class="access-log-head">
+      <div>
+        <h2>🔐 접속 로그</h2>
+        <div class="sub">금정화·이재겸·김기용 로그인 사용자의 최근 접속, 마지막 활동, 접속 상태를 확인합니다.</div>
+      </div>
+      <div class="access-log-actions">
+        <button id="accessRefresh">새로고침</button>
+        <button id="accessExportCsv">엑셀용 CSV</button>
+        <button id="accessClearOld" class="danger">오래된 기록 정리</button>
+      </div>
+    </div>
+    <div class="access-summary" id="accessSummary"></div>
+    <div class="access-log-filter">
+      <input type="text" id="accessSearch" placeholder="사용자·접속시각·브라우저 정보 검색">
+      <select id="accessUserFilter">
+        <option value="all">전체 사용자</option>
+        <option value="금정화">금정화</option>
+        <option value="이재겸">이재겸</option>
+        <option value="김기용">김기용</option>
+      </select>
+      <select id="accessStatusFilter">
+        <option value="all">전체 상태</option>
+        <option value="online">접속중</option>
+        <option value="offline">접속종료</option>
+      </select>
+    </div>
+    <div class="access-log-list" id="accessLogList"></div>
   </div>
 
   <div class="foot">
@@ -3501,6 +3562,197 @@ if($("wdbTitle")) $("wdbTitle").addEventListener("keydown",e=>{ if(e.key==="Ente
 renderWriteDb();
 
 
+// ── 접속 로그: 숨김 단축키 전용 화면 ──
+const ACCESS_LOG_KEY = "nursing_head_dash_access_log_v1";
+const ACCESS_PRESENCE_KEY = "nursing_head_dash_presence_v1";
+const ACCESS_SESSION_KEY = "nursing_head_access_session_id_v1";
+const ACCESS_ONLINE_LIMIT_MS = 1000 * 60 * 2.5;
+let accessLogItems = [];
+let accessPresence = {};
+let accessHeartbeatTimer = null;
+function loadAccessLog(){
+  try{
+    const raw = localStorage.getItem(ACCESS_LOG_KEY);
+    accessLogItems = raw ? JSON.parse(raw) : [];
+    if(!Array.isArray(accessLogItems)) accessLogItems = [];
+  }catch(e){ accessLogItems = []; }
+  try{
+    const rawPresence = localStorage.getItem(ACCESS_PRESENCE_KEY);
+    accessPresence = rawPresence ? JSON.parse(rawPresence) : {};
+    if(!accessPresence || typeof accessPresence !== "object" || Array.isArray(accessPresence)) accessPresence = {};
+  }catch(e){ accessPresence = {}; }
+}
+function saveAccessLog(){
+  try{
+    localStorage.setItem(ACCESS_LOG_KEY, JSON.stringify(accessLogItems));
+    localStorage.setItem(ACCESS_PRESENCE_KEY, JSON.stringify(accessPresence));
+    if(window.fbSet){ fbSet(ACCESS_LOG_KEY, accessLogItems); fbSet(ACCESS_PRESENCE_KEY, accessPresence); }
+  }catch(e){}
+}
+function currentAccessSessionId(){
+  let sid = sessionStorage.getItem(ACCESS_SESSION_KEY);
+  if(!sid){
+    sid = "sess" + Date.now() + Math.random().toString(36).slice(2,8);
+    sessionStorage.setItem(ACCESS_SESSION_KEY, sid);
+  }
+  return sid;
+}
+function accessDateTime(iso){
+  const d = new Date(iso || Date.now());
+  if(isNaN(d.getTime())) return "-";
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+function isPresenceOnline(p){
+  if(!p || p.logoutAt) return false;
+  const t = new Date(p.lastSeen || p.loginAt || 0).getTime();
+  if(!t) return false;
+  return (Date.now() - t) <= ACCESS_ONLINE_LIMIT_MS;
+}
+function recordAccessLoginIfNeeded(){
+  if(!isLoggedIn()) return;
+  const user = getCurrentUser();
+  const sid = currentAccessSessionId();
+  const now = new Date().toISOString();
+  let item = accessLogItems.find(x=>x.sessionId===sid);
+  if(!item){
+    item = {
+      id: "al" + Date.now() + Math.random().toString(36).slice(2,6),
+      sessionId: sid,
+      user,
+      loginAt: now,
+      lastSeen: now,
+      logoutAt: "",
+      userAgent: navigator.userAgent || ""
+    };
+    accessLogItems.unshift(item);
+  }else{
+    item.user = user;
+    item.lastSeen = now;
+    item.logoutAt = "";
+  }
+  accessPresence[user] = {user, sessionId:sid, loginAt:item.loginAt, lastSeen:now, logoutAt:"", userAgent:navigator.userAgent||""};
+  if(accessLogItems.length > 500) accessLogItems = accessLogItems.slice(0, 500);
+  saveAccessLog();
+  renderAccessLog();
+  startAccessHeartbeat();
+}
+function touchAccessPresence(){
+  if(!isLoggedIn()) return;
+  const user = getCurrentUser();
+  const sid = currentAccessSessionId();
+  const now = new Date().toISOString();
+  const item = accessLogItems.find(x=>x.sessionId===sid);
+  if(item){ item.lastSeen = now; item.logoutAt = ""; }
+  accessPresence[user] = {user, sessionId:sid, loginAt:(item?.loginAt || now), lastSeen:now, logoutAt:"", userAgent:navigator.userAgent||""};
+  saveAccessLog();
+  renderAccessLog();
+}
+function recordAccessLogout(){
+  const user = sessionStorage.getItem(LOGIN_USER_KEY) || getCurrentUser();
+  const sid = sessionStorage.getItem(ACCESS_SESSION_KEY);
+  const now = new Date().toISOString();
+  if(sid){
+    const item = accessLogItems.find(x=>x.sessionId===sid);
+    if(item){ item.lastSeen = now; item.logoutAt = now; }
+  }
+  if(user){
+    const p = accessPresence[user] || {user};
+    accessPresence[user] = {...p, user, lastSeen:now, logoutAt:now};
+  }
+  saveAccessLog();
+  renderAccessLog();
+}
+function startAccessHeartbeat(){
+  if(accessHeartbeatTimer) return;
+  accessHeartbeatTimer = setInterval(touchAccessPresence, 30000);
+}
+function accessLogSearchText(x){
+  return [x.user,x.loginAt,x.lastSeen,x.logoutAt,x.userAgent,x.sessionId].join(" ").toLowerCase();
+}
+function filteredAccessLog(){
+  const q = String($("accessSearch")?.value || "").toLowerCase().trim();
+  const user = $("accessUserFilter")?.value || "all";
+  const status = $("accessStatusFilter")?.value || "all";
+  const terms = q.split(/\s+/).filter(Boolean);
+  return accessLogItems.filter(x=>{
+    if(user!=="all" && x.user!==user) return false;
+    const online = isPresenceOnline(accessPresence[x.user]) && accessPresence[x.user]?.sessionId === x.sessionId;
+    if(status==="online" && !online) return false;
+    if(status==="offline" && online) return false;
+    if(!terms.length) return true;
+    const hay = accessLogSearchText(x);
+    return terms.every(t=>hay.includes(t));
+  });
+}
+function renderAccessSummary(){
+  const box = $("accessSummary");
+  if(!box) return;
+  box.innerHTML = WRITE_DB_AUTHORS.map(user=>{
+    const p = accessPresence[user] || {};
+    const online = isPresenceOnline(p);
+    const last = p.lastSeen ? accessDateTime(p.lastSeen) : "기록 없음";
+    const login = p.loginAt ? accessDateTime(p.loginAt) : "기록 없음";
+    return `<div class="access-user-card">
+      <div class="access-user-top"><span class="access-user-name">${esc(user)}</span><span class="access-status ${online?'on':'off'}">${online?'접속중':'접속종료'}</span></div>
+      <div class="access-meta">최근 로그인: ${esc(login)}<br>마지막 활동: ${esc(last)}</div>
+    </div>`;
+  }).join("");
+}
+function renderAccessLog(){
+  renderAccessSummary();
+  const box = $("accessLogList");
+  if(!box) return;
+  const list = filteredAccessLog();
+  if(list.length===0){
+    box.innerHTML = `<div class="access-empty">표시할 접속 로그가 없습니다.</div>`;
+    return;
+  }
+  box.innerHTML = list.slice(0,150).map(x=>{
+    const online = isPresenceOnline(accessPresence[x.user]) && accessPresence[x.user]?.sessionId === x.sessionId;
+    return `<div class="access-log-item">
+      <div class="access-log-user">${esc(x.user||'-')}</div>
+      <div>
+        <div class="access-log-title"><span class="access-status ${online?'on':'off'}">${online?'접속중':'접속종료'}</span> ${esc(online?'현재 세션 활동 중':'접속 이력')}</div>
+        <div class="access-log-sub">마지막 활동 ${esc(accessDateTime(x.lastSeen))}<br>${esc((x.userAgent||'').slice(0,120))}</div>
+      </div>
+      <div class="access-log-time">로그인 ${esc(accessDateTime(x.loginAt))}<br>종료 ${x.logoutAt?esc(accessDateTime(x.logoutAt)):'-'}</div>
+    </div>`;
+  }).join("") + (list.length>150 ? `<div class="access-empty">상위 150건만 표시됩니다. 검색 조건을 더 구체화하세요.</div>` : "");
+}
+function accessLogToCsv(){
+  const headers = ["사용자","상태","로그인시각","마지막활동","종료시각","브라우저정보"];
+  const rows = filteredAccessLog().map(x=>{
+    const online = isPresenceOnline(accessPresence[x.user]) && accessPresence[x.user]?.sessionId === x.sessionId;
+    return [x.user, online?"접속중":"접속종료", accessDateTime(x.loginAt), accessDateTime(x.lastSeen), x.logoutAt?accessDateTime(x.logoutAt):"", x.userAgent||""];
+  });
+  const escCsv = v => `"${String(v||"").replace(/"/g,'""')}"`;
+  return [headers, ...rows].map(r=>r.map(escCsv).join(",")).join("\r\n");
+}
+function exportAccessLogCsv(){
+  const csv = "\ufeff" + accessLogToCsv();
+  const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `access_log_${backupTimestamp ? backupTimestamp() : Date.now()}.csv`;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+function clearOldAccessLog(){
+  if(!confirm("30일이 지난 접속 로그를 정리할까요? 현재 접속 상태 정보는 유지됩니다.")) return;
+  const cutoff = Date.now() - 1000*60*60*24*30;
+  accessLogItems = accessLogItems.filter(x=>new Date(x.loginAt||0).getTime() >= cutoff);
+  saveAccessLog(); renderAccessLog();
+}
+loadAccessLog();
+if($("accessRefresh")) $("accessRefresh").onclick = ()=>{ touchAccessPresence(); renderAccessLog(); };
+if($("accessExportCsv")) $("accessExportCsv").onclick = exportAccessLogCsv;
+if($("accessClearOld")) $("accessClearOld").onclick = clearOldAccessLog;
+["accessSearch","accessUserFilter","accessStatusFilter"].forEach(id=>{ if($(id)) $(id).addEventListener(id==="accessSearch"?"input":"change", renderAccessLog); });
+renderAccessLog();
+window.addEventListener("focus", touchAccessPresence);
+window.addEventListener("beforeunload", ()=>{ touchAccessPresence(); });
+
+
 // ── 교수 기여도 관리 (브라우저 저장) ──
 const CONTRIBUTION_KEY = "nursing_head_dash_faculty_contributions_v1";
 let contributionItems = [];
@@ -4242,6 +4494,8 @@ function dashboardBackupPayload(){
       contributionItems,
       meetingAgendaItems,
       writeDbItems,
+      accessLogItems,
+      accessPresence,
       scholarshipItems,
       memos: memoData,
       gradeMemos: gradeMemoData,
@@ -4288,6 +4542,8 @@ function applyDashboardBackup(payload){
   if(Array.isArray(d.contributionItems)){ contributionItems = d.contributionItems; saveContributions(); }
   if(Array.isArray(d.meetingAgendaItems)){ meetingAgendaItems = d.meetingAgendaItems; saveMeetingAgenda(); }
   if(Array.isArray(d.writeDbItems)){ writeDbItems = d.writeDbItems; saveWriteDb(); }
+  if(Array.isArray(d.accessLogItems)){ accessLogItems = d.accessLogItems; saveAccessLog(); }
+  if(d.accessPresence && typeof d.accessPresence === "object"){ accessPresence = d.accessPresence; saveAccessLog(); }
   if(Array.isArray(d.scholarshipItems)){ scholarshipItems = d.scholarshipItems; saveScholarships(); }
   if(d.memos && typeof d.memos === "object"){
     Object.keys(MEMO_SECTIONS).forEach(tab=>{
@@ -4310,7 +4566,7 @@ function applyDashboardBackup(payload){
   document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on", x.dataset.cat===curCat));
   switchMemoTab(activeMemoTab);
   switchGradeMemoTab(activeGradeMemoTab);
-  renderWT(); renderFacultyTimetable(); renderPracticeStudents(); renderContributions(); renderScholarships(); renderPaper(); renderAcad(); renderWomen(); render();
+  renderWT(); renderFacultyTimetable(); renderPracticeStudents(); renderContributions(); renderScholarships(); renderAccessLog(); renderPaper(); renderAcad(); renderWomen(); render();
   alert("백업 데이터를 복원했습니다.");
 }
 function restoreDashboardBackup(file){
@@ -4387,7 +4643,7 @@ const LOGIN_USERS = [
 ];
 
 function isLoggedIn(){ return sessionStorage.getItem(LOGIN_SESS_KEY)==="1"; }
-function setLoggedIn(userName){ sessionStorage.setItem(LOGIN_SESS_KEY,"1"); sessionStorage.setItem(LOGIN_USER_KEY,userName); updateCurrentUserDisplay(); updateLoginUserInfo(); }
+function setLoggedIn(userName){ sessionStorage.setItem(LOGIN_SESS_KEY,"1"); sessionStorage.setItem(LOGIN_USER_KEY,userName); updateCurrentUserDisplay(); updateLoginUserInfo(); if(typeof recordAccessLoginIfNeeded === "function") recordAccessLoginIfNeeded(); }
 
 function isLoginSaveEnabled(){
   return localStorage.getItem(LOGIN_SAVE_ID_FLAG_KEY) === "1";
@@ -4415,6 +4671,7 @@ function saveLoginRememberPreference(id){
 }
 
 function doLogout(){
+  if(typeof recordAccessLogout === "function") recordAccessLogout();
   sessionStorage.removeItem(LOGIN_SESS_KEY);
   sessionStorage.removeItem(LOGIN_USER_KEY);
   updateCurrentUserDisplay(); updateLoginUserInfo();
@@ -4526,6 +4783,8 @@ window.loadAllFromFirestore = async function(){
     [WOMEN_KEY,               v=>{ if(Array.isArray(v)) womenItems=v; }],
     [SCHOLARSHIP_KEY,         v=>{ if(Array.isArray(v)) scholarshipItems=v; }],
     [WRITE_DB_KEY,            v=>{ if(Array.isArray(v)) writeDbItems=v; }],
+    [ACCESS_LOG_KEY,          v=>{ if(Array.isArray(v)) accessLogItems=v; }],
+    [ACCESS_PRESENCE_KEY,     v=>{ if(v && typeof v === "object") accessPresence=v; }],
     [CONTRIBUTION_KEY,        v=>{ if(Array.isArray(v)) contributionItems=v; }],
     [PRACTICE_STUDENT_KEY,    v=>{ if(Array.isArray(v)) practiceStudents=v; }],
     [PRACTICE_INSTITUTION_KEY,v=>{ if(Array.isArray(v)) practiceInstitutions=v; }],
@@ -4554,6 +4813,7 @@ window.loadAllFromFirestore = async function(){
   setTimeout(() => {
     if(typeof render === "function") render();
     if(typeof renderWriteDb === "function") renderWriteDb();
+    if(typeof renderAccessLog === "function") renderAccessLog();
     if(typeof renderWT === "function") renderWT();
     if(typeof renderFacultyTimetable === "function") renderFacultyTimetable();
     if(typeof renderMemos === "function") renderMemos();
@@ -4564,6 +4824,9 @@ window.loadAllFromFirestore = async function(){
     if(typeof renderPracticeInstitutions === "function") renderPracticeInstitutions();
     if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
   }, 300);
+  if(typeof recordAccessLoginIfNeeded === "function" && isLoggedIn()){
+    recordAccessLoginIfNeeded();
+  }
   console.log(`✅ Firestore 로드 완료: ${loaded}개 컬렉션`);
 
 };
@@ -4629,6 +4892,7 @@ window.attachFirestoreListeners = function(){
 window.addEventListener("DOMContentLoaded",()=>{
   if(isLoggedIn()){
     updateCurrentUserDisplay(); updateLoginUserInfo();
+    if(typeof recordAccessLoginIfNeeded === "function") recordAccessLoginIfNeeded();
     renderWriteDb();
     document.getElementById("loginScreen").style.display="none";
     // Firebase Auth 상태가 이미 복원된 경우 로드
@@ -4664,6 +4928,7 @@ const VIEW_MAP = {
   contribution: ["[data-view='contribution']"],
   meetingAgenda: ["[data-view='meetingAgenda']"],
   writeDb: ["[data-view='writeDb']"],
+  accessLog: ["[data-view='accessLog']"],
   scholar:    ["[data-view='scholar']"],
   manage:     ["[data-view='manage']"],
   memo:       ["[data-view='memo']"],
@@ -4810,6 +5075,16 @@ function showShortcutToast(msg){
 }
 
 document.addEventListener("keydown", function(e){
+  if(e.altKey && e.shiftKey && !e.ctrlKey && !isTyping()){
+    if(e.key==="l"||e.key==="L"){
+      e.preventDefault();
+      if(typeof touchAccessPresence === "function") touchAccessPresence();
+      setActiveView("accessLog");
+      if(typeof renderAccessLog === "function") renderAccessLog();
+      showShortcutToast("접속 로그");
+      return;
+    }
+  }
   if(e.altKey && !e.ctrlKey && !e.shiftKey && !isTyping()){
     if(e.key==="n"||e.key==="N"){ e.preventDefault(); setActiveView("dashboard"); if(typeof openAdd==="function") openAdd(sel); showShortcutToast("⌨️ Alt+N · 일정 추가"); return; }
     if(e.key==="s"||e.key==="S"){ e.preventDefault(); setActiveView("schedule"); showShortcutToast("⌨️ Alt+S · 주간 일정"); return; }
