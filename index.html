@@ -1100,6 +1100,7 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
     <button class="side-btn head-only" data-side-view="manage"><span class="ico">📄</span><span class="txt">학과 운영 관리</span></button>
     <button class="side-btn head-only" data-side-view="memo"><span class="ico">📝</span><span class="txt">메모센터</span></button>
     <button class="side-btn head-only" data-side-view="grade"><span class="ico">🎓</span><span class="txt">학년별 관리</span></button>
+    <button class="side-btn head-only" data-side-view="studentStatus"><span class="ico">📈</span><span class="txt">학생 현황</span></button>
     <button class="side-btn head-only" data-side-view="search"><span class="ico">🔍</span><span class="txt">일정 검색</span></button>
     <button class="side-btn chair-only" data-side-view="practiceChairHome"><span class="ico">🏠</span><span class="txt">실습위원장 홈</span></button>
     <button class="side-btn chair-only" data-side-view="agreements"><span class="ico">🏥</span><span class="txt">실습기관 협약관리</span></button>
@@ -1107,6 +1108,7 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
     <button class="side-btn chair-only" data-side-view="opCalendar"><span class="ico">📅</span><span class="txt">실습운영 캘린더</span></button>
     <button class="side-btn chair-only" data-side-view="satisfaction"><span class="ico">📊</span><span class="txt">실습만족도</span></button>
     <button class="side-btn chair-only" data-side-view="committeeMinutes"><span class="ico">📝</span><span class="txt">실습위원회 회의록</span></button>
+    <button class="side-btn chair-only" data-side-view="budgetReport"><span class="ico">💰</span><span class="txt">실험실습비 결산내역</span></button>
     <button class="side-btn admin-only" id="sideAdminAccounts" data-side-view="adminAccounts" style="display:none"><span class="ico">🛠</span><span class="txt">계정 관리(관리자)</span></button>
   </nav>
   <div class="side-section-title">QUICK ACTIONS</div>
@@ -1437,6 +1439,20 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
       <button class="btn" style="margin-top:14px" onclick="changePracticeStudentPassword()">비밀번호 변경</button>
     </div>
 
+    <div style="border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:18px;background:var(--paper)">
+      <h3 style="margin:0 0 6px;font-size:15px">🔒 실험실습비 결산내역 비밀번호</h3>
+      <div class="sub" style="margin-bottom:12px">실습위원장 화면의 "실험실습비 결산내역"에 들어가려면 입력해야 하는 비밀번호입니다.</div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:end">
+        <label style="font-size:13px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px">현재 비밀번호
+          <input type="text" id="budgetPwCurrentDisplay" readonly style="background:#f3f1ec;color:var(--ink-soft)">
+        </label>
+        <label style="font-size:13px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px">새 비밀번호
+          <input type="text" id="budgetPwNewInput" placeholder="4자리 이상">
+        </label>
+      </div>
+      <button class="btn" style="margin-top:14px" onclick="changeBudgetReportPassword()">비밀번호 변경</button>
+    </div>
+
     <h3 style="margin:0 0 10px;font-size:15px">등록된 계정</h3>
     <div id="adminAccountList" style="display:grid;gap:10px"></div>
   </div>
@@ -1704,6 +1720,25 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
     </div>
   </div>
 
+  <!-- 실험실습비 결산내역 -->
+  <div class="card delay pcv-panel" data-view="budgetReport">
+    <div class="topbar">
+      <div>
+        <h2>💰 실험실습비 결산내역</h2>
+        <div class="sub">학년도가 마감되면 예·결산 내역을 입력합니다. 체크한 연도만 표에 표시됩니다.</div>
+      </div>
+    </div>
+    <div id="budgetYearChecks" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:12px"></div>
+
+    <h3 style="margin:0 0 10px">[표 1.2.2-3] 실험실습비 예·결산 내역</h3>
+    <div id="budgetTable3Wrap" style="overflow:auto;border-radius:14px;border:1px solid var(--line);margin-bottom:12px"></div>
+    <div class="note" style="margin-bottom:24px">※ "실습재료비·실습지도비·실습지원비"의 소항목과 맨 아래 "계"는 입력값을 바탕으로 자동 합산됩니다.</div>
+
+    <h3 style="margin:0 0 10px">[표 1.2.2-4] 재학생 1인당 실험실습비 및 예산대비 집행률</h3>
+    <div id="budgetTable4Wrap" style="overflow:auto;border-radius:14px;border:1px solid var(--line)"></div>
+    <div class="note" style="margin-top:12px">※ 예산총액(b)·결산총액(c)은 위 [표 1.2.2-3]의 "계"에서 자동 연동됩니다. 재학생 수(a)만 입력하면 집행률(d)과 1인당 실험실습비(e)가 자동 계산됩니다.</div>
+  </div>
+
   <div class="card delay faculty-card" data-view="faculty">
     <div class="faculty-head">
       <div>
@@ -1860,6 +1895,44 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
       <button id="gradeMemoCancel" class="manage-cancel" style="display:none">취소</button>
     </div>
     <div id="gradeMemoList"></div>
+  </div>
+
+  <!-- 학생 현황 -->
+  <div class="card delay" style="margin-top:18px" data-view="studentStatus">
+    <div class="topbar">
+      <div>
+        <h2>📈 학생 현황</h2>
+        <div class="sub">연도별 학년별 입학정원·재학생수 현황입니다. (단위: 명)</div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="ssAddRow">+ 연도 추가</button>
+      </div>
+    </div>
+    <div style="overflow:auto;border-radius:14px;border:1px solid var(--line)">
+      <table id="studentStatusTable" style="width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap">
+        <thead>
+          <tr style="background:var(--paper2)">
+            <th rowspan="2" style="border:1px solid var(--line);padding:8px">연도</th>
+            <th colspan="2" style="border:1px solid var(--line);padding:8px">1학년</th>
+            <th colspan="2" style="border:1px solid var(--line);padding:8px">2학년</th>
+            <th colspan="2" style="border:1px solid var(--line);padding:8px">3학년</th>
+            <th colspan="2" style="border:1px solid var(--line);padding:8px">4학년</th>
+            <th colspan="2" style="border:1px solid var(--line);padding:8px">계</th>
+            <th rowspan="2" style="border:1px solid var(--line);padding:8px">대학원<br>재학생수</th>
+            <th rowspan="2" style="border:1px solid var(--line);padding:8px">관리</th>
+          </tr>
+          <tr style="background:var(--paper2)">
+            <th style="border:1px solid var(--line);padding:6px 8px">입학정원</th><th style="border:1px solid var(--line);padding:6px 8px">재학생수</th>
+            <th style="border:1px solid var(--line);padding:6px 8px">입학정원</th><th style="border:1px solid var(--line);padding:6px 8px">재학생수</th>
+            <th style="border:1px solid var(--line);padding:6px 8px">입학정원</th><th style="border:1px solid var(--line);padding:6px 8px">재학생수</th>
+            <th style="border:1px solid var(--line);padding:6px 8px">입학정원</th><th style="border:1px solid var(--line);padding:6px 8px">재학생수</th>
+            <th style="border:1px solid var(--line);padding:6px 8px">편제정원</th><th style="border:1px solid var(--line);padding:6px 8px">재학생수</th>
+          </tr>
+        </thead>
+        <tbody id="studentStatusBody"></tbody>
+      </table>
+    </div>
+    <div class="note" style="margin-top:12px">※ 대학원 제외. "계"의 편제정원·재학생수는 1~4학년 값을 자동으로 합산합니다.</div>
   </div>
 
 
@@ -3271,6 +3344,81 @@ document.getElementById("gradeMemoAdd").onclick=addGradeMemo;
 document.getElementById("gradeMemoInput").addEventListener("keydown",e=>{ if(e.key==="Enter") addGradeMemo(); });
 if($("gradeMemoCancel")) $("gradeMemoCancel").onclick=()=>{ clearGradeMemoEdit(); renderGradeMemos(); };
 loadGradeMemos(); switchGradeMemoTab(activeGradeMemoTab); renderGradeMemos();
+
+// ── 학생 현황 (연도별 학년 재학생 현황) ──
+const STUDENT_STATUS_KEY = "nursing_head_dash_student_status_v1";
+const STUDENT_STATUS_DEFAULT = [
+  {year:2024, g1e:132,g1c:147, g2e:120,g2c:110, g3e:105,g3c:119, g4e:90,g4c:110, grad:12},
+  {year:2023, g1e:120,g1c:131, g2e:105,g2c:94,  g3e:90, g3c:114, g4e:90,g4c:111, grad:15},
+  {year:2022, g1e:105,g1c:116, g2e:90, g2c:109, g3e:90, g3c:108, g4e:90,g4c:120, grad:11},
+  {year:2021, g1e:90, g1c:105, g2e:90, g2c:105, g3e:90, g3c:123, g4e:90,g4c:125, grad:4},
+];
+function getStudentStatus(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(STUDENT_STATUS_KEY));
+    if(Array.isArray(saved) && saved.length) return saved;
+  }catch(e){}
+  return JSON.parse(JSON.stringify(STUDENT_STATUS_DEFAULT));
+}
+function setStudentStatus(data){
+  localStorage.setItem(STUDENT_STATUS_KEY, JSON.stringify(data));
+  if(window.fbSet) fbSet(STUDENT_STATUS_KEY, data);
+}
+function renderStudentStatusTable(){
+  const body = document.getElementById("studentStatusBody");
+  if(!body) return;
+  const data = getStudentStatus().slice().sort((a,b)=>b.year-a.year);
+  const num = v => Number(v)||0;
+  const cell = (row, field) => `<input type="number" data-year="${row.year}" data-field="${field}" value="${row[field]??0}" style="width:64px;border:1px solid var(--line);border-radius:6px;padding:5px;text-align:center">`;
+  body.innerHTML = data.map(row=>{
+    const capTotal = num(row.g1e)+num(row.g2e)+num(row.g3e)+num(row.g4e);
+    const curTotal = num(row.g1c)+num(row.g2c)+num(row.g3c)+num(row.g4c);
+    return `<tr>
+      <td style="border:1px solid var(--line);padding:6px 8px;font-weight:800;text-align:center">${row.year}</td>
+      <td style="border:1px solid var(--line);padding:4px">${cell(row,'g1e')}</td><td style="border:1px solid var(--line);padding:4px">${cell(row,'g1c')}</td>
+      <td style="border:1px solid var(--line);padding:4px">${cell(row,'g2e')}</td><td style="border:1px solid var(--line);padding:4px">${cell(row,'g2c')}</td>
+      <td style="border:1px solid var(--line);padding:4px">${cell(row,'g3e')}</td><td style="border:1px solid var(--line);padding:4px">${cell(row,'g3c')}</td>
+      <td style="border:1px solid var(--line);padding:4px">${cell(row,'g4e')}</td><td style="border:1px solid var(--line);padding:4px">${cell(row,'g4c')}</td>
+      <td style="border:1px solid var(--line);padding:6px 8px;text-align:center;font-weight:800;background:var(--paper2)">${capTotal}</td>
+      <td style="border:1px solid var(--line);padding:6px 8px;text-align:center;font-weight:800;background:var(--paper2)">${curTotal}</td>
+      <td style="border:1px solid var(--line);padding:4px">${cell(row,'grad')}</td>
+      <td style="border:1px solid var(--line);padding:4px;text-align:center"><button class="btn ghost smallbtn danger" onclick="deleteStudentStatusRow(${row.year})">삭제</button></td>
+    </tr>`;
+  }).join("");
+  body.querySelectorAll("[data-field]").forEach(el=>{
+    el.addEventListener("change", ()=>updateStudentStatusCell(el));
+  });
+}
+function updateStudentStatusCell(el){
+  const year = Number(el.dataset.year);
+  const field = el.dataset.field;
+  const data = getStudentStatus();
+  const row = data.find(r=>r.year===year);
+  if(!row) return;
+  row[field] = Number(el.value)||0;
+  setStudentStatus(data);
+  renderStudentStatusTable();
+}
+function addStudentStatusRow(){
+  const data = getStudentStatus();
+  const maxYear = data.length ? Math.max(...data.map(r=>r.year)) : new Date().getFullYear()-1;
+  const input = prompt("추가할 연도를 입력하세요.", String(maxYear+1));
+  if(!input) return;
+  const year = parseInt(input,10);
+  if(!year || Number.isNaN(year)){ alert("올바른 연도를 입력하세요."); return; }
+  if(data.some(r=>r.year===year)){ alert("이미 등록된 연도입니다."); return; }
+  data.push({year, g1e:0,g1c:0, g2e:0,g2c:0, g3e:0,g3c:0, g4e:0,g4c:0, grad:0});
+  setStudentStatus(data);
+  renderStudentStatusTable();
+}
+function deleteStudentStatusRow(year){
+  if(!confirm(`${year}년 행을 삭제할까요?`)) return;
+  const data = getStudentStatus().filter(r=>r.year!==year);
+  setStudentStatus(data);
+  renderStudentStatusTable();
+}
+document.getElementById("ssAddRow")?.addEventListener("click", addStudentStatusRow);
+renderStudentStatusTable();
 
 // ── 중요 체크리스트 (브라우저 저장) ──
 const WT_KEY = "nursing_head_dash_weektodo_v1";
@@ -5022,6 +5170,27 @@ const LOGIN_SAVE_ID_FLAG_KEY = "nursing_head_save_id_enabled_v1";
 const PRACTICE_STUDENT_PW_DEFAULT = "9981";
 const PRACTICE_STUDENT_PW_KEY = "nursing_head_ps_password_v1";
 const PRACTICE_STUDENT_LOCK_KEY = "nursing_head_ps_unlocked_v1";
+const BUDGET_REPORT_PW_DEFAULT = "0000";
+const BUDGET_REPORT_PW_KEY = "nursing_head_budget_password_v1";
+const BUDGET_REPORT_LOCK_KEY = "nursing_head_budget_unlocked_v1";
+function getBudgetReportPw(){
+  return localStorage.getItem(BUDGET_REPORT_PW_KEY) || BUDGET_REPORT_PW_DEFAULT;
+}
+function setBudgetReportPw(pw){
+  localStorage.setItem(BUDGET_REPORT_PW_KEY, pw);
+  if(window.fbSet) fbSet(BUDGET_REPORT_PW_KEY, pw);
+}
+function changeBudgetReportPassword(){
+  if(!isAdminLevel()){ alert("관리자만 변경할 수 있습니다."); return; }
+  const input = document.getElementById("budgetPwNewInput");
+  const pw = input?.value || "";
+  if(pw.length < 4){ alert("비밀번호는 4자 이상 입력하세요."); return; }
+  setBudgetReportPw(pw);
+  if(input) input.value = "";
+  const display = document.getElementById("budgetPwCurrentDisplay");
+  if(display) display.value = pw;
+  alert("실험실습비 결산내역 비밀번호가 변경되었습니다.");
+}
 function getPracticeStudentPw(){
   return localStorage.getItem(PRACTICE_STUDENT_PW_KEY) || PRACTICE_STUDENT_PW_DEFAULT;
 }
@@ -5124,6 +5293,7 @@ function doLogout(){
   sessionStorage.removeItem(LOGIN_ROLE_KEY);
   sessionStorage.removeItem(LOGIN_LEVEL_KEY);
   sessionStorage.removeItem(PRACTICE_STUDENT_LOCK_KEY);
+  sessionStorage.removeItem(BUDGET_REPORT_LOCK_KEY);
   updateCurrentUserDisplay(); updateLoginUserInfo();
   const screen = document.getElementById("loginScreen");
   if(screen){ screen.style.display="flex"; screen.classList.remove("hidden"); }
@@ -5292,6 +5462,8 @@ function saveFooterNotice(){
 function renderAdminAccountList(){
   const pwDisplay = document.getElementById("psPwCurrentDisplay");
   if(pwDisplay && typeof getPracticeStudentPw === "function") pwDisplay.value = getPracticeStudentPw();
+  const budgetPwDisplay = document.getElementById("budgetPwCurrentDisplay");
+  if(budgetPwDisplay && typeof getBudgetReportPw === "function") budgetPwDisplay.value = getBudgetReportPw();
   const wrap = document.getElementById("adminAccountList");
   if(!wrap) return;
   const myName = sessionStorage.getItem(LOGIN_USER_KEY)||"";
@@ -5404,6 +5576,7 @@ window.loadAllFromFirestore = async function(){
     [PRACTICE_STUDENT_KEY,    v=>{ if(Array.isArray(v)) practiceStudents=v; }],
     [PRACTICE_INSTITUTION_KEY,v=>{ if(Array.isArray(v)) practiceInstitutions=v; }],
     [MEETING_AGENDA_KEY,      v=>{ if(Array.isArray(v)) meetingAgendaItems=v; }],
+    [STUDENT_STATUS_KEY,      v=>{ if(Array.isArray(v)) localStorage.setItem(STUDENT_STATUS_KEY, JSON.stringify(v)); }],
     ['practiceCommitteeAgreements',           v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeAgreements', JSON.stringify(v)); }],
     ['practiceCommitteeFacultyAssignments',   v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeFacultyAssignments', JSON.stringify(v)); }],
     ['practiceCommitteeEvents',               v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeEvents', JSON.stringify(v)); }],
@@ -5411,6 +5584,9 @@ window.loadAllFromFirestore = async function(){
     [SATISFACTION_KEY,        v=>{ if(Array.isArray(v)) localStorage.setItem(SATISFACTION_KEY, JSON.stringify(v)); }],
     [FOOTER_NOTICE_KEY,       v=>{ if(v && typeof v==="object") localStorage.setItem(FOOTER_NOTICE_KEY, JSON.stringify(v)); }],
     [PRACTICE_STUDENT_PW_KEY, v=>{ if(v) localStorage.setItem(PRACTICE_STUDENT_PW_KEY, v); }],
+    [BUDGET_REPORT_PW_KEY,    v=>{ if(v) localStorage.setItem(BUDGET_REPORT_PW_KEY, v); }],
+    [BUDGET_DATA_KEY,          v=>{ if(v && typeof v==="object") localStorage.setItem(BUDGET_DATA_KEY, JSON.stringify(v)); }],
+    [BUDGET_VISIBLE_YEARS_KEY, v=>{ if(Array.isArray(v)) localStorage.setItem(BUDGET_VISIBLE_YEARS_KEY, JSON.stringify(v)); }],
     [ACCOUNT_OVERRIDES_KEY,   v=>{ if(v && typeof v==="object"){ localStorage.setItem(ACCOUNT_OVERRIDES_KEY, JSON.stringify(v)); if(typeof loadAccountOverrides==="function") loadAccountOverrides(); } }],
   ];
   // MEMO_SECTIONS 키
@@ -5446,6 +5622,9 @@ window.loadAllFromFirestore = async function(){
     if(typeof renderPracticeStudents === "function") renderPracticeStudents();
     if(typeof renderPracticeInstitutions === "function") renderPracticeInstitutions();
     if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
+    if(typeof renderStudentStatusTable === "function") renderStudentStatusTable();
+    if(typeof renderBudgetYearChecks === "function") renderBudgetYearChecks();
+    if(typeof renderBudgetTables === "function") renderBudgetTables();
     if(typeof renderAgreements === "function") renderAgreements();
     if(typeof renderFacultyAssignments === "function") renderFacultyAssignments();
     if(typeof renderPracticeCalendar === "function") renderPracticeCalendar();
@@ -5480,23 +5659,6 @@ window.attachFirestoreListeners = function(){
     });
 };
 
-// ── 계정관리: Firebase Auth 비밀번호 변경 연동 ──
-(function patchSaveAccountPassword(){
-  const _orig = window.saveAccountPassword;
-  if(typeof _orig !== "function") return;
-  window.saveAccountPassword = async function(){
-    const cur  = document.getElementById("acctCurrentPw").value;
-    const npw  = document.getElementById("acctNewPw").value;
-    const npw2 = document.getElementById("acctNewPw2").value;
-    if(npw !== npw2){ alert("새 비밀번호가 일치하지 않습니다."); return; }
-    // Firebase Auth 비밀번호 변경
-    if(window.fbChangePassword){
-      const res = await window.fbChangePassword(cur, npw);
-      if(!res.ok){ alert(res.msg || "Firebase 비밀번호 변경 실패"); return; }
-    }
-    return _orig.apply(this, arguments);
-  };
-})();
 
 window.addEventListener("DOMContentLoaded",()=>{
   if(isLoggedIn()){
@@ -5555,6 +5717,8 @@ const VIEW_MAP = {
   satisfaction: ["[data-view='satisfaction']"],
   committeeMinutes: ["[data-view='committeeMinutes']"],
   adminAccounts: ["[data-view='adminAccounts']"],
+  studentStatus: ["[data-view='studentStatus']"],
+  budgetReport: ["[data-view='budgetReport']"],
 };
 // dashboard는 오늘일정 + 이번 주 미니스트립도 포함
 const DASHBOARD_EXTRAS = ["[data-view='dashboard']"];
@@ -5570,6 +5734,14 @@ function setActiveView(view){
       return;
     }
     sessionStorage.setItem(PRACTICE_STUDENT_LOCK_KEY, "1");
+  }
+  if(view === "budgetReport" && sessionStorage.getItem(BUDGET_REPORT_LOCK_KEY) !== "1"){
+    const input = prompt("실험실습비 결산내역 화면은 비밀번호가 필요합니다.\n비밀번호를 입력하세요.");
+    if(input !== getBudgetReportPw()){
+      if(input !== null) alert("비밀번호가 올바르지 않습니다.");
+      return;
+    }
+    sessionStorage.setItem(BUDGET_REPORT_LOCK_KEY, "1");
   }
   activeView = view;
   // 모든 data-view 섹션 숨기기
@@ -5607,6 +5779,11 @@ function setActiveView(view){
     if(view==="satisfaction"){
       if(typeof populateSatisfactionInstitutionSelect==="function") populateSatisfactionInstitutionSelect();
       if(typeof renderSatisfactionList==="function") renderSatisfactionList();
+    }
+    if(view==="studentStatus" && typeof renderStudentStatusTable==="function") renderStudentStatusTable();
+    if(view==="budgetReport"){
+      if(typeof renderBudgetYearChecks==="function") renderBudgetYearChecks();
+      if(typeof renderBudgetTables==="function") renderBudgetTables();
     }
     if(view==="practiceChairHome" && typeof renderPracticeChairHome==="function") renderPracticeChairHome();
     if(view==="adminAccounts" && typeof renderAdminAccountList==="function") renderAdminAccountList();
@@ -6336,6 +6513,169 @@ function renderSatisfactionList(){
   </div>`).join("");
 }
 
+// ── 실험실습비 결산내역 ──
+const BUDGET_YEARS_FIXED = [2026,2025,2024,2023,2022];
+const BUDGET_DATA_KEY = "practiceCommitteeBudgetData";
+const BUDGET_VISIBLE_YEARS_KEY = "practiceCommitteeBudgetVisibleYears";
+const BUDGET_ROWS = [
+  {key:'fac_purchase',           label:'실습기자재 구입비'},
+  {key:'fac_maintenance',        label:'실습기자재 유지보수비'},
+  {key:'material_total',         label:'실습재료비',   children:['material_supply','material_subscription']},
+  {key:'material_supply',        label:'– 실습소모품',       indent:true},
+  {key:'material_subscription',  label:'– 실습관련 구독료',   indent:true},
+  {key:'guidance_total',         label:'실습지도비',   children:['guidance_institution','guidance_visit']},
+  {key:'guidance_institution',   label:'– 실습기관 실습비',   indent:true},
+  {key:'guidance_visit',         label:'– 순회지도비',       indent:true},
+  {key:'support_total',          label:'실습지원비',   children:['support_meal']},
+  {key:'support_meal',           label:'– 학생 식비',        indent:true},
+  {key:'grand_total',            label:'계', children:['fac_purchase','fac_maintenance','material_total','guidance_total','support_total']},
+];
+function getBudgetData(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(BUDGET_DATA_KEY));
+    if(saved && typeof saved === "object") return saved;
+  }catch(e){}
+  return {};
+}
+function setBudgetData(data){
+  localStorage.setItem(BUDGET_DATA_KEY, JSON.stringify(data));
+  if(window.fbSet) fbSet(BUDGET_DATA_KEY, data);
+}
+function getBudgetVisibleYears(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(BUDGET_VISIBLE_YEARS_KEY));
+    if(Array.isArray(saved)) return saved;
+  }catch(e){}
+  return BUDGET_YEARS_FIXED.slice(0,2); // 기본값: 최근 2개 연도만 체크
+}
+function setBudgetVisibleYears(years){
+  localStorage.setItem(BUDGET_VISIBLE_YEARS_KEY, JSON.stringify(years));
+  if(window.fbSet) fbSet(BUDGET_VISIBLE_YEARS_KEY, years);
+}
+function budgetCellValue(year, rowKey, field){
+  const row = BUDGET_ROWS.find(r=>r.key===rowKey);
+  if(row && row.children){
+    return row.children.reduce((sum,childKey)=>sum+budgetCellValue(year,childKey,field), 0);
+  }
+  const data = getBudgetData();
+  return Number(data[year]?.[rowKey]?.[field]) || 0;
+}
+function fmtWon(n){ return Number(n||0).toLocaleString(); }
+function renderBudgetYearChecks(){
+  const wrap = document.getElementById("budgetYearChecks");
+  if(!wrap) return;
+  const visible = getBudgetVisibleYears();
+  wrap.innerHTML = BUDGET_YEARS_FIXED.map(y=>`
+    <label style="display:flex;align-items:center;gap:6px;font-weight:800;font-size:13.5px;cursor:pointer">
+      <input type="checkbox" data-budget-year="${y}" ${visible.includes(y)?"checked":""} style="width:16px;height:16px;accent-color:var(--accent);cursor:pointer">${y}
+    </label>`).join("");
+  wrap.querySelectorAll("[data-budget-year]").forEach(el=>{
+    el.addEventListener("change", ()=>{
+      const y = Number(el.dataset.budgetYear);
+      let visible = getBudgetVisibleYears();
+      if(el.checked){ if(!visible.includes(y)) visible.push(y); }
+      else { visible = visible.filter(v=>v!==y); }
+      setBudgetVisibleYears(visible);
+      renderBudgetTables();
+    });
+  });
+}
+function renderBudgetTables(){
+  renderBudgetTable3();
+  renderBudgetTable4();
+}
+function visibleBudgetYearsSorted(){
+  return getBudgetVisibleYears().slice().sort((a,b)=>b-a);
+}
+function renderBudgetTable3(){
+  const wrap = document.getElementById("budgetTable3Wrap");
+  if(!wrap) return;
+  const years = visibleBudgetYearsSorted();
+  if(!years.length){ wrap.innerHTML = '<div class="empty-state">위에서 표시할 연도를 체크해주세요.</div>'; return; }
+  const th = 'style="border:1px solid var(--line);padding:8px;background:var(--paper2);white-space:nowrap"';
+  const td = 'style="border:1px solid var(--line);padding:4px"';
+  let head1 = `<tr><th ${th} rowspan="3">사용내역</th>` + years.map(y=>`<th ${th} colspan="4">${y}</th>`).join('') + `</tr>`;
+  let head2 = `<tr>` + years.map(()=>`<th ${th} colspan="2">예산</th><th ${th} colspan="2">결산</th>`).join('') + `</tr>`;
+  let head3 = `<tr>` + years.map(()=>`<th ${th}>등록금 수입재원</th><th ${th}>국고</th><th ${th}>등록금 수입재원</th><th ${th}>국고</th>`).join('') + `</tr>`;
+  const bodyRows = BUDGET_ROWS.map(row=>{
+    const isLeaf = !row.children;
+    const labelStyle = row.indent ? 'padding-left:22px;color:var(--ink-soft)' : (row.key==='grand_total' ? 'font-weight:800' : 'font-weight:700');
+    const cells = years.map(y=>{
+      ['bt','bg','at','ag'].forEach(()=>{});
+      if(isLeaf){
+        return ['bt','bg','at','ag'].map(f=>{
+          const val = getBudgetData()[y]?.[row.key]?.[f] ?? '';
+          return `<td ${td}><input type="number" data-budget-year="${y}" data-budget-row="${row.key}" data-budget-field="${f}" value="${val}" style="width:100%;min-width:90px;border:none;text-align:right;padding:6px;font:inherit"></td>`;
+        }).join('');
+      } else {
+        return ['bt','bg','at','ag'].map(f=>{
+          const val = budgetCellValue(y,row.key,f);
+          return `<td ${td} style="text-align:right;padding:8px;font-weight:800;background:${row.key==='grand_total'?'var(--paper2)':'#fafafa'}">${fmtWon(val)}</td>`;
+        }).join('');
+      }
+    }).join('');
+    return `<tr><td ${td} style="${labelStyle};white-space:nowrap">${row.label}</td>${cells}</tr>`;
+  }).join('');
+  wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:12.5px"><thead>${head1}${head2}${head3}</thead><tbody>${bodyRows}</tbody></table>`;
+  wrap.querySelectorAll('[data-budget-field]').forEach(el=>{
+    el.addEventListener('change', ()=>updateBudgetCell(el));
+  });
+}
+function updateBudgetCell(el){
+  const year = el.dataset.budgetYear;
+  const rowKey = el.dataset.budgetRow;
+  const field = el.dataset.budgetField;
+  const data = getBudgetData();
+  if(!data[year]) data[year] = {};
+  if(!data[year][rowKey]) data[year][rowKey] = {};
+  data[year][rowKey][field] = Number(el.value)||0;
+  setBudgetData(data);
+  renderBudgetTables();
+}
+function renderBudgetTable4(){
+  const wrap = document.getElementById("budgetTable4Wrap");
+  if(!wrap) return;
+  const years = visibleBudgetYearsSorted();
+  if(!years.length){ wrap.innerHTML = '<div class="empty-state">위에서 표시할 연도를 체크해주세요.</div>'; return; }
+  const th = 'style="border:1px solid var(--line);padding:8px;background:var(--paper2);white-space:nowrap"';
+  const td = 'style="border:1px solid var(--line);padding:6px 8px;text-align:center"';
+  const head = `<tr>
+    <th ${th}>연도</th>
+    <th ${th}>재학생 수(a)</th>
+    <th ${th}>실험실습비 예산총액(b)</th>
+    <th ${th}>실험실습비 결산총액(c)</th>
+    <th ${th}>예산대비 집행률<br>(d=c/b×100)</th>
+    <th ${th}>학생 1인당 실험실습비<br>(e=b/a)</th>
+  </tr>`;
+  const data = getBudgetData();
+  const rows = years.map(y=>{
+    const a = Number(data[y]?.students) || 0;
+    const b = budgetCellValue(y,'grand_total','bt') + budgetCellValue(y,'grand_total','bg');
+    const c = budgetCellValue(y,'grand_total','at') + budgetCellValue(y,'grand_total','ag');
+    const d = b>0 ? (c/b*100).toFixed(2) : '-';
+    const e = a>0 ? fmtWon(Math.round(b/a)) : '-';
+    return `<tr>
+      <td ${td} style="font-weight:800">${y}</td>
+      <td ${td}><input type="number" data-budget-students="${y}" value="${data[y]?.students ?? ''}" style="width:90px;border:1px solid var(--line);border-radius:6px;padding:5px;text-align:center"></td>
+      <td ${td} style="font-weight:700">${fmtWon(b)}</td>
+      <td ${td} style="font-weight:700">${fmtWon(c)}</td>
+      <td ${td}>${d}${d!=='-'?'%':''}</td>
+      <td ${td} style="font-weight:800">${e}</td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:13px"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+  wrap.querySelectorAll('[data-budget-students]').forEach(el=>{
+    el.addEventListener('change', ()=>{
+      const y = el.dataset.budgetStudents;
+      const d = getBudgetData();
+      if(!d[y]) d[y] = {};
+      d[y].students = Number(el.value)||0;
+      setBudgetData(d);
+      renderBudgetTables();
+    });
+  });
+}
+
 // ── 실습위원장 화면 전체 초기화 (role 분기 시 1회 호출) ──
 let _pcvInitialized = false;
 function initPracticeChairViews(){
@@ -6346,6 +6686,8 @@ function initPracticeChairViews(){
   renderCommitteeMinutes();
   if(typeof populateSatisfactionInstitutionSelect === "function") populateSatisfactionInstitutionSelect();
   if(typeof renderSatisfactionList === "function") renderSatisfactionList();
+  if(typeof renderBudgetYearChecks === "function") renderBudgetYearChecks();
+  if(typeof renderBudgetTables === "function") renderBudgetTables();
   renderPracticeChairHome();
   _pcvInitialized = true;
 }
