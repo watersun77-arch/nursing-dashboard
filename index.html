@@ -5235,6 +5235,7 @@ function persistAccountOverrides(){
   const data = {};
   LOGIN_USERS.forEach(u=>{ data[u.name] = {pwHash:u.pwHash, role:u.role, level:u.level}; });
   localStorage.setItem(ACCOUNT_OVERRIDES_KEY, JSON.stringify(data));
+  if(window.fbSet) fbSet(ACCOUNT_OVERRIDES_KEY, data);
 }
 function applyAdminUi(){
   const show = isAdminLevel();
@@ -5403,6 +5404,14 @@ window.loadAllFromFirestore = async function(){
     [PRACTICE_STUDENT_KEY,    v=>{ if(Array.isArray(v)) practiceStudents=v; }],
     [PRACTICE_INSTITUTION_KEY,v=>{ if(Array.isArray(v)) practiceInstitutions=v; }],
     [MEETING_AGENDA_KEY,      v=>{ if(Array.isArray(v)) meetingAgendaItems=v; }],
+    ['practiceCommitteeAgreements',           v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeAgreements', JSON.stringify(v)); }],
+    ['practiceCommitteeFacultyAssignments',   v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeFacultyAssignments', JSON.stringify(v)); }],
+    ['practiceCommitteeEvents',               v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeEvents', JSON.stringify(v)); }],
+    [COMMITTEE_MINUTES_KEY,   v=>{ if(Array.isArray(v)) localStorage.setItem(COMMITTEE_MINUTES_KEY, JSON.stringify(v)); }],
+    [SATISFACTION_KEY,        v=>{ if(Array.isArray(v)) localStorage.setItem(SATISFACTION_KEY, JSON.stringify(v)); }],
+    [FOOTER_NOTICE_KEY,       v=>{ if(v && typeof v==="object") localStorage.setItem(FOOTER_NOTICE_KEY, JSON.stringify(v)); }],
+    [PRACTICE_STUDENT_PW_KEY, v=>{ if(v) localStorage.setItem(PRACTICE_STUDENT_PW_KEY, v); }],
+    [ACCOUNT_OVERRIDES_KEY,   v=>{ if(v && typeof v==="object"){ localStorage.setItem(ACCOUNT_OVERRIDES_KEY, JSON.stringify(v)); if(typeof loadAccountOverrides==="function") loadAccountOverrides(); } }],
   ];
   // MEMO_SECTIONS 키
   if(typeof MEMO_SECTIONS !== "undefined"){
@@ -5437,6 +5446,15 @@ window.loadAllFromFirestore = async function(){
     if(typeof renderPracticeStudents === "function") renderPracticeStudents();
     if(typeof renderPracticeInstitutions === "function") renderPracticeInstitutions();
     if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
+    if(typeof renderAgreements === "function") renderAgreements();
+    if(typeof renderFacultyAssignments === "function") renderFacultyAssignments();
+    if(typeof renderPracticeCalendar === "function") renderPracticeCalendar();
+    if(typeof renderCommitteeMinutes === "function") renderCommitteeMinutes();
+    if(typeof renderSatisfactionList === "function") renderSatisfactionList();
+    if(typeof renderFooterNotice === "function") renderFooterNotice();
+    if(typeof renderPracticeChairHome === "function") renderPracticeChairHome();
+    if(typeof applyAdminUi === "function") applyAdminUi();
+    if(typeof renderAdminAccountList === "function" && document.getElementById("adminAccountList")) renderAdminAccountList();
   }, 300);
   if(typeof recordAccessLoginIfNeeded === "function" && isLoggedIn()){
     recordAccessLoginIfNeeded();
@@ -5752,7 +5770,7 @@ function getAgreements(){
     return defaultAgreements;
   }catch(e){return defaultAgreements;}
 }
-function setAgreements(data){localStorage.setItem('practiceCommitteeAgreements', JSON.stringify(data));}
+function setAgreements(data){localStorage.setItem('practiceCommitteeAgreements', JSON.stringify(data)); if(window.fbSet) fbSet('practiceCommitteeAgreements', data);}
 function typeOptions(selected){return hospitalTypes.map(t=>`<option value="${t}" ${t===selected?'selected':''}>${t}</option>`).join('');}
 function formatDate(value){return value ? value.replaceAll('-','.') : '미입력';}
 function calcDaysLeft(end){
@@ -5907,7 +5925,7 @@ function getFacultyAssignments(){
     return defaultFacultyAssignments;
   }catch(e){return defaultFacultyAssignments;}
 }
-function setFacultyAssignments(data){localStorage.setItem('practiceCommitteeFacultyAssignments', JSON.stringify(data));}
+function setFacultyAssignments(data){localStorage.setItem('practiceCommitteeFacultyAssignments', JSON.stringify(data)); if(window.fbSet) fbSet('practiceCommitteeFacultyAssignments', data);}
 function facultyCategoryClass(cat){ return cat==="겸임교수" ? "cat-adj" : (cat==="시간강사" ? "cat-part" : "cat-full"); }
 function facultyCategoryOptions(selected){return facultyCategories.map(t=>`<option value="${t}" ${t===selected?'selected':''}>${t}</option>`).join('');}
 function currentFacultyPeriod(){
@@ -6013,7 +6031,7 @@ function getPracticeEvents(){
     return defaultPracticeEvents;
   }catch(e){return defaultPracticeEvents;}
 }
-function setPracticeEvents(data){localStorage.setItem('practiceCommitteeEvents', JSON.stringify(data));}
+function setPracticeEvents(data){localStorage.setItem('practiceCommitteeEvents', JSON.stringify(data)); if(window.fbSet) fbSet('practiceCommitteeEvents', data);}
 function dateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 function parseDateKey(k){const [y,m,d]=k.split('-').map(Number); return new Date(y,m-1,d);}
 function formatKoreanDate(k){const d=parseDateKey(k); const days=['일','월','화','수','목','금','토']; return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일(${days[d.getDay()]})`; }
