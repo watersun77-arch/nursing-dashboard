@@ -149,6 +149,10 @@ body.sidebar-mode{padding:0;background:var(--paper);}
 .side-section-title{font-size:11px;color:rgba(255,255,255,.5);font-weight:800;letter-spacing:.08em;margin:14px 8px 7px;}
 .side-menu{display:grid;gap:4px;margin:10px 0 14px;}
 .side-btn{width:100%;display:flex;align-items:center;gap:11px;border:none;background:transparent;color:rgba(255,255,255,.72);border-radius:13px;padding:10px 12px;font-family:'Pretendard',sans-serif;font-size:13.5px;font-weight:700;cursor:pointer;text-align:left;transition:.15s;}
+/* 역할별 사이드바 메뉴 분기: 기본은 학과장 메뉴 표시, 실습위원장은 chair-only만 표시 */
+.side-btn.chair-only{display:none;}
+body[data-role="practice_chair"] .side-btn.head-only{display:none;}
+body[data-role="practice_chair"] .side-btn.chair-only{display:flex;}
 .side-btn:hover{background:rgba(255,255,255,.09);color:#fff;}
 .side-btn.on{background:#fff;color:#183F3B;box-shadow:0 8px 18px rgba(0,0,0,.16);}
 .side-btn .ico{width:22px;text-align:center;font-size:15px;flex:0 0 auto;}
@@ -1005,6 +1009,25 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
   @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 </style>
 
+<style id="pcv-styles">
+.pcv-panel{
+      --bg:#f4f6fb; --panel:#fff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+      --nav:#111827; --nav2:#1f2937; --primary:#2563eb; --primary-soft:#dbeafe;
+      --green:#16a34a; --yellow:#d97706; --red:#dc2626; --purple:#7c3aed;
+      --shadow:0 10px 25px rgba(15,23,42,.08); --radius:18px;
+    }.pcv-panel *{box-sizing:border-box}.pcv-panel body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}.pcv-panel .app{display:flex;min-height:100vh}.pcv-panel .sidebar{width:260px;background:linear-gradient(180deg,var(--nav),var(--nav2));color:white;padding:24px 18px;position:fixed;inset:0 auto 0 0;overflow:auto}.pcv-panel .brand{padding:8px 10px 24px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:18px}.pcv-panel .brand h1{font-size:21px;margin:0 0 8px}.pcv-panel .brand p{font-size:12px;color:#cbd5e1;margin:0;line-height:1.5}.pcv-panel .nav button{width:100%;border:0;background:transparent;color:#d1d5db;text-align:left;padding:13px 14px;border-radius:12px;margin:4px 0;font-size:15px;cursor:pointer}.pcv-panel .nav button:hover, .pcv-panel .nav button.active{background:rgba(255,255,255,.12);color:white}.pcv-panel .main{margin-left:260px;width:calc(100% - 260px);padding:28px}.pcv-panel .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}.pcv-panel .topbar h2{font-size:28px;margin:0}.pcv-panel .topbar p{margin:6px 0 0;color:var(--muted)}.pcv-panel .actions{display:flex;gap:8px;flex-wrap:wrap}.pcv-panel .btn{border:0;border-radius:12px;padding:10px 14px;background:var(--primary);color:white;font-weight:700;cursor:pointer}.pcv-panel .btn.ghost{background:white;color:var(--ink);border:1px solid var(--line)}.pcv-panel .grid{display:grid;gap:16px}.pcv-panel .kpi{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.pcv-panel .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.pcv-panel .kpi .card{padding:18px}.pcv-panel .label{font-size:13px;color:var(--muted);margin-bottom:8px}.pcv-panel .value{font-size:30px;font-weight:800}.pcv-panel .sub{font-size:12px;color:var(--muted);margin-top:6px}.pcv-panel .two{grid-template-columns:1.2fr .8fr}.pcv-panel .three{grid-template-columns:repeat(3,minmax(0,1fr))}.pcv-panel .section{display:none}.pcv-panel .section.active{display:block}.pcv-panel .card h3{margin:0 0 14px;font-size:18px}.pcv-panel table{width:100%;border-collapse:collapse;background:white}.pcv-panel th, .pcv-panel td{padding:12px 10px;border-bottom:1px solid var(--line);font-size:14px;text-align:left;vertical-align:middle}.pcv-panel th{color:#374151;background:#f9fafb;font-size:13px}.pcv-panel .pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.pcv-panel .ok{background:#dcfce7;color:#166534}.pcv-panel .warn{background:#fef3c7;color:#92400e}.pcv-panel .bad{background:#fee2e2;color:#991b1b}.pcv-panel .info{background:var(--primary-soft);color:#1e40af}.pcv-panel .purple{background:#ede9fe;color:#5b21b6}.pcv-panel .todo{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.pcv-panel .todo input{width:17px;height:17px}.pcv-panel .calendar{display:grid;grid-template-columns:90px 1fr;gap:8px}.pcv-panel .month{font-weight:800;color:#374151;padding-top:8px}.pcv-panel .barrow{display:flex;flex-direction:column;gap:8px;padding:5px 0 12px;border-bottom:1px solid var(--line)}.pcv-panel .bar{height:30px;border-radius:999px;color:white;display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:800;box-shadow:0 6px 14px rgba(37,99,235,.15)}.pcv-panel .b1{background:#2563eb;width:52%}.pcv-panel .b2{background:#7c3aed;width:65%}.pcv-panel .b3{background:#059669;width:46%}.pcv-panel .b4{background:#dc2626;width:38%}.pcv-panel .b5{background:#d97706;width:58%}.pcv-panel .form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pcv-panel .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#374151;font-weight:700}.pcv-panel .form input, .pcv-panel .form select, .pcv-panel .form textarea{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;font:inherit}.pcv-panel .form textarea{min-height:110px;grid-column:1/-1}.pcv-panel .note{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:14px;color:#475569;font-size:14px;line-height:1.55}.pcv-panel .progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}.pcv-panel .progress span{display:block;height:100%;background:var(--primary);border-radius:999px}.pcv-panel .mobilehint{display:none}.pcv-panel .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.pcv-panel .search{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:240px}.pcv-panel .small{font-size:12px;color:var(--muted)}.pcv-panel .editable-input, .pcv-panel .editable-select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;font:inherit}.pcv-panel .editable-input:focus, .pcv-panel .editable-select:focus{outline:2px solid var(--primary-soft);border-color:#93c5fd}.pcv-panel .danger{background:#fee2e2;color:#991b1b}.pcv-panel .btn.smallbtn{padding:7px 10px;border-radius:10px;font-size:12px}.pcv-panel .agreement-summary{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.pcv-panel .agreement-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;box-shadow:0 8px 20px rgba(15,23,42,.05)}.pcv-panel .agreement-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.pcv-panel .agreement-card h4{margin:0;font-size:18px}.pcv-panel .agreement-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.pcv-panel .meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.pcv-panel .meta-item{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px}.pcv-panel .meta-label{font-size:11px;color:var(--muted);margin-bottom:4px}.pcv-panel .meta-value{font-size:14px;font-weight:800;color:#1f2937}.pcv-panel .card-actions{display:flex;gap:6px;flex-wrap:wrap}.pcv-panel .edit-panel{margin-top:14px;padding:14px;border-radius:16px;background:#f8fafc;border:1px dashed #cbd5e1}.pcv-panel .edit-panel.hidden{display:none}.pcv-panel .edit-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pcv-panel .edit-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;color:#374151}.pcv-panel .edit-form input, .pcv-panel .edit-form select{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff;font:inherit}.pcv-panel .muted-divider{height:1px;background:var(--line);margin:12px 0}.pcv-panel .empty-state{text-align:center;color:var(--muted);padding:28px;border:1px dashed #cbd5e1;border-radius:16px;background:#f8fafc}.pcv-panel /* 실습기관 협약관리: 가로형 긴 카드 리스트 */
+    .agreement-list{display:flex;flex-direction:column;gap:12px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:0;box-shadow:0 8px 20px rgba(15,23,42,.05);overflow:hidden}.pcv-panel .agreement-row{display:grid;grid-template-columns:76px 1.5fr 1.05fr 1.05fr .9fr auto;gap:16px;align-items:center;padding:16px 18px}.pcv-panel .order-control{display:flex;align-items:center;gap:8px;min-width:68px}.pcv-panel .order-number{width:34px;height:34px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;color:#334155}.pcv-panel .order-buttons{display:flex;flex-direction:column;gap:4px}.pcv-panel .order-btn{width:28px;height:24px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-weight:900;color:#374151;line-height:1}.pcv-panel .order-btn:hover{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}.pcv-panel .order-btn:disabled{opacity:.35;cursor:not-allowed;background:#f8fafc;color:#9ca3af}.pcv-panel .agreement-main h4{margin:0;font-size:19px;letter-spacing:-.02em}.pcv-panel .agreement-main .agreement-region{margin-top:6px;color:var(--muted);font-size:13px;font-weight:700}.pcv-panel .agreement-field{min-width:0}.pcv-panel .agreement-field .meta-label{font-size:11px;color:var(--muted);margin-bottom:5px}.pcv-panel .agreement-field .meta-value{font-size:14px;font-weight:800;color:#1f2937;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pcv-panel .agreement-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.pcv-panel .agreement-period{font-size:14px;font-weight:800;color:#111827}.pcv-panel .agreement-card .card-actions{justify-content:flex-end;align-items:center}.pcv-panel .agreement-subline{border-top:1px solid #f1f5f9;background:#f8fafc;padding:10px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:#475569;font-size:13px}.pcv-panel .agreement-subline b{color:#111827}.pcv-panel .agreement-subline span{display:inline-flex;gap:5px;align-items:center}.pcv-panel .agreement-card-head, .pcv-panel .meta-grid{display:none}
+    @media(max-width:1100px){.pcv-panel .agreement-row{grid-template-columns:76px 1fr;align-items:start}.pcv-panel .agreement-card .card-actions{justify-content:flex-start}.pcv-panel .agreement-field .meta-value{white-space:normal}.pcv-panel .agreement-subline{display:none}}.pcv-panel /* 실습지도교수 현황: 엑셀형 입력 테이블 */
+    .faculty-filter{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.pcv-panel .faculty-filter label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;color:#374151}.pcv-panel .faculty-filter select{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;font:inherit;min-width:140px}.pcv-panel .excel-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}.pcv-panel .excel-table{min-width:1040px;width:100%;border-collapse:separate;border-spacing:0}.pcv-panel .excel-table th{position:sticky;top:0;z-index:1;background:#f8fafc;color:#334155;border-bottom:1px solid var(--line);font-size:12px;font-weight:900}.pcv-panel .excel-table th, .pcv-panel .excel-table td{border-right:1px solid #eef2f7;border-bottom:1px solid #eef2f7;padding:0;vertical-align:middle}.pcv-panel .excel-table th:last-child, .pcv-panel .excel-table td:last-child{border-right:0}.pcv-panel .excel-table tr:last-child td{border-bottom:0}.pcv-panel .excel-cell, .pcv-panel .excel-select, .pcv-panel .excel-memo{width:100%;border:0;background:transparent;padding:10px 9px;font:inherit;font-size:13px;color:#1f2937;min-height:40px}.pcv-panel .excel-cell:focus, .pcv-panel .excel-select:focus, .pcv-panel .excel-memo:focus{outline:2px solid #bfdbfe;background:#eff6ff}.pcv-panel .excel-select{appearance:auto}.pcv-panel .excel-memo{resize:vertical;min-height:42px;line-height:1.35}.pcv-panel .excel-num{width:54px;text-align:center;background:#f8fafc;color:#64748b;font-weight:900;font-size:12px}.pcv-panel .excel-actions{display:flex;gap:6px;justify-content:center;padding:7px}.pcv-panel .excel-add-row{margin-top:12px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.pcv-panel .excel-guide{font-size:13px;color:#64748b}.pcv-panel /* 임상실습 학생 관리 */
+  .practice-student-card{margin-top:18px;background:linear-gradient(180deg,#fff,#fff);border-left:5px solid var(--green)}.pcv-panel .practice-student-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.pcv-panel .practice-student-summary{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.pcv-panel .ps-chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;background:var(--paper);color:var(--muted);border:1px solid var(--line)}.pcv-panel .ps-chip strong{color:var(--primary);font-variant-numeric:tabular-nums}.pcv-panel .practice-student-add{display:grid;grid-template-columns:120px 120px 130px 130px 1fr auto auto;gap:8px;margin:10px 0 10px}.pcv-panel .practice-student-add input, .pcv-panel .practice-student-add select{font-family:inherit;font-size:13.5px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 11px;color:var(--ink);min-width:0}.pcv-panel .practice-student-add input:focus, .pcv-panel .practice-student-add select:focus{outline:none;border-color:var(--primary)}.pcv-panel .practice-student-add button{font-family:inherit;font-weight:800;font-size:13px;border:none;cursor:pointer;background:var(--primary);color:#fff;border-radius:10px;padding:0 14px;transition:.15s;white-space:nowrap}.pcv-panel .practice-student-add button:hover{filter:brightness(1.08)}.pcv-panel .practice-student-add .cancel{background:#fff;color:var(--muted);border:1px solid var(--line)}.pcv-panel .practice-student-add .cancel:hover{filter:none;color:var(--red);border-color:var(--red)}.pcv-panel .practice-student-filter{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}.pcv-panel .practice-student-filter input, .pcv-panel .practice-student-filter select, .pcv-panel .practice-student-filter button{font-family:inherit;font-size:13px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 11px;color:var(--ink)}.pcv-panel .practice-student-filter input{flex:1;min-width:220px}.pcv-panel .practice-student-filter button{font-weight:800;color:var(--muted);cursor:pointer;transition:.15s}.pcv-panel .practice-student-filter .export{background:rgba(28,94,87,.07);color:var(--primary);border-color:rgba(28,94,87,.22)}.pcv-panel .practice-student-filter .export:hover{background:rgba(28,94,87,.12);color:var(--primary)}.pcv-panel .practice-student-filter button:hover{border-color:var(--primary);color:var(--primary)}.pcv-panel .practice-student-list{display:grid;gap:8px}.pcv-panel .practice-student-item{display:grid;grid-template-columns:105px 100px 110px 110px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px}.pcv-panel .ps-year{font-weight:900;color:var(--primary);font-size:13px}.pcv-panel .ps-name{font-weight:900;font-size:14px}.pcv-panel .ps-advisor{font-size:12.5px;font-weight:800;color:var(--muted)}.pcv-panel .ps-status{font-size:11.5px;font-weight:900;border-radius:999px;padding:4px 8px;text-align:center;color:#fff}.pcv-panel .ps-status.unable{background:var(--red)}.pcv-panel .ps-status.hold{background:var(--yellow)}.pcv-panel .ps-status.return{background:var(--green)}.pcv-panel .ps-status.military{background:var(--purple)}.pcv-panel .ps-reason{font-size:13px;line-height:1.45;color:var(--ink)}.pcv-panel .ps-reason small{display:block;color:var(--muted);font-size:10.5px;margin-top:2px}.pcv-panel .practice-student-actions{display:flex;gap:2px;justify-content:flex-end}.pcv-panel .practice-student-actions button{border:none;background:none;color:var(--muted);cursor:pointer;font-size:18px;opacity:.48;padding:4px 6px;border-radius:7px;transition:.15s}.pcv-panel .practice-student-actions .edit{font-size:14px}.pcv-panel .practice-student-actions .edit:hover{opacity:1;color:var(--primary);background:rgba(0,0,0,.04)}.pcv-panel .practice-student-actions .del:hover{opacity:1;color:var(--red);background:rgba(0,0,0,.04)}.pcv-panel .practice-student-empty{text-align:center;color:var(--muted);padding:16px;font-size:13px;border:1px dashed var(--line);border-radius:14px;background:#fff}
+  @media(max-width:980px){.pcv-panel .practice-student-add{grid-template-columns:1fr 1fr}.pcv-panel .practice-student-add button{padding:10px}.pcv-panel .practice-student-item{grid-template-columns:1fr}}
+  @media(max-width:560px){.pcv-panel .practice-student-add{grid-template-columns:1fr}.pcv-panel .practice-student-filter input{min-width:0;width:100%}}.pcv-panel /* 실습학생 관리: 추가/취소 버튼 가시성 보강 */
+  .practice-student-add #psAdd{min-height:42px;min-width:72px;background:var(--green);box-shadow:0 6px 14px rgba(22,163,74,.18)}.pcv-panel .practice-student-add #psCancel{min-height:42px;min-width:72px}.pcv-panel .practice-student-add{align-items:stretch}.pcv-panel /* 실습운영 캘린더: 개인일정 대시보드형 월간 캘린더 */
+    .practice-calendar-layout{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:start}.pcv-panel .calendar-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}.pcv-panel .calendar-title{display:flex;align-items:center;gap:10px}.pcv-panel .calendar-title h3{margin:0;font-size:21px}.pcv-panel .month-nav{display:flex;gap:6px;align-items:center}.pcv-panel .month-nav button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:900;color:#374151}.pcv-panel .month-nav button:hover{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}.pcv-panel .calendar-mode{display:flex;gap:6px;flex-wrap:wrap}.pcv-panel .mode-chip{border:1px solid var(--line);background:#fff;color:#374151;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:900;cursor:pointer}.pcv-panel .mode-chip.active{background:#111827;color:#fff;border-color:#111827}.pcv-panel .month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}.pcv-panel .weekday{background:#f8fafc;padding:10px 8px;text-align:center;font-size:12px;font-weight:900;color:#64748b;border-right:1px solid #eef2f7}.pcv-panel .weekday:nth-child(7){border-right:0}.pcv-panel .day-cell{min-height:118px;padding:8px;border-right:1px solid #eef2f7;border-top:1px solid #eef2f7;background:#fff;position:relative;cursor:pointer;transition:.15s}.pcv-panel .day-cell:nth-child(7n){border-right:0}.pcv-panel .day-cell:hover{background:#f8fbff}.pcv-panel .day-cell.other-month{background:#f8fafc;color:#94a3b8}.pcv-panel .day-cell.selected{outline:2px solid #93c5fd;outline-offset:-2px;background:#eff6ff}.pcv-panel .day-number{font-size:12px;font-weight:900;color:#334155;margin-bottom:6px}.pcv-panel .day-cell.other-month .day-number{color:#94a3b8}.pcv-panel .event-strip{border-radius:8px;padding:4px 6px;margin-bottom:4px;font-size:11px;font-weight:900;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pcv-panel .event-clinical{background:#dbeafe;color:#1e40af}.pcv-panel .event-office{background:#ede9fe;color:#5b21b6}.pcv-panel .event-eval{background:#fee2e2;color:#991b1b}.pcv-panel .event-doc{background:#dcfce7;color:#166534}.pcv-panel .event-etc{background:#fef3c7;color:#92400e}.pcv-panel .more-events{font-size:11px;color:#64748b;font-weight:800;margin-top:3px}.pcv-panel .today-box{background:linear-gradient(135deg,#111827,#1f2937);color:#fff;border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}.pcv-panel .today-box .label{color:#cbd5e1}.pcv-panel .today-box .value{font-size:24px}.pcv-panel .today-box .sub{color:#d1d5db}.pcv-panel .selected-date-card{margin-bottom:16px}.pcv-panel .event-list{display:flex;flex-direction:column;gap:10px}.pcv-panel .event-item{border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px;box-shadow:0 6px 15px rgba(15,23,42,.04)}.pcv-panel .event-item-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:8px}.pcv-panel .event-item-title{font-weight:900;color:#111827}.pcv-panel .event-item-date{font-size:12px;color:#64748b;font-weight:800;margin-top:4px}.pcv-panel .event-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pcv-panel .event-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:900;color:#374151}.pcv-panel .event-form input, .pcv-panel .event-form select, .pcv-panel .event-form textarea{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff;font:inherit}.pcv-panel .event-form textarea{grid-column:1/-1;min-height:70px;resize:vertical}.pcv-panel .event-form .wide{grid-column:1/-1}
+    @media(max-width:1100px){.pcv-panel .practice-calendar-layout{grid-template-columns:1fr}.pcv-panel .day-cell{min-height:96px}.pcv-panel .event-form{grid-template-columns:1fr}}
+
+
+</style>
 <!-- ── 로그인 화면 ── -->
 <div id="loginScreen">
   <div class="login-bg-deco"><span></span><span></span><span></span></div>
@@ -1044,10 +1067,10 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
 <!-- ── 사이드바 ── -->
 <aside class="side" id="sidebar">
   <div class="side-brand">
-    <div class="side-logo">🏥</div>
+    <div class="side-logo" id="sideBrandLogo">🏥</div>
     <div>
-      <div class="side-title">간호학과 학과장</div>
-      <div class="side-sub">운영 대시보드</div>
+      <div class="side-title" id="sideBrandTitle">간호학과 학과장</div>
+      <div class="side-sub" id="sideBrandSub">운영 대시보드</div>
     </div>
     <button class="side-toggle" id="sideToggle" title="사이드바 접기/펼치기">◀</button>
   </div>
@@ -1058,20 +1081,27 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
   </div>
   <div class="side-section-title">메뉴</div>
   <nav class="side-menu">
-    <button class="side-btn on" data-side-view="dashboard"><span class="ico">📋</span><span class="txt">오늘의 일정</span><span class="count" id="sideCntDashboard">0</span></button>
-    <button class="side-btn" data-side-view="schedule"><span class="ico">📆</span><span class="txt">주간 일정</span></button>
-    <button class="side-btn" data-side-view="tasks"><span class="ico">📌</span><span class="txt">체크리스트</span><span class="count" id="sideCntTasks">0</span></button>
-    <button class="side-btn" data-side-view="faculty"><span class="ico">👩‍🏫</span><span class="txt">교수 시간표</span></button>
+    <button class="side-btn on head-only" data-side-view="dashboard"><span class="ico">📋</span><span class="txt">오늘의 일정</span><span class="count" id="sideCntDashboard">0</span></button>
+    <button class="side-btn head-only" data-side-view="schedule"><span class="ico">📆</span><span class="txt">주간 일정</span></button>
+    <button class="side-btn head-only" data-side-view="tasks"><span class="ico">📌</span><span class="txt">체크리스트</span><span class="count" id="sideCntTasks">0</span></button>
+    <button class="side-btn head-only" data-side-view="faculty"><span class="ico">👩‍🏫</span><span class="txt">교수 시간표</span></button>
     <button class="side-btn" data-side-view="practiceStudents"><span class="ico">🏥</span><span class="txt">임상실습 학생 관리</span><span class="count" id="sideCntPracticeStudents">0</span></button>
     <button class="side-btn" data-side-view="practiceInstitutions"><span class="ico">🏨</span><span class="txt">임상실습 기관 관리</span><span class="count" id="sideCntPracticeInstitutions">0</span></button>
-    <button class="side-btn" data-side-view="contribution"><span class="ico">🤝</span><span class="txt">교수 기여도 관리</span><span class="count" id="sideCntContribution">0</span></button>
-    <button class="side-btn" data-side-view="meetingAgenda"><span class="ico">🗂️</span><span class="txt">회의 안건 보드</span><span class="count" id="sideCntMeetingAgenda">0</span></button>
-    <button class="side-btn" data-side-view="writeDb"><span class="ico">🗃️</span><span class="txt">작성DB</span><span class="count" id="sideCntWriteDb">0</span></button>
-    <button class="side-btn" data-side-view="scholar"><span class="ico">🎓</span><span class="txt">장학금 관리</span><span class="count" id="sideCntScholar">0</span></button>
-    <button class="side-btn" data-side-view="manage"><span class="ico">📄</span><span class="txt">학과 운영 관리</span></button>
-    <button class="side-btn" data-side-view="memo"><span class="ico">📝</span><span class="txt">메모센터</span></button>
-    <button class="side-btn" data-side-view="grade"><span class="ico">🎓</span><span class="txt">학년별 관리</span></button>
-    <button class="side-btn" data-side-view="search"><span class="ico">🔍</span><span class="txt">일정 검색</span></button>
+    <button class="side-btn head-only" data-side-view="contribution"><span class="ico">🤝</span><span class="txt">교수 기여도 관리</span><span class="count" id="sideCntContribution">0</span></button>
+    <button class="side-btn head-only" data-side-view="meetingAgenda"><span class="ico">🗂️</span><span class="txt">회의 안건 보드</span><span class="count" id="sideCntMeetingAgenda">0</span></button>
+    <button class="side-btn head-only" data-side-view="writeDb"><span class="ico">🗃️</span><span class="txt">작성DB</span><span class="count" id="sideCntWriteDb">0</span></button>
+    <button class="side-btn head-only" data-side-view="scholar"><span class="ico">🎓</span><span class="txt">장학금 관리</span><span class="count" id="sideCntScholar">0</span></button>
+    <button class="side-btn head-only" data-side-view="manage"><span class="ico">📄</span><span class="txt">학과 운영 관리</span></button>
+    <button class="side-btn head-only" data-side-view="memo"><span class="ico">📝</span><span class="txt">메모센터</span></button>
+    <button class="side-btn head-only" data-side-view="grade"><span class="ico">🎓</span><span class="txt">학년별 관리</span></button>
+    <button class="side-btn head-only" data-side-view="search"><span class="ico">🔍</span><span class="txt">일정 검색</span></button>
+    <button class="side-btn chair-only" data-side-view="practiceChairHome"><span class="ico">🏠</span><span class="txt">실습위원장 홈</span></button>
+    <button class="side-btn chair-only" data-side-view="agreements"><span class="ico">🏥</span><span class="txt">실습기관 협약관리</span></button>
+    <button class="side-btn chair-only" data-side-view="facultyStatus"><span class="ico">👨‍🏫</span><span class="txt">실습지도교수 현황</span></button>
+    <button class="side-btn chair-only" data-side-view="opCalendar"><span class="ico">📅</span><span class="txt">실습운영 캘린더</span></button>
+    <button class="side-btn chair-only" data-side-view="satisfaction"><span class="ico">📊</span><span class="txt">실습만족도</span></button>
+    <button class="side-btn chair-only" data-side-view="committeeMinutes"><span class="ico">📝</span><span class="txt">실습위원회 회의록</span></button>
+    <button class="side-btn admin-only" id="sideAdminAccounts" data-side-view="adminAccounts" style="display:none"><span class="ico">🛠</span><span class="txt">계정 관리(관리자)</span></button>
   </nav>
   <div class="side-section-title">QUICK ACTIONS</div>
   <div class="side-actions">
@@ -1332,6 +1362,326 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
       <button id="piPrintPdf" class="export">PDF/인쇄</button>
     </div>
     <div class="practice-institution-list" id="practiceInstitutionList"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       실습위원장 대시보드 전용 화면 (신은희 role: practice_chair)
+       ══════════════════════════════════════════════ -->
+
+  <!-- 실습위원장 홈 -->
+  <!-- 계정 관리 (관리자 전용 페이지) -->
+  <style>
+    [data-view="adminAccounts"] input[type="text"],
+    [data-view="adminAccounts"] input[type="password"],
+    [data-view="adminAccounts"] select{
+      width:100%; box-sizing:border-box;
+      font-size:15.5px; font-family:inherit;
+      padding:12px 14px; border-radius:10px;
+      border:1px solid var(--line); background:#fff; color:var(--ink);
+    }
+    [data-view="adminAccounts"] input:focus,
+    [data-view="adminAccounts"] select:focus{ outline:none; border-color:var(--accent); }
+  </style>
+  <div class="card delay pcv-panel" data-view="adminAccounts">
+    <h2>🛠 계정 관리</h2>
+    <div class="sub">계정별 역할을 직접 입력하고, 등급을 지정하거나 비밀번호를 초기화할 수 있습니다. 계정을 새로 추가하거나 삭제할 수도 있습니다.</div>
+    <div class="note" style="margin:12px 0">
+      기존 계정의 <b>역할</b>은 자유롭게 입력할 수 있습니다. 화면 메뉴 전환에 쓰이는 값은 <code>department_head</code>(학과장 메뉴), <code>practice_chair</code>(실습위원장 메뉴) 두 가지이며, 그 외의 값을 입력하면 기본적으로 학과장 메뉴가 표시됩니다.
+    </div>
+
+    <div style="border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:18px;background:var(--paper)">
+      <h3 style="margin:0 0 14px;font-size:15px">➕ 새 계정 추가</h3>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+        <label style="font-size:13px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px">이름
+          <input type="text" id="newAcctName" placeholder="예: 홍길동">
+        </label>
+        <label style="font-size:13px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px">로그인 아이디
+          <input type="text" id="newAcctId" placeholder="예: 홍길동 (아이디로 사용할 문자열)">
+        </label>
+        <label style="font-size:13px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px">임시 비밀번호
+          <input type="password" id="newAcctPw" placeholder="4자리 이상">
+        </label>
+        <label style="font-size:13px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px">로그인 시 이동할 대시보드
+          <select id="newAcctRole">
+            <option value="department_head">학과장 대시보드</option>
+            <option value="practice_chair">실습위원장 대시보드</option>
+          </select>
+        </label>
+        <label style="font-size:13px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px">등급
+          <select id="newAcctLevel">
+            <option value="general">일반</option>
+            <option value="admin">관리자</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn" style="margin-top:14px" onclick="addNewAccount()">계정 추가</button>
+    </div>
+
+    <h3 style="margin:0 0 10px;font-size:15px">등록된 계정</h3>
+    <div id="adminAccountList" style="display:grid;gap:10px"></div>
+  </div>
+
+  <div class="card delay pcv-panel" data-view="practiceChairHome">
+    <h2>🏠 실습위원장 운영 현황</h2>
+    <div class="sub">실습기관, 지도교수, 실습학생, 월별 업무를 한 화면에서 확인합니다.</div>
+    <div class="grid kpi" style="margin-top:14px">
+      <div class="card"><div class="label">실습기관</div><div class="value" id="pcHomeAgreementCount">0</div><div class="sub">협약관리 대상</div></div>
+      <div class="card"><div class="label">실습지도교수 배정</div><div class="value" id="pcHomeFacultyCount">0</div><div class="sub">현재 학기 기준</div></div>
+      <div class="card"><div class="label">실습학생 관리</div><div class="value" id="pcHomeStudentCount">0</div><div class="sub">실습불가·보류 등 포함</div></div>
+      <div class="card"><div class="label">이번 달 운영 일정</div><div class="value" id="pcHomeEventCount">0</div><div class="sub">실습운영 캘린더 기준</div></div>
+    </div>
+    <div class="note" style="margin-top:14px">좌측 사이드바에서 실습기관 협약관리 · 실습지도교수 현황 · 실습학생 관리 · 실습운영 캘린더 · 실습만족도 · 실습위원회 회의록으로 이동할 수 있습니다.</div>
+  </div>
+
+  <!-- 실습기관 협약관리 -->
+  <div class="card delay pcv-panel" data-view="agreements">
+    <div class="topbar">
+      <div>
+        <h2>🏥 실습기관 협약관리</h2>
+        <div class="sub">협약기관을 가로로 긴 목록형 카드로 확인하고, 필요한 경우에만 수정창을 열어 관리합니다.</div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" onclick="saveAgreements()">전체 저장</button>
+      </div>
+    </div>
+    <div class="grid agreement-summary">
+      <div class="card"><div class="label">전체 협약기관</div><div class="value" id="agreementTotal">0</div><div class="sub">등록 기관</div></div>
+      <div class="card"><div class="label">상급·종합병원</div><div class="value" id="agreementMajor">0</div><div class="sub">상급종합병원 + 종합병원</div></div>
+      <div class="card"><div class="label">지역거점공공병원</div><div class="value" id="agreementPublic">0</div><div class="sub">공공 실습거점</div></div>
+      <div class="card"><div class="label">총 병상수</div><div class="value" id="agreementBeds">0</div><div class="sub">입력 기준 합계</div></div>
+    </div>
+    <div class="card" style="margin-bottom:14px">
+      <h3>➕ 새 협약기관 추가</h3>
+      <div class="edit-form">
+        <label>기관명<input type="text" id="agNewName" placeholder="예: 김천제일병원"></label>
+        <label>지역<input type="text" id="agNewRegion" placeholder="예: 경북 김천"></label>
+        <label>기관 종류<select id="agNewType"></select></label>
+        <label>협약시작<input type="date" id="agNewStart"></label>
+        <label>협약종료<input type="date" id="agNewEnd"></label>
+        <label>병상수<input type="number" min="0" id="agNewBeds" placeholder="예: 500"></label>
+        <label>담당교수<input type="text" id="agNewProfessor" placeholder="담당교수"></label>
+      </div>
+      <button class="btn" style="margin-top:12px" onclick="addAgreementRow()">협약기관 추가</button>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="toolbar">
+        <h3>협약기관 목록</h3>
+        <input class="search" id="agreementSearch" placeholder="기관명·지역·담당교수 검색" oninput="filterAgreements()">
+      </div>
+      <div class="note" style="margin-bottom:12px">각 기관의 <b>수정</b> 버튼으로 정보를 수정하고, <b>▲/▼</b> 버튼으로 목록 순서를 조정할 수 있습니다.</div>
+      <div id="agreementCards" class="agreement-list"></div>
+    </div>
+  </div>
+
+  <!-- 실습지도교수 현황 -->
+  <div class="card delay pcv-panel" data-view="facultyStatus">
+    <div class="topbar">
+      <div>
+        <h2>👨‍🏫 실습지도교수 현황</h2>
+        <div class="sub">연도·학기별로 교과목, 실습기관, 지도교수 분류를 관리합니다.</div>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="addFacultyAssignment()">+ 배정 추가</button>
+        <button class="btn ghost" onclick="saveFacultyAssignments()">저장</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="faculty-filter">
+        <label>연도
+          <select id="facultyYear" onchange="renderFacultyAssignments()">
+            <option value="2025">2025</option>
+            <option value="2026" selected>2026</option>
+            <option value="2027">2027</option>
+          </select>
+        </label>
+        <label>학기
+          <select id="facultySemester" onchange="renderFacultyAssignments()">
+            <option value="1학기" selected>1학기</option>
+            <option value="2학기">2학기</option>
+            <option value="동계">동계</option>
+            <option value="하계">하계</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <div class="toolbar">
+        <h3>교과목별 실습지도교수 배정표</h3>
+        <input class="search" id="facultySearch" placeholder="교과목·기관·교수 검색" oninput="filterFacultyAssignments()">
+      </div>
+      <div class="note" style="margin-bottom:12px">엑셀처럼 셀을 바로 클릭해 입력하는 방식입니다. <b>교수 분류·교과목·기관·순회지도일·비고</b>를 한 줄 단위로 관리합니다.</div>
+      <div class="excel-wrap"><table class="excel-table"><thead><tr><th style="width:54px">순번</th><th style="width:120px">분류</th><th style="width:180px">교과목</th><th style="width:160px">기관</th><th style="width:130px">지도교수</th><th style="width:220px">순회지도일</th><th style="width:220px">비고</th><th style="width:90px">관리</th></tr></thead><tbody id="facultyList"></tbody></table></div>
+      <style>
+        [data-view="facultyStatus"] .excel-wrap{border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(15,23,42,.05)}
+        [data-view="facultyStatus"] .excel-table th{padding:13px 10px;letter-spacing:.02em;border-bottom:2px solid #e2e8f0}
+        [data-view="facultyStatus"] .excel-table tbody tr{transition:background .12s}
+        [data-view="facultyStatus"] .excel-table tbody tr:nth-child(even){background:#fafbfd}
+        [data-view="facultyStatus"] .excel-table tbody tr:hover{background:#eff6ff}
+        [data-view="facultyStatus"] .excel-cell,[data-view="facultyStatus"] .excel-memo{padding:12px 11px}
+        [data-view="facultyStatus"] .excel-cell[data-field="professor"]{font-weight:800;color:#111827}
+        [data-view="facultyStatus"] .excel-select{padding:10px 9px;font-weight:800;border-radius:8px;margin:4px;cursor:pointer}
+        [data-view="facultyStatus"] .excel-select.cat-full{background:#dbeafe;color:#1e40af}
+        [data-view="facultyStatus"] .excel-select.cat-adj{background:#ede9fe;color:#5b21b6}
+        [data-view="facultyStatus"] .excel-select.cat-part{background:#ffedd5;color:#9a3412}
+        [data-view="facultyStatus"] .excel-num{font-size:13px;color:#94a3b8}
+        [data-view="facultyStatus"] .excel-actions button{transition:.12s}
+        [data-view="facultyStatus"] .excel-actions button:hover{transform:translateY(-1px)}
+      </style>
+      <div class="excel-add-row"><div class="excel-guide">입력 후 <b>저장</b>을 누르면 현재 브라우저에 보관됩니다.</div><button class="btn ghost smallbtn" onclick="addFacultyAssignment()">+ 행 추가</button></div>
+    </div>
+  </div>
+
+  <!-- 실습운영 캘린더 -->
+  <div class="card delay pcv-panel" data-view="opCalendar">
+    <div class="topbar">
+      <div>
+        <h2>📅 실습운영 캘린더</h2>
+        <div class="sub">월간 캘린더와 선택일 업무목록을 함께 확인합니다.</div>
+      </div>
+      <div class="actions">
+        <button class="btn" onclick="openEventForm()">+ 일정 추가</button>
+        <button class="btn ghost" onclick="savePracticeEvents()">저장</button>
+      </div>
+    </div>
+    <div class="practice-calendar-layout">
+      <div class="card">
+        <div class="calendar-toolbar">
+          <div class="calendar-title">
+            <div class="month-nav">
+              <button onclick="movePracticeMonth(-1)">‹</button>
+              <button onclick="goPracticeToday()">오늘</button>
+              <button onclick="movePracticeMonth(1)">›</button>
+            </div>
+            <h3 id="practiceMonthTitle">2026년 6월</h3>
+          </div>
+          <div class="calendar-mode">
+            <button class="mode-chip active" data-filter="전체" onclick="setPracticeFilter('전체',this)">전체</button>
+            <button class="mode-chip" data-filter="임상실습" onclick="setPracticeFilter('임상실습',this)">임상실습</button>
+            <button class="mode-chip" data-filter="행정" onclick="setPracticeFilter('행정',this)">행정</button>
+            <button class="mode-chip" data-filter="평가회" onclick="setPracticeFilter('평가회',this)">평가회</button>
+          </div>
+        </div>
+        <div id="practiceCalendarGrid" class="month-grid"></div>
+      </div>
+      <div>
+        <div class="today-box">
+          <div class="label">선택일</div>
+          <div class="value" id="selectedPracticeDateText">-</div>
+          <div class="sub" id="selectedPracticeSummary">등록된 실습운영 일정을 확인합니다.</div>
+        </div>
+        <div class="card selected-date-card">
+          <div class="toolbar">
+            <h3>선택일 업무</h3>
+            <button class="btn ghost smallbtn" onclick="openEventFormForSelected()">+ 추가</button>
+          </div>
+          <div id="selectedPracticeEvents" class="event-list"></div>
+        </div>
+        <div class="card">
+          <h3>실습운영 일정 입력</h3>
+          <div class="event-form">
+            <label>구분
+              <select id="eventCategory">
+                <option>임상실습</option>
+                <option>행정</option>
+                <option>평가회</option>
+                <option>자료</option>
+                <option>기타</option>
+              </select>
+            </label>
+            <label>일정명<input id="eventTitle" placeholder="예: 실습기관 평가회"></label>
+            <label>시작일<input id="eventStart" type="date"></label>
+            <label>종료일<input id="eventEnd" type="date"></label>
+            <label class="wide">메모<textarea id="eventMemo" placeholder="담당자, 준비사항, 공문 여부 등을 입력"></textarea></label>
+            <div class="actions wide">
+              <button class="btn" onclick="addPracticeEvent()">일정 저장</button>
+              <button class="btn ghost" onclick="clearPracticeEventForm()">입력 초기화</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 실습만족도 (추후 개발 예정 - 초기 버전은 안내 화면만 제공) -->
+  <div class="card delay pcv-panel" data-view="satisfaction">
+    <div class="topbar">
+      <div>
+        <h2>📊 실습만족도</h2>
+        <div class="sub">기관 평가회와 재협약 판단에 필요한 만족도 결과를 학기·기관별로 기록합니다.</div>
+      </div>
+    </div>
+    <div class="grid two">
+      <div class="card">
+        <h3>만족도 결과 입력</h3>
+        <div class="form">
+          <label>학기<input type="text" id="satTerm" placeholder="예: 2026-1학기"></label>
+          <label>기관명
+            <select id="satInstitution"><option value="">-- 협약기관 선택 또는 직접입력 --</option></select>
+          </label>
+          <label>기관명 직접입력<input type="text" id="satInstitutionText" placeholder="목록에 없는 기관명을 입력하려면 여기에 입력"></label>
+          <label>응답인원<input type="number" min="0" id="satRespondents" placeholder="예: 20"></label>
+          <label>평균점수(5점 만점)<input type="number" min="0" max="5" step="0.1" id="satScore" placeholder="예: 4.5"></label>
+          <label style="grid-column:1/-1">자유의견<textarea id="satComment" placeholder="좋았던 점, 개선점 등을 입력하세요"></textarea></label>
+          <div class="actions" style="grid-column:1/-1">
+            <button class="btn" id="satSaveBtn" onclick="addSatisfactionEntry()">결과 저장</button>
+            <button class="btn ghost" onclick="clearSatisfactionForm()">입력 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>기관별 만족도 목록</h3>
+        <input class="search" id="satSearch" placeholder="학기·기관명 검색" oninput="renderSatisfactionList()" style="margin-bottom:12px">
+        <div id="satisfactionList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 실습위원회 회의록 -->
+  <div class="card delay pcv-panel" data-view="committeeMinutes">
+    <div class="topbar">
+      <div>
+        <h2>📝 실습위원회 회의록</h2>
+        <div class="sub">정기회의와 임시회의 안건, 결정사항, 후속조치를 기록합니다.</div>
+      </div>
+    </div>
+    <div class="grid two">
+      <div class="card">
+        <h3>회의록 작성</h3>
+        <div class="form">
+          <label>회의일<input type="date" id="minuteDate"></label>
+          <label>회의구분
+            <select id="minuteType">
+              <option>1학기 정기회의</option>
+              <option>2학기 정기회의</option>
+              <option>임시회의</option>
+              <option>비상회의</option>
+            </select>
+          </label>
+          <label style="grid-column:1/-1">안건명<input id="minuteAgenda" placeholder="예: 1학기 임상실습 운영계획"></label>
+          <label>제안자<input id="minuteProposer" placeholder="제안자 입력"></label>
+          <label>담당자<input id="minuteOwner" placeholder="후속조치 담당자"></label>
+          <label style="grid-column:1/-1">논의 내용<textarea id="minuteDiscussion" placeholder="회의 안건에 대한 논의 내용을 입력하세요"></textarea></label>
+          <label style="grid-column:1/-1">결정사항 / 후속조치<textarea id="minuteDecision" placeholder="결정사항 및 후속조치를 입력하세요"></textarea></label>
+          <label>상태
+            <select id="minuteStatus">
+              <option value="진행중">진행중</option>
+              <option value="완료">완료</option>
+              <option value="보류">보류</option>
+            </select>
+          </label>
+          <label>운영위원회 상정 날짜<input type="date" id="minuteBoardDate"></label>
+          <label>학과회의 상정 날짜<input type="date" id="minuteDeptMeetingDate"></label>
+          <div class="actions" style="grid-column:1/-1">
+            <button class="btn" id="minuteSaveBtn" onclick="addCommitteeMinute()">회의록 저장</button>
+            <button class="btn ghost" onclick="clearMinuteForm()">입력 초기화</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>회의록 목록</h3>
+        <div id="minuteList"></div>
+      </div>
+    </div>
   </div>
 
   <div class="card delay faculty-card" data-view="faculty">
@@ -1718,6 +2068,8 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
     </div>
   </div>
 </div>
+
+
 </div><!-- /.app-shell -->
 
 <div class="modal-bg" id="modalBg">
@@ -4637,13 +4989,54 @@ const LOGIN_SESS_KEY = "nursing_head_login_v1";
 const LOGIN_SAVE_ID_KEY = "nursing_head_saved_login_id_v1";
 const LOGIN_SAVE_ID_FLAG_KEY = "nursing_head_save_id_enabled_v1";
 const LOGIN_USERS = [
-  {name:"금정화", idHash:"be4517237a6b32ce0915fdbeed6d6e68d5f03c10efc626b11016619c99dee7ba", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"},
-  {name:"이재겸", idHash:"e5e71b9e73092a6853bfbe8e818c547c873c8186d917f2285301fa2fc20d72c2", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"},
-  {name:"김기용", idHash:"383526f59fbc17c9e921c35848454ae95dd17b1f5e11b51f8741513d1ae13dd4", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4"}
+  {name:"금정화", idHash:"be4517237a6b32ce0915fdbeed6d6e68d5f03c10efc626b11016619c99dee7ba", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"department_head", level:"general"},
+  {name:"이재겸", idHash:"e5e71b9e73092a6853bfbe8e818c547c873c8186d917f2285301fa2fc20d72c2", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"department_head", level:"admin"},
+  {name:"김기용", idHash:"383526f59fbc17c9e921c35848454ae95dd17b1f5e11b51f8741513d1ae13dd4", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"department_head", level:"general"},
+  {name:"신은희", idHash:"7dcc70bdde69243d4854bd5ba10293ed0aa400c3a2f644618f8cb3a136ec67fe", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"practice_chair", level:"general"}
 ];
 
+// 로그인 사용자의 role을 세션에 저장/조회 (department_head | practice_chair)
+const LOGIN_ROLE_KEY = "nursing_head_login_role_v1";
+function getCurrentRole(){ return sessionStorage.getItem(LOGIN_ROLE_KEY) || "department_head"; }
+function setCurrentRole(role){ sessionStorage.setItem(LOGIN_ROLE_KEY, role); }
+
 function isLoggedIn(){ return sessionStorage.getItem(LOGIN_SESS_KEY)==="1"; }
-function setLoggedIn(userName){ sessionStorage.setItem(LOGIN_SESS_KEY,"1"); sessionStorage.setItem(LOGIN_USER_KEY,userName); updateCurrentUserDisplay(); updateLoginUserInfo(); if(typeof recordAccessLoginIfNeeded === "function") recordAccessLoginIfNeeded(); }
+const LOGIN_LEVEL_KEY = "nursing_head_login_level_v1";
+function getCurrentLevel(){ return sessionStorage.getItem(LOGIN_LEVEL_KEY) || "general"; }
+function setCurrentLevel(level){ sessionStorage.setItem(LOGIN_LEVEL_KEY, level); }
+function isAdminLevel(){ return getCurrentLevel() === "admin"; }
+function setLoggedIn(userName, role, level){
+  sessionStorage.setItem(LOGIN_SESS_KEY,"1");
+  sessionStorage.setItem(LOGIN_USER_KEY,userName);
+  setCurrentRole(role || "department_head");
+  setCurrentLevel(level || "general");
+  updateCurrentUserDisplay(); updateLoginUserInfo();
+  if(typeof recordAccessLoginIfNeeded === "function") recordAccessLoginIfNeeded();
+  if(typeof applyRoleDashboard === "function") applyRoleDashboard();
+  if(typeof applyAdminUi === "function") applyAdminUi();
+}
+
+// 역할별 화면 분기
+function applyRoleDashboard(){
+  const role = getCurrentRole();
+  document.body.setAttribute("data-role", role);
+
+  const titleEl = document.getElementById("sideBrandTitle");
+  const subEl   = document.getElementById("sideBrandSub");
+  if(role === "practice_chair"){
+    if(titleEl) titleEl.textContent = "간호학과 실습위원장";
+    if(subEl)   subEl.textContent   = "실습위원회 운영 대시보드";
+    // 실습위원장 전용 화면 데이터를 최초 1회 로드
+    if(typeof initPracticeChairViews === "function" && !_pcvInitialized){
+      try{ initPracticeChairViews(); }catch(e){ console.warn("initPracticeChairViews error:", e); }
+    }
+    if(typeof setActiveView === "function") setActiveView("practiceChairHome");
+  } else {
+    if(titleEl) titleEl.textContent = "간호학과 학과장";
+    if(subEl)   subEl.textContent   = "운영 대시보드";
+    if(typeof setActiveView === "function") setActiveView("dashboard");
+  }
+}
 
 function isLoginSaveEnabled(){
   return localStorage.getItem(LOGIN_SAVE_ID_FLAG_KEY) === "1";
@@ -4674,6 +5067,8 @@ function doLogout(){
   if(typeof recordAccessLogout === "function") recordAccessLogout();
   sessionStorage.removeItem(LOGIN_SESS_KEY);
   sessionStorage.removeItem(LOGIN_USER_KEY);
+  sessionStorage.removeItem(LOGIN_ROLE_KEY);
+  sessionStorage.removeItem(LOGIN_LEVEL_KEY);
   updateCurrentUserDisplay(); updateLoginUserInfo();
   const screen = document.getElementById("loginScreen");
   if(screen){ screen.style.display="flex"; screen.classList.remove("hidden"); }
@@ -4698,12 +5093,13 @@ async function tryLogin(){
   const user = LOGIN_USERS.find(u=>u.idHash===idHash && u.pwHash===pwHash);
   if(user){
     saveLoginRememberPreference(id);
-    setLoggedIn(user.name);
+    setLoggedIn(user.name, user.role, user.level);
     renderWriteDb();
     const screen = document.getElementById("loginScreen");
     screen.classList.add("hidden");
     setTimeout(()=>{ screen.style.display="none"; }, 500);
     // Firebase 로그인 후 Firestore 데이터 로드
+    // (학과장 3명 + 실습위원장 모두 같은 공유 Firebase 계정을 사용 → 공용 데이터 공유에 사용)
     if(window.fbLogin){
       window.fbLogin("watersun77@naver.com", "123456").then(r=>{
         if(r.ok && typeof window.loadAllFromFirestore==="function"){
@@ -4759,9 +5155,122 @@ async function saveAccountPassword(){
   const target=LOGIN_USERS.find(x=>x.name===user);
   if(!target||target.pwHash!==curHash){alert("현재 비밀번호가 올바르지 않습니다.");return;}
   target.pwHash=await sha256(npw);
-  localStorage.setItem("nursing_head_login_users_v2",JSON.stringify(LOGIN_USERS));
+  persistAccountOverrides();
   alert("비밀번호가 변경되었습니다.");
   closeAccountModal();
+}
+
+// ── 관리자 계정 관리: 역할/등급 지정, 비밀번호 초기화 ──
+const ACCOUNT_OVERRIDES_KEY = "nursing_head_login_overrides_v2";
+function loadAccountOverrides(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(ACCOUNT_OVERRIDES_KEY));
+    if(saved && typeof saved === "object"){
+      LOGIN_USERS.forEach(u=>{
+        const ov = saved[u.name];
+        if(!ov) return;
+        if(ov.pwHash) u.pwHash = ov.pwHash;
+        if(ov.role) u.role = ov.role;
+        if(ov.level) u.level = ov.level;
+      });
+    }
+  }catch(e){}
+}
+function persistAccountOverrides(){
+  const data = {};
+  LOGIN_USERS.forEach(u=>{ data[u.name] = {pwHash:u.pwHash, role:u.role, level:u.level}; });
+  localStorage.setItem(ACCOUNT_OVERRIDES_KEY, JSON.stringify(data));
+}
+function applyAdminUi(){
+  const btn = document.getElementById("sideAdminAccounts");
+  if(btn) btn.style.display = isAdminLevel() ? "flex" : "none";
+}
+function renderAdminAccountList(){
+  const wrap = document.getElementById("adminAccountList");
+  if(!wrap) return;
+  const myName = sessionStorage.getItem(LOGIN_USER_KEY)||"";
+  const adminCount = LOGIN_USERS.filter(u=>u.level==="admin").length;
+  wrap.innerHTML = LOGIN_USERS.map((u,i)=>{
+    const isMe = u.name===myName;
+    const isLastAdmin = u.level==="admin" && adminCount<=1;
+    const deleteDisabled = isMe || isLastAdmin;
+    const deleteTitle = isMe ? "현재 로그인 중인 계정은 삭제할 수 없습니다" : (isLastAdmin ? "마지막 관리자 계정은 삭제할 수 없습니다" : "계정 삭제");
+    return `
+    <div style="border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px;background:var(--paper2)">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+        <strong style="font-size:14.5px">${u.name}${isMe?' <span style="font-size:11px;color:var(--accent);font-weight:800">(현재 로그인 계정)</span>':''}</strong>
+        <button class="btn ghost smallbtn danger" onclick="deleteAccountRow(${i})" ${deleteDisabled?"disabled":""} title="${deleteTitle}">삭제</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+        <label style="font-size:12px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:5px">역할 (자유입력)
+          <input type="text" value="${escapeHtml(u.role||"")}" data-admin-field="role" data-admin-index="${i}" placeholder="department_head 또는 practice_chair 등">
+        </label>
+        <label style="font-size:12px;font-weight:800;color:var(--ink-soft);display:flex;flex-direction:column;gap:5px">등급
+          <select data-admin-field="level" data-admin-index="${i}">
+            <option value="general" ${u.level==="general"?"selected":""}>일반</option>
+            <option value="admin" ${u.level==="admin"?"selected":""}>관리자</option>
+          </select>
+        </label>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <input type="password" placeholder="새 임시 비밀번호 (4자리 이상)" data-admin-newpw="${i}" style="flex:1;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit">
+        <button class="btn ghost smallbtn" onclick="adminResetPassword(${i})">비밀번호 초기화</button>
+      </div>
+    </div>`;
+  }).join("");
+  wrap.querySelectorAll("[data-admin-field]").forEach(el=>{
+    el.addEventListener("change", ()=>{
+      const idx = parseInt(el.dataset.adminIndex,10);
+      const field = el.dataset.adminField;
+      if(LOGIN_USERS[idx]){
+        LOGIN_USERS[idx][field] = el.value.trim();
+        persistAccountOverrides();
+        renderAdminAccountList();
+      }
+    });
+  });
+}
+async function adminResetPassword(index){
+  const input = document.querySelector(`[data-admin-newpw="${index}"]`);
+  const npw = input?.value || "";
+  if(npw.length < 4){ alert("비밀번호는 4자 이상 입력하세요."); return; }
+  const target = LOGIN_USERS[index];
+  if(!target) return;
+  target.pwHash = await sha256(npw);
+  persistAccountOverrides();
+  alert(`${target.name} 계정 비밀번호가 초기화되었습니다.`);
+  if(input) input.value = "";
+}
+async function addNewAccount(){
+  const name = document.getElementById("newAcctName")?.value.trim();
+  const id   = document.getElementById("newAcctId")?.value.trim();
+  const pw   = document.getElementById("newAcctPw")?.value || "";
+  const role = document.getElementById("newAcctRole")?.value.trim() || "department_head";
+  const level = document.getElementById("newAcctLevel")?.value || "general";
+  if(!name || !id){ alert("이름과 로그인 아이디를 입력하세요."); return; }
+  if(pw.length < 4){ alert("임시 비밀번호는 4자 이상 입력하세요."); return; }
+  if(LOGIN_USERS.some(u=>u.name===name)){ alert("이미 같은 이름의 계정이 있습니다."); return; }
+  const idHash = await sha256(id);
+  const pwHash = await sha256(pw);
+  LOGIN_USERS.push({name, idHash, pwHash, role, level});
+  persistAccountOverrides();
+  ["newAcctName","newAcctId","newAcctPw"].forEach(fid=>{ const el=document.getElementById(fid); if(el) el.value=""; });
+  document.getElementById("newAcctRole").value = "department_head";
+  document.getElementById("newAcctLevel").value = "general";
+  renderAdminAccountList();
+  alert(`${name} 계정이 추가되었습니다.`);
+}
+function deleteAccountRow(index){
+  const target = LOGIN_USERS[index];
+  if(!target) return;
+  const myName = sessionStorage.getItem(LOGIN_USER_KEY)||"";
+  if(target.name===myName){ alert("현재 로그인 중인 계정은 삭제할 수 없습니다."); return; }
+  const adminCount = LOGIN_USERS.filter(u=>u.level==="admin").length;
+  if(target.level==="admin" && adminCount<=1){ alert("마지막 관리자 계정은 삭제할 수 없습니다."); return; }
+  if(!confirm(`${target.name} 계정을 삭제할까요? 이 작업은 되돌릴 수 없습니다.`)) return;
+  LOGIN_USERS.splice(index,1);
+  persistAccountOverrides();
+  renderAdminAccountList();
 }
 
 // ════════════════════════════════════════════════════════════
@@ -4848,29 +5357,6 @@ window.attachFirestoreListeners = function(){
     });
 };
 
-// ── Firebase Auth 기반 로그인 연동 ──
-// 기존 tryLogin 함수를 래핑하여 Firebase Auth도 같이 처리
-(function patchTryLogin(){
-  const _orig = window.tryLogin;
-  if(typeof _orig !== "function") return;
-  window.tryLogin = async function(){
-    // 기존 해시 검증 먼저
-    const id  = document.getElementById("loginId").value.trim();
-    const pw  = document.getElementById("loginPw").value;
-    const idHash = await sha256(id), pwHash = await sha256(pw);
-    const user = LOGIN_USERS.find(u=>u.idHash===idHash && u.pwHash===pwHash);
-    if(!user){
-      // 기존 오류 처리 위임
-      return _orig.apply(this, arguments);
-    }
-    // Firebase Auth 로그인 (공유 계정 고정)
-    if(window.fbLogin){
-      await window.fbLogin("watersun77@naver.com", "123456");
-    }
-    return _orig.apply(this, arguments);
-  };
-})();
-
 // ── 계정관리: Firebase Auth 비밀번호 변경 연동 ──
 (function patchSaveAccountPassword(){
   const _orig = window.saveAccountPassword;
@@ -4893,6 +5379,8 @@ window.addEventListener("DOMContentLoaded",()=>{
   if(isLoggedIn()){
     updateCurrentUserDisplay(); updateLoginUserInfo();
     if(typeof recordAccessLoginIfNeeded === "function") recordAccessLoginIfNeeded();
+    if(typeof applyRoleDashboard === "function") applyRoleDashboard();
+    if(typeof applyAdminUi === "function") applyAdminUi();
     renderWriteDb();
     document.getElementById("loginScreen").style.display="none";
     // Firebase Auth 상태가 이미 복원된 경우 로드
@@ -4904,15 +5392,16 @@ window.addEventListener("DOMContentLoaded",()=>{
     setTimeout(()=>{ (savedId ? document.getElementById("loginPw") : document.getElementById("loginId"))?.focus(); }, 300);
   }
   initSidebar();
-  const savedUsers=localStorage.getItem("nursing_head_login_users_v2");
-  if(savedUsers){try{const arr=JSON.parse(savedUsers); if(Array.isArray(arr)&&arr.length===LOGIN_USERS.length){arr.forEach((v,i)=>LOGIN_USERS[i].pwHash=v.pwHash||LOGIN_USERS[i].pwHash);}}catch(e){}}
+  loadAccountOverrides();
+  if(typeof applyAdminUi === "function") applyAdminUi();
   document.getElementById("accountManageBtn")?.addEventListener("click",openAccountModal);
   document.getElementById("acctCancel")?.addEventListener("click",closeAccountModal);
   document.getElementById("acctSave")?.addEventListener("click",saveAccountPassword);
   document.getElementById("accountModalBg")?.addEventListener("click",e=>{if(e.target.id==="accountModalBg")closeAccountModal();});
+  document.getElementById("sideAdminAccounts")?.addEventListener("click",renderAdminAccountList);
   updateLoginUserInfo();
   updateSideDate();
-  setActiveView("dashboard");
+  if(!isLoggedIn()){ setActiveView("dashboard"); }
 });
 
 // ═══════════════════════════════════════════════
@@ -4934,6 +5423,13 @@ const VIEW_MAP = {
   memo:       ["[data-view='memo']"],
   grade:      ["[data-view='grade']"],
   search:     ["[data-view='search']"],
+  practiceChairHome: ["[data-view='practiceChairHome']"],
+  agreements: ["[data-view='agreements']"],
+  facultyStatus: ["[data-view='facultyStatus']"],
+  opCalendar: ["[data-view='opCalendar']"],
+  satisfaction: ["[data-view='satisfaction']"],
+  committeeMinutes: ["[data-view='committeeMinutes']"],
+  adminAccounts: ["[data-view='adminAccounts']"],
 };
 // dashboard는 오늘일정 + 이번 주 미니스트립도 포함
 const DASHBOARD_EXTRAS = ["[data-view='dashboard']"];
@@ -5107,4 +5603,602 @@ document.addEventListener("keydown", function(e){
     const m=document.getElementById("modalBg"); if(m?.classList.contains("open")){ if(typeof saveModal==="function") saveModal(); showShortcutToast("⌨️ Ctrl+Enter · 저장"); return; }
   }
 });
+
+// ═══════════════════════════════════════════════
+// ── 실습위원장 대시보드 포팅 코드 (2단계 통합) ──
+// ═══════════════════════════════════════════════
+const defaultAgreements = [
+  {name:'김천제일병원', region:'경북 김천', start:'2026-01-01', end:'2027-01-01', professor:'이재겸', beds:'400', type:'종합병원'},
+  {name:'순천향대학교 구미병원', region:'경북 구미', start:'2025-09-01', end:'2026-08-31', professor:'김○○', beds:'950', type:'상급종합병원'},
+  {name:'김천의료원', region:'경북 김천', start:'2025-07-01', end:'2026-06-30', professor:'박○○', beds:'300', type:'지역거점공공병원'}
+];
+
+function escapeHtml(value){return String(value ?? '').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function getAgreements(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('practiceCommitteeAgreements'));
+    if(Array.isArray(saved)) return saved.map(r=>({region:'', beds:'', type:'종합병원', ...r}));
+    return defaultAgreements;
+  }catch(e){return defaultAgreements;}
+}
+function setAgreements(data){localStorage.setItem('practiceCommitteeAgreements', JSON.stringify(data));}
+function typeOptions(selected){return hospitalTypes.map(t=>`<option value="${t}" ${t===selected?'selected':''}>${t}</option>`).join('');}
+function formatDate(value){return value ? value.replaceAll('-','.') : '미입력';}
+function calcDaysLeft(end){
+  if(!end) return null;
+  const today=new Date(); today.setHours(0,0,0,0);
+  const d=new Date(end+'T00:00:00');
+  return Math.ceil((d-today)/(1000*60*60*24));
+}
+function agreementBadge(end){
+  const left=calcDaysLeft(end);
+  if(left===null) return '<span class="pill info">기간 미입력</span>';
+  if(left<0) return `<span class="pill bad">만료 ${Math.abs(left)}일 경과</span>`;
+  if(left<=90) return `<span class="pill warn">D-${left}</span>`;
+  return `<span class="pill ok">D-${left}</span>`;
+}
+function renderAgreementSummary(data){
+  const total=data.length;
+  const major=data.filter(r=>r.type==='상급종합병원'||r.type==='종합병원').length;
+  const pub=data.filter(r=>r.type==='지역거점공공병원').length;
+  const beds=data.reduce((sum,r)=>sum+(parseInt(r.beds,10)||0),0);
+  document.getElementById('agreementTotal').textContent=total;
+  document.getElementById('agreementMajor').textContent=major;
+  document.getElementById('agreementPublic').textContent=pub;
+  document.getElementById('agreementBeds').textContent=beds.toLocaleString();
+}
+function renderAgreements(data=getAgreements()){
+  const wrap=document.getElementById('agreementCards');
+  if(!wrap) return;
+  try{
+    renderAgreementSummary(data);
+    if(!data.length){wrap.innerHTML='<div class="empty-state">등록된 실습기관이 없습니다.</div>'; return;}
+    wrap.innerHTML=data.map((r,i)=>`<article class="agreement-card" data-index="${i}" data-search="${escapeHtml([r.name,r.region,r.professor,r.type].join(' ').toLowerCase())}">
+    <div class="agreement-row">
+      <div class="order-control" aria-label="순번 이동">
+        <div class="order-number">${i+1}</div>
+        <div class="order-buttons">
+          <button class="order-btn" onclick="moveAgreement(${i}, -1)" ${i===0?'disabled':''} title="위로 이동">▲</button>
+          <button class="order-btn" onclick="moveAgreement(${i}, 1)" ${i===data.length-1?'disabled':''} title="아래로 이동">▼</button>
+        </div>
+      </div>
+      <div class="agreement-main">
+        <h4>🏥 ${escapeHtml(r.name || '기관명 미입력')}</h4>
+        <div class="agreement-region">${escapeHtml(r.region || '지역 미입력')}</div>
+        <div class="agreement-chips">
+          <span class="pill info">${escapeHtml(r.type || '기관 종류 미입력')}</span>
+          ${agreementBadge(r.end)}
+        </div>
+      </div>
+      <div class="agreement-field">
+        <div class="meta-label">협약기간</div>
+        <div class="agreement-period">${formatDate(r.start)} ~ ${formatDate(r.end)}</div>
+      </div>
+      <div class="agreement-field">
+        <div class="meta-label">담당교수</div>
+        <div class="meta-value">${escapeHtml(r.professor || '미입력')}</div>
+      </div>
+      <div class="agreement-field">
+        <div class="meta-label">병상수</div>
+        <div class="meta-value">${r.beds ? Number(r.beds).toLocaleString()+'병상' : '미입력'}</div>
+      </div>
+      <div class="card-actions">
+        <button class="btn ghost smallbtn" onclick="toggleAgreementEdit(${i})">수정</button>
+        <button class="btn ghost smallbtn danger" onclick="deleteAgreementRow(${i})">삭제</button>
+      </div>
+    </div>
+    <div class="agreement-subline">
+      <span><b>기관명</b> ${escapeHtml(r.name || '미입력')}</span>
+      <span><b>지역</b> ${escapeHtml(r.region || '미입력')}</span>
+      <span><b>종류</b> ${escapeHtml(r.type || '미입력')}</span>
+      <span><b>담당</b> ${escapeHtml(r.professor || '미입력')}</span>
+    </div>
+    <div class="edit-panel hidden" id="agreementEdit${i}">
+      <div class="edit-form">
+        <label>기관명<input data-field="name" value="${escapeHtml(r.name||'')}" placeholder="기관명"></label>
+        <label>지역<input data-field="region" value="${escapeHtml(r.region||'')}" placeholder="예: 경북 김천"></label>
+        <label>담당교수<input data-field="professor" value="${escapeHtml(r.professor||'')}" placeholder="담당교수"></label>
+        <label>협약시작<input data-field="start" type="date" value="${escapeHtml(r.start||'')}"></label>
+        <label>협약종료<input data-field="end" type="date" value="${escapeHtml(r.end||'')}"></label>
+        <label>병상수<input data-field="beds" type="number" min="0" value="${escapeHtml(r.beds||'')}" placeholder="예: 500"></label>
+        <label>기관 종류<select data-field="type">${typeOptions(r.type)}</select></label>
+      </div>
+      <div class="actions" style="margin-top:12px"><button class="btn smallbtn" onclick="saveAgreementCard(${i})">수정 저장</button><button class="btn ghost smallbtn" onclick="toggleAgreementEdit(${i})">닫기</button></div>
+    </div>
+  </article>`).join('');
+  }catch(e){
+    console.error("renderAgreements error:", e);
+    wrap.innerHTML = '<div class="empty-state">목록을 표시하는 중 오류가 발생했습니다. 콘솔을 확인해주세요.</div>';
+  }
+}
+function collectAgreements(){return getAgreements();}
+function saveAgreements(){setAgreements(getAgreements()); renderAgreements(); alert('실습기관 협약관리 데이터가 저장되었습니다.');}
+function toggleAgreementEdit(index){document.getElementById('agreementEdit'+index)?.classList.toggle('hidden');}
+function saveAgreementCard(index){
+  const data=getAgreements();
+  const panel=document.getElementById('agreementEdit'+index);
+  if(!panel || !data[index]) return;
+  panel.querySelectorAll('[data-field]').forEach(el=>data[index][el.dataset.field]=el.value);
+  setAgreements(data); renderAgreements(data); filterAgreements();
+}
+function populateAgreementTypeSelect(){
+  const sel = document.getElementById('agNewType');
+  if(sel && !sel.options.length) sel.innerHTML = typeOptions('종합병원');
+}
+function addAgreementRow(){
+  const name = document.getElementById('agNewName')?.value.trim();
+  if(!name){ alert('기관명을 입력하세요.'); return; }
+  const region = document.getElementById('agNewRegion')?.value.trim() || '';
+  const type = document.getElementById('agNewType')?.value || '종합병원';
+  const start = document.getElementById('agNewStart')?.value || '';
+  const end = document.getElementById('agNewEnd')?.value || '';
+  const beds = document.getElementById('agNewBeds')?.value || '';
+  const professor = document.getElementById('agNewProfessor')?.value.trim() || '';
+  const data=getAgreements();
+  data.push({name, region, start, end, professor, beds, type});
+  setAgreements(data);
+  renderAgreements(data);
+  ['agNewName','agNewRegion','agNewStart','agNewEnd','agNewBeds','agNewProfessor'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  const list = document.getElementById('agreementCards');
+  if(list) list.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+function deleteAgreementRow(index){
+  if(!confirm('이 실습기관을 삭제할까요?')) return;
+  const data=getAgreements(); data.splice(index,1); setAgreements(data); renderAgreements(data);
+}
+function moveAgreement(index, direction){
+  const data=getAgreements();
+  const target=index+direction;
+  if(target<0 || target>=data.length) return;
+  [data[index], data[target]]=[data[target], data[index]];
+  setAgreements(data);
+  renderAgreements(data);
+  filterAgreements();
+}
+function filterAgreements(){
+  const q=(document.getElementById('agreementSearch')?.value||'').trim().toLowerCase();
+  document.querySelectorAll('#agreementCards .agreement-card').forEach(card=>{card.style.display=(card.dataset.search||'').includes(q)?'':'none';});
+}
+
+const facultyCategories = ['전임교수','겸임교수','시간강사'];
+const defaultFacultyAssignments = [
+  {year:'2026', semester:'1학기', course:'성인건강간호학실습(1)', professor:'이재겸', category:'전임교수', institution:'김천제일병원', visitNote:'수요일 12:00~14:00', memo:''},
+  {year:'2026', semester:'1학기', course:'아동건강간호학실습', professor:'김○○', category:'겸임교수', institution:'구미차병원', visitNote:'목요일 10:00~12:00', memo:''},
+  {year:'2026', semester:'1학기', course:'간호관리학실습', professor:'박○○', category:'시간강사', institution:'김천의료원', visitNote:'', memo:'기관 OT 일정 확인 필요'},
+  {year:'2026', semester:'2학기', course:'성인건강간호학실습(2)', professor:'이재겸', category:'전임교수', institution:'순천향대학교 구미병원', visitNote:'', memo:''}
+];
+function getFacultyAssignments(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('practiceCommitteeFacultyAssignments'));
+    if(Array.isArray(saved)) return saved.map(r=>({year:'2026',semester:'1학기',course:'',professor:'',category:'전임교수',institution:'',visitNote:'',memo:'',...r}));
+    return defaultFacultyAssignments;
+  }catch(e){return defaultFacultyAssignments;}
+}
+function setFacultyAssignments(data){localStorage.setItem('practiceCommitteeFacultyAssignments', JSON.stringify(data));}
+function facultyCategoryClass(cat){ return cat==="겸임교수" ? "cat-adj" : (cat==="시간강사" ? "cat-part" : "cat-full"); }
+function facultyCategoryOptions(selected){return facultyCategories.map(t=>`<option value="${t}" ${t===selected?'selected':''}>${t}</option>`).join('');}
+function currentFacultyPeriod(){
+  return {
+    year: document.getElementById('facultyYear')?.value || '2026',
+    semester: document.getElementById('facultySemester')?.value || '1학기'
+  };
+}
+function renderFacultyAssignments(){
+  const wrap=document.getElementById('facultyList');
+  if(!wrap) return;
+  const {year,semester}=currentFacultyPeriod();
+  const data=getFacultyAssignments();
+  const filtered=data.map((r,i)=>({...r,_index:i})).filter(r=>r.year===year && r.semester===semester);
+  if(!filtered.length){wrap.innerHTML='<tr><td colspan="8"><div class="empty-state">해당 연도·학기에 등록된 실습지도교수 배정이 없습니다.</div></td></tr>';return;}
+  wrap.innerHTML=filtered.map((r,displayIndex)=>`<tr data-search="${escapeHtml([r.course,r.professor,r.category,r.institution,r.visitNote,r.memo].join(' ').toLowerCase())}">
+    <td class="excel-num">${displayIndex+1}</td>
+    <td><select class="excel-select ${facultyCategoryClass(r.category)}" data-index="${r._index}" data-field="category" onchange="updateFacultyCell(this)">${facultyCategoryOptions(r.category)}</select></td>
+    <td><input class="excel-cell" data-index="${r._index}" data-field="course" value="${escapeHtml(r.course||'')}" placeholder="교과목"></td>
+    <td><input class="excel-cell" data-index="${r._index}" data-field="institution" value="${escapeHtml(r.institution||'')}" placeholder="실습기관"></td>
+    <td><input class="excel-cell" data-index="${r._index}" data-field="professor" value="${escapeHtml(r.professor||'')}" placeholder="지도교수"></td>
+    <td><input class="excel-cell" data-index="${r._index}" data-field="visitNote" value="${escapeHtml(r.visitNote||'')}" placeholder="예: 수요일 12:00~14:00"></td>
+    <td><input class="excel-cell" data-index="${r._index}" data-field="memo" value="${escapeHtml(r.memo||'')}" placeholder="비고 입력"></td>
+    <td><div class="excel-actions"><button class="btn ghost smallbtn" onclick="editFacultyRow(${r._index}, this)">수정</button><button class="btn ghost smallbtn danger" onclick="deleteFacultyAssignment(${r._index})">삭제</button></div></td>
+  </tr>`).join('');
+  document.querySelectorAll('#facultyList [data-field]').forEach(el=>{
+    if(el.tagName !== 'SELECT') el.addEventListener('input',()=>updateFacultyCell(el, false));
+    el.addEventListener('change',()=>updateFacultyCell(el, false));
+  });
+  filterFacultyAssignments();
+}
+function updateFacultyCell(el, rerender=false){
+  const data=getFacultyAssignments();
+  const idx=parseInt(el.dataset.index,10);
+  const field=el.dataset.field;
+  if(Number.isNaN(idx) || !field || !data[idx]) return;
+  data[idx][field]=el.value;
+  setFacultyAssignments(data);
+  if(el.tagName==='SELECT' && field==='category'){
+    el.className = 'excel-select ' + facultyCategoryClass(el.value);
+  }
+  if(rerender) renderFacultyAssignments();
+}
+function editFacultyRow(index, btn){
+  const row = btn.closest('tr');
+  if(!row) return;
+  // 행의 모든 입력값을 즉시 저장
+  row.querySelectorAll('[data-field]').forEach(el=>updateFacultyCell(el, false));
+  const firstInput = row.querySelector('input.excel-cell[data-field="course"]');
+  if(firstInput) firstInput.focus();
+  row.style.transition = 'background .3s';
+  row.style.background = '#dcfce7';
+  setTimeout(()=>{ row.style.background = ''; }, 600);
+}
+function toggleFacultyEdit(index){document.getElementById('facultyEdit'+index)?.classList.toggle('hidden');}
+function saveFacultyCard(index){
+  const data=getFacultyAssignments();
+  const panel=document.getElementById('facultyEdit'+index);
+  if(!panel || !data[index]) return;
+  panel.querySelectorAll('[data-field]').forEach(el=>data[index][el.dataset.field]=el.value);
+  setFacultyAssignments(data); renderFacultyAssignments();
+}
+function addFacultyAssignment(){
+  const data=getFacultyAssignments();
+  const {year,semester}=currentFacultyPeriod();
+  data.push({year, semester, course:'', professor:'', category:'전임교수', institution:'', visitNote:'', memo:''});
+  setFacultyAssignments(data); renderFacultyAssignments();
+}
+function deleteFacultyAssignment(index){
+  if(!confirm('이 실습지도교수 배정을 삭제할까요?')) return;
+  const data=getFacultyAssignments(); data.splice(index,1); setFacultyAssignments(data); renderFacultyAssignments();
+}
+function saveFacultyAssignments(){document.querySelectorAll('#facultyList [data-field]').forEach(el=>updateFacultyCell(el,false)); renderFacultyAssignments(); alert('실습지도교수 현황 데이터가 저장되었습니다.');}
+function filterFacultyAssignments(){
+  const q=(document.getElementById('facultySearch')?.value||'').trim().toLowerCase();
+  document.querySelectorAll('#facultyList tr').forEach(row=>{row.style.display=(row.dataset.search||'').includes(q)?'':'none';});
+}
+
+
+const practiceEventCategories = {
+  '임상실습':'event-clinical',
+  '행정':'event-office',
+  '평가회':'event-eval',
+  '자료':'event-doc',
+  '기타':'event-etc'
+};
+const defaultPracticeEvents = [
+  {title:'실습기관 OT · 안전교육 공지', category:'임상실습', start:'2026-02-03', end:'2026-02-14', memo:'기관별 OT 일정, 안전교육, 실습지침서 배부 확인'},
+  {title:'현장지도자 위촉 공문 발송', category:'행정', start:'2026-02-10', end:'2026-02-21', memo:'현장지도자 명단 및 위촉 조건 확인'},
+  {title:'병동협의보고서 작성', category:'자료', start:'2026-03-02', end:'2026-03-13', memo:'과목별 실습교원 확인'},
+  {title:'임상실습기관 평가회', category:'평가회', start:'2026-06-08', end:'2026-06-19', memo:'만족도 공유, 차학기 실습가능인원 확인'},
+  {title:'순회지도 보고서 · 정산서 취합', category:'행정', start:'2026-06-15', end:'2026-06-26', memo:'순회지도비 정산서 제출 확인'},
+  {title:'2학기 실습 OT 및 안전교육', category:'임상실습', start:'2026-08-10', end:'2026-08-21', memo:'과목별 오리엔테이션 및 기관 OT 일정 확인'},
+  {title:'평가회 결과보고서 작성', category:'평가회', start:'2026-12-07', end:'2026-12-18', memo:'기관별 만족도 및 개선사항 정리'}
+];
+let practiceCalendarDate = new Date(2026, 5, 1);
+let selectedPracticeDate = '2026-06-08';
+let practiceFilter = '전체';
+function getPracticeEvents(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('practiceCommitteeEvents'));
+    if(Array.isArray(saved)) return saved.map(e=>({title:'',category:'기타',start:'',end:'',memo:'',...e}));
+    return defaultPracticeEvents;
+  }catch(e){return defaultPracticeEvents;}
+}
+function setPracticeEvents(data){localStorage.setItem('practiceCommitteeEvents', JSON.stringify(data));}
+function dateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+function parseDateKey(k){const [y,m,d]=k.split('-').map(Number); return new Date(y,m-1,d);}
+function formatKoreanDate(k){const d=parseDateKey(k); const days=['일','월','화','수','목','금','토']; return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일(${days[d.getDay()]})`; }
+function eventMatchesDate(e,k){if(!e.start) return false; const s=e.start; const en=e.end||e.start; return s<=k && k<=en;}
+function visiblePracticeEvents(){const data=getPracticeEvents(); return practiceFilter==='전체'?data:data.filter(e=>e.category===practiceFilter);}
+function renderPracticeCalendar(){
+  const grid=document.getElementById('practiceCalendarGrid'); if(!grid) return;
+  const y=practiceCalendarDate.getFullYear(), m=practiceCalendarDate.getMonth();
+  const title=document.getElementById('practiceMonthTitle'); if(title) title.textContent=`${y}년 ${m+1}월`;
+  const first=new Date(y,m,1); const start=new Date(y,m,1-first.getDay());
+  const weekdays=['일','월','화','수','목','금','토'];
+  let html=weekdays.map(w=>`<div class="weekday">${w}</div>`).join('');
+  const events=visiblePracticeEvents();
+  for(let i=0;i<42;i++){
+    const d=new Date(start); d.setDate(start.getDate()+i);
+    const k=dateKey(d); const inMonth=d.getMonth()===m;
+    const dayEvents=events.filter(e=>eventMatchesDate(e,k));
+    html+=`<div class="day-cell ${inMonth?'':'other-month'} ${k===selectedPracticeDate?'selected':''}" onclick="selectPracticeDate('${k}')">
+      <div class="day-number">${d.getDate()}</div>
+      ${dayEvents.slice(0,3).map(e=>`<div class="event-strip ${practiceEventCategories[e.category]||'event-etc'}">${escapeHtml(e.title||'(제목 없음)')}</div>`).join('')}
+      ${dayEvents.length>3?`<div class="more-events">+${dayEvents.length-3}개 더</div>`:''}
+    </div>`;
+  }
+  grid.innerHTML=html;
+  renderSelectedPracticeEvents();
+}
+function renderSelectedPracticeEvents(){
+  const text=document.getElementById('selectedPracticeDateText'); if(text) text.textContent=formatKoreanDate(selectedPracticeDate);
+  const events=visiblePracticeEvents().map((e,i)=>({...e,_index:i})).filter(e=>eventMatchesDate(e,selectedPracticeDate));
+  const summary=document.getElementById('selectedPracticeSummary'); if(summary) summary.textContent=`선택일 등록 일정 ${events.length}건`;
+  const wrap=document.getElementById('selectedPracticeEvents'); if(!wrap) return;
+  if(!events.length){wrap.innerHTML='<div class="empty-state">선택한 날짜에 등록된 일정이 없습니다.</div>'; return;}
+  const all=getPracticeEvents();
+  wrap.innerHTML=events.map(e=>{
+    const realIndex=all.findIndex(x=>x.title===e.title && x.start===e.start && x.end===e.end && x.category===e.category && x.memo===e.memo);
+    return `<div class="event-item">
+      <div class="event-item-head">
+        <div><div class="event-item-title">${escapeHtml(e.title||'(제목 없음)')}</div><div class="event-item-date">${escapeHtml(e.start||'')} ~ ${escapeHtml(e.end||e.start||'')}</div></div>
+        <span class="pill ${e.category==='임상실습'?'info':e.category==='평가회'?'bad':e.category==='자료'?'ok':e.category==='행정'?'purple':'warn'}">${escapeHtml(e.category||'기타')}</span>
+      </div>
+      <div class="small">${escapeHtml(e.memo||'메모 없음')}</div>
+      <div class="actions" style="margin-top:10px"><button class="btn ghost smallbtn" onclick="editPracticeEvent(${realIndex})">수정</button><button class="btn ghost smallbtn danger" onclick="deletePracticeEvent(${realIndex})">삭제</button></div>
+    </div>`;
+  }).join('');
+}
+function selectPracticeDate(k){selectedPracticeDate=k; renderPracticeCalendar();}
+function movePracticeMonth(delta){practiceCalendarDate.setMonth(practiceCalendarDate.getMonth()+delta); renderPracticeCalendar();}
+function goPracticeToday(){const today=new Date(); practiceCalendarDate=new Date(today.getFullYear(),today.getMonth(),1); selectedPracticeDate=dateKey(today); renderPracticeCalendar();}
+function setPracticeFilter(filter,btn){practiceFilter=filter; document.querySelectorAll('.mode-chip').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); renderPracticeCalendar();}
+function openEventForm(){clearPracticeEventForm(); document.getElementById('eventTitle')?.focus();}
+function openEventFormForSelected(){clearPracticeEventForm(); document.getElementById('eventStart').value=selectedPracticeDate; document.getElementById('eventEnd').value=selectedPracticeDate; document.getElementById('eventTitle')?.focus();}
+function clearPracticeEventForm(){['eventTitle','eventStart','eventEnd','eventMemo'].forEach(id=>{const el=document.getElementById(id); if(el) el.value='';}); const cat=document.getElementById('eventCategory'); if(cat) cat.value='임상실습'; delete document.getElementById('eventTitle')?.dataset.editIndex;}
+function addPracticeEvent(){
+  const title=document.getElementById('eventTitle')?.value.trim();
+  const category=document.getElementById('eventCategory')?.value||'기타';
+  const start=document.getElementById('eventStart')?.value;
+  const end=document.getElementById('eventEnd')?.value||start;
+  const memo=document.getElementById('eventMemo')?.value.trim()||'';
+  if(!title || !start){alert('일정명과 시작일은 반드시 입력해야 합니다.'); return;}
+  const data=getPracticeEvents();
+  const editIndex=document.getElementById('eventTitle')?.dataset.editIndex;
+  const item={title,category,start,end,memo};
+  if(editIndex!==undefined && data[Number(editIndex)]) data[Number(editIndex)]=item; else data.push(item);
+  setPracticeEvents(data); selectedPracticeDate=start; practiceCalendarDate=new Date(parseDateKey(start).getFullYear(),parseDateKey(start).getMonth(),1); clearPracticeEventForm(); renderPracticeCalendar();
+}
+function editPracticeEvent(index){
+  const data=getPracticeEvents(); const e=data[index]; if(!e) return;
+  document.getElementById('eventCategory').value=e.category||'기타';
+  document.getElementById('eventTitle').value=e.title||'';
+  document.getElementById('eventTitle').dataset.editIndex=index;
+  document.getElementById('eventStart').value=e.start||'';
+  document.getElementById('eventEnd').value=e.end||e.start||'';
+  document.getElementById('eventMemo').value=e.memo||'';
+}
+function deletePracticeEvent(index){
+  if(index<0) return; if(!confirm('이 일정을 삭제할까요?')) return;
+  const data=getPracticeEvents(); data.splice(index,1); setPracticeEvents(data); renderPracticeCalendar();
+}
+function savePracticeEvents(){setPracticeEvents(getPracticeEvents()); alert('실습운영 캘린더 데이터가 저장되었습니다.');}
+
+// ── 실습위원회 회의록 ──
+const COMMITTEE_MINUTES_KEY = "practiceCommitteeMinutes";
+function getCommitteeMinutes(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(COMMITTEE_MINUTES_KEY));
+    return Array.isArray(saved) ? saved : [];
+  }catch(e){ return []; }
+}
+function setCommitteeMinutes(data){
+  localStorage.setItem(COMMITTEE_MINUTES_KEY, JSON.stringify(data));
+  if(window.fbSet) fbSet(COMMITTEE_MINUTES_KEY, data);
+}
+function renderCommitteeMinutes(){
+  const wrap = document.getElementById("minuteList");
+  if(!wrap) return;
+  const data = getCommitteeMinutes();
+  const sorted = data.map((m,i)=>({...m,_index:i})).sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  if(!sorted.length){ wrap.innerHTML = '<div class="empty-state">등록된 회의록이 없습니다.</div>'; return; }
+  const statusPill = s => s==="완료" ? "ok" : (s==="보류" ? "warn" : "info");
+  wrap.innerHTML = sorted.map(m=>{
+    return `<div class="event-item">
+      <div class="event-item-head">
+        <div>
+          <div class="event-item-title">${escapeHtml(m.agenda||"(안건명 없음)")}</div>
+          <div class="event-item-date">${escapeHtml(m.date||"일자 미입력")} · ${escapeHtml(m.type||"")}</div>
+        </div>
+        <span class="pill ${statusPill(m.status)}">${escapeHtml(m.status||"진행중")}</span>
+      </div>
+      <div class="small">제안자: ${escapeHtml(m.proposer||"미입력")} · 담당자: ${escapeHtml(m.owner||"미입력")}</div>
+      <div class="small" style="margin-top:6px">논의내용: ${escapeHtml(m.discussion||"미입력")}</div>
+      <div class="small" style="margin-top:4px">결정사항/후속조치: ${escapeHtml(m.decision||"미입력")}</div>
+      <div class="small" style="margin-top:4px">운영위원회 상정: ${escapeHtml(m.boardDate||"미입력")} · 학과회의 상정: ${escapeHtml(m.deptMeetingDate||"미입력")}</div>
+      <div class="actions" style="margin-top:10px">
+        <button class="btn ghost smallbtn" onclick="editCommitteeMinute(${m._index})">수정</button>
+        <button class="btn ghost smallbtn danger" onclick="deleteCommitteeMinute(${m._index})">삭제</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+let minuteEditIndex = null;
+function clearMinuteForm(){
+  ["minuteDate","minuteAgenda","minuteProposer","minuteOwner","minuteDiscussion","minuteDecision","minuteBoardDate","minuteDeptMeetingDate"].forEach(id=>{
+    const el = document.getElementById(id); if(el) el.value = "";
+  });
+  const typeEl = document.getElementById("minuteType"); if(typeEl) typeEl.value = "1학기 정기회의";
+  const statusEl = document.getElementById("minuteStatus"); if(statusEl) statusEl.value = "진행중";
+  minuteEditIndex = null;
+  const saveBtn = document.getElementById("minuteSaveBtn"); if(saveBtn) saveBtn.textContent = "회의록 저장";
+}
+function editCommitteeMinute(index){
+  const data = getCommitteeMinutes();
+  const m = data[index];
+  if(!m) return;
+  minuteEditIndex = index;
+  document.getElementById("minuteDate").value = m.date||"";
+  document.getElementById("minuteType").value = m.type||"1학기 정기회의";
+  document.getElementById("minuteAgenda").value = m.agenda||"";
+  document.getElementById("minuteProposer").value = m.proposer||"";
+  document.getElementById("minuteOwner").value = m.owner||"";
+  document.getElementById("minuteDiscussion").value = m.discussion||"";
+  document.getElementById("minuteDecision").value = m.decision||"";
+  document.getElementById("minuteStatus").value = m.status || (m.done ? "완료" : "진행중");
+  document.getElementById("minuteBoardDate").value = m.boardDate||"";
+  document.getElementById("minuteDeptMeetingDate").value = m.deptMeetingDate||"";
+  const saveBtn = document.getElementById("minuteSaveBtn"); if(saveBtn) saveBtn.textContent = "수정 저장";
+  document.getElementById("minuteAgenda")?.scrollIntoView({behavior:"smooth", block:"center"});
+}
+function addCommitteeMinute(){
+  const date = document.getElementById("minuteDate")?.value;
+  const type = document.getElementById("minuteType")?.value || "1학기 정기회의";
+  const agenda = document.getElementById("minuteAgenda")?.value.trim();
+  const proposer = document.getElementById("minuteProposer")?.value.trim() || "";
+  const owner = document.getElementById("minuteOwner")?.value.trim() || "";
+  const discussion = document.getElementById("minuteDiscussion")?.value.trim() || "";
+  const decision = document.getElementById("minuteDecision")?.value.trim() || "";
+  const status = document.getElementById("minuteStatus")?.value || "진행중";
+  const boardDate = document.getElementById("minuteBoardDate")?.value || "";
+  const deptMeetingDate = document.getElementById("minuteDeptMeetingDate")?.value || "";
+  if(!date || !agenda){ alert("회의일과 안건명은 반드시 입력해야 합니다."); return; }
+  const data = getCommitteeMinutes();
+  const authorName = (typeof sessionStorage!=="undefined" ? sessionStorage.getItem(LOGIN_USER_KEY) : "") || "";
+  const item = {date, type, agenda, proposer, owner, discussion, decision, status, boardDate, deptMeetingDate, author:authorName, updatedAt:Date.now()};
+  if(minuteEditIndex !== null && data[minuteEditIndex]){
+    item.createdAt = data[minuteEditIndex].createdAt || Date.now();
+    data[minuteEditIndex] = item;
+  } else {
+    item.createdAt = Date.now();
+    data.push(item);
+  }
+  setCommitteeMinutes(data);
+  clearMinuteForm();
+  renderCommitteeMinutes();
+}
+function deleteCommitteeMinute(index){
+  if(!confirm("이 회의록을 삭제할까요?")) return;
+  const data = getCommitteeMinutes();
+  data.splice(index,1);
+  setCommitteeMinutes(data);
+  if(minuteEditIndex === index) clearMinuteForm();
+  renderCommitteeMinutes();
+}
+
+// ── 실습위원장 홈 요약 카운트 ──
+function renderPracticeChairHome(){
+  const ag = document.getElementById("pcHomeAgreementCount");
+  if(ag) ag.textContent = getAgreements().length;
+  const fc = document.getElementById("pcHomeFacultyCount");
+  if(fc){
+    const {year,semester} = currentFacultyPeriod();
+    fc.textContent = getFacultyAssignments().filter(r=>r.year===year && r.semester===semester).length;
+  }
+  const sc = document.getElementById("pcHomeStudentCount");
+  if(sc) sc.textContent = document.querySelectorAll("#practiceStudentList .practice-student-item").length;
+  const ec = document.getElementById("pcHomeEventCount");
+  if(ec){
+    const y = practiceCalendarDate.getFullYear(), m = practiceCalendarDate.getMonth();
+    const monthPrefix = `${y}-${String(m+1).padStart(2,"0")}`;
+    ec.textContent = getPracticeEvents().filter(e=>(e.start||"").startsWith(monthPrefix)).length;
+  }
+}
+
+// ── 실습만족도 ──
+const SATISFACTION_KEY = "practiceCommitteeSatisfaction";
+function getSatisfactionEntries(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(SATISFACTION_KEY));
+    return Array.isArray(saved) ? saved : [];
+  }catch(e){ return []; }
+}
+function setSatisfactionEntries(data){
+  localStorage.setItem(SATISFACTION_KEY, JSON.stringify(data));
+  if(window.fbSet) fbSet(SATISFACTION_KEY, data);
+}
+function populateSatisfactionInstitutionSelect(){
+  const sel = document.getElementById("satInstitution");
+  if(!sel) return;
+  const names = getAgreements().map(a=>a.name).filter(Boolean);
+  sel.innerHTML = '<option value="">-- 협약기관 선택 또는 직접입력 --</option>' +
+    names.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join("");
+}
+function satisfactionBadge(score){
+  const s = Number(score);
+  if(Number.isNaN(s)) return '<span class="pill info">점수 미입력</span>';
+  if(s>=4.5) return '<span class="pill ok">우수</span>';
+  if(s>=4.0) return '<span class="pill ok">양호</span>';
+  if(s>=3.0) return '<span class="pill warn">검토</span>';
+  return '<span class="pill bad">개선 필요</span>';
+}
+let satisfactionEditIndex = null;
+function clearSatisfactionForm(){
+  ["satTerm","satInstitutionText","satRespondents","satScore","satComment"].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value="";
+  });
+  const sel = document.getElementById("satInstitution"); if(sel) sel.value="";
+  satisfactionEditIndex = null;
+  const btn = document.getElementById("satSaveBtn"); if(btn) btn.textContent = "결과 저장";
+}
+function addSatisfactionEntry(){
+  const term = document.getElementById("satTerm")?.value.trim();
+  const institution = document.getElementById("satInstitution")?.value || document.getElementById("satInstitutionText")?.value.trim();
+  const respondents = document.getElementById("satRespondents")?.value || "";
+  const score = document.getElementById("satScore")?.value || "";
+  const comment = document.getElementById("satComment")?.value.trim() || "";
+  if(!term || !institution){ alert("학기와 기관명은 반드시 입력해야 합니다."); return; }
+  const data = getSatisfactionEntries();
+  const item = {term, institution, respondents, score, comment, updatedAt:Date.now()};
+  if(satisfactionEditIndex !== null && data[satisfactionEditIndex]){
+    data[satisfactionEditIndex] = item;
+  } else {
+    data.push(item);
+  }
+  setSatisfactionEntries(data);
+  clearSatisfactionForm();
+  renderSatisfactionList();
+}
+function editSatisfactionEntry(index){
+  const data = getSatisfactionEntries();
+  const item = data[index];
+  if(!item) return;
+  satisfactionEditIndex = index;
+  document.getElementById("satTerm").value = item.term||"";
+  const sel = document.getElementById("satInstitution");
+  if(sel){
+    const hasOption = Array.from(sel.options).some(o=>o.value===item.institution);
+    sel.value = hasOption ? item.institution : "";
+  }
+  document.getElementById("satInstitutionText").value = item.institution||"";
+  document.getElementById("satRespondents").value = item.respondents||"";
+  document.getElementById("satScore").value = item.score||"";
+  document.getElementById("satComment").value = item.comment||"";
+  const btn = document.getElementById("satSaveBtn"); if(btn) btn.textContent = "수정 저장";
+}
+function deleteSatisfactionEntry(index){
+  if(!confirm("이 만족도 기록을 삭제할까요?")) return;
+  const data = getSatisfactionEntries();
+  data.splice(index,1);
+  setSatisfactionEntries(data);
+  if(satisfactionEditIndex === index) clearSatisfactionForm();
+  renderSatisfactionList();
+}
+function renderSatisfactionList(){
+  const wrap = document.getElementById("satisfactionList");
+  if(!wrap) return;
+  const q = (document.getElementById("satSearch")?.value||"").trim().toLowerCase();
+  const data = getSatisfactionEntries().map((item,i)=>({...item,_index:i}))
+    .filter(item=>!q || `${item.term} ${item.institution}`.toLowerCase().includes(q))
+    .sort((a,b)=>(b.term||"").localeCompare(a.term||""));
+  if(!data.length){ wrap.innerHTML = '<div class="empty-state">등록된 만족도 결과가 없습니다.</div>'; return; }
+  wrap.innerHTML = data.map(item=>`<div class="event-item">
+    <div class="event-item-head">
+      <div>
+        <div class="event-item-title">${escapeHtml(item.institution||"기관명 미입력")}</div>
+        <div class="event-item-date">${escapeHtml(item.term||"학기 미입력")} · 응답 ${escapeHtml(item.respondents||"0")}명 · 평균 ${escapeHtml(item.score||"-")}점</div>
+      </div>
+      ${satisfactionBadge(item.score)}
+    </div>
+    <div class="small" style="margin-top:6px">${escapeHtml(item.comment||"자유의견 없음")}</div>
+    <div class="actions" style="margin-top:10px">
+      <button class="btn ghost smallbtn" onclick="editSatisfactionEntry(${item._index})">수정</button>
+      <button class="btn ghost smallbtn danger" onclick="deleteSatisfactionEntry(${item._index})">삭제</button>
+    </div>
+  </div>`).join("");
+}
+
+// ── 실습위원장 화면 전체 초기화 (role 분기 시 1회 호출) ──
+let _pcvInitialized = false;
+function initPracticeChairViews(){
+  if(typeof populateAgreementTypeSelect === "function") populateAgreementTypeSelect();
+  renderAgreements();
+  renderFacultyAssignments();
+  renderPracticeCalendar();
+  renderCommitteeMinutes();
+  if(typeof populateSatisfactionInstitutionSelect === "function") populateSatisfactionInstitutionSelect();
+  if(typeof renderSatisfactionList === "function") renderSatisfactionList();
+  renderPracticeChairHome();
+  _pcvInitialized = true;
+}
+
 </script>
