@@ -1114,8 +1114,8 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
   <div class="side-section-title">QUICK ACTIONS</div>
   <div class="side-actions">
     <button id="sideAddSchedule">＋ <span>오늘 일정 추가</span></button>
-    <button id="sideBackup">💾 <span>백업 저장</span></button>
-    <button id="sideSettings">⚙ <span>학기·방학 설정</span></button>
+    <button id="sideBackup" class="admin-only" style="display:none">💾 <span>백업 저장</span></button>
+    <button id="sideSettings" class="admin-only" style="display:none">⚙ <span>학기·방학 설정</span></button>
     <button id="sideLogout" style="color:#ffaaaa;border-color:rgba(255,100,100,.3);">⏻ <span>로그아웃</span></button>
   </div>
   <!-- 키보드 단축키 안내 -->
@@ -1165,10 +1165,10 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
       <button id="next" title="다음 날">▶</button>
       <button id="nextWeek" title="다음 주">▶▶</button>
       <input type="date" id="picker">
-      <button class="backup-btn" id="backupBtn" title="대시보드 데이터를 JSON 파일로 저장">💾 백업</button>
-      <button class="restore-btn" id="restoreBtn" title="JSON 백업 파일에서 데이터 복원">📂 복원</button>
-      <span class="save-status" id="saveStatus">💾 최근 백업 없음</span>
-      <button class="settings-btn" id="settingsBtn" title="학기·방학 설정">⚙ 설정</button>
+      <button class="backup-btn admin-only" id="backupBtn" style="display:none" title="대시보드 데이터를 JSON 파일로 저장">💾 백업</button>
+      <button class="restore-btn admin-only" id="restoreBtn" style="display:none" title="JSON 백업 파일에서 데이터 복원">📂 복원</button>
+      <span class="save-status admin-only" id="saveStatus" style="display:none">💾 최근 백업 없음</span>
+      <button class="settings-btn admin-only" id="settingsBtn" style="display:none" title="학기·방학 설정">⚙ 설정</button>
       <button class="exit-btn" id="exitBtn" title="백업 확인 후 종료">종료</button>
       <button class="account-btn" id="accountManageBtn" title="계정 비밀번호 변경">🔑 계정관리</button>
       <input type="file" id="restoreFile" accept=".json,application/json" style="display:none">
@@ -5606,7 +5606,20 @@ window.loadAllFromFirestore = async function(){
     [BUDGET_REPORT_PW_KEY,    v=>{ if(v) localStorage.setItem(BUDGET_REPORT_PW_KEY, v); }],
     [BUDGET_DATA_KEY,          v=>{ if(v && typeof v==="object") localStorage.setItem(BUDGET_DATA_KEY, JSON.stringify(v)); }],
     [BUDGET_VISIBLE_YEARS_KEY, v=>{ if(Array.isArray(v)) localStorage.setItem(BUDGET_VISIBLE_YEARS_KEY, JSON.stringify(v)); }],
-    [ACCOUNT_OVERRIDES_KEY,   v=>{ if(v && typeof v==="object"){ localStorage.setItem(ACCOUNT_OVERRIDES_KEY, JSON.stringify(v)); if(typeof loadAccountOverrides==="function") loadAccountOverrides(); } }],
+    [ACCOUNT_OVERRIDES_KEY,   v=>{
+      if(v && typeof v==="object"){
+        // 클라우드에서 받아온 데이터로 로컬을 통째로 덮어쓰지 않고, 두 데이터를 합친다.
+        // (방금 로컬에서 추가한 계정의 클라우드 저장이 아직 끝나지 않은 상태에서
+        //  새로고침이 발생해도, 로컬에 있던 계정 정보가 사라지지 않도록 방어)
+        let existing = {};
+        try{ existing = JSON.parse(localStorage.getItem(ACCOUNT_OVERRIDES_KEY)) || {}; }catch(e){}
+        const merged = Object.assign({}, v, existing);
+        localStorage.setItem(ACCOUNT_OVERRIDES_KEY, JSON.stringify(merged));
+        if(typeof loadAccountOverrides==="function") loadAccountOverrides();
+        // 병합된 최신 상태를 다시 클라우드에도 반영해 둔다.
+        if(window.fbSet) fbSet(ACCOUNT_OVERRIDES_KEY, merged);
+      }
+    }],
   ];
   // MEMO_SECTIONS 키
   if(typeof MEMO_SECTIONS !== "undefined"){
