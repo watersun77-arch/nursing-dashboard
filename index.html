@@ -1727,6 +1727,9 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
         <h2>💰 실험실습비 결산내역</h2>
         <div class="sub">학년도가 마감되면 예·결산 내역을 입력합니다. 체크한 연도만 표에 표시됩니다.</div>
       </div>
+      <div class="actions">
+        <button class="btn ghost" onclick="exportBudgetToExcel()">⬇ 엑셀 다운로드</button>
+      </div>
     </div>
     <div id="budgetYearChecks" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:12px"></div>
 
@@ -6593,7 +6596,8 @@ function renderBudgetTable3(){
   const years = visibleBudgetYearsSorted();
   if(!years.length){ wrap.innerHTML = '<div class="empty-state">위에서 표시할 연도를 체크해주세요.</div>'; return; }
   const th = 'style="border:1px solid var(--line);padding:8px;background:var(--paper2);white-space:nowrap"';
-  const td = 'style="border:1px solid var(--line);padding:4px"';
+  const tdBase = 'border:1px solid var(--line);padding:4px';
+  const td = `style="${tdBase}"`;
   let head1 = `<tr><th ${th} rowspan="3">사용내역</th>` + years.map(y=>`<th ${th} colspan="4">${y}</th>`).join('') + `</tr>`;
   let head2 = `<tr>` + years.map(()=>`<th ${th} colspan="2">예산</th><th ${th} colspan="2">결산</th>`).join('') + `</tr>`;
   let head3 = `<tr>` + years.map(()=>`<th ${th}>등록금 수입재원</th><th ${th}>국고</th><th ${th}>등록금 수입재원</th><th ${th}>국고</th>`).join('') + `</tr>`;
@@ -6601,7 +6605,6 @@ function renderBudgetTable3(){
     const isLeaf = !row.children;
     const labelStyle = row.indent ? 'padding-left:22px;color:var(--ink-soft)' : (row.key==='grand_total' ? 'font-weight:800' : 'font-weight:700');
     const cells = years.map(y=>{
-      ['bt','bg','at','ag'].forEach(()=>{});
       if(isLeaf){
         return ['bt','bg','at','ag'].map(f=>{
           const val = getBudgetData()[y]?.[row.key]?.[f] ?? '';
@@ -6610,11 +6613,11 @@ function renderBudgetTable3(){
       } else {
         return ['bt','bg','at','ag'].map(f=>{
           const val = budgetCellValue(y,row.key,f);
-          return `<td ${td} style="text-align:right;padding:8px;font-weight:800;background:${row.key==='grand_total'?'var(--paper2)':'#fafafa'}">${fmtWon(val)}</td>`;
+          return `<td style="${tdBase};text-align:right;padding:8px;font-weight:800;background:${row.key==='grand_total'?'var(--paper2)':'#fafafa'}">${fmtWon(val)}</td>`;
         }).join('');
       }
     }).join('');
-    return `<tr><td ${td} style="${labelStyle};white-space:nowrap">${row.label}</td>${cells}</tr>`;
+    return `<tr><td style="${tdBase};${labelStyle};white-space:nowrap">${row.label}</td>${cells}</tr>`;
   }).join('');
   wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:12.5px"><thead>${head1}${head2}${head3}</thead><tbody>${bodyRows}</tbody></table>`;
   wrap.querySelectorAll('[data-budget-field]').forEach(el=>{
@@ -6632,13 +6635,56 @@ function updateBudgetCell(el){
   setBudgetData(data);
   renderBudgetTables();
 }
+function exportBudgetToExcel(){
+  const years = visibleBudgetYearsSorted();
+  if(!years.length){ alert("먼저 표시할 연도를 체크해주세요."); return; }
+  const esc = v => `"${String(v ?? '').replace(/"/g,'""')}"`;
+  const lines = [];
+  // [표 1.2.2-3]
+  lines.push(esc("[표 1.2.2-3] 실험실습비 예·결산 내역"));
+  const header1 = ["사용내역"];
+  years.forEach(y=>{ header1.push(`${y} 예산 등록금수입재원`, `${y} 예산 국고`, `${y} 결산 등록금수입재원`, `${y} 결산 국고`); });
+  lines.push(header1.map(esc).join(","));
+  BUDGET_ROWS.forEach(row=>{
+    const cols = [row.label.replace(/^–\s*/,'- ')];
+    years.forEach(y=>{
+      ['bt','bg','at','ag'].forEach(f=>{ cols.push(budgetCellValue(y,row.key,f)); });
+    });
+    lines.push(cols.map(esc).join(","));
+  });
+  lines.push("");
+  // [표 1.2.2-4]
+  lines.push(esc("[표 1.2.2-4] 재학생 1인당 실험실습비 및 예산대비 집행률"));
+  lines.push(["연도","재학생 수(a)","실험실습비 예산총액(b)","실험실습비 결산총액(c)","예산대비 집행률(%)(d)","학생 1인당 실험실습비(e)"].map(esc).join(","));
+  const data = getBudgetData();
+  years.forEach(y=>{
+    const a = Number(data[y]?.students) || 0;
+    const b = budgetCellValue(y,'grand_total','bt') + budgetCellValue(y,'grand_total','bg');
+    const c = budgetCellValue(y,'grand_total','at') + budgetCellValue(y,'grand_total','ag');
+    const d = b>0 ? (c/b*100).toFixed(2) : '';
+    const e = a>0 ? Math.round(b/a) : '';
+    lines.push([y,a,b,c,d,e].map(esc).join(","));
+  });
+  const csv = "\uFEFF" + lines.join("\r\n"); // BOM 포함 - 엑셀에서 한글 깨짐 방지
+  const blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `실험실습비_결산내역_${years.join('-')}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 function renderBudgetTable4(){
   const wrap = document.getElementById("budgetTable4Wrap");
   if(!wrap) return;
   const years = visibleBudgetYearsSorted();
   if(!years.length){ wrap.innerHTML = '<div class="empty-state">위에서 표시할 연도를 체크해주세요.</div>'; return; }
-  const th = 'style="border:1px solid var(--line);padding:8px;background:var(--paper2);white-space:nowrap"';
-  const td = 'style="border:1px solid var(--line);padding:6px 8px;text-align:center"';
+  const thBase = 'border:1px solid var(--line);padding:8px;background:var(--paper2);white-space:nowrap';
+  const th = `style="${thBase}"`;
+  const tdBase = 'border:1px solid var(--line);padding:6px 8px;text-align:center';
+  const td = `style="${tdBase}"`;
   const head = `<tr>
     <th ${th}>연도</th>
     <th ${th}>재학생 수(a)</th>
@@ -6655,12 +6701,12 @@ function renderBudgetTable4(){
     const d = b>0 ? (c/b*100).toFixed(2) : '-';
     const e = a>0 ? fmtWon(Math.round(b/a)) : '-';
     return `<tr>
-      <td ${td} style="font-weight:800">${y}</td>
+      <td style="${tdBase};font-weight:800">${y}</td>
       <td ${td}><input type="number" data-budget-students="${y}" value="${data[y]?.students ?? ''}" style="width:90px;border:1px solid var(--line);border-radius:6px;padding:5px;text-align:center"></td>
-      <td ${td} style="font-weight:700">${fmtWon(b)}</td>
-      <td ${td} style="font-weight:700">${fmtWon(c)}</td>
+      <td style="${tdBase};font-weight:700">${fmtWon(b)}</td>
+      <td style="${tdBase};font-weight:700">${fmtWon(c)}</td>
       <td ${td}>${d}${d!=='-'?'%':''}</td>
-      <td ${td} style="font-weight:800">${e}</td>
+      <td style="${tdBase};font-weight:800">${e}</td>
     </tr>`;
   }).join('');
   wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:13px"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
