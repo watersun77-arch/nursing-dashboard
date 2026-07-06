@@ -5394,19 +5394,35 @@ function loadAccountOverrides(){
   try{
     const saved = JSON.parse(localStorage.getItem(ACCOUNT_OVERRIDES_KEY));
     if(saved && typeof saved === "object"){
+      // 1) 기존 계정(하드코딩된 4명)의 값 갱신
       LOGIN_USERS.forEach(u=>{
         const ov = saved[u.name];
         if(!ov) return;
+        if(ov.idHash) u.idHash = ov.idHash;
         if(ov.pwHash) u.pwHash = ov.pwHash;
         if(ov.role) u.role = ov.role;
         if(ov.level) u.level = ov.level;
+      });
+      // 2) 관리자가 새로 추가한 계정(하드코딩 목록에 없는 이름)을 복원
+      Object.keys(saved).forEach(name=>{
+        const ov = saved[name];
+        const exists = LOGIN_USERS.some(u=>u.name===name);
+        if(!exists && ov && ov.idHash){
+          LOGIN_USERS.push({
+            name,
+            idHash: ov.idHash,
+            pwHash: ov.pwHash || "",
+            role: ov.role || "department_head",
+            level: ov.level || "general"
+          });
+        }
       });
     }
   }catch(e){}
 }
 function persistAccountOverrides(){
   const data = {};
-  LOGIN_USERS.forEach(u=>{ data[u.name] = {pwHash:u.pwHash, role:u.role, level:u.level}; });
+  LOGIN_USERS.forEach(u=>{ data[u.name] = {idHash:u.idHash, pwHash:u.pwHash, role:u.role, level:u.level}; });
   localStorage.setItem(ACCOUNT_OVERRIDES_KEY, JSON.stringify(data));
   if(window.fbSet) fbSet(ACCOUNT_OVERRIDES_KEY, data);
 }
