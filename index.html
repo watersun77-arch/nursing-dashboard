@@ -189,6 +189,9 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
 .mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:none;background:none;cursor:pointer;font-family:'Pretendard',sans-serif;color:var(--ink-soft);font-size:10px;font-weight:700;padding:6px 0;-webkit-tap-highlight-color:transparent;}
 .mob-nav-btn .mob-ico{font-size:20px;line-height:1;}
 .mob-nav-btn.on{color:var(--accent);}
+.mob-nav-btn.chair-only{display:none;}
+body[data-role="practice_chair"] .mob-nav-btn.head-only{display:none;}
+body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
 
 @media(max-width:900px){
   .app-shell{grid-template-columns:1fr!important;}
@@ -1060,11 +1063,16 @@ body.sidebar-mode.sidebar-collapsed .app-shell{grid-template-columns:64px minmax
 
 <!-- ── 모바일 하단 네비바 ── -->
 <div id="mobileNavBar">
-  <button class="mob-nav-btn on" id="mobNavDashboard" onclick="setActiveView('dashboard')"><span class="mob-ico">📋</span>오늘일정</button>
-  <button class="mob-nav-btn" id="mobNavSchedule" onclick="setActiveView('schedule')"><span class="mob-ico">📆</span>주간일정</button>
-  <button class="mob-nav-btn" id="mobNavTasks" onclick="setActiveView('tasks')"><span class="mob-ico">📌</span>체크리스트</button>
-  <button class="mob-nav-btn" id="mobNavFaculty" onclick="setActiveView('faculty')"><span class="mob-ico">👩‍🏫</span>시간표</button>
-  <button class="mob-nav-btn" id="mobNavManage" onclick="setActiveView('manage')"><span class="mob-ico">📄</span>관리</button>
+  <button class="mob-nav-btn on head-only" id="mobNavDashboard" onclick="setActiveView('dashboard')"><span class="mob-ico">📋</span>오늘일정</button>
+  <button class="mob-nav-btn head-only" id="mobNavSchedule" onclick="setActiveView('schedule')"><span class="mob-ico">📆</span>주간일정</button>
+  <button class="mob-nav-btn head-only" id="mobNavTasks" onclick="setActiveView('tasks')"><span class="mob-ico">📌</span>체크리스트</button>
+  <button class="mob-nav-btn head-only" id="mobNavFaculty" onclick="setActiveView('faculty')"><span class="mob-ico">👩‍🏫</span>시간표</button>
+  <button class="mob-nav-btn head-only" id="mobNavManage" onclick="setActiveView('manage')"><span class="mob-ico">📄</span>관리</button>
+  <button class="mob-nav-btn chair-only" id="mobNavPracticeChairHome" onclick="setActiveView('practiceChairHome')"><span class="mob-ico">🏠</span>홈</button>
+  <button class="mob-nav-btn chair-only" id="mobNavAgreements" onclick="setActiveView('agreements')"><span class="mob-ico">🏥</span>협약관리</button>
+  <button class="mob-nav-btn chair-only" id="mobNavFacultyStatus" onclick="setActiveView('facultyStatus')"><span class="mob-ico">👨‍🏫</span>지도교수</button>
+  <button class="mob-nav-btn chair-only" id="mobNavOpCalendar" onclick="setActiveView('opCalendar')"><span class="mob-ico">📅</span>캘린더</button>
+  <button class="mob-nav-btn chair-only" id="mobNavCommitteeMinutes" onclick="setActiveView('committeeMinutes')"><span class="mob-ico">📝</span>회의록</button>
 </div>
 
 <!-- ── 앱 쉘 (사이드바 + 메인) ── -->
@@ -5218,7 +5226,11 @@ const LOGIN_USERS = [
   {name:"금정화", idHash:"be4517237a6b32ce0915fdbeed6d6e68d5f03c10efc626b11016619c99dee7ba", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"department_head", level:"general"},
   {name:"이재겸", idHash:"e5e71b9e73092a6853bfbe8e818c547c873c8186d917f2285301fa2fc20d72c2", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"department_head", level:"admin"},
   {name:"김기용", idHash:"383526f59fbc17c9e921c35848454ae95dd17b1f5e11b51f8741513d1ae13dd4", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"department_head", level:"general"},
-  {name:"신은희", idHash:"7dcc70bdde69243d4854bd5ba10293ed0aa400c3a2f644618f8cb3a136ec67fe", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"practice_chair", level:"general"}
+  {name:"신은희", idHash:"7dcc70bdde69243d4854bd5ba10293ed0aa400c3a2f644618f8cb3a136ec67fe", pwHash:"03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4", role:"practice_chair", level:"general"},
+  {name:"박경선", idHash:"0e5cceffe79ec06e6a1474bf61450fd3200e2f520c21f2704301cb61dc9c13a9", pwHash:"e0bc60c82713f64ef8a57c0c40d02ce24fd0141d5cc3086259c19b1e62a62bea", role:"practice_chair", level:"general"},
+  {name:"박다인", idHash:"dd175fd6726e99746ae7a6b0c3e360721b24c8236cd1c746af01a3e59b24e418", pwHash:"e0bc60c82713f64ef8a57c0c40d02ce24fd0141d5cc3086259c19b1e62a62bea", role:"practice_chair", level:"general"},
+  {name:"조아라", idHash:"b80472a533d62e750a2724bb6078b3fb699084a70733c637b974a8418f80098c", pwHash:"e0bc60c82713f64ef8a57c0c40d02ce24fd0141d5cc3086259c19b1e62a62bea", role:"practice_chair", level:"general"},
+  {name:"실습조교", idHash:"fcba5bf7eddbba85e5a2c58aad5cf8a5e70bc578a226bfeb53aa1f6a6edd72fc", pwHash:"e0bc60c82713f64ef8a57c0c40d02ce24fd0141d5cc3086259c19b1e62a62bea", role:"practice_chair", level:"general"}
 ];
 
 // 로그인 사용자의 role을 세션에 저장/조회 (department_head | practice_chair)
@@ -5796,7 +5808,7 @@ function setActiveView(view){
     btn.classList.toggle("on", btn.dataset.sideView===view);
   });
   // 모바일 네비 업데이트
-  ["dashboard","schedule","tasks","faculty","practiceStudents","practiceInstitutions","contribution","meetingAgenda","writeDb","manage"].forEach(v=>{
+  ["dashboard","schedule","tasks","faculty","practiceStudents","practiceInstitutions","contribution","meetingAgenda","writeDb","manage","practiceChairHome","agreements","facultyStatus","opCalendar","committeeMinutes"].forEach(v=>{
     const btn = document.getElementById("mob-nav-"+v) || document.getElementById("mobNav"+v.charAt(0).toUpperCase()+v.slice(1));
     if(btn) btn.classList.toggle("on", v===view);
   });
