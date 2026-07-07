@@ -1083,7 +1083,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   <div class="side-brand">
     <div class="side-logo" id="sideBrandLogo">🏥</div>
     <div>
-      <div class="side-title" id="sideBrandTitle">간호학과 학과장</div>
+      <div class="side-title" id="sideBrandTitle">간호학과<br>학과장</div>
       <div class="side-sub" id="sideBrandSub">운영 대시보드</div>
     </div>
     <button class="side-toggle" id="sideToggle" title="사이드바 접기/펼치기">◀</button>
@@ -1092,6 +1092,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <div class="label">TODAY</div>
     <div class="value" id="sideDateValue">—</div>
     <div class="mini" id="sideDateMini">—</div>
+    <div class="mini" id="loginUserInfo" style="margin-top:6px;font-weight:800;color:#fff">- 로그인 중</div>
   </div>
   <div class="side-section-title">메뉴</div>
   <nav class="side-menu">
@@ -1187,9 +1188,6 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   </div>
 
   <div class="hero">
-    <div style="margin-bottom:12px">
-      <div id="loginUserInfo" style="font-size:13px;font-weight:800;color:var(--ink-soft)">- 로그인 중</div>
-    </div>
     <div style="font-size:14px;font-weight:800;color:var(--accent);margin-bottom:10px" id="heroSemesterTitle">2026학년도 1학기 운영 대시보드</div>
     <span class="week-tag" id="weekTag">—</span>
     <div class="date-main" id="dateMain">—</div>
@@ -2203,7 +2201,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <div class="access-log-head">
       <div>
         <h2>🔐 접속 로그</h2>
-        <div class="sub">금정화·이재겸·김기용 로그인 사용자의 최근 접속, 마지막 활동, 접속 상태를 확인합니다.</div>
+        <div class="sub">전체 계정 로그인 사용자의 최근 접속, 마지막 활동, 접속 상태를 확인합니다.</div>
       </div>
       <div class="access-log-actions">
         <button id="accessRefresh">새로고침</button>
@@ -2216,9 +2214,6 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       <input type="text" id="accessSearch" placeholder="사용자·접속시각·브라우저 정보 검색">
       <select id="accessUserFilter">
         <option value="all">전체 사용자</option>
-        <option value="금정화">금정화</option>
-        <option value="이재겸">이재겸</option>
-        <option value="김기용">김기용</option>
       </select>
       <select id="accessStatusFilter">
         <option value="all">전체 상태</option>
@@ -4344,8 +4339,43 @@ function isPresenceOnline(p){
   if(!t) return false;
   return (Date.now() - t) <= ACCESS_ONLINE_LIMIT_MS;
 }
-function recordAccessLoginIfNeeded(){
+function mergeAccessLogArrays(cloudArr, localArr){
+  const map = new Map();
+  (Array.isArray(cloudArr)?cloudArr:[]).forEach(item=>{ if(item && item.sessionId) map.set(item.sessionId, item); });
+  (Array.isArray(localArr)?localArr:[]).forEach(item=>{
+    if(!item || !item.sessionId) return;
+    const existing = map.get(item.sessionId);
+    if(!existing || new Date(item.lastSeen||0).getTime() >= new Date(existing.lastSeen||0).getTime()){
+      map.set(item.sessionId, item);
+    }
+  });
+  return Array.from(map.values()).sort((a,b)=> new Date(b.loginAt||0).getTime() - new Date(a.loginAt||0).getTime()).slice(0,500);
+}
+function mergeAccessPresenceObjs(cloudObj, localObj){
+  const merged = {...(cloudObj&&typeof cloudObj==="object"?cloudObj:{})};
+  const local = (localObj&&typeof localObj==="object")?localObj:{};
+  Object.keys(local).forEach(user=>{
+    const l = local[user], c = merged[user];
+    if(!c || new Date(l.lastSeen||0).getTime() >= new Date(c.lastSeen||0).getTime()){
+      merged[user] = l;
+    }
+  });
+  return merged;
+}
+async function syncAccessLogWithCloud(){
+  if(!window.fbGet) return;
+  try{
+    const [cloudLog, cloudPresence] = await Promise.all([
+      window.fbGet(ACCESS_LOG_KEY),
+      window.fbGet(ACCESS_PRESENCE_KEY)
+    ]);
+    if(cloudLog) accessLogItems = mergeAccessLogArrays(cloudLog, accessLogItems);
+    if(cloudPresence) accessPresence = mergeAccessPresenceObjs(cloudPresence, accessPresence);
+  }catch(e){ console.warn("syncAccessLogWithCloud error:", e); }
+}
+async function recordAccessLoginIfNeeded(){
   if(!isLoggedIn()) return;
+  await syncAccessLogWithCloud();
   const user = getCurrentUser();
   const sid = currentAccessSessionId();
   const now = new Date().toISOString();
@@ -4372,8 +4402,9 @@ function recordAccessLoginIfNeeded(){
   renderAccessLog();
   startAccessHeartbeat();
 }
-function touchAccessPresence(){
+async function touchAccessPresence(){
   if(!isLoggedIn()) return;
+  await syncAccessLogWithCloud();
   const user = getCurrentUser();
   const sid = currentAccessSessionId();
   const now = new Date().toISOString();
@@ -4383,7 +4414,8 @@ function touchAccessPresence(){
   saveAccessLog();
   renderAccessLog();
 }
-function recordAccessLogout(){
+async function recordAccessLogout(){
+  await syncAccessLogWithCloud();
   const user = sessionStorage.getItem(LOGIN_USER_KEY) || getCurrentUser();
   const sid = sessionStorage.getItem(ACCESS_SESSION_KEY);
   const now = new Date().toISOString();
@@ -4420,10 +4452,21 @@ function filteredAccessLog(){
     return terms.every(t=>hay.includes(t));
   });
 }
+function accessLogAllUserNames(){
+  try{ return LOGIN_USERS.map(u=>u.name); }catch(e){ return WRITE_DB_AUTHORS; }
+}
+function populateAccessUserFilter(){
+  const sel = $("accessUserFilter");
+  if(!sel) return;
+  const names = accessLogAllUserNames();
+  const current = sel.value || "all";
+  sel.innerHTML = '<option value="all">전체 사용자</option>' + names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("");
+  if(names.includes(current) || current==="all") sel.value = current;
+}
 function renderAccessSummary(){
   const box = $("accessSummary");
   if(!box) return;
-  box.innerHTML = WRITE_DB_AUTHORS.map(user=>{
+  box.innerHTML = accessLogAllUserNames().map(user=>{
     const p = accessPresence[user] || {};
     const online = isPresenceOnline(p);
     const last = p.lastSeen ? accessDateTime(p.lastSeen) : "기록 없음";
@@ -4435,6 +4478,7 @@ function renderAccessSummary(){
   }).join("");
 }
 function renderAccessLog(){
+  populateAccessUserFilter();
   renderAccessSummary();
   const box = $("accessLogList");
   if(!box) return;
@@ -5461,7 +5505,7 @@ function applyRoleDashboard(){
   const titleEl = document.getElementById("sideBrandTitle");
   const subEl   = document.getElementById("sideBrandSub");
   if(role === "practice_chair"){
-    if(titleEl) titleEl.textContent = "간호학과 실습위원장";
+    if(titleEl) titleEl.innerHTML = "간호학과<br>실습위원장";
     if(subEl)   subEl.textContent   = "실습위원회 운영 대시보드";
     // 실습위원장 전용 화면 데이터를 최초 1회 로드
     if(typeof initPracticeChairViews === "function" && !_pcvInitialized){
@@ -5469,7 +5513,7 @@ function applyRoleDashboard(){
     }
     if(typeof setActiveView === "function") setActiveView("practiceChairHome");
   } else {
-    if(titleEl) titleEl.textContent = "간호학과 학과장";
+    if(titleEl) titleEl.innerHTML = "간호학과<br>학과장";
     if(subEl)   subEl.textContent   = "운영 대시보드";
     if(typeof setActiveView === "function") setActiveView("dashboard");
   }
@@ -5818,8 +5862,8 @@ window.loadAllFromFirestore = async function(){
     [WOMEN_KEY,               v=>{ if(Array.isArray(v)) womenItems=v; }],
     [SCHOLARSHIP_KEY,         v=>{ if(Array.isArray(v)) scholarshipItems=v; }],
     [WRITE_DB_KEY,            v=>{ if(Array.isArray(v)) writeDbItems=v; }],
-    [ACCESS_LOG_KEY,          v=>{ if(Array.isArray(v)) accessLogItems=v; }],
-    [ACCESS_PRESENCE_KEY,     v=>{ if(v && typeof v === "object") accessPresence=v; }],
+    [ACCESS_LOG_KEY,          v=>{ if(Array.isArray(v)) accessLogItems=mergeAccessLogArrays(v, accessLogItems); }],
+    [ACCESS_PRESENCE_KEY,     v=>{ if(v && typeof v === "object") accessPresence=mergeAccessPresenceObjs(v, accessPresence); }],
     [CONTRIBUTION_KEY,        v=>{ if(Array.isArray(v)) contributionItems=v; }],
     [PRACTICE_STUDENT_KEY,    v=>{ if(Array.isArray(v)) practiceStudents=v; }],
     [PRACTICE_INSTITUTION_KEY,v=>{ if(Array.isArray(v)) practiceInstitutions=v; }],
