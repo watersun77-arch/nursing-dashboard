@@ -1736,6 +1736,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       <div>
         <h2>📚 실습위원회 규정</h2>
         <div class="sub">규정별로 개정 버전을 관리합니다. 파일은 hwp로 등록되며, 다운로드 링크로 제공됩니다.</div>
+        <div class="sub" style="margin-top:4px;font-weight:700">다운로드방법 : 좌측 상단 - 파일 - 다운로드</div>
       </div>
       <div class="actions admin-only" style="display:none">
         <button class="btn" onclick="openRegulationAddForm()">+ 새 규정 추가</button>
@@ -6670,30 +6671,56 @@ function deleteRegulationVersion(regId, idx){
   setRegulations(data);
   renderRegulations();
 }
+function toggleRegulationHistory(regId){
+  const box = document.getElementById("regHistory_"+regId);
+  const btn = document.getElementById("regHistoryToggle_"+regId);
+  if(!box) return;
+  const isOpen = box.style.display === "flex";
+  box.style.display = isOpen ? "none" : "flex";
+  if(btn){
+    const count = box.querySelectorAll(".event-item").length;
+    btn.textContent = isOpen ? `이전 버전 보기 (${count}개)` : "이전 버전 접기";
+  }
+}
 function renderRegulations(){
   const wrap = document.getElementById("regulationList");
   if(!wrap) return;
   const admin = isAdminLevel();
   const data = getRegulations();
   if(!data.length){ wrap.innerHTML = '<div class="empty-state">등록된 규정이 없습니다.'+(admin?' 위의 "새 규정 추가" 버튼으로 시작하세요.':'')+'</div>'; return; }
+  const versionItem = (v, idx, reg) => {
+    const realIdx = reg.versions.indexOf(v);
+    return `<div class="event-item">
+      <div class="event-item-head">
+        <div>
+          <div class="event-item-title">${escapeHtml(v.version)} ${idx===0?'<span class="pill ok">최신</span>':''}</div>
+          <div class="event-item-date">개정일: ${escapeHtml(v.date||'-')}</div>
+        </div>
+      </div>
+      ${v.note?`<div class="small" style="margin-top:6px">변경사항: ${escapeHtml(v.note)}</div>`:''}
+      <div class="actions" style="margin-top:10px">
+        ${v.url?`<a class="btn ghost smallbtn" href="${escapeHtml(v.url)}" target="_blank" rel="noopener">⬇ 다운로드(hwp)</a>`:'<span class="small">다운로드 링크 없음</span>'}
+        ${admin?`<button class="btn ghost smallbtn danger" onclick="deleteRegulationVersion(${reg.id},${realIdx})">삭제</button>`:''}
+      </div>
+    </div>`;
+  };
   wrap.innerHTML = data.map(reg=>{
     const versions = reg.versions.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
-    const versionRows = versions.length ? versions.map((v,idx)=>{
-      const realIdx = reg.versions.indexOf(v);
-      return `<div class="event-item">
-        <div class="event-item-head">
-          <div>
-            <div class="event-item-title">${escapeHtml(v.version)} ${idx===0?'<span class="pill ok">최신</span>':''}</div>
-            <div class="event-item-date">개정일: ${escapeHtml(v.date||'-')}</div>
-          </div>
-        </div>
-        ${v.note?`<div class="small" style="margin-top:6px">변경사항: ${escapeHtml(v.note)}</div>`:''}
-        <div class="actions" style="margin-top:10px">
-          ${v.url?`<a class="btn ghost smallbtn" href="${escapeHtml(v.url)}" target="_blank" rel="noopener">⬇ 다운로드(hwp)</a>`:'<span class="small">다운로드 링크 없음</span>'}
-          ${admin?`<button class="btn ghost smallbtn danger" onclick="deleteRegulationVersion(${reg.id},${realIdx})">삭제</button>`:''}
-        </div>
-      </div>`;
-    }).join('') : '<div class="empty-state">등록된 버전이 없습니다.</div>';
+    let versionSection;
+    if(!versions.length){
+      versionSection = '<div class="empty-state">등록된 버전이 없습니다.</div>';
+    } else {
+      const latestRow = versionItem(versions[0], 0, reg);
+      const olderVersions = versions.slice(1);
+      if(!olderVersions.length){
+        versionSection = latestRow;
+      } else {
+        const olderRows = olderVersions.map((v,i)=>versionItem(v, i+1, reg)).join('');
+        versionSection = `${latestRow}
+          <button class="btn ghost smallbtn" style="margin-top:10px" onclick="toggleRegulationHistory(${reg.id})" id="regHistoryToggle_${reg.id}">이전 버전 보기 (${olderVersions.length}개)</button>
+          <div id="regHistory_${reg.id}" style="display:none;margin-top:10px;flex-direction:column;gap:10px">${olderRows}</div>`;
+      }
+    }
     return `<div class="card">
       <div class="toolbar">
         <h3>📄 ${escapeHtml(reg.title)}</h3>
@@ -6712,7 +6739,7 @@ function renderRegulations(){
           <button class="btn smallbtn" onclick="addRegulationVersion(${reg.id})">버전 저장</button>
         </div>
       </div>`:''}
-      <div style="display:grid;gap:10px">${versionRows}</div>
+      <div style="display:grid;gap:10px">${versionSection}</div>
     </div>`;
   }).join('');
 }
