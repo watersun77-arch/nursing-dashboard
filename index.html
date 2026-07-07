@@ -1116,6 +1116,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <button class="side-btn chair-only" data-side-view="opCalendar"><span class="ico">📅</span><span class="txt">실습운영 캘린더</span></button>
     <button class="side-btn chair-only" data-side-view="satisfaction"><span class="ico">📊</span><span class="txt">실습만족도</span></button>
     <button class="side-btn chair-only" data-side-view="committeeMinutes"><span class="ico">📝</span><span class="txt">실습위원회 회의록</span></button>
+    <button class="side-btn chair-only" data-side-view="regulations"><span class="ico">📚</span><span class="txt">실습위원회 규정</span></button>
     <button class="side-btn chair-only" data-side-view="budgetReport"><span class="ico">💰</span><span class="txt">실험실습비 결산내역</span></button>
     <button class="side-btn admin-only" id="sideAdminAccounts" data-side-view="adminAccounts" style="display:none"><span class="ico">🛠</span><span class="txt">계정 관리(관리자)</span></button>
   </nav>
@@ -1728,7 +1729,32 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     </div>
   </div>
 
-  <!-- 실험실습비 결산내역 -->
+  <!-- 실습위원회 규정 -->
+  <div class="card delay pcv-panel" data-view="regulations">
+    <div class="topbar">
+      <div>
+        <h2>📚 실습위원회 규정</h2>
+        <div class="sub">규정별로 개정 버전을 관리합니다. 파일은 hwp로 등록되며, 다운로드 링크로 제공됩니다.</div>
+      </div>
+      <div class="actions admin-only" style="display:none">
+        <button class="btn" onclick="openRegulationAddForm()">+ 새 규정 추가</button>
+      </div>
+    </div>
+
+    <div class="card admin-only" id="regAddFormCard" style="display:none;margin-bottom:16px">
+      <h3>새 규정 추가</h3>
+      <div class="form">
+        <label style="grid-column:1/-1">규정명<input type="text" id="regNewTitle" placeholder="예: 임상실습 운영지침"></label>
+      </div>
+      <div class="actions" style="margin-top:10px">
+        <button class="btn" onclick="addRegulation()">추가</button>
+        <button class="btn ghost" onclick="closeRegulationAddForm()">취소</button>
+      </div>
+    </div>
+
+    <div id="regulationList" style="display:grid;gap:14px"></div>
+  </div>
+
   <div class="card delay pcv-panel" data-view="budgetReport">
     <div class="topbar">
       <div>
@@ -5608,6 +5634,7 @@ window.loadAllFromFirestore = async function(){
     [PRACTICE_INSTITUTION_KEY,v=>{ if(Array.isArray(v)) practiceInstitutions=v; }],
     [MEETING_AGENDA_KEY,      v=>{ if(Array.isArray(v)) meetingAgendaItems=v; }],
     [STUDENT_STATUS_KEY,      v=>{ if(Array.isArray(v)) localStorage.setItem(STUDENT_STATUS_KEY, JSON.stringify(v)); }],
+    [REGULATIONS_KEY,         v=>{ if(Array.isArray(v)) localStorage.setItem(REGULATIONS_KEY, JSON.stringify(v)); }],
     ['practiceCommitteeAgreements',           v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeAgreements', JSON.stringify(v)); }],
     ['practiceCommitteeFacultyAssignments',   v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeFacultyAssignments', JSON.stringify(v)); }],
     ['practiceCommitteeEvents',               v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeEvents', JSON.stringify(v)); }],
@@ -5667,6 +5694,7 @@ window.loadAllFromFirestore = async function(){
     if(typeof renderPracticeInstitutions === "function") renderPracticeInstitutions();
     if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
     if(typeof renderStudentStatusTable === "function") renderStudentStatusTable();
+    if(typeof renderRegulations === "function") renderRegulations();
     if(typeof renderBudgetYearChecks === "function") renderBudgetYearChecks();
     if(typeof renderBudgetTables === "function") renderBudgetTables();
     if(typeof renderAgreements === "function") renderAgreements();
@@ -5763,6 +5791,7 @@ const VIEW_MAP = {
   adminAccounts: ["[data-view='adminAccounts']"],
   studentStatus: ["[data-view='studentStatus']"],
   budgetReport: ["[data-view='budgetReport']"],
+  regulations: ["[data-view='regulations']"],
 };
 // dashboard는 오늘일정 + 이번 주 미니스트립도 포함
 const DASHBOARD_EXTRAS = ["[data-view='dashboard']"];
@@ -5825,6 +5854,7 @@ function setActiveView(view){
       if(typeof renderSatisfactionList==="function") renderSatisfactionList();
     }
     if(view==="studentStatus" && typeof renderStudentStatusTable==="function") renderStudentStatusTable();
+    if(view==="regulations" && typeof renderRegulations==="function") renderRegulations();
     if(view==="budgetReport"){
       if(typeof renderBudgetYearChecks==="function") renderBudgetYearChecks();
       if(typeof renderBudgetTables==="function") renderBudgetTables();
@@ -6557,6 +6587,119 @@ function renderSatisfactionList(){
   </div>`).join("");
 }
 
+// ── 실습위원회 규정 (버전 관리, 다운로드 링크) ──
+const REGULATIONS_KEY = "practiceCommitteeRegulations";
+function getRegulations(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(REGULATIONS_KEY));
+    if(Array.isArray(saved)) return saved;
+  }catch(e){}
+  return [];
+}
+function setRegulations(data){
+  localStorage.setItem(REGULATIONS_KEY, JSON.stringify(data));
+  if(window.fbSet) fbSet(REGULATIONS_KEY, data);
+}
+function openRegulationAddForm(){
+  if(!isAdminLevel()){ alert("규정 추가·수정은 관리자만 가능합니다."); return; }
+  document.getElementById("regAddFormCard").style.display = "block";
+  document.getElementById("regNewTitle").value = "";
+}
+function closeRegulationAddForm(){
+  document.getElementById("regAddFormCard").style.display = "none";
+}
+function addRegulation(){
+  if(!isAdminLevel()){ alert("규정 추가·수정은 관리자만 가능합니다."); return; }
+  const title = document.getElementById("regNewTitle").value.trim();
+  if(!title){ alert("규정명을 입력하세요."); return; }
+  const data = getRegulations();
+  data.push({id: Date.now(), title, versions: []});
+  setRegulations(data);
+  closeRegulationAddForm();
+  renderRegulations();
+}
+function deleteRegulation(id){
+  if(!isAdminLevel()){ alert("관리자만 삭제할 수 있습니다."); return; }
+  if(!confirm("이 규정과 등록된 모든 버전을 삭제할까요?")) return;
+  setRegulations(getRegulations().filter(r=>r.id!==id));
+  renderRegulations();
+}
+function openVersionAddForm(regId){
+  if(!isAdminLevel()){ alert("규정 추가·수정은 관리자만 가능합니다."); return; }
+  const form = document.getElementById("versionAddForm_"+regId);
+  if(form) form.style.display = form.style.display==="none" ? "block" : "none";
+}
+function addRegulationVersion(regId){
+  if(!isAdminLevel()){ alert("규정 추가·수정은 관리자만 가능합니다."); return; }
+  const version = document.getElementById("vNewVersion_"+regId)?.value.trim();
+  const date = document.getElementById("vNewDate_"+regId)?.value || "";
+  const note = document.getElementById("vNewNote_"+regId)?.value.trim() || "";
+  const url = document.getElementById("vNewUrl_"+regId)?.value.trim() || "";
+  if(!version || !date){ alert("버전과 개정일은 반드시 입력해야 합니다."); return; }
+  const data = getRegulations();
+  const reg = data.find(r=>r.id===regId);
+  if(!reg) return;
+  reg.versions.push({version, date, note, url});
+  setRegulations(data);
+  renderRegulations();
+}
+function deleteRegulationVersion(regId, idx){
+  if(!isAdminLevel()){ alert("관리자만 삭제할 수 있습니다."); return; }
+  if(!confirm("이 버전을 삭제할까요?")) return;
+  const data = getRegulations();
+  const reg = data.find(r=>r.id===regId);
+  if(!reg) return;
+  reg.versions.splice(idx,1);
+  setRegulations(data);
+  renderRegulations();
+}
+function renderRegulations(){
+  const wrap = document.getElementById("regulationList");
+  if(!wrap) return;
+  const admin = isAdminLevel();
+  const data = getRegulations();
+  if(!data.length){ wrap.innerHTML = '<div class="empty-state">등록된 규정이 없습니다.'+(admin?' 위의 "새 규정 추가" 버튼으로 시작하세요.':'')+'</div>'; return; }
+  wrap.innerHTML = data.map(reg=>{
+    const versions = reg.versions.slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+    const versionRows = versions.length ? versions.map((v,idx)=>{
+      const realIdx = reg.versions.indexOf(v);
+      return `<div class="event-item">
+        <div class="event-item-head">
+          <div>
+            <div class="event-item-title">${escapeHtml(v.version)} ${idx===0?'<span class="pill ok">최신</span>':''}</div>
+            <div class="event-item-date">개정일: ${escapeHtml(v.date||'-')}</div>
+          </div>
+        </div>
+        ${v.note?`<div class="small" style="margin-top:6px">변경사항: ${escapeHtml(v.note)}</div>`:''}
+        <div class="actions" style="margin-top:10px">
+          ${v.url?`<a class="btn ghost smallbtn" href="${escapeHtml(v.url)}" target="_blank" rel="noopener">⬇ 다운로드(hwp)</a>`:'<span class="small">다운로드 링크 없음</span>'}
+          ${admin?`<button class="btn ghost smallbtn danger" onclick="deleteRegulationVersion(${reg.id},${realIdx})">삭제</button>`:''}
+        </div>
+      </div>`;
+    }).join('') : '<div class="empty-state">등록된 버전이 없습니다.</div>';
+    return `<div class="card">
+      <div class="toolbar">
+        <h3>📄 ${escapeHtml(reg.title)}</h3>
+        <div class="actions">
+          ${admin?`<button class="btn ghost smallbtn" onclick="openVersionAddForm(${reg.id})">+ 버전 추가</button><button class="btn ghost smallbtn danger" onclick="deleteRegulation(${reg.id})">규정 삭제</button>`:''}
+        </div>
+      </div>
+      ${admin?`<div id="versionAddForm_${reg.id}" style="display:none;margin-bottom:14px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--paper)">
+        <div class="form">
+          <label>버전<input type="text" id="vNewVersion_${reg.id}" placeholder="예: v2.0"></label>
+          <label>개정일<input type="date" id="vNewDate_${reg.id}"></label>
+          <label style="grid-column:1/-1">변경사항<input type="text" id="vNewNote_${reg.id}" placeholder="예: 실습기관 평가 기준 강화"></label>
+          <label style="grid-column:1/-1">구글드라이브 다운로드 링크<input type="text" id="vNewUrl_${reg.id}" placeholder="https://drive.google.com/..."></label>
+        </div>
+        <div class="actions" style="margin-top:10px">
+          <button class="btn smallbtn" onclick="addRegulationVersion(${reg.id})">버전 저장</button>
+        </div>
+      </div>`:''}
+      <div style="display:grid;gap:10px">${versionRows}</div>
+    </div>`;
+  }).join('');
+}
+
 // ── 실험실습비 결산내역 ──
 const BUDGET_YEARS_FIXED = [2026,2025,2024,2023,2022];
 const BUDGET_DATA_KEY = "practiceCommitteeBudgetData";
@@ -6775,6 +6918,7 @@ function initPracticeChairViews(){
   if(typeof renderSatisfactionList === "function") renderSatisfactionList();
   if(typeof renderBudgetYearChecks === "function") renderBudgetYearChecks();
   if(typeof renderBudgetTables === "function") renderBudgetTables();
+  if(typeof renderRegulations === "function") renderRegulations();
   renderPracticeChairHome();
   _pcvInitialized = true;
 }
