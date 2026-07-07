@@ -1125,6 +1125,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <button id="sideAddSchedule">＋ <span>오늘 일정 추가</span></button>
     <button id="sideBackup" class="admin-only" style="display:none">💾 <span>백업 저장</span></button>
     <button id="sideSettings" class="admin-only" style="display:none">⚙ <span>학기·방학 설정</span></button>
+    <button id="sideRoleSwitch" class="admin-only" style="display:none">🔄 <span id="sideRoleSwitchLabel">실습위원장 화면 보기</span></button>
     <button id="sideLogout" style="color:#ffaaaa;border-color:rgba(255,100,100,.3);">⏻ <span>로그아웃</span></button>
   </div>
   <!-- 키보드 단축키 안내 -->
@@ -5300,6 +5301,20 @@ function applyRoleDashboard(){
     if(subEl)   subEl.textContent   = "운영 대시보드";
     if(typeof setActiveView === "function") setActiveView("dashboard");
   }
+  updateRoleSwitchLabel();
+}
+
+// ── 관리자(이재겸) 전용: 학과장 ↔ 실습위원장 화면 전환 ──
+function updateRoleSwitchLabel(){
+  const label = document.getElementById("sideRoleSwitchLabel");
+  if(!label) return;
+  label.textContent = getCurrentRole() === "practice_chair" ? "학과장 화면 보기" : "실습위원장 화면 보기";
+}
+function toggleAdminRoleView(){
+  if(!isAdminLevel()){ alert("관리자만 사용할 수 있습니다."); return; }
+  const newRole = getCurrentRole() === "practice_chair" ? "department_head" : "practice_chair";
+  setCurrentRole(newRole);
+  applyRoleDashboard();
 }
 
 function isLoginSaveEnabled(){
@@ -5887,6 +5902,8 @@ function initSidebar(){
   if(sideBackup) sideBackup.onclick = ()=>{ if(typeof downloadDashboardBackup==="function") downloadDashboardBackup(); };
   const sideSett = document.getElementById("sideSettings");
   if(sideSett) sideSett.onclick = ()=>{ if(typeof openSettings==="function") openSettings(); };
+  const sideRoleSw = document.getElementById("sideRoleSwitch");
+  if(sideRoleSw) sideRoleSw.onclick = ()=>{ if(typeof toggleAdminRoleView==="function") toggleAdminRoleView(); };
 }
 
 function updateSideDate(){
