@@ -1036,6 +1036,49 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     @media(max-width:1100px){.pcv-panel .practice-calendar-layout{grid-template-columns:1fr}.pcv-panel .day-cell{min-height:96px}.pcv-panel .event-form{grid-template-columns:1fr}}
 
 
+
+  /* 프로그램 학습성과 관리 */
+  .po-card{margin-top:18px;background:linear-gradient(180deg,#fff,var(--paper2));border-left:5px solid var(--accent)}
+  .po-toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:14px 0}
+  .po-controls{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
+  .po-controls label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:800;color:var(--ink-soft)}
+  .po-controls select,.po-controls input{font-family:inherit;font-size:13px;border:1px solid var(--line2);background:#fff;border-radius:10px;padding:9px 11px;color:var(--ink)}
+  .po-filter-btn{font-family:inherit;border:1px solid var(--line2);background:#fff;color:var(--ink-soft);border-radius:999px;padding:8px 13px;font-size:12.5px;font-weight:800;cursor:pointer}
+  .po-filter-btn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .po-kpis{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:9px;margin:10px 0 16px}
+  .po-kpi{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 14px;box-shadow:0 4px 14px rgba(42,38,34,.04)}
+  .po-kpi .label{font-size:11.5px;font-weight:800;color:var(--ink-soft)}
+  .po-kpi strong{display:block;margin-top:3px;font-size:24px;color:var(--accent);font-variant-numeric:tabular-nums}
+  .po-progress{height:9px;background:var(--line);border-radius:999px;overflow:hidden;margin:8px 0 4px}
+  .po-progress i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .25s ease}
+  .po-list{display:grid;gap:11px}
+  .po-outcome{border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}
+  .po-head{display:grid;grid-template-columns:74px 1fr auto auto;gap:12px;align-items:center;padding:14px 15px;cursor:pointer;background:linear-gradient(180deg,#fff,#fbfaf7)}
+  .po-code{font-weight:900;color:#fff;background:var(--accent);border-radius:11px;padding:8px 9px;text-align:center}
+  .po-title{font-weight:900;font-size:15px;line-height:1.35}
+  .po-title small{display:block;margin-top:3px;color:var(--ink-soft);font-size:11.5px;font-weight:700}
+  .po-pct{font-size:12px;font-weight:900;color:var(--accent);background:rgba(138,21,56,.08);border-radius:999px;padding:5px 9px;white-space:nowrap}
+  .po-toggle{font-size:16px;color:var(--ink-soft);transition:.15s}
+  .po-outcome.open .po-toggle{transform:rotate(180deg)}
+  .po-body{display:none;border-top:1px solid var(--line);padding:0 14px 12px}
+  .po-outcome.open .po-body{display:block}
+  .po-row{display:grid;grid-template-columns:42px 98px minmax(220px,1fr) 100px 112px 120px minmax(150px,.7fr) auto;gap:9px;align-items:center;padding:11px 2px;border-bottom:1px dashed var(--line)}
+  .po-row:last-child{border-bottom:none}
+  .po-status-btn{width:30px;height:30px;border:2px solid var(--line2);border-radius:9px;background:#fff;color:transparent;font-weight:900;cursor:pointer}
+  .po-status-btn.done{background:var(--c-counsel);border-color:var(--c-counsel);color:#fff}
+  .po-status-btn.na{background:var(--c-note);border-color:var(--c-note);color:#fff}
+  .po-kind{font-size:11px;font-weight:900;border-radius:999px;padding:4px 8px;text-align:center;white-space:nowrap}
+  .po-kind.assignment{background:#dbeafe;color:#1e40af}.po-kind.extra{background:#ede9fe;color:#5b21b6}.po-kind.indicator{background:#dcfce7;color:#166534}
+  .po-item-name{font-size:13.5px;font-weight:800;line-height:1.4}
+  .po-row input,.po-row select{width:100%;font-family:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 9px;color:var(--ink)}
+  .po-actions{display:flex;gap:2px}.po-actions button{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:17px;opacity:.5;padding:4px 5px}.po-actions button:hover{opacity:1;color:var(--accent)}.po-actions .del:hover{color:var(--c-exam)}
+  .po-add-row{display:grid;grid-template-columns:100px minmax(220px,1fr) 110px 120px minmax(160px,.7fr) auto;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+  .po-add-row input,.po-add-row select{font-family:inherit;font-size:12.5px;border:1px solid var(--line2);background:#fff;border-radius:9px;padding:9px;color:var(--ink)}
+  .po-add-row button{font-family:inherit;font-size:12.5px;font-weight:800;border:none;background:var(--accent);color:#fff;border-radius:9px;padding:9px 13px;cursor:pointer}
+  .po-empty{text-align:center;padding:24px;color:var(--ink-soft);border:1px dashed var(--line2);border-radius:14px;background:#fff}
+  @media(max-width:980px){.po-kpis{grid-template-columns:repeat(2,1fr)}.po-row{grid-template-columns:38px 90px 1fr}.po-row>*:nth-child(n+4){grid-column:3}.po-add-row{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.po-kpis{grid-template-columns:1fr}.po-head{grid-template-columns:64px 1fr auto}.po-pct{grid-column:2}.po-row{grid-template-columns:36px 1fr}.po-row>*:nth-child(n+3){grid-column:2}.po-add-row{grid-template-columns:1fr}}
+
 </style>
 <!-- ── 로그인 화면 ── -->
 <div id="loginScreen">
@@ -1109,6 +1152,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <button class="side-btn head-only" data-side-view="manage"><span class="ico">📄</span><span class="txt">학과 운영 관리</span></button>
     <button class="side-btn head-only" data-side-view="memo"><span class="ico">📝</span><span class="txt">메모센터</span></button>
     <button class="side-btn head-only" data-side-view="grade"><span class="ico">🎓</span><span class="txt">학년별 관리</span></button>
+    <button class="side-btn head-only" data-side-view="poManagement"><span class="ico">📊</span><span class="txt">프로그램 학습성과 관리</span><span class="count" id="sideCntPO">0</span></button>
     <button class="side-btn head-only" data-side-view="studentStatus"><span class="ico">📈</span><span class="txt">학생 현황</span></button>
     <button class="side-btn head-only" data-side-view="nationalExam"><span class="ico">🩺</span><span class="txt">국가고시 합격관리</span></button>
     <button class="side-btn head-only" data-side-view="search"><span class="ico">🔍</span><span class="txt">일정 검색</span></button>
@@ -1933,6 +1977,44 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       <button id="gradeMemoCancel" class="manage-cancel" style="display:none">취소</button>
     </div>
     <div id="gradeMemoList"></div>
+  </div>
+
+
+  <!-- 프로그램 학습성과 관리 -->
+  <div class="card delay po-card" data-view="poManagement">
+    <div class="topbar">
+      <div>
+        <h2>📊 프로그램 학습성과 관리</h2>
+        <div class="sub">2025.03.01 기준 공통 평가체계를 2023·2024학번에 적용하고, 완료 상태는 학번별로 독립 관리합니다.</div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" id="poExpandAll">전체 펼치기</button>
+        <button class="btn ghost" id="poCollapseAll">전체 접기</button>
+      </div>
+    </div>
+    <div class="po-toolbar">
+      <div class="po-controls">
+        <label>평가체계
+          <select id="poFramework"><option value="2025-03-01">2025.03.01 기준</option></select>
+        </label>
+        <label>관리 학번
+          <select id="poCohort"><option value="2023">2023학번</option><option value="2024">2024학번</option><option value="compare">전체 비교</option></select>
+        </label>
+        <label>검색
+          <input type="text" id="poSearch" placeholder="PO·과제명·담당자 검색">
+        </label>
+      </div>
+      <div id="poFilters" style="display:flex;gap:6px;flex-wrap:wrap">
+        <button class="po-filter-btn on" data-po-filter="all">전체</button>
+        <button class="po-filter-btn" data-po-filter="assignment">학생과제</button>
+        <button class="po-filter-btn" data-po-filter="extra">교과외</button>
+        <button class="po-filter-btn" data-po-filter="indicator">정량지표</button>
+        <button class="po-filter-btn" data-po-filter="pending">미완료만</button>
+      </div>
+    </div>
+    <div class="note" style="margin-bottom:12px"><b>상태 버튼 사용법:</b> 클릭할 때마다 예정(빈칸) → 완료(✓) → 해당없음(－)으로 변경됩니다. 완료일과 비고는 선택 입력입니다.</div>
+    <div class="po-kpis" id="poKpis"></div>
+    <div class="po-list" id="poList"></div>
   </div>
 
   <!-- 학생 현황 -->
@@ -5281,7 +5363,9 @@ function dashboardBackupPayload(){
       gradeMemos: gradeMemoData,
       paperItems,
       acadItems,
-      womenItems
+      womenItems,
+      poFramework,
+      poProgress
     }
   };
 }
@@ -5340,13 +5424,15 @@ function applyDashboardBackup(payload){
   if(Array.isArray(d.paperItems)){ paperItems = d.paperItems; savePaper(); }
   if(Array.isArray(d.acadItems)){ acadItems = d.acadItems; saveAcad(); }
   if(Array.isArray(d.womenItems)){ womenItems = d.womenItems; saveWomen(); }
+  if(Array.isArray(d.poFramework)){ poFramework=d.poFramework; savePOFramework(); }
+  if(d.poProgress && typeof d.poProgress==="object"){ poProgress=d.poProgress; savePOProgress(); }
   else if(Array.isArray(d.womenItems)){ womenItems = d.womenItems; saveWomen(); }
   sel = payload.selectedDate || todayStr();
   curCat = payload.selectedCategory || "all";
   document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on", x.dataset.cat===curCat));
   switchMemoTab(activeMemoTab);
   switchGradeMemoTab(activeGradeMemoTab);
-  renderWT(); renderFacultyTimetable(); renderPracticeStudents(); renderContributions(); renderScholarships(); renderAccessLog(); renderPaper(); renderAcad(); renderWomen(); render();
+  renderWT(); renderFacultyTimetable(); renderPracticeStudents(); renderContributions(); renderScholarships(); renderAccessLog(); renderPaper(); renderAcad(); renderWomen(); renderPOManagement(); render();
   alert("백업 데이터를 복원했습니다.");
 }
 function restoreDashboardBackup(file){
@@ -5843,6 +5929,107 @@ function deleteAccountRow(index){
   renderAdminAccountList();
 }
 
+
+// ── 프로그램 학습성과 관리 ─────────────────────────────
+const PO_FRAMEWORK_KEY = "nursing_head_dash_po_framework_2025_v1";
+const PO_PROGRESS_KEY = "nursing_head_dash_po_progress_v1";
+const PO_DEFAULT_FRAMEWORK = [
+  {po:"PO1", title:"기독교 정신을 바탕으로 인간을 이해한다", owner:"박소영", timing:"1-1, 1-2, 3-1", items:[
+    {id:"po1-a1",kind:"assignment",name:"영적간호 보고서",term:"3-1"},{id:"po1-e1",kind:"extra",name:"다문화 특강",term:"1-1 이후"},{id:"po1-i1",kind:"indicator",name:"졸업시험",term:"졸업학년"}]},
+  {po:"PO2", title:"간호학문과 다양한 학문분야의 지식을 응용한다", owner:"박경선", timing:"1-1, 2-2, 3-2", items:[
+    {id:"po2-a1",kind:"assignment",name:"성인건강간호학실습(2) 보고서",term:"3-2"},{id:"po2-e1",kind:"extra",name:"의학용어 경시대회",term:"2-2"},{id:"po2-i1",kind:"indicator",name:"졸업시험",term:"졸업학년"}]},
+  {po:"PO3", title:"전문적인 지식과 비판적 사고를 간호중재에 적용한다", owner:"박다인", timing:"2-2, 3-1, 4-1", items:[
+    {id:"po3-a1",kind:"assignment",name:"성인건강간호학(2) 보고서",term:"3-1"},{id:"po3-e1",kind:"extra",name:"참간호사 되기",term:"2-2"},{id:"po3-i1",kind:"indicator",name:"NPP",term:"통합평가 시"}]},
+  {po:"PO4", title:"임상적 추론을 통해 간호중재를 통합적으로 실무에 적용한다", owner:"설미진", timing:"2-2, 3-2, 4-1, 4-2", items:[
+    {id:"po4-a1",kind:"assignment",name:"간호과정 적용보고서",term:"3-2"},{id:"po4-a2",kind:"assignment",name:"핵심간호술 관련 논문검색 및 평가",term:"4-1"},{id:"po4-e1",kind:"extra",name:"핵심간호술",term:"4-2까지"},{id:"po4-i1",kind:"indicator",name:"NPP",term:"4학년"}]},
+  {po:"PO5", title:"국내외 보건의료체계 내에서 인구집단 건강을 관리한다", owner:"강문희", timing:"2-1, 3-2, 4-2", items:[
+    {id:"po5-a1",kind:"assignment",name:"보건교육프로그램 계획안 보고서",term:"3-1"},{id:"po5-e1",kind:"extra",name:"전문가 특강",term:"3-2까지"},{id:"po5-i1",kind:"indicator",name:"문화적 역량 측정도구",term:"통합평가 시"}]},
+  {po:"PO6", title:"간호전문직 윤리관 및 법적 책임에 따라 간호를 수행한다", owner:"신해진", timing:"1-1, 2-1, 4-1, 4-2", items:[
+    {id:"po6-a1",kind:"assignment",name:"간호관리학(2) 간호법에 대한 개인보고서",term:"4-1"},{id:"po6-a2",kind:"assignment",name:"보건의약관계법규 국내외 법적·윤리적 이슈 보고서",term:"4-2"},{id:"po6-e1",kind:"extra",name:"간호비전선서식",term:"2-1"},{id:"po6-i1",kind:"indicator",name:"간호전문직관 측정도구",term:"통합평가 시"}]},
+  {po:"PO7", title:"안전과 질향상 원리를 적용한다", owner:"조아라", timing:"2-1, 3-1, 4-1", items:[
+    {id:"po7-a1",kind:"assignment",name:"질 향상 제안서 작성 보고서",term:"3-1"},{id:"po7-e1",kind:"extra",name:"논문계획발표회",term:"3-2"},{id:"po7-i1",kind:"indicator",name:"학술대회 참여",term:"통합평가 시"}]},
+  {po:"PO8", title:"건강증진과 건강문제해결을 위한 보건의료팀과 협력한다", owner:"신은희", timing:"1-2, 4-1", items:[
+    {id:"po8-a1",kind:"assignment",name:"간호관리학실습 보고서",term:"4-1"},{id:"po8-a2",kind:"assignment",name:"봉사활동보고서",term:"1-2"},{id:"po8-e1",kind:"extra",name:"BLS Provider",term:"4-1까지"},{id:"po8-i1",kind:"indicator",name:"졸업시험",term:"졸업학년"}]},
+  {po:"PO9", title:"전문직 발전을 위한 리더십 역량을 함양한다", owner:"김원종(신임)", timing:"2-2, 3-2, 4-1, 4-2", items:[
+    {id:"po9-a1",kind:"assignment",name:"간호관리학(1) 보고서",term:"3-2"},{id:"po9-a2",kind:"assignment",name:"동아리활동보고서",term:"4-1"},{id:"po9-e1",kind:"extra",name:"리더십 특강 참여",term:"4-2까지"},{id:"po9-i1",kind:"indicator",name:"간호전문직관 측정도구",term:"통합평가 시"}]},
+  {po:"PO10", title:"정보통신기술을 활용한다", owner:"김화선", timing:"2-1, 3-1, 4-1", items:[
+    {id:"po10-a1",kind:"assignment",name:"기본간호학실습(1) EMR 작성보고서",term:"2-1"},{id:"po10-a2",kind:"assignment",name:"정보통신기술을 활용한 사례분석 보고서",term:"4-1"},{id:"po10-e1",kind:"extra",name:"캡스톤 경진대회",term:"3-1"},{id:"po10-i1",kind:"indicator",name:"DBMS 시스템 개발 보고서",term:"통합평가 시"}]}
+];
+let poFramework=[];
+let poProgress={"2023":{},"2024":{}};
+let poCurrentFilter="all";
+let poOpenSet=new Set(["PO1"]);
+function clonePOFramework(){ return JSON.parse(JSON.stringify(PO_DEFAULT_FRAMEWORK)); }
+function loadPOManagement(){
+  try{ const r=localStorage.getItem(PO_FRAMEWORK_KEY); poFramework=r?JSON.parse(r):clonePOFramework(); }catch(e){ poFramework=clonePOFramework(); }
+  try{ const r=localStorage.getItem(PO_PROGRESS_KEY); poProgress=r?JSON.parse(r):{"2023":{},"2024":{}}; }catch(e){ poProgress={"2023":{},"2024":{}}; }
+  if(!poProgress["2023"]) poProgress["2023"]={}; if(!poProgress["2024"]) poProgress["2024"]={};
+}
+function savePOFramework(){ localStorage.setItem(PO_FRAMEWORK_KEY,JSON.stringify(poFramework)); if(window.fbSet) fbSet(PO_FRAMEWORK_KEY,poFramework); markSaved(); }
+function savePOProgress(){ localStorage.setItem(PO_PROGRESS_KEY,JSON.stringify(poProgress)); if(window.fbSet) fbSet(PO_PROGRESS_KEY,poProgress); markSaved(); }
+function poState(cohort,id){ return (poProgress[cohort]&&poProgress[cohort][id]) || {status:"pending",date:"",note:""}; }
+function poStatusNext(v){ return v==="pending"?"done":v==="done"?"na":"pending"; }
+function poKindLabel(k){ return k==="assignment"?"학생과제":k==="extra"?"교과외":"정량지표"; }
+function poStatusMark(v){ return v==="done"?"✓":v==="na"?"－":""; }
+function poAllItems(){ return poFramework.flatMap(o=>o.items.map(i=>({...i,po:o.po,title:o.title,owner:o.owner}))); }
+function poStats(cohort){
+  const items=poAllItems(), valid=items.filter(i=>poState(cohort,i.id).status!=="na"), done=valid.filter(i=>poState(cohort,i.id).status==="done").length;
+  return {total:valid.length,done,pending:valid.length-done,pct:valid.length?Math.round(done/valid.length*100):0};
+}
+function renderPOKpis(){
+  const box=document.getElementById("poKpis"), cohort=document.getElementById("poCohort")?.value||"2023"; if(!box)return;
+  if(cohort==="compare"){
+    const a=poStats("2023"),b=poStats("2024");
+    box.innerHTML=`<div class="po-kpi"><div class="label">2023학번 진행률</div><strong>${a.pct}%</strong><div class="po-progress"><i style="width:${a.pct}%"></i></div></div><div class="po-kpi"><div class="label">2024학번 진행률</div><strong>${b.pct}%</strong><div class="po-progress"><i style="width:${b.pct}%"></i></div></div><div class="po-kpi"><div class="label">2023 미완료</div><strong>${a.pending}</strong></div><div class="po-kpi"><div class="label">2024 미완료</div><strong>${b.pending}</strong></div>`;
+  }else{
+    const x=poStats(cohort);
+    box.innerHTML=`<div class="po-kpi"><div class="label">전체 관리항목</div><strong>${x.total}</strong></div><div class="po-kpi"><div class="label">완료</div><strong>${x.done}</strong></div><div class="po-kpi"><div class="label">미완료</div><strong>${x.pending}</strong></div><div class="po-kpi"><div class="label">전체 진행률</div><strong>${x.pct}%</strong><div class="po-progress"><i style="width:${x.pct}%"></i></div></div>`;
+  }
+}
+function poRowHtml(o,item,cohort){
+  if(cohort==="compare"){
+    const a=poState("2023",item.id),b=poState("2024",item.id);
+    return `<div class="po-row"><div></div><span class="po-kind ${item.kind}">${poKindLabel(item.kind)}</span><div class="po-item-name">${esc(item.name)}</div><div>${esc(item.term||o.timing||"")}</div><div><b>23학번</b> ${a.status==="done"?"✅":a.status==="na"?"－":"⬜"}</div><div><b>24학번</b> ${b.status==="done"?"✅":b.status==="na"?"－":"⬜"}</div><div>${esc(a.note||b.note||"")}</div><div></div></div>`;
+  }
+  const st=poState(cohort,item.id);
+  return `<div class="po-row" data-po-item="${item.id}"><button class="po-status-btn ${st.status}" data-po-toggle="${item.id}" title="상태 변경">${poStatusMark(st.status)}</button><span class="po-kind ${item.kind}">${poKindLabel(item.kind)}</span><div class="po-item-name">${esc(item.name)}</div><input value="${esc(item.term||o.timing||"")}" data-po-field="term" data-po-id="${item.id}" title="시기"><select data-po-field="status" data-po-id="${item.id}"><option value="pending" ${st.status==="pending"?"selected":""}>예정</option><option value="done" ${st.status==="done"?"selected":""}>완료</option><option value="na" ${st.status==="na"?"selected":""}>해당없음</option></select><input type="date" value="${esc(st.date||"")}" data-po-progress-field="date" data-po-id="${item.id}"><input value="${esc(st.note||"")}" placeholder="비고" data-po-progress-field="note" data-po-id="${item.id}"><div class="po-actions"><button data-po-edit="${item.id}" title="항목명 수정">✎</button><button class="del" data-po-del="${item.id}" title="삭제">×</button></div></div>`;
+}
+function renderPOManagement(){
+  const list=document.getElementById("poList"); if(!list)return; renderPOKpis();
+  const cohort=document.getElementById("poCohort")?.value||"2023", q=String(document.getElementById("poSearch")?.value||"").toLowerCase().trim();
+  let shown=0;
+  list.innerHTML=poFramework.map(o=>{
+    let items=o.items.filter(i=>{
+      if(poCurrentFilter==="assignment"||poCurrentFilter==="extra"||poCurrentFilter==="indicator") if(i.kind!==poCurrentFilter)return false;
+      if(poCurrentFilter==="pending"&&cohort!=="compare"&&poState(cohort,i.id).status!=="pending")return false;
+      const hay=[o.po,o.title,o.owner,i.name,i.term].join(" ").toLowerCase(); return !q||hay.includes(q);
+    });
+    if(!items.length)return""; shown+=items.length;
+    const valid=items.filter(i=>cohort==="compare"||poState(cohort,i.id).status!=="na"), done=cohort==="compare"?0:valid.filter(i=>poState(cohort,i.id).status==="done").length, pct=cohort==="compare"?"비교":(valid.length?Math.round(done/valid.length*100):0)+"%";
+    const open=poOpenSet.has(o.po);
+    return `<section class="po-outcome ${open?"open":""}" data-po="${o.po}"><div class="po-head" data-po-open="${o.po}"><div class="po-code">${o.po}</div><div class="po-title">${esc(o.title)}<small>담당자 ${esc(o.owner)} · 전체 과제시기 ${esc(o.timing)}</small></div><div class="po-pct">${pct}</div><div class="po-toggle">⌄</div></div><div class="po-body">${items.map(i=>poRowHtml(o,i,cohort)).join("")}<div class="po-add-row" ${cohort==="compare"?'style="display:none"':''}><select data-po-new-kind="${o.po}"><option value="assignment">학생과제</option><option value="extra">교과외</option><option value="indicator">정량지표</option></select><input data-po-new-name="${o.po}" placeholder="새 관리항목"><input data-po-new-term="${o.po}" placeholder="시기"><input data-po-new-note="${o.po}" placeholder="초기 비고"><span></span><button data-po-add="${o.po}">항목 추가</button></div></div></section>`;
+  }).join("");
+  if(!shown) list.innerHTML='<div class="po-empty">조건에 맞는 관리항목이 없습니다.</div>';
+  bindPOEvents(); updateSidebarCounts();
+}
+function findPOItem(id){ for(const o of poFramework){const i=o.items.find(x=>x.id===id);if(i)return{o,item:i};}return null; }
+function bindPOEvents(){
+  document.querySelectorAll("[data-po-open]").forEach(el=>el.onclick=()=>{const po=el.dataset.poOpen;poOpenSet.has(po)?poOpenSet.delete(po):poOpenSet.add(po);renderPOManagement();});
+  document.querySelectorAll("[data-po-toggle]").forEach(el=>el.onclick=()=>{const c=document.getElementById("poCohort").value,id=el.dataset.poToggle,st=poState(c,id);poProgress[c][id]={...st,status:poStatusNext(st.status)};savePOProgress();renderPOManagement();});
+  document.querySelectorAll("[data-po-field]").forEach(el=>el.onchange=()=>{const found=findPOItem(el.dataset.poId);if(!found)return;if(el.dataset.poField==="term")found.item.term=el.value.trim();else{const c=document.getElementById("poCohort").value,st=poState(c,el.dataset.poId);poProgress[c][el.dataset.poId]={...st,status:el.value};savePOProgress();}savePOFramework();renderPOManagement();});
+  document.querySelectorAll("[data-po-progress-field]").forEach(el=>el.onchange=()=>{const c=document.getElementById("poCohort").value,id=el.dataset.poId,st=poState(c,id);poProgress[c][id]={...st,[el.dataset.poProgressField]:el.value};savePOProgress();renderPOKpis();});
+  document.querySelectorAll("[data-po-edit]").forEach(el=>el.onclick=()=>{const f=findPOItem(el.dataset.poEdit);if(!f)return;const v=prompt("관리항목명을 수정하세요.",f.item.name);if(v&&v.trim()){f.item.name=v.trim();savePOFramework();renderPOManagement();}});
+  document.querySelectorAll("[data-po-del]").forEach(el=>el.onclick=()=>{const f=findPOItem(el.dataset.poDel);if(!f||!confirm(`'${f.item.name}' 항목을 삭제할까요?`))return;f.o.items=f.o.items.filter(x=>x.id!==f.item.id);["2023","2024"].forEach(c=>delete poProgress[c][f.item.id]);savePOFramework();savePOProgress();renderPOManagement();});
+  document.querySelectorAll("[data-po-add]").forEach(el=>el.onclick=()=>{const po=el.dataset.poAdd,o=poFramework.find(x=>x.po===po);if(!o)return;const name=document.querySelector(`[data-po-new-name='${po}']`).value.trim();if(!name){alert("관리항목명을 입력하세요.");return;}const id=`${po.toLowerCase()}-${Date.now()}`;o.items.push({id,kind:document.querySelector(`[data-po-new-kind='${po}']`).value,name,term:document.querySelector(`[data-po-new-term='${po}']`).value.trim()});const note=document.querySelector(`[data-po-new-note='${po}']`).value.trim(),c=document.getElementById("poCohort").value;if(note)poProgress[c][id]={status:"pending",date:"",note};savePOFramework();savePOProgress();poOpenSet.add(po);renderPOManagement();});
+}
+loadPOManagement();
+document.getElementById("poCohort")?.addEventListener("change",renderPOManagement);
+document.getElementById("poSearch")?.addEventListener("input",renderPOManagement);
+document.querySelectorAll("[data-po-filter]").forEach(btn=>btn.onclick=()=>{poCurrentFilter=btn.dataset.poFilter;document.querySelectorAll("[data-po-filter]").forEach(x=>x.classList.toggle("on",x===btn));renderPOManagement();});
+document.getElementById("poExpandAll")?.addEventListener("click",()=>{poFramework.forEach(o=>poOpenSet.add(o.po));renderPOManagement();});
+document.getElementById("poCollapseAll")?.addEventListener("click",()=>{poOpenSet.clear();renderPOManagement();});
+renderPOManagement();
+
 // ════════════════════════════════════════════════════════════
 // ██  FIRESTORE 전체 로드 & 실시간 동기화  ██
 // ════════════════════════════════════════════════════════════
@@ -5870,6 +6057,8 @@ window.loadAllFromFirestore = async function(){
     [MEETING_AGENDA_KEY,      v=>{ if(Array.isArray(v)) meetingAgendaItems=v; }],
     [STUDENT_STATUS_KEY,      v=>{ if(Array.isArray(v)) localStorage.setItem(STUDENT_STATUS_KEY, JSON.stringify(v)); }],
     [NATIONAL_EXAM_KEY,       v=>{ if(Array.isArray(v)) localStorage.setItem(NATIONAL_EXAM_KEY, JSON.stringify(v)); }],
+    [PO_FRAMEWORK_KEY,        v=>{ if(Array.isArray(v)) poFramework=v; }],
+    [PO_PROGRESS_KEY,         v=>{ if(v && typeof v==="object") poProgress=v; }],
     [REGULATIONS_KEY,         v=>{ if(Array.isArray(v)) localStorage.setItem(REGULATIONS_KEY, JSON.stringify(v)); }],
     ['practiceCommitteeAgreements',           v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeAgreements', JSON.stringify(v)); }],
     ['practiceCommitteeFacultyAssignments',   v=>{ if(Array.isArray(v)) localStorage.setItem('practiceCommitteeFacultyAssignments', JSON.stringify(v)); }],
@@ -5931,6 +6120,7 @@ window.loadAllFromFirestore = async function(){
     if(typeof renderMeetingAgenda === "function") renderMeetingAgenda();
     if(typeof renderStudentStatusTable === "function") renderStudentStatusTable();
     if(typeof renderNationalExamTable === "function") renderNationalExamTable();
+    if(typeof renderPOManagement === "function") renderPOManagement();
     if(typeof renderRegulations === "function") renderRegulations();
     if(typeof renderBudgetYearChecks === "function") renderBudgetYearChecks();
     if(typeof renderBudgetTables === "function") renderBudgetTables();
@@ -6021,6 +6211,7 @@ const VIEW_MAP = {
   manage:     ["[data-view='manage']"],
   memo:       ["[data-view='memo']"],
   grade:      ["[data-view='grade']"],
+  poManagement: ["[data-view='poManagement']"],
   search:     ["[data-view='search']"],
   practiceChairHome: ["[data-view='practiceChairHome']"],
   agreements: ["[data-view='agreements']"],
@@ -6096,6 +6287,7 @@ function setActiveView(view){
     }
     if(view==="studentStatus" && typeof renderStudentStatusTable==="function") renderStudentStatusTable();
     if(view==="nationalExam" && typeof renderNationalExamTable==="function") renderNationalExamTable();
+    if(view==="poManagement" && typeof renderPOManagement==="function") renderPOManagement();
     if(view==="regulations" && typeof renderRegulations==="function") renderRegulations();
     if(view==="budgetReport"){
       if(typeof renderBudgetYearChecks==="function") renderBudgetYearChecks();
@@ -6153,6 +6345,10 @@ function updateSidebarCounts(){
   if(wtCount){
     const cnt = document.querySelectorAll("#wtList .wt-item:not(.done)").length;
     wtCount.textContent = cnt || "0";
+  }
+  const poCount = document.getElementById("sideCntPO");
+  if(poCount){
+    try{ const cohort=document.getElementById("poCohort")?.value||"2023"; poCount.textContent=cohort==="compare"?"↔":String(poStats(cohort).pending||0); }catch(e){ poCount.textContent="0"; }
   }
   const psCount = document.getElementById("sideCntPracticeStudents");
   if(psCount){
