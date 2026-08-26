@@ -5333,6 +5333,34 @@ renderMeetingAgenda();
 
 
 // ── 데이터 백업 / 복원 (JSON 파일) ──
+// [백업 보강] localStorage 전용으로 저장되는 항목을 백업에 포함하기 위한 헬퍼
+const BK_KEYS = {
+  studentStatus:              "nursing_head_dash_student_status_v1",
+  nationalExam:               "nursing_head_dash_national_exam_v1",
+  footerNotice:               "nursing_head_footer_notice_v1",
+  practiceAgreements:         "practiceCommitteeAgreements",
+  practiceFacultyAssignments: "practiceCommitteeFacultyAssignments",
+  practiceEvents:             "practiceCommitteeEvents",
+  committeeMinutes:           "practiceCommitteeMinutes",
+  satisfaction:               "practiceCommitteeSatisfaction",
+  regulations:                "practiceCommitteeRegulations",
+  budgetData:                 "practiceCommitteeBudgetData",
+  budgetVisibleYears:         "practiceCommitteeBudgetVisibleYears"
+};
+function bkRead(key){
+  try{
+    const raw = localStorage.getItem(key);
+    if(raw === null || raw === undefined || raw === "") return null;
+    return JSON.parse(raw);
+  }catch(e){ return null; }
+}
+function bkWrite(key, value){
+  try{
+    localStorage.setItem(key, JSON.stringify(value));
+    if(window.fbSet) fbSet(key, value);
+    return true;
+  }catch(e){ return false; }
+}
 function dashboardBackupPayload(){
   const memoData = {};
   Object.keys(MEMO_SECTIONS).forEach(tab=>{ memoData[tab] = memoStore[tab] || []; });
@@ -5340,7 +5368,7 @@ function dashboardBackupPayload(){
   Object.keys(GRADE_MEMO_SECTIONS).forEach(tab=>{ gradeMemoData[tab] = gradeMemoStore[tab] || []; });
   return {
     app: "nursing_head_schedule_dashboard",
-    version: 1,
+    version: 2,
     exportedAt: new Date().toISOString(),
     selectedDate: sel,
     selectedCategory: curCat,
@@ -5365,7 +5393,20 @@ function dashboardBackupPayload(){
       acadItems,
       womenItems,
       poFramework,
-      poProgress
+      poProgress,
+      // [백업 보강] 그동안 백업에서 빠져 있던 항목들 (학과장 · 실습위원장 공용)
+      studentStatus:              bkRead(BK_KEYS.studentStatus),
+      nationalExam:               bkRead(BK_KEYS.nationalExam),
+      footerNotice:               bkRead(BK_KEYS.footerNotice),
+      practiceAgreements:         bkRead(BK_KEYS.practiceAgreements),
+      practiceFacultyAssignments: bkRead(BK_KEYS.practiceFacultyAssignments),
+      practiceEvents:             bkRead(BK_KEYS.practiceEvents),
+      committeeMinutes:           bkRead(BK_KEYS.committeeMinutes),
+      satisfaction:               bkRead(BK_KEYS.satisfaction),
+      regulations:                bkRead(BK_KEYS.regulations),
+      budgetData:                 bkRead(BK_KEYS.budgetData),
+      budgetVisibleYears:         bkRead(BK_KEYS.budgetVisibleYears)
+      // 주의: 계정 정보와 공용 비밀번호는 보안상 백업 파일에 담지 않습니다.
     }
   };
 }
@@ -5427,13 +5468,43 @@ function applyDashboardBackup(payload){
   if(Array.isArray(d.poFramework)){ poFramework=d.poFramework; savePOFramework(); }
   if(d.poProgress && typeof d.poProgress==="object"){ poProgress=d.poProgress; savePOProgress(); }
   else if(Array.isArray(d.womenItems)){ womenItems = d.womenItems; saveWomen(); }
+  // [백업 보강] 그동안 복원 대상에서 빠져 있던 항목들
+  // 백업 파일에 해당 항목이 없으면(구버전 백업) 건너뛰므로 기존 데이터가 지워지지 않습니다.
+  const bkRestored = [];
+  [
+    ["studentStatus",              "학생 현황",        Array.isArray],
+    ["nationalExam",               "국가고시 관리",     Array.isArray],
+    ["footerNotice",               "하단 공지",        v=>v && typeof v==="object"],
+    ["practiceAgreements",         "실습기관 협약",     Array.isArray],
+    ["practiceFacultyAssignments", "기관담당교수 배정",  Array.isArray],
+    ["practiceEvents",             "실습운영 캘린더",   Array.isArray],
+    ["committeeMinutes",           "실습위원회 회의록",  Array.isArray],
+    ["satisfaction",               "실습 만족도",      Array.isArray],
+    ["regulations",                "규정",           Array.isArray],
+    ["budgetData",                 "결산내역",        v=>v && typeof v==="object"],
+    ["budgetVisibleYears",         "결산 표시연도",    Array.isArray]
+  ].forEach(([field, label, ok])=>{
+    const v = d[field];
+    if(v !== undefined && v !== null && ok(v)){
+      if(bkWrite(BK_KEYS[field], v)) bkRestored.push(label);
+    }
+  });
+  [
+    "renderStudentStatusTable","renderNationalExamSummary","renderNationalExamTable","renderNationalExamChart",
+    "renderFooterNotice","renderAgreements","renderAgreementSummary","renderFacultyAssignments",
+    "renderPracticeCalendar","renderSelectedPracticeEvents","renderCommitteeMinutes","renderPracticeChairHome",
+    "renderSatisfactionList","renderRegulations","renderBudgetYearChecks","renderBudgetTables"
+  ].forEach(fn=>{ try{ if(typeof window[fn] === "function") window[fn](); }catch(e){} });
+
   sel = payload.selectedDate || todayStr();
   curCat = payload.selectedCategory || "all";
   document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on", x.dataset.cat===curCat));
   switchMemoTab(activeMemoTab);
   switchGradeMemoTab(activeGradeMemoTab);
   renderWT(); renderFacultyTimetable(); renderPracticeStudents(); renderContributions(); renderScholarships(); renderAccessLog(); renderPaper(); renderAcad(); renderWomen(); renderPOManagement(); render();
-  alert("백업 데이터를 복원했습니다.");
+  alert("백업 데이터를 복원했습니다."
+    + (bkRestored.length ? "\n\n추가 복원 항목: " + bkRestored.join(", ") : "")
+    + "\n\n※ 백업 파일에 없는 항목은 그대로 두었습니다.");
 }
 function restoreDashboardBackup(file){
   if(!file) return;
@@ -5441,7 +5512,12 @@ function restoreDashboardBackup(file){
   reader.onload = e=>{
     try{
       const payload = JSON.parse(e.target.result);
-      if(confirm("현재 대시보드 데이터를 백업 파일 내용으로 덮어쓸까요?")){
+      const bkVer = Number(payload && payload.version) || 1;
+      const bkAt  = payload && payload.exportedAt ? String(payload.exportedAt).slice(0,16).replace("T"," ") : "알 수 없음";
+      const warn = bkVer < 2
+        ? "\n\n⚠ 구버전(v1) 백업입니다. 협약·배정·회의록·만족도·규정·결산 등은 이 파일에 없으므로 복원하지 않고 현재 데이터를 그대로 둡니다."
+        : "";
+      if(confirm("현재 대시보드 데이터를 백업 파일 내용으로 덮어쓸까요?\n\n백업 시각: " + bkAt + " (v" + bkVer + ")" + warn)){
         applyDashboardBackup(payload);
       }
     }catch(err){
