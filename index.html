@@ -795,17 +795,23 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .practice-institution-filter .export{background:rgba(138,21,56,.07);color:var(--accent);border-color:rgba(138,21,56,.22)}
   .practice-institution-filter .export:hover{background:rgba(138,21,56,.12);color:var(--accent)}
   .practice-institution-filter button:hover{border-color:var(--accent);color:var(--accent)}
-  .practice-institution-list{display:grid;gap:8px}
-  .practice-institution-item{display:grid;grid-template-columns:110px 1.1fr 1.15fr 1.15fr 120px 1.3fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 13px}
-  .pi-region{font-weight:900;color:var(--accent);font-size:13px}
-  .pi-region small{display:block;color:var(--ink-soft);font-size:10.5px;font-weight:700;margin-top:2px}
-  .pi-name{font-weight:900;font-size:14.5px;line-height:1.35}
-  .pi-name small{display:block;color:var(--ink-soft);font-size:11px;font-weight:700;margin-top:2px}
-  .pi-person{font-size:12.5px;line-height:1.45;color:var(--ink)}
-  .pi-person b{font-size:12.5px;color:var(--ink);font-weight:900}
-  .pi-person small{display:block;color:var(--ink-soft);font-size:11px;margin-top:2px}
-  .pi-advisor{font-size:12.5px;font-weight:900;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 9px;text-align:center}
-  .pi-note{font-size:12.5px;line-height:1.45;color:var(--ink)}
+  .practice-institution-list{display:grid;gap:6px}
+  .practice-institution-item{display:grid;grid-template-columns:112px 1fr 1.4fr 1.55fr 136px 0.75fr auto;gap:14px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:9px 12px}
+  .pi-region{font-weight:900;color:var(--accent);font-size:14px}
+  .pi-region small{display:block;color:var(--ink-soft);font-size:11px;font-weight:700;margin-top:1px;letter-spacing:-.4px;white-space:nowrap}
+  /* [지역 색 구분] 카드 왼쪽 색띠 + 지역 배지 */
+  .practice-institution-item{position:relative;overflow:hidden}
+  .practice-institution-item::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--region-color,var(--line))}
+  .practice-institution-item{padding-left:17px}
+  .pi-region{color:var(--region-color,var(--accent));background:var(--region-tint,transparent);border:1px solid var(--region-line,transparent);border-radius:9px;padding:5px 6px;text-align:center;line-height:1.25}
+  .pi-region small{color:var(--region-color,var(--ink-soft));opacity:.8}
+  .pi-name{font-weight:900;font-size:16.5px;line-height:1.3}
+  .pi-name small{display:none}
+  .pi-person{font-size:14px;line-height:1.3;color:var(--ink)}
+  .pi-person b{font-size:13px;color:var(--ink-soft);font-weight:900}
+  .pi-person small{display:block;color:var(--ink-soft);font-size:13px;margin-top:1px;letter-spacing:-.2px}
+  .pi-advisor{font-size:14px;font-weight:900;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 8px;text-align:center;line-height:1.2}
+  .pi-note{font-size:13px;line-height:1.3;color:var(--ink);word-break:keep-all}
   .practice-institution-actions{display:flex;gap:2px;justify-content:flex-end}
   .practice-institution-actions button{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:18px;opacity:.48;padding:4px 6px;border-radius:7px;transition:.15s}
   .practice-institution-actions .edit{font-size:12px;font-weight:900}.practice-institution-actions .move{font-size:13px;font-weight:900}
@@ -1024,8 +1030,8 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       --nav:#111827; --nav2:#1f2937; --primary:#2563eb; --primary-soft:#dbeafe;
       --green:#16a34a; --yellow:#d97706; --red:#dc2626; --purple:#7c3aed;
       --shadow:0 10px 25px rgba(15,23,42,.08); --radius:18px;
-    }.pcv-panel *{box-sizing:border-box}.pcv-panel body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}.pcv-panel .app{display:flex;min-height:100vh}.pcv-panel .sidebar{width:260px;background:linear-gradient(180deg,var(--nav),var(--nav2));color:white;padding:24px 18px;position:fixed;inset:0 auto 0 0;overflow:auto}.pcv-panel .brand{padding:8px 10px 24px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:18px}.pcv-panel .brand h1{font-size:21px;margin:0 0 8px}.pcv-panel .brand p{font-size:12px;color:#cbd5e1;margin:0;line-height:1.5}.pcv-panel .nav button{width:100%;border:0;background:transparent;color:#d1d5db;text-align:left;padding:13px 14px;border-radius:12px;margin:4px 0;font-size:15px;cursor:pointer}.pcv-panel .nav button:hover, .pcv-panel .nav button.active{background:rgba(255,255,255,.12);color:white}.pcv-panel .main{margin-left:260px;width:calc(100% - 260px);padding:28px}.pcv-panel .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}.pcv-panel .topbar h2{font-size:28px;margin:0}.pcv-panel .topbar p{margin:6px 0 0;color:var(--muted)}.pcv-panel .actions{display:flex;gap:8px;flex-wrap:wrap}.pcv-panel .btn{border:0;border-radius:12px;padding:10px 14px;background:var(--primary);color:white;font-weight:700;cursor:pointer}.pcv-panel .btn.ghost{background:white;color:var(--ink);border:1px solid var(--line)}.pcv-panel .grid{display:grid;gap:16px}.pcv-panel .kpi{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.pcv-panel .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.pcv-panel .kpi .card{padding:18px}.pcv-panel .label{font-size:13px;color:var(--muted);margin-bottom:8px}.pcv-panel .value{font-size:30px;font-weight:800}.pcv-panel .sub{font-size:12px;color:var(--muted);margin-top:6px}.pcv-panel .two{grid-template-columns:1.2fr .8fr}.pcv-panel .three{grid-template-columns:repeat(3,minmax(0,1fr))}.pcv-panel .section{display:none}.pcv-panel .section.active{display:block}.pcv-panel .card h3{margin:0 0 14px;font-size:18px}.pcv-panel table{width:100%;border-collapse:collapse;background:white}.pcv-panel th, .pcv-panel td{padding:12px 10px;border-bottom:1px solid var(--line);font-size:14px;text-align:left;vertical-align:middle}.pcv-panel th{color:#374151;background:#f9fafb;font-size:13px}.pcv-panel .pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.pcv-panel .ok{background:#dcfce7;color:#166534}.pcv-panel .warn{background:#fef3c7;color:#92400e}.pcv-panel .bad{background:#fee2e2;color:#991b1b}.pcv-panel .info{background:var(--primary-soft);color:#1e40af}.pcv-panel .purple{background:#ede9fe;color:#5b21b6}.pcv-panel .todo{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.pcv-panel .todo input{width:17px;height:17px}.pcv-panel .calendar{display:grid;grid-template-columns:90px 1fr;gap:8px}.pcv-panel .month{font-weight:800;color:#374151;padding-top:8px}.pcv-panel .barrow{display:flex;flex-direction:column;gap:8px;padding:5px 0 12px;border-bottom:1px solid var(--line)}.pcv-panel .bar{height:30px;border-radius:999px;color:white;display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:800;box-shadow:0 6px 14px rgba(37,99,235,.15)}.pcv-panel .b1{background:#2563eb;width:52%}.pcv-panel .b2{background:#7c3aed;width:65%}.pcv-panel .b3{background:#059669;width:46%}.pcv-panel .b4{background:#dc2626;width:38%}.pcv-panel .b5{background:#d97706;width:58%}.pcv-panel .form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pcv-panel .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#374151;font-weight:700}.pcv-panel .form input, .pcv-panel .form select, .pcv-panel .form textarea{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;font:inherit}.pcv-panel .form textarea{min-height:110px;grid-column:1/-1}.pcv-panel .note{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:14px;color:#475569;font-size:14px;line-height:1.55}.pcv-panel .progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}.pcv-panel .progress span{display:block;height:100%;background:var(--primary);border-radius:999px}.pcv-panel .mobilehint{display:none}.pcv-panel .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.pcv-panel .search{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:240px}.pcv-panel .small{font-size:12px;color:var(--muted)}.pcv-panel .editable-input, .pcv-panel .editable-select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;font:inherit}.pcv-panel .editable-input:focus, .pcv-panel .editable-select:focus{outline:2px solid var(--primary-soft);border-color:#93c5fd}.pcv-panel .danger{background:#fee2e2;color:#991b1b}.pcv-panel .btn.smallbtn{padding:7px 10px;border-radius:10px;font-size:12px}.pcv-panel .agreement-summary{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:16px}.pcv-panel .agreement-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;box-shadow:0 8px 20px rgba(15,23,42,.05)}.pcv-panel .agreement-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.pcv-panel .agreement-card h4{margin:0;font-size:18px}.pcv-panel .agreement-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.pcv-panel .meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.pcv-panel .meta-item{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px}.pcv-panel .meta-label{font-size:11px;color:var(--muted);margin-bottom:4px}.pcv-panel .meta-value{font-size:14px;font-weight:800;color:#1f2937}.pcv-panel .card-actions{display:flex;gap:6px;flex-wrap:wrap}.pcv-panel .edit-panel{margin-top:14px;padding:14px;border-radius:16px;background:#f8fafc;border:1px dashed #cbd5e1}.pcv-panel .edit-panel.hidden{display:none}.pcv-panel .edit-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pcv-panel .edit-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;color:#374151}.pcv-panel .edit-form input, .pcv-panel .edit-form select{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff;font:inherit}.pcv-panel .muted-divider{height:1px;background:var(--line);margin:12px 0}.pcv-panel .empty-state{text-align:center;color:var(--muted);padding:28px;border:1px dashed #cbd5e1;border-radius:16px;background:#f8fafc}.pcv-panel /* 실습기관 협약관리: 가로형 긴 카드 리스트 */
-    .agreement-list{display:flex;flex-direction:column;gap:12px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:0;box-shadow:0 8px 20px rgba(15,23,42,.05);overflow:hidden}.pcv-panel .agreement-row{display:grid;grid-template-columns:76px 1.5fr 1.05fr 1.05fr .9fr auto;gap:16px;align-items:center;padding:16px 18px}.pcv-panel .order-control{display:flex;align-items:center;gap:8px;min-width:68px}.pcv-panel .order-number{width:34px;height:34px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;color:#334155}.pcv-panel .order-buttons{display:flex;flex-direction:column;gap:4px}.pcv-panel .order-btn{width:28px;height:24px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-weight:900;color:#374151;line-height:1}.pcv-panel .order-btn:hover{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}.pcv-panel .order-btn:disabled{opacity:.35;cursor:not-allowed;background:#f8fafc;color:#9ca3af}.pcv-panel .agreement-main h4{margin:0;font-size:19px;letter-spacing:-.02em}.pcv-panel .agreement-main .agreement-region{margin-top:6px;color:var(--muted);font-size:13px;font-weight:700}.pcv-panel .agreement-field{min-width:0}.pcv-panel .agreement-field .meta-label{font-size:11px;color:var(--muted);margin-bottom:5px}.pcv-panel .agreement-field .meta-value{font-size:14px;font-weight:800;color:#1f2937;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pcv-panel .agreement-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.pcv-panel .agreement-period{font-size:14px;font-weight:800;color:#111827}.pcv-panel .agreement-card .card-actions{justify-content:flex-end;align-items:center}.pcv-panel .agreement-subline{border-top:1px solid #f1f5f9;background:#f8fafc;padding:10px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:#475569;font-size:13px}.pcv-panel .agreement-subline b{color:#111827}.pcv-panel .agreement-subline span{display:inline-flex;gap:5px;align-items:center}.pcv-panel .agreement-card-head, .pcv-panel .meta-grid{display:none}
+    }.pcv-panel *{box-sizing:border-box}.pcv-panel body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}.pcv-panel .app{display:flex;min-height:100vh}.pcv-panel .sidebar{width:260px;background:linear-gradient(180deg,var(--nav),var(--nav2));color:white;padding:24px 18px;position:fixed;inset:0 auto 0 0;overflow:auto}.pcv-panel .brand{padding:8px 10px 24px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:18px}.pcv-panel .brand h1{font-size:21px;margin:0 0 8px}.pcv-panel .brand p{font-size:12px;color:#cbd5e1;margin:0;line-height:1.5}.pcv-panel .nav button{width:100%;border:0;background:transparent;color:#d1d5db;text-align:left;padding:13px 14px;border-radius:12px;margin:4px 0;font-size:15px;cursor:pointer}.pcv-panel .nav button:hover, .pcv-panel .nav button.active{background:rgba(255,255,255,.12);color:white}.pcv-panel .main{margin-left:260px;width:calc(100% - 260px);padding:28px}.pcv-panel .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}.pcv-panel .topbar h2{font-size:28px;margin:0}.pcv-panel .topbar p{margin:6px 0 0;color:var(--muted)}.pcv-panel .actions{display:flex;gap:8px;flex-wrap:wrap}.pcv-panel .btn{border:0;border-radius:12px;padding:10px 14px;background:var(--primary);color:white;font-weight:700;cursor:pointer}.pcv-panel .btn.ghost{background:white;color:var(--ink);border:1px solid var(--line)}.pcv-panel .grid{display:grid;gap:16px}.pcv-panel .kpi{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.pcv-panel .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.pcv-panel .kpi .card{padding:18px}.pcv-panel .label{font-size:13px;color:var(--muted);margin-bottom:8px}.pcv-panel .value{font-size:30px;font-weight:800}.pcv-panel .sub{font-size:12px;color:var(--muted);margin-top:6px}.pcv-panel .two{grid-template-columns:1.2fr .8fr}.pcv-panel .three{grid-template-columns:repeat(3,minmax(0,1fr))}.pcv-panel .section{display:none}.pcv-panel .section.active{display:block}.pcv-panel .card h3{margin:0 0 14px;font-size:18px}.pcv-panel table{width:100%;border-collapse:collapse;background:white}.pcv-panel th, .pcv-panel td{padding:12px 10px;border-bottom:1px solid var(--line);font-size:14px;text-align:left;vertical-align:middle}.pcv-panel th{color:#374151;background:#f9fafb;font-size:13px}.pcv-panel .pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.pcv-panel .ok{background:#dcfce7;color:#166534}.pcv-panel .warn{background:#fef3c7;color:#92400e}.pcv-panel .bad{background:#fee2e2;color:#991b1b}.pcv-panel .info{background:var(--primary-soft);color:#1e40af}.pcv-panel .purple{background:#ede9fe;color:#5b21b6}.pcv-panel .todo{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.pcv-panel .todo input{width:17px;height:17px}.pcv-panel .calendar{display:grid;grid-template-columns:90px 1fr;gap:8px}.pcv-panel .month{font-weight:800;color:#374151;padding-top:8px}.pcv-panel .barrow{display:flex;flex-direction:column;gap:8px;padding:5px 0 12px;border-bottom:1px solid var(--line)}.pcv-panel .bar{height:30px;border-radius:999px;color:white;display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:800;box-shadow:0 6px 14px rgba(37,99,235,.15)}.pcv-panel .b1{background:#2563eb;width:52%}.pcv-panel .b2{background:#7c3aed;width:65%}.pcv-panel .b3{background:#059669;width:46%}.pcv-panel .b4{background:#dc2626;width:38%}.pcv-panel .b5{background:#d97706;width:58%}.pcv-panel .form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pcv-panel .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#374151;font-weight:700}.pcv-panel .form input, .pcv-panel .form select, .pcv-panel .form textarea{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;font:inherit}.pcv-panel .form textarea{min-height:110px;grid-column:1/-1}.pcv-panel .note{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:14px;color:#475569;font-size:14px;line-height:1.55}.pcv-panel .progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}.pcv-panel .progress span{display:block;height:100%;background:var(--primary);border-radius:999px}.pcv-panel .mobilehint{display:none}.pcv-panel .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.pcv-panel .search{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:240px}.pcv-panel .small{font-size:12px;color:var(--muted)}.pcv-panel .editable-input, .pcv-panel .editable-select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;font:inherit}.pcv-panel .editable-input:focus, .pcv-panel .editable-select:focus{outline:2px solid var(--primary-soft);border-color:#93c5fd}.pcv-panel .danger{background:#fee2e2;color:#991b1b}.pcv-panel .btn.smallbtn{padding:7px 10px;border-radius:10px;font-size:12px}.pcv-panel .agreement-summary{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:14px;gap:10px}.pcv-panel .ag-type{padding:13px 15px}.pcv-panel .ag-type .value{font-size:26px}.pcv-panel .ag-type.den{border-color:#1d4ed8;background:#eff6ff}.pcv-panel .ag-type.den .value{color:#1d4ed8}.pcv-panel .ag-rule{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px 18px;margin-bottom:16px;box-shadow:0 8px 20px rgba(15,23,42,.05);--st:#64748b;--stbg:#f1f5f9}.pcv-panel .ag-rule.ok{--st:#15803d;--stbg:#dcfce7}.pcv-panel .ag-rule.bad{--st:#b91c1c;--stbg:#fee2e2}.pcv-panel .ag-rule-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.pcv-panel .ag-rule-title{font-size:16px;font-weight:900;color:var(--ink)}.pcv-panel .ag-rule-sub{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5;font-weight:600}.pcv-panel .ag-rule-badge{flex:none;font-size:14px;font-weight:900;color:var(--st);background:var(--stbg);border:1px solid var(--st);border-radius:999px;padding:7px 16px;white-space:nowrap}.pcv-panel .ag-rule-num{display:flex;align-items:baseline;gap:9px;margin:12px 0 6px}.pcv-panel .ag-rule-num strong{font-size:38px;font-weight:900;color:var(--st);line-height:1;font-variant-numeric:tabular-nums}.pcv-panel .ag-rule-num span{font-size:13px;font-weight:800;color:var(--muted)}.pcv-panel .ag-gauge{position:relative;height:13px;border-radius:999px;background:#eef1f5;margin:6px 0 20px}.pcv-panel .ag-gauge-fill{height:100%;border-radius:999px;background:var(--st);opacity:.9;transition:width .25s}.pcv-panel .ag-gauge-line{position:absolute;left:40%;top:-5px;bottom:-5px;width:2px;background:#111827;opacity:.5}.pcv-panel .ag-gauge-line span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:900;color:var(--muted)}.pcv-panel .ag-rule-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.pcv-panel .ag-mini{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}.pcv-panel .ag-mini span{font-size:11.5px;color:var(--muted);font-weight:700}.pcv-panel .ag-mini strong{font-size:22px;font-weight:900;color:#1f2937;font-variant-numeric:tabular-nums}.pcv-panel .ag-rule-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.pcv-panel .ag-tag{font-size:12px;font-weight:800;border-radius:999px;padding:5px 11px;border:1px solid}.pcv-panel .ag-tag.warn{color:#92400e;background:#fef3c7;border-color:#92400e40}.pcv-panel .ag-tag.miss{color:#475569;background:#eef1f5;border-color:#47556940}.pcv-panel .ag-rule-msg{margin-top:12px;font-size:13px;font-weight:700;line-height:1.5;color:var(--st);background:var(--stbg);border-radius:12px;padding:10px 13px}.pcv-panel .ag-rule-msg.soft{color:var(--muted);background:#f6f7f9}.pcv-panel .ag-inc{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#1f2937;cursor:pointer;user-select:none}.pcv-panel .ag-inc input{width:16px;height:16px;accent-color:#1d4ed8}.pcv-panel .agreement-card.off{opacity:.5}.pcv-panel .agreement-card.off h4{text-decoration:line-through}.pcv-panel .meta-value.beds-small{color:#92400e}.pcv-panel .meta-value.beds-none{color:#9ca3af}@media(max-width:1100px){.pcv-panel .agreement-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.pcv-panel .ag-rule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.pcv-panel .agreement-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;box-shadow:0 8px 20px rgba(15,23,42,.05)}.pcv-panel .agreement-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.pcv-panel .agreement-card h4{margin:0;font-size:18px}.pcv-panel .agreement-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.pcv-panel .meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.pcv-panel .meta-item{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px}.pcv-panel .meta-label{font-size:11px;color:var(--muted);margin-bottom:4px}.pcv-panel .meta-value{font-size:14px;font-weight:800;color:#1f2937}.pcv-panel .card-actions{display:flex;gap:6px;flex-wrap:wrap}.pcv-panel .edit-panel{margin-top:14px;padding:14px;border-radius:16px;background:#f8fafc;border:1px dashed #cbd5e1}.pcv-panel .edit-panel.hidden{display:none}.pcv-panel .edit-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pcv-panel .edit-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;color:#374151}.pcv-panel .edit-form input, .pcv-panel .edit-form select{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff;font:inherit}.pcv-panel .muted-divider{height:1px;background:var(--line);margin:12px 0}.pcv-panel .empty-state{text-align:center;color:var(--muted);padding:28px;border:1px dashed #cbd5e1;border-radius:16px;background:#f8fafc}.pcv-panel .bud-pill{display:inline-block;font-size:12px;font-weight:900;border-radius:999px;padding:4px 12px;border:1px solid}.pcv-panel .bud-pill.ok{color:#15803d;background:#dcfce7;border-color:#15803d}.pcv-panel .bud-pill.bad{color:#b91c1c;background:#fee2e2;border-color:#b91c1c}.pcv-panel .bud-pill.none{color:#64748b;background:#f1f5f9;border-color:#cbd5e1;font-weight:700}.pcv-panel .bud-bar{position:relative;height:8px;border-radius:999px;background:#eef1f5;margin:8px 0 5px}.pcv-panel .bud-bar-fill{height:100%;border-radius:999px}.pcv-panel .bud-bar-fill.ok{background:#15803d}.pcv-panel .bud-bar-fill.bad{background:#b91c1c}.pcv-panel .bud-bar-line{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:#111827;opacity:.5}.pcv-panel .bud-ratio{font-size:11px;font-weight:700;color:#64748b;white-space:nowrap}.pcv-panel .bud-ratio b{color:#1f2937;font-weight:900}.pcv-panel /* 실습기관 협약관리: 가로형 긴 카드 리스트 */
+    .agreement-list{display:flex;flex-direction:column;gap:12px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:0;box-shadow:0 8px 20px rgba(15,23,42,.05);overflow:hidden}.pcv-panel .agreement-row{display:grid;grid-template-columns:70px 1.45fr 1.05fr .8fr .72fr .78fr auto;gap:14px;align-items:center;padding:12px 16px}.pcv-panel .agreement-main h4{font-size:17px}.pcv-panel .agreement-main .agreement-region{margin-top:0;display:inline-flex;align-items:center;font-size:12.5px}.pcv-panel .agreement-chips{margin-top:6px;align-items:center}.pcv-panel .order-control{display:flex;align-items:center;gap:8px;min-width:68px}.pcv-panel .order-number{width:34px;height:34px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;color:#334155}.pcv-panel .order-buttons{display:flex;flex-direction:column;gap:4px}.pcv-panel .order-btn{width:28px;height:24px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-weight:900;color:#374151;line-height:1}.pcv-panel .order-btn:hover{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}.pcv-panel .order-btn:disabled{opacity:.35;cursor:not-allowed;background:#f8fafc;color:#9ca3af}.pcv-panel .agreement-main h4{margin:0;font-size:19px;letter-spacing:-.02em}.pcv-panel .agreement-main .agreement-region{margin-top:6px;color:var(--muted);font-size:13px;font-weight:700}.pcv-panel .agreement-field{min-width:0}.pcv-panel .agreement-field .meta-label{font-size:11px;color:var(--muted);margin-bottom:5px}.pcv-panel .agreement-field .meta-value{font-size:14px;font-weight:800;color:#1f2937;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pcv-panel .agreement-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.pcv-panel .agreement-period{font-size:14px;font-weight:800;color:#111827}.pcv-panel .agreement-card .card-actions{justify-content:flex-end;align-items:center}.pcv-panel .agreement-subline{border-top:1px solid #f1f5f9;background:#f8fafc;padding:10px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:#475569;font-size:13px}.pcv-panel .agreement-subline b{color:#111827}.pcv-panel .agreement-subline span{display:inline-flex;gap:5px;align-items:center}.pcv-panel .agreement-card-head, .pcv-panel .meta-grid{display:none}
     @media(max-width:1100px){.pcv-panel .agreement-row{grid-template-columns:76px 1fr;align-items:start}.pcv-panel .agreement-card .card-actions{justify-content:flex-start}.pcv-panel .agreement-field .meta-value{white-space:normal}.pcv-panel .agreement-subline{display:none}}.pcv-panel /* 실습지도교수 현황: 엑셀형 입력 테이블 */
     .faculty-filter{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.pcv-panel .faculty-filter label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;color:#374151}.pcv-panel .faculty-filter select{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;font:inherit;min-width:140px}.pcv-panel .excel-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}.pcv-panel .excel-table{min-width:1040px;width:100%;border-collapse:separate;border-spacing:0}.pcv-panel .excel-table th{position:sticky;top:0;z-index:1;background:#f8fafc;color:#334155;border-bottom:1px solid var(--line);font-size:12px;font-weight:900}.pcv-panel .excel-table th, .pcv-panel .excel-table td{border-right:1px solid #eef2f7;border-bottom:1px solid #eef2f7;padding:0;vertical-align:middle}.pcv-panel .excel-table th:last-child, .pcv-panel .excel-table td:last-child{border-right:0}.pcv-panel .excel-table tr:last-child td{border-bottom:0}.pcv-panel .excel-cell, .pcv-panel .excel-select, .pcv-panel .excel-memo{width:100%;border:0;background:transparent;padding:10px 9px;font:inherit;font-size:13px;color:#1f2937;min-height:40px}.pcv-panel .excel-cell:focus, .pcv-panel .excel-select:focus, .pcv-panel .excel-memo:focus{outline:2px solid #bfdbfe;background:#eff6ff}.pcv-panel .excel-select{appearance:auto}.pcv-panel .excel-memo{resize:vertical;min-height:42px;line-height:1.35}.pcv-panel .excel-num{width:54px;text-align:center;background:#f8fafc;color:#64748b;font-weight:900;font-size:12px}.pcv-panel .excel-actions{display:flex;gap:6px;justify-content:center;padding:7px}.pcv-panel .excel-add-row{margin-top:12px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.pcv-panel .excel-guide{font-size:13px;color:#64748b}.pcv-panel /* 임상실습 학생 관리 */
   .practice-student-card{margin-top:18px;background:linear-gradient(180deg,#fff,#fff);border-left:5px solid var(--green)}.pcv-panel .practice-student-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.pcv-panel .practice-student-summary{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}.pcv-panel .ps-chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:900;background:var(--paper);color:var(--muted);border:1px solid var(--line)}.pcv-panel .ps-chip strong{color:var(--primary);font-variant-numeric:tabular-nums}.pcv-panel .practice-student-add{display:grid;grid-template-columns:120px 120px 130px 130px 1fr auto auto;gap:8px;margin:10px 0 10px}.pcv-panel .practice-student-add input, .pcv-panel .practice-student-add select{font-family:inherit;font-size:13.5px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 11px;color:var(--ink);min-width:0}.pcv-panel .practice-student-add input:focus, .pcv-panel .practice-student-add select:focus{outline:none;border-color:var(--primary)}.pcv-panel .practice-student-add button{font-family:inherit;font-weight:800;font-size:13px;border:none;cursor:pointer;background:var(--primary);color:#fff;border-radius:10px;padding:0 14px;transition:.15s;white-space:nowrap}.pcv-panel .practice-student-add button:hover{filter:brightness(1.08)}.pcv-panel .practice-student-add .cancel{background:#fff;color:var(--muted);border:1px solid var(--line)}.pcv-panel .practice-student-add .cancel:hover{filter:none;color:var(--red);border-color:var(--red)}.pcv-panel .practice-student-filter{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:10px 0}.pcv-panel .practice-student-filter input, .pcv-panel .practice-student-filter select, .pcv-panel .practice-student-filter button{font-family:inherit;font-size:13px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 11px;color:var(--ink)}.pcv-panel .practice-student-filter input{flex:1;min-width:220px}.pcv-panel .practice-student-filter button{font-weight:800;color:var(--muted);cursor:pointer;transition:.15s}.pcv-panel .practice-student-filter .export{background:rgba(138,21,56,.07);color:var(--primary);border-color:rgba(138,21,56,.22)}.pcv-panel .practice-student-filter .export:hover{background:rgba(138,21,56,.12);color:var(--primary)}.pcv-panel .practice-student-filter button:hover{border-color:var(--primary);color:var(--primary)}.pcv-panel .practice-student-list{display:grid;gap:8px}.pcv-panel .practice-student-item{display:grid;grid-template-columns:105px 100px 110px 110px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px}.pcv-panel .ps-year{font-weight:900;color:var(--primary);font-size:13px}.pcv-panel .ps-name{font-weight:900;font-size:14px}.pcv-panel .ps-advisor{font-size:12.5px;font-weight:800;color:var(--muted)}.pcv-panel .ps-status{font-size:11.5px;font-weight:900;border-radius:999px;padding:4px 8px;text-align:center;color:#fff}.pcv-panel .ps-status.unable{background:var(--red)}.pcv-panel .ps-status.hold{background:var(--yellow)}.pcv-panel .ps-status.return{background:var(--green)}.pcv-panel .ps-status.military{background:var(--purple)}.pcv-panel .ps-reason{font-size:13px;line-height:1.45;color:var(--ink)}.pcv-panel .ps-reason small{display:block;color:var(--muted);font-size:10.5px;margin-top:2px}.pcv-panel .practice-student-actions{display:flex;gap:2px;justify-content:flex-end}.pcv-panel .practice-student-actions button{border:none;background:none;color:var(--muted);cursor:pointer;font-size:18px;opacity:.48;padding:4px 6px;border-radius:7px;transition:.15s}.pcv-panel .practice-student-actions .edit{font-size:14px}.pcv-panel .practice-student-actions .edit:hover{opacity:1;color:var(--primary);background:rgba(0,0,0,.04)}.pcv-panel .practice-student-actions .del:hover{opacity:1;color:var(--red);background:rgba(0,0,0,.04)}.pcv-panel .practice-student-empty{text-align:center;color:var(--muted);padding:16px;font-size:13px;border:1px dashed var(--line);border-radius:14px;background:#fff}
@@ -1533,12 +1539,8 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
         <button class="btn ghost" onclick="saveAgreements()">전체 저장</button>
       </div>
     </div>
-    <div class="grid agreement-summary">
-      <div class="card"><div class="label">전체 협약기관</div><div class="value" id="agreementTotal">0</div><div class="sub">등록 기관</div></div>
-      <div class="card"><div class="label">상급·종합병원</div><div class="value" id="agreementMajor">0</div><div class="sub">상급종합병원 + 종합병원</div></div>
-      <div class="card"><div class="label">지역거점공공병원</div><div class="value" id="agreementPublic">0</div><div class="sub">공공 실습거점</div></div>
-      <div class="card"><div class="label">총 병상수</div><div class="value" id="agreementBeds">0</div><div class="sub">입력 기준 합계</div></div>
-    </div>
+    <div class="grid agreement-summary" id="agreementTypeCards"></div>
+    <div id="agreementRulePanel"></div>
     <div class="card" style="margin-bottom:14px">
       <h3>➕ 새 협약기관 추가</h3>
       <div class="edit-form">
@@ -4992,6 +4994,26 @@ function renderPracticeInstitutionSummary(){
     <div class="pi-chip"><span>기관분류</span><strong>${areas}</strong><span>개</span></div>
     <div class="pi-chip"><span>담당교수</span><strong>${professors}</strong><span>명</span></div>`;
 }
+// [지역 색 구분] 지역별 색상표. 서울·경기는 한 묶음(수도권), 나머지는 지역별 개별 색.
+// 파스텔 배경 + 진한 같은 계열 글자색 (모두 WCAG AA 4.5:1 이상 대비)
+const REGION_COLORS = {
+  "서울": {bg:"#dbeafe", fg:"#1d4ed8"},   // 수도권
+  "경기": {bg:"#dbeafe", fg:"#1d4ed8"},   // 수도권
+  "인천": {bg:"#dbeafe", fg:"#1d4ed8"},   // 수도권
+  "대전": {bg:"#ede9fe", fg:"#6d28d9"},
+  "대구": {bg:"#ffedd5", fg:"#c2410c"},
+  "구미": {bg:"#ccfbf1", fg:"#0f766e"},
+  "문경": {bg:"#dcfce7", fg:"#15803d"},
+  "김천": {bg:"#fae7ee", fg:"#8a1538"}    // 관내(학과 대표색)
+};
+const REGION_FALLBACK = {bg:"#e8eaee", fg:"#475569"};
+function regionColor(region){
+  return REGION_COLORS[String(region||"").trim()] || REGION_FALLBACK;
+}
+function regionStyle(region){
+  const c = regionColor(region);
+  return `--region-color:${c.fg};--region-tint:${c.bg};--region-line:${c.fg}40;`;
+}
 function renderPracticeInstitutions(){
   updatePracticeInstitutionFilters();
   renderPracticeInstitutionSummary();
@@ -5002,7 +5024,7 @@ function renderPracticeInstitutions(){
     box.innerHTML = `<div class="practice-institution-empty">등록된 임상실습 기관이 없습니다. 위 칸에 기관 정보를 추가하세요.</div>`;
     return;
   }
-  box.innerHTML = list.map(x=>`<div class="practice-institution-item">
+  box.innerHTML = list.map(x=>`<div class="practice-institution-item" style="${regionStyle(x.region)}">
     <div class="pi-region">${esc(x.region||"")}<small>${esc(x.area||"")}</small></div>
     <div class="pi-name">${esc(x.name||"")}<small>${esc(x.area||"기관분류 미입력")}</small></div>
     <div class="pi-person"><b>간호부장</b> ${esc(x.director||"미입력")}<small>${esc(x.directorPhone||"연락처 미입력")}</small></div>
@@ -6522,7 +6544,8 @@ document.addEventListener("keydown", function(e){
 // ═══════════════════════════════════════════════
 // ── 실습위원장 대시보드 포팅 코드 (2단계 통합) ──
 // ═══════════════════════════════════════════════
-const hospitalTypes = ['상급종합병원','종합병원','지역거점공공병원','특화병원'];
+const hospitalTypes = ['상급종합병원','종합병원','교육전담배치병원','지역거점공공병원','특화병원','지역사회기관','시설'];
+const hospitalTypesCore = ['상급종합병원','종합병원','교육전담배치병원','지역거점공공병원','특화병원'];
 const defaultAgreements = [
   {name:'김천제일병원', region:'경북 김천', start:'2026-01-01', end:'2027-01-01', professor:'이재겸', beds:'400', type:'종합병원'},
   {name:'순천향대학교 구미병원', region:'경북 구미', start:'2025-09-01', end:'2026-08-31', professor:'김○○', beds:'950', type:'상급종합병원'},
@@ -6533,7 +6556,7 @@ function escapeHtml(value){return String(value ?? '').replace(/[&<>"']/g, m=>({'
 function getAgreements(){
   try{
     const saved=JSON.parse(localStorage.getItem('practiceCommitteeAgreements'));
-    if(Array.isArray(saved)) return saved.map(r=>({region:'', beds:'', type:'종합병원', ...r}));
+    if(Array.isArray(saved)) return saved.map(r=>({region:'', beds:'', type:'종합병원', include:true, ...r}));
     return defaultAgreements;
   }catch(e){return defaultAgreements;}
 }
@@ -6553,15 +6576,65 @@ function agreementBadge(end){
   if(left<=90) return `<span class="pill warn">D-${left}</span>`;
   return `<span class="pill ok">D-${left}</span>`;
 }
+function agIncluded(r){ return r.include !== false; }
+function agBeds(r){ const n=parseInt(String(r.beds||'').replace(/[^0-9]/g,''),10); return Number.isFinite(n)&&n>0?n:0; }
+// 편람 5.2.2: a(종합)은 상급종합·지역거점공공·특화·교육전담 배치에 해당하지 않는 종합병원만 산정
+function agIsPlainGeneral(r){ return (r.type||'')==='종합병원'; }
+function agMaxAllowedSmall(n){
+  if(n<=0) return 0;
+  const exact=n*4/10;
+  return Number.isInteger(exact)?Math.max(0,exact-1):Math.floor(exact);
+}
+function agBedRule(data){
+  const gens=data.filter(r=>agIncluded(r)&&agIsPlainGeneral(r));
+  const n=gens.length;
+  const small=gens.filter(r=>{const b=agBeds(r);return b>0&&b<=300;});
+  const unknown=gens.filter(r=>agBeds(r)===0);
+  const pct=n?small.length/n*100:0;
+  const allowed=agMaxAllowedSmall(n);
+  let need=0; while(n && agMaxAllowedSmall(n+need)<small.length) need++;
+  return {n,small,unknown,pct,allowed,need,ok:(n===0)||pct<40};
+}
 function renderAgreementSummary(data){
-  const total=data.length;
-  const major=data.filter(r=>r.type==='상급종합병원'||r.type==='종합병원').length;
-  const pub=data.filter(r=>r.type==='지역거점공공병원').length;
-  const beds=data.reduce((sum,r)=>sum+(parseInt(r.beds,10)||0),0);
-  document.getElementById('agreementTotal').textContent=total;
-  document.getElementById('agreementMajor').textContent=major;
-  document.getElementById('agreementPublic').textContent=pub;
-  document.getElementById('agreementBeds').textContent=beds.toLocaleString();
+  const cards=document.getElementById('agreementTypeCards');
+  const panel=document.getElementById('agreementRulePanel');
+  const r=agBedRule(data);
+  if(cards){
+    cards.innerHTML = hospitalTypes.map(t=>{
+      const cnt=data.filter(x=>agIncluded(x)&&(x.type||'')===t).length;
+      if(!cnt && !hospitalTypesCore.includes(t)) return '';
+      const den = t==='종합병원';
+      return `<div class="card ag-type${den?' den':''}"><div class="label">${escapeHtml(t)}</div><div class="value">${cnt}</div><div class="sub">${den?'40% 산정 분모':'산정 제외'}</div></div>`;
+    }).join('');
+  }
+  if(!panel) return;
+  const excluded=data.filter(x=>!agIncluded(x)).length;
+  const state=r.n===0?'none':(r.ok?'ok':'bad');
+  const label=r.n===0?'종합병원 없음':(r.ok?'충족':'미충족');
+  const pctText=r.n===0?'—':r.pct.toFixed(1)+'%';
+  const tags=r.small.map(x=>`<span class="ag-tag warn">${escapeHtml(x.name)} ${agBeds(x)}병상</span>`).join('')
+           + r.unknown.map(x=>`<span class="ag-tag miss">${escapeHtml(x.name)} 병상수 미입력</span>`).join('');
+  panel.innerHTML=`<div class="ag-rule ${state}">
+    <div class="ag-rule-head">
+      <div>
+        <div class="ag-rule-title">5.2.2 임상실습기관 확보 · 300병상 이하 종합병원 비율</div>
+        <div class="ag-rule-sub">인증기준: 300병상 이하 종합병원은 <b>종합병원 실습기관 수의 40% 미만</b> · 상급종합 · 지역거점공공 · 특화 · 교육전담배치 기관은 산정에서 제외</div>
+      </div>
+      <div class="ag-rule-badge">${label}</div>
+    </div>
+    <div class="ag-rule-num"><strong>${pctText}</strong><span>기준 40% 미만</span></div>
+    <div class="ag-gauge"><div class="ag-gauge-fill" style="width:${Math.min(100,Math.max(0,r.pct))}%"></div><div class="ag-gauge-line"><span>40%</span></div></div>
+    <div class="ag-rule-grid">
+      <div class="ag-mini"><span>전체 협약기관</span><strong>${data.length}</strong></div>
+      <div class="ag-mini"><span>산정 대상 종합병원</span><strong>${r.n}</strong></div>
+      <div class="ag-mini"><span>300병상 이하</span><strong>${r.small.length}</strong></div>
+      <div class="ag-mini"><span>허용 최대</span><strong>${r.allowed}</strong></div>
+      <div class="ag-mini"><span>이번 학기 제외</span><strong>${excluded}</strong></div>
+    </div>
+    ${tags?`<div class="ag-rule-tags">${tags}</div>`:''}
+    ${(r.n>0&&!r.ok)?`<div class="ag-rule-msg">300병상 이하 기관을 <b>${r.small.length-r.allowed}개소</b> 줄이거나, 300병상 초과 종합병원을 <b>${r.need}개소</b> 추가 확보해야 기준을 충족합니다.</div>`:''}
+    ${r.unknown.length?`<div class="ag-rule-msg soft">병상수가 입력되지 않은 종합병원 ${r.unknown.length}개소는 계산에서 빠져 있습니다.</div>`:''}
+  </div>`;
 }
 function renderAgreements(data=getAgreements()){
   const wrap=document.getElementById('agreementCards');
@@ -6569,7 +6642,7 @@ function renderAgreements(data=getAgreements()){
   try{
     renderAgreementSummary(data);
     if(!data.length){wrap.innerHTML='<div class="empty-state">등록된 실습기관이 없습니다.</div>'; return;}
-    wrap.innerHTML=data.map((r,i)=>`<article class="agreement-card" data-index="${i}" data-search="${escapeHtml([r.name,r.region,r.professor,r.type].join(' ').toLowerCase())}">
+    wrap.innerHTML=data.map((r,i)=>`<article class="agreement-card${agIncluded(r)?'':' off'}" data-index="${i}" data-search="${escapeHtml([r.name,r.region,r.professor,r.type].join(' ').toLowerCase())}">
     <div class="agreement-row">
       <div class="order-control" aria-label="순번 이동">
         <div class="order-number">${i+1}</div>
@@ -6579,9 +6652,9 @@ function renderAgreements(data=getAgreements()){
         </div>
       </div>
       <div class="agreement-main">
-        <h4>🏥 ${escapeHtml(r.name || '기관명 미입력')}</h4>
-        <div class="agreement-region">${escapeHtml(r.region || '지역 미입력')}</div>
+        <h4>${escapeHtml(r.name || '기관명 미입력')}</h4>
         <div class="agreement-chips">
+          <span class="agreement-region">${escapeHtml(r.region || '지역 미입력')}</span>
           <span class="pill info">${escapeHtml(r.type || '기관 종류 미입력')}</span>
           ${agreementBadge(r.end)}
         </div>
@@ -6596,18 +6669,16 @@ function renderAgreements(data=getAgreements()){
       </div>
       <div class="agreement-field">
         <div class="meta-label">병상수</div>
-        <div class="meta-value">${r.beds ? Number(r.beds).toLocaleString()+'병상' : '미입력'}</div>
+        <div class="meta-value${agBeds(r)>0&&agBeds(r)<=300?' beds-small':(agBeds(r)===0?' beds-none':'')}">${agBeds(r) ? agBeds(r).toLocaleString()+'병상' : '미입력'}</div>
+      </div>
+      <div class="agreement-field">
+        <div class="meta-label">이번 학기 실습</div>
+        <label class="ag-inc"><input type="checkbox" onchange="toggleAgreementInclude(${i}, this.checked)" ${agIncluded(r)?'checked':''}><span>${agIncluded(r)?'포함':'제외'}</span></label>
       </div>
       <div class="card-actions">
         <button class="btn ghost smallbtn" onclick="toggleAgreementEdit(${i})">수정</button>
         <button class="btn ghost smallbtn danger" onclick="deleteAgreementRow(${i})">삭제</button>
       </div>
-    </div>
-    <div class="agreement-subline">
-      <span><b>기관명</b> ${escapeHtml(r.name || '미입력')}</span>
-      <span><b>지역</b> ${escapeHtml(r.region || '미입력')}</span>
-      <span><b>종류</b> ${escapeHtml(r.type || '미입력')}</span>
-      <span><b>담당</b> ${escapeHtml(r.professor || '미입력')}</span>
     </div>
     <div class="edit-panel hidden" id="agreementEdit${i}">
       <div class="edit-form">
@@ -6626,6 +6697,13 @@ function renderAgreements(data=getAgreements()){
     console.error("renderAgreements error:", e);
     wrap.innerHTML = '<div class="empty-state">목록을 표시하는 중 오류가 발생했습니다. 콘솔을 확인해주세요.</div>';
   }
+}
+function toggleAgreementInclude(index, on){
+  const data=getAgreements();
+  if(!data[index]) return;
+  data[index].include=!!on;
+  setAgreements(data);
+  renderAgreements(data);
 }
 function collectAgreements(){return getAgreements();}
 function saveAgreements(){setAgreements(getAgreements()); renderAgreements(); alert('실습기관 협약관리 데이터가 저장되었습니다.');}
@@ -7418,6 +7496,7 @@ function renderBudgetTable4(){
     <th ${th}>실험실습비 결산총액(c)</th>
     <th ${th}>예산대비 집행률<br>(d=c/b×100)</th>
     <th ${th}>학생 1인당 실험실습비<br>(e=b/a)</th>
+    <th ${th}>인증기준 판정<br>(1인당 25만원 이상)</th>
   </tr>`;
   const data = getBudgetData();
   const rows = years.map(y=>{
@@ -7433,6 +7512,13 @@ function renderBudgetTable4(){
       <td style="${tdBase};font-weight:700">${fmtWon(c)}</td>
       <td ${td}>${d}${d!=='-'?'%':''}</td>
       <td style="${tdBase};font-weight:800">${e}</td>
+      <td ${td}>${(()=>{
+        if(!(a>0 && b>0)) return `<span class="bud-pill none">재학생 수 입력 필요</span>`;
+        const per = b/a, ok = per >= 250000;
+        return `<span class="bud-pill ${ok?'ok':'bad'}">${ok?'충족':'미충족'}</span>`
+             + `<div class="bud-bar" title="기준선 25만원"><div class="bud-bar-fill ${ok?'ok':'bad'}" style="width:${Math.min(100, per/250000*50)}%"></div><div class="bud-bar-line"></div></div>`
+             + `<div class="bud-ratio">기준 25만원 · <b>${(per/250000).toFixed(2)}배</b></div>`;
+      })()}</td>
     </tr>`;
   }).join('');
   wrap.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:13px"><thead>${head}</thead><tbody>${rows}</tbody></table>`;
