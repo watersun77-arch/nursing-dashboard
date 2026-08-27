@@ -894,11 +894,11 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .contribution-filter button{font-weight:800;color:var(--ink-soft);cursor:pointer;transition:.15s}
   .contribution-filter .export{background:rgba(138,21,56,.07);color:var(--accent);border-color:rgba(138,21,56,.22)}
   .contribution-filter button:hover{border-color:var(--accent);color:var(--accent)}
-  .contribution-list{display:grid;gap:8px}
-  .contribution-item{display:grid;grid-template-columns:150px 1fr 86px auto;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 13px}
-  .contrib-prof{font-weight:900;color:var(--accent);font-size:14px;line-height:1.3}
-  .contrib-activity{font-weight:800;font-size:14.5px;line-height:1.35}
-  .contrib-score{font-size:13px;font-weight:900;color:#fff;background:var(--c-meet);border-radius:999px;padding:5px 10px;text-align:center;font-variant-numeric:tabular-nums}
+  .contribution-list{display:grid;gap:5px}
+  .contribution-item{display:grid;grid-template-columns:132px 1fr 76px auto;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:11px;padding:7px 12px}
+  .contrib-prof{font-weight:900;color:var(--accent);font-size:13.5px;line-height:1.25}
+  .contrib-activity{font-weight:800;font-size:13.5px;line-height:1.3}
+  .contrib-score{font-size:12.5px;font-weight:900;color:#fff;background:var(--c-meet);border-radius:999px;padding:4px 9px;text-align:center;font-variant-numeric:tabular-nums}
   .contribution-actions{display:flex;gap:2px;justify-content:flex-end}
   .contribution-actions button{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:18px;opacity:.48;padding:4px 6px;border-radius:7px;transition:.15s}
   .contribution-actions .edit{font-size:14px}.contribution-actions .edit:hover{opacity:1;color:var(--accent);background:rgba(0,0,0,.04)}
@@ -935,8 +935,33 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .prio-ctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   .prio-excl{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--ink-soft);cursor:pointer;user-select:none}
   .prio-excl input{width:15px;height:15px;accent-color:var(--accent)}
-  .bar-pos{margin-left:5px}
   @media(max-width:1280px){.position-add{grid-template-columns:1fr 1fr}.position-item{grid-template-columns:1fr}.pos-summary{grid-template-columns:repeat(2,1fr)}}
+  .ov-stats{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:8px;margin:10px 0 14px}
+  .ov-stat{display:flex;flex-direction:column;gap:1px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px 13px}
+  .ov-stat span{font-size:11.5px;font-weight:800;color:var(--ink-soft)}
+  .ov-stat strong{font-size:23px;font-weight:900;color:var(--ink);line-height:1.1;font-variant-numeric:tabular-nums}
+  .ov-stat em{font-style:normal;font-size:11px;font-weight:800;color:var(--ink-soft)}
+  .ov-stat.warn strong{color:#b45309}
+  .ov-head,.ov-row{display:grid;grid-template-columns:34px 76px 1.15fr minmax(0,1.5fr) 62px 52px 92px;gap:10px;align-items:center}
+  .ov-head{padding:0 12px 7px;font-size:11px;font-weight:900;color:var(--ink-soft);letter-spacing:.02em;border-bottom:1px solid var(--line)}
+  .ov-avg-note{font-weight:700;opacity:.75;margin-left:5px}
+  .ov-list{display:grid;gap:4px;margin-top:5px}
+  .ov-row{background:#fff;border:1px solid var(--line);border-radius:11px;padding:7px 12px}
+  .ov-row.zero{border-color:#fcd9a8;background:#fffdf7}
+  .ov-rank{font-size:12px;font-weight:800;color:var(--ink-soft);text-align:center;font-variant-numeric:tabular-nums}
+  .ov-name{font-size:14px;font-weight:900;color:var(--ink)}
+  .ov-row.zero .ov-name{color:#b45309}
+  .ov-pos{display:flex;flex-wrap:wrap;gap:3px}
+  .ov-nopos{font-size:11px;font-weight:700;color:var(--ink-soft);opacity:.55}
+  .ov-bar{position:relative;height:20px;border-radius:999px;background:var(--paper);border:1px solid var(--line2);overflow:hidden}
+  .ov-fill{height:100%;border-radius:999px;background:var(--c-meet);transition:width .25s}
+  .ov-row.high .ov-fill{background:var(--accent)}
+  .ov-none{position:absolute;left:9px;top:0;line-height:20px;font-size:10.5px;font-weight:800;color:#b45309}
+  .ov-score{font-size:15px;font-weight:900;color:var(--accent);text-align:right;font-variant-numeric:tabular-nums}
+  .ov-score small{font-size:10px;font-weight:800;color:var(--ink-soft);margin-left:2px}
+  .ov-cnt{font-size:12px;font-weight:800;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums}
+  .ov-last{font-size:11.5px;font-weight:700;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums}
+  @media(max-width:1100px){.ov-stats{grid-template-columns:repeat(2,1fr)}.ov-head{display:none}.ov-row{grid-template-columns:30px 1fr auto}.ov-pos,.ov-bar,.ov-cnt,.ov-last{display:none}}
   .contrib-chip.next{border-color:var(--accent);background:rgba(138,21,56,.05)}
   .contrib-chip.next strong{color:var(--accent)}
   .prio{border:1px solid var(--line);border-radius:16px;background:#fff;padding:15px 17px;margin:0 0 14px}
@@ -954,18 +979,19 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .prio-score{font-size:13px;font-weight:800;color:var(--ink-soft);font-variant-numeric:tabular-nums}
   .prio-last{font-size:11.5px;font-weight:700;color:var(--ink-soft);opacity:.8}
   .prio-card.zero .prio-last{color:#b45309;opacity:1}
-  .contrib-prof small{display:block;font-size:11px;font-weight:700;color:var(--ink-soft);margin-top:2px}
+  .contrib-prof small{display:block;font-size:10.5px;font-weight:700;color:var(--ink-soft);margin-top:1px}
   .contrib-bar-row.zero .contrib-bar-name{color:#b45309}
   .contrib-bar-none{font-size:11.5px;font-weight:700;color:var(--ink-soft);opacity:.7;padding-left:4px;line-height:22px}
   @media(max-width:720px){.prio-cards{grid-template-columns:1fr}}
   .contribution-empty{text-align:center;color:var(--ink-soft);padding:16px;font-size:13px;border:1px dashed var(--line2);border-radius:14px;background:#fff}
   .contribution-chart{display:grid;gap:10px;margin-top:8px}
-  .contrib-bar-row{display:grid;grid-template-columns:120px minmax(0,1fr) 58px;gap:10px;align-items:center}
-  .contrib-bar-name{font-size:13px;font-weight:900;color:var(--ink);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .contrib-bar-row{display:grid;grid-template-columns:30px 84px minmax(0,1fr) 58px;gap:10px;align-items:center}
+  .contrib-bar-rank{font-size:12px;font-weight:800;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums}
+  .contrib-bar-name{font-size:13.5px;font-weight:900;color:var(--ink);text-align:right;white-space:nowrap;overflow:visible}
   .contrib-bar-track{height:28px;border-radius:999px;background:var(--paper);border:1px solid var(--line);overflow:hidden}
   .contrib-bar-fill{height:100%;border-radius:999px;background:var(--c-meet);min-width:4px;display:flex;align-items:center;justify-content:flex-end;color:#fff;font-size:11px;font-weight:900;padding-right:8px;transition:width .25s ease}
   .contrib-bar-score{font-size:13px;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums}
-  @media(max-width:760px){.contribution-add{grid-template-columns:1fr 1fr}.contribution-add button{padding:10px}.contribution-item{grid-template-columns:1fr}.contribution-actions{justify-content:flex-start}.contribution-summary{grid-template-columns:1fr}.contrib-bar-row{grid-template-columns:1fr}.contrib-bar-name{text-align:left}}
+  @media(max-width:760px){.contribution-add{grid-template-columns:1fr 1fr}.contribution-add button{padding:10px}.contribution-item{grid-template-columns:1fr}.contribution-actions{justify-content:flex-start}.contribution-summary{grid-template-columns:1fr}.contrib-bar-row{grid-template-columns:26px 1fr}.contrib-bar-name{text-align:left}}
   @media(max-width:560px){.contribution-add{grid-template-columns:1fr}.contribution-filter input{min-width:0;width:100%}}
 
 
@@ -2259,6 +2285,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <div id="contributionPriority"></div>
     <div class="contrib-tabs">
       <button class="contrib-tab on" data-contrib-tab="input">입력·이력</button>
+      <button class="contrib-tab" data-contrib-tab="overview">종합 현황</button>
       <button class="contrib-tab" data-contrib-tab="stats">기여도 통계</button>
       <button class="contrib-tab" data-contrib-tab="position">보직 관리</button>
     </div>
@@ -2278,6 +2305,10 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
         <button id="contribExportCsv" class="export">엑셀용 CSV</button>
       </div>
       <div class="contribution-list" id="contributionList"></div>
+    </div>
+    <div class="contrib-panel" id="contribOverviewPanel">
+      <div class="sub">교수별 봉사 실적과 보직을 한 화면에서 봅니다. <b>기여도가 낮은 순</b>으로 정렬되며, 진행 중인 보직이 함께 표시됩니다.</div>
+      <div id="contribOverview"></div>
     </div>
     <div class="contrib-panel" id="contribPositionPanel">
       <div class="sub">학과보직과 학교보직의 임기를 기록합니다. <b>진행 중인 보직은 봉사 우선순위 목록에 배지로 표시</b>되며, 가산점은 입력한 경우에만 점수에 반영됩니다.</div>
@@ -5331,6 +5362,49 @@ function renderContributionSummary(){
     <div class="contrib-chip"><span>봉사 이력 없음</span><strong>${zero}</strong><span>명 / 전체 ${ranking.length}명</span></div>
     <div class="contrib-chip next"><span>다음 봉사 우선순위</span><strong style="font-size:18px">${next?esc(next.professor):"-"}</strong><span>${next?`${Number.isInteger(next.score)?next.score:next.score.toFixed(1)}점`:"명단 없음"}</span></div>`;
 }
+function renderContributionOverview(){
+  const box = $("contribOverview");
+  if(!box) return;
+  const ranking = contributionTotals();
+  if(!ranking.length){ box.innerHTML = `<div class="contribution-empty">교수 명단이 없습니다.</div>`; return; }
+  const total = ranking.reduce((s,r)=>s+r.score, 0);
+  const acts  = ranking.reduce((s,r)=>s+r.count, 0);
+  const zero  = ranking.filter(r=>r.score===0).length;
+  const officers = ranking.filter(r=>(r.current||[]).length).length;
+  const avg = ranking.length ? total/ranking.length : 0;
+  const max = Math.max(...ranking.map(r=>r.score), 1);
+  const fmt = v => Number.isInteger(v) ? v : v.toFixed(1);
+  const rows = ranking.map((r,i)=>{
+    const pct = r.score>0 ? Math.max(5, Math.round(r.score/max*100)) : 0;
+    const dept = (r.current||[]).filter(p=>p.kind!=="학교");
+    const univ = (r.current||[]).filter(p=>p.kind==="학교");
+    const badges = [...dept,...univ].map(p=>`<span class="pos-badge ${p.kind==="학교"?"univ":"dept"}">${p.kind==="학교"?"학교":"학과"} · ${esc(p.title||"보직")}</span>`).join("");
+    const band = r.score===0 ? "zero" : (r.score < avg ? "low" : "high");
+    return `<div class="ov-row ${band}">
+      <div class="ov-rank">${i+1}</div>
+      <div class="ov-name">${esc(r.professor)}</div>
+      <div class="ov-pos">${badges || '<span class="ov-nopos">보직 없음</span>'}</div>
+      <div class="ov-bar"><div class="ov-fill" style="width:${pct}%"></div>${r.score===0?'<span class="ov-none">봉사 이력 없음</span>':''}</div>
+      <div class="ov-score">${fmt(r.score)}<small>점</small></div>
+      <div class="ov-cnt">${r.count}건</div>
+      <div class="ov-last">${r.lastDate ? esc(r.lastDate.replace(/-/g,". ")) : "—"}</div>
+    </div>`;
+  }).join("");
+  box.innerHTML = `
+    <div class="ov-stats">
+      <div class="ov-stat"><span>총 기여도</span><strong>${fmt(total)}</strong><em>점</em></div>
+      <div class="ov-stat"><span>등록 활동</span><strong>${acts}</strong><em>건</em></div>
+      <div class="ov-stat"><span>1인 평균</span><strong>${avg.toFixed(1)}</strong><em>점</em></div>
+      <div class="ov-stat warn"><span>봉사 이력 없음</span><strong>${zero}</strong><em>명</em></div>
+      <div class="ov-stat"><span>현재 보직자</span><strong>${officers}</strong><em>명</em></div>
+    </div>
+    <div class="ov-head">
+      <div class="ov-rank">순위</div><div class="ov-name">교수</div><div class="ov-pos">현재 보직</div>
+      <div class="ov-bar">봉사 실적 <span class="ov-avg-note">평균 ${avg.toFixed(1)}점</span></div>
+      <div class="ov-score">점수</div><div class="ov-cnt">건수</div><div class="ov-last">마지막 봉사</div>
+    </div>
+    <div class="ov-list">${rows}</div>`;
+}
 function renderContributionPriority(){
   const box = $("contributionPriority");
   if(!box) return;
@@ -5390,7 +5464,8 @@ function renderContributionChart(){
     const pct = x.score>0 ? Math.max(4, Math.round((x.score/max)*100)) : 0;
     const scoreText = Number.isInteger(x.score) ? x.score : x.score.toFixed(1);
     return `<div class="contrib-bar-row${x.score===0?" zero":""}">
-      <div class="contrib-bar-name" title="${esc(x.professor)}">${i+1}. ${esc(x.professor)}${positionBadgeHtml(x.professor)?'<span class="bar-pos">'+positionBadgeHtml(x.professor)+'</span>':''}</div>
+      <div class="contrib-bar-rank">${i+1}</div>
+      <div class="contrib-bar-name" title="${esc(x.professor)}">${esc(x.professor)}</div>
       <div class="contrib-bar-track">${pct?`<div class="contrib-bar-fill" style="width:${pct}%">${scoreText}</div>`:`<span class="contrib-bar-none">봉사 이력 없음</span>`}</div>
       <div class="contrib-bar-score">${scoreText}점</div>
     </div>`;
@@ -5400,6 +5475,7 @@ function renderContributions(){
   renderContributionProfessorOptions();
   renderContributionSummary();
   renderContributionPriority();
+  renderContributionOverview();
   renderContributionList();
   renderFacultyPositions();
   renderContributionChart();
@@ -5410,6 +5486,8 @@ function switchContributionTab(tab){
   if($("contribInputPanel")) $("contribInputPanel").classList.toggle("on", activeContributionTab==="input");
   if($("contribStatsPanel")) $("contribStatsPanel").classList.toggle("on", activeContributionTab==="stats");
   if($("contribPositionPanel")) $("contribPositionPanel").classList.toggle("on", activeContributionTab==="position");
+  if($("contribOverviewPanel")) $("contribOverviewPanel").classList.toggle("on", activeContributionTab==="overview");
+  if(activeContributionTab==="overview") renderContributionOverview();
   renderContributionChart();
   if(activeContributionTab==="position"){ renderPositionProfessorOptions(); renderFacultyPositions(); }
 }
