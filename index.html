@@ -647,6 +647,42 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
 
   /* 교수 시간표 */
   .faculty-card{margin-top:18px;background:linear-gradient(180deg,#fff,var(--paper2));border-left:5px solid var(--cat-personal)}
+  .faculty-roster{border:1px solid var(--line);border-radius:15px;background:var(--paper);padding:14px 16px;margin:0 0 14px}
+  .fr-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .fr-title{font-size:14.5px;font-weight:900;color:var(--ink)}
+  .fr-title span{font-size:12.5px;font-weight:800;color:var(--ink-soft);margin-left:8px}
+  .fr-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .fr-show{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--ink-soft);cursor:pointer;user-select:none}
+  .fr-show input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer}
+  .fr-note{font-size:12px;font-weight:600;color:var(--ink-soft);line-height:1.55;margin-bottom:11px}
+  .fr-note b{color:var(--accent)}
+  .fr-list{display:grid;gap:5px}
+  .fr-item{display:grid;grid-template-columns:34px 1.1fr 1fr auto;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:11px;padding:8px 12px}
+  .fr-item.off{opacity:.5;background:#fbfbfc}
+  .fr-ord{font-size:12px;font-weight:900;color:var(--ink-soft);text-align:center}
+  .fr-name{font-size:14.5px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .fr-state{font-size:10.5px;font-weight:900;color:#64748b;background:#eef1f5;border-radius:999px;padding:3px 9px}
+  .fr-refs{font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+  .fr-refs b{color:var(--accent)}
+  .fr-refs .none{opacity:.6}
+  .fr-acts{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+  .fr-btn{font-family:inherit;font-size:12px;font-weight:800;border:1px solid var(--line);background:#fff;color:var(--ink-soft);border-radius:8px;padding:6px 10px;cursor:pointer}
+  .fr-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  .fr-btn:disabled{opacity:.3;cursor:not-allowed}
+  .fr-btn.add{background:var(--accent);border-color:var(--accent);color:#fff;font-size:12.5px;padding:8px 13px}
+  .fr-btn.retire:hover{border-color:#b45309;color:#b45309}
+  .fr-btn.restore{color:#15803d;border-color:#15803d55}
+  .fr-btn.del:hover{border-color:#b91c1c;color:#b91c1c}
+  @media(max-width:900px){.fr-item{grid-template-columns:1fr}.fr-acts{justify-content:flex-start}}
+  .ft-term{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .ft-term select{font-family:inherit;font-size:13.5px;font-weight:800;border:1px solid var(--line2);border-radius:10px;padding:9px 11px;background:#fff;color:var(--ink);cursor:pointer}
+  .ft-main{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:900;color:var(--accent);background:rgba(138,21,56,.07);border:1px solid rgba(138,21,56,.22);border-radius:10px;padding:8px 12px;cursor:pointer;user-select:none}
+  .ft-main input{width:15px;height:15px;accent-color:var(--accent);cursor:pointer}
+  .ft-btn{font-family:inherit;font-size:13px;font-weight:800;border:1px solid var(--line);background:#fff;color:var(--ink-soft);border-radius:10px;padding:9px 13px;cursor:pointer}
+  .ft-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .ft-badge{font-size:12px;font-weight:800;color:var(--ink-soft)}
+  .ft-badge b.on{color:var(--accent);background:rgba(138,21,56,.09);border-radius:999px;padding:4px 11px}
+  .ft-badge b.warn{color:#b45309}
   .faculty-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
 
   .faculty-search{display:flex;gap:8px;align-items:center;margin:8px 0 12px;flex-wrap:wrap}
@@ -698,6 +734,10 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .fac-ext-title{font-weight:800;font-size:14px;line-height:1.35}
   .fac-ext-meta{font-size:12px;color:var(--ink-soft);margin-top:2px}
   .fac-ext-chip{display:inline-block;font-size:10.5px;font-weight:800;border-radius:999px;padding:2px 7px;background:var(--c-meet);color:#fff;margin-left:5px}
+  .fac-ext-actions .contrib-add{font-family:inherit;font-size:11.5px;font-weight:900;border:1px solid var(--accent);background:rgba(138,21,56,.06);color:var(--accent);border-radius:8px;padding:5px 10px;cursor:pointer;opacity:1;margin-right:2px}
+  .fac-ext-actions .contrib-add:hover{background:var(--accent);color:#fff}
+  .fac-ext-actions .contrib-linked{font-family:inherit;font-size:11.5px;font-weight:900;border:1px solid #15803d55;background:#dcfce7;color:#15803d;border-radius:8px;padding:5px 10px;cursor:pointer;opacity:1;margin-right:2px}
+  .fac-ext-actions .contrib-linked:hover{background:#fee2e2;border-color:#b91c1c55;color:#b91c1c}
   .fac-ext-actions{display:flex;gap:2px}
   .fac-ext-actions button{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:18px;opacity:.48;padding:4px 6px;border-radius:7px;transition:.15s}
   .fac-ext-actions .edit{font-size:14px}
@@ -863,6 +903,61 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .contribution-actions button{border:none;background:none;color:var(--ink-soft);cursor:pointer;font-size:18px;opacity:.48;padding:4px 6px;border-radius:7px;transition:.15s}
   .contribution-actions .edit{font-size:14px}.contribution-actions .edit:hover{opacity:1;color:var(--accent);background:rgba(0,0,0,.04)}
   .contribution-actions .del:hover{opacity:1;color:var(--c-exam);background:rgba(0,0,0,.04)}
+  .position-add{display:grid;grid-template-columns:104px 118px 1.4fr 148px 148px 116px 1fr auto auto;gap:8px;margin:10px 0;align-items:center}
+  .position-add input,.position-add select{font-family:inherit;font-size:13.5px;border:1px solid var(--line2);background:#fff;border-radius:10px;padding:10px 11px;color:var(--ink);min-width:0}
+  .position-add button{font-family:inherit;font-size:13.5px;font-weight:900;border:none;border-radius:10px;padding:10px 16px;background:var(--accent);color:#fff;cursor:pointer}
+  .position-add button.cancel{background:var(--paper);color:var(--ink-soft);border:1px solid var(--line)}
+  .pos-summary{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:8px;margin:4px 0 12px}
+  .pos-chip{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 13px;font-size:12.5px;font-weight:900;color:var(--ink-soft)}
+  .pos-chip strong{font-size:18px;color:var(--accent);font-variant-numeric:tabular-nums}
+  .position-list{display:grid;gap:6px}
+  .position-item{display:grid;grid-template-columns:96px 1.5fr 1.4fr 190px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:13px;padding:11px 14px}
+  .position-item.past{opacity:.55;background:#fbfbfc}
+  .pos-prof{font-weight:900;font-size:14.5px;color:var(--accent)}
+  .pos-title{font-weight:800;font-size:14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .pos-kind{font-size:11px;font-weight:900;border-radius:6px;padding:3px 7px}
+  .pos-kind.dept{color:#1d4ed8;background:#dbeafe}
+  .pos-kind.univ{color:#6d28d9;background:#ede9fe}
+  .pos-term{font-size:12.5px;font-weight:700;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .pos-flags{display:flex;gap:5px;flex-wrap:wrap}
+  .pos-state{font-size:11px;font-weight:900;border-radius:999px;padding:4px 9px;white-space:nowrap}
+  .pos-state.now{color:#15803d;background:#dcfce7}
+  .pos-state.soon{color:#b45309;background:#fef3c7}
+  .pos-state.past{color:#64748b;background:#eef1f5}
+  .pos-state.score{color:var(--accent);background:rgba(138,21,56,.09)}
+  .pos-note{font-size:12px;color:var(--ink-soft)}
+  .pos-never{margin-top:10px;font-size:12.5px;font-weight:700;color:var(--ink-soft);background:var(--paper);border-radius:11px;padding:11px 13px;line-height:1.6}
+  .pos-never b{color:var(--accent)}
+  .pos-badge{display:inline-block;font-size:10.5px;font-weight:900;border-radius:6px;padding:3px 7px;margin:2px 3px 0 0}
+  .pos-badge.dept{color:#1d4ed8;background:#dbeafe}
+  .pos-badge.univ{color:#6d28d9;background:#ede9fe}
+  .prio-pos{margin-top:5px}
+  .prio-ctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .prio-excl{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--ink-soft);cursor:pointer;user-select:none}
+  .prio-excl input{width:15px;height:15px;accent-color:var(--accent)}
+  .bar-pos{margin-left:5px}
+  @media(max-width:1280px){.position-add{grid-template-columns:1fr 1fr}.position-item{grid-template-columns:1fr}.pos-summary{grid-template-columns:repeat(2,1fr)}}
+  .contrib-chip.next{border-color:var(--accent);background:rgba(138,21,56,.05)}
+  .contrib-chip.next strong{color:var(--accent)}
+  .prio{border:1px solid var(--line);border-radius:16px;background:#fff;padding:15px 17px;margin:0 0 14px}
+  .prio-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:13px}
+  .prio-title{font-size:14.5px;font-weight:900;color:var(--ink)}
+  .prio-sub{font-size:12px;color:var(--ink-soft);margin-top:3px;font-weight:600;line-height:1.45}
+  .prio-scope{font-family:inherit;font-size:13px;font-weight:800;border:1px solid var(--line2);border-radius:10px;padding:8px 10px;background:#fff;color:var(--ink);cursor:pointer}
+  .prio-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .prio-card{border:1px solid var(--line);border-radius:13px;padding:13px 15px;background:var(--paper);display:flex;flex-direction:column;gap:3px}
+  .prio-card:first-child{border-color:var(--accent);background:rgba(138,21,56,.06)}
+  .prio-card.zero{border-style:dashed}
+  .prio-rank{font-size:11px;font-weight:900;letter-spacing:.06em;color:var(--ink-soft)}
+  .prio-card:first-child .prio-rank{color:var(--accent)}
+  .prio-name{font-size:19px;font-weight:900;color:var(--ink);line-height:1.2}
+  .prio-score{font-size:13px;font-weight:800;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .prio-last{font-size:11.5px;font-weight:700;color:var(--ink-soft);opacity:.8}
+  .prio-card.zero .prio-last{color:#b45309;opacity:1}
+  .contrib-prof small{display:block;font-size:11px;font-weight:700;color:var(--ink-soft);margin-top:2px}
+  .contrib-bar-row.zero .contrib-bar-name{color:#b45309}
+  .contrib-bar-none{font-size:11.5px;font-weight:700;color:var(--ink-soft);opacity:.7;padding-left:4px;line-height:22px}
+  @media(max-width:720px){.prio-cards{grid-template-columns:1fr}}
   .contribution-empty{text-align:center;color:var(--ink-soft);padding:16px;font-size:13px;border:1px dashed var(--line2);border-radius:14px;background:#fff}
   .contribution-chart{display:grid;gap:10px;margin-top:8px}
   .contrib-bar-row{display:grid;grid-template-columns:120px minmax(0,1fr) 58px;gap:10px;align-items:center}
@@ -1030,7 +1125,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       --nav:#111827; --nav2:#1f2937; --primary:#2563eb; --primary-soft:#dbeafe;
       --green:#16a34a; --yellow:#d97706; --red:#dc2626; --purple:#7c3aed;
       --shadow:0 10px 25px rgba(15,23,42,.08); --radius:18px;
-    }.pcv-panel *{box-sizing:border-box}.pcv-panel body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}.pcv-panel .app{display:flex;min-height:100vh}.pcv-panel .sidebar{width:260px;background:linear-gradient(180deg,var(--nav),var(--nav2));color:white;padding:24px 18px;position:fixed;inset:0 auto 0 0;overflow:auto}.pcv-panel .brand{padding:8px 10px 24px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:18px}.pcv-panel .brand h1{font-size:21px;margin:0 0 8px}.pcv-panel .brand p{font-size:12px;color:#cbd5e1;margin:0;line-height:1.5}.pcv-panel .nav button{width:100%;border:0;background:transparent;color:#d1d5db;text-align:left;padding:13px 14px;border-radius:12px;margin:4px 0;font-size:15px;cursor:pointer}.pcv-panel .nav button:hover, .pcv-panel .nav button.active{background:rgba(255,255,255,.12);color:white}.pcv-panel .main{margin-left:260px;width:calc(100% - 260px);padding:28px}.pcv-panel .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}.pcv-panel .topbar h2{font-size:28px;margin:0}.pcv-panel .topbar p{margin:6px 0 0;color:var(--muted)}.pcv-panel .actions{display:flex;gap:8px;flex-wrap:wrap}.pcv-panel .btn{border:0;border-radius:12px;padding:10px 14px;background:var(--primary);color:white;font-weight:700;cursor:pointer}.pcv-panel .btn.ghost{background:white;color:var(--ink);border:1px solid var(--line)}.pcv-panel .grid{display:grid;gap:16px}.pcv-panel .kpi{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.pcv-panel .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.pcv-panel .kpi .card{padding:18px}.pcv-panel .label{font-size:13px;color:var(--muted);margin-bottom:8px}.pcv-panel .value{font-size:30px;font-weight:800}.pcv-panel .sub{font-size:12px;color:var(--muted);margin-top:6px}.pcv-panel .two{grid-template-columns:1.2fr .8fr}.pcv-panel .three{grid-template-columns:repeat(3,minmax(0,1fr))}.pcv-panel .section{display:none}.pcv-panel .section.active{display:block}.pcv-panel .card h3{margin:0 0 14px;font-size:18px}.pcv-panel table{width:100%;border-collapse:collapse;background:white}.pcv-panel th, .pcv-panel td{padding:12px 10px;border-bottom:1px solid var(--line);font-size:14px;text-align:left;vertical-align:middle}.pcv-panel th{color:#374151;background:#f9fafb;font-size:13px}.pcv-panel .pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.pcv-panel .ok{background:#dcfce7;color:#166534}.pcv-panel .warn{background:#fef3c7;color:#92400e}.pcv-panel .bad{background:#fee2e2;color:#991b1b}.pcv-panel .info{background:var(--primary-soft);color:#1e40af}.pcv-panel .purple{background:#ede9fe;color:#5b21b6}.pcv-panel .todo{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.pcv-panel .todo input{width:17px;height:17px}.pcv-panel .calendar{display:grid;grid-template-columns:90px 1fr;gap:8px}.pcv-panel .month{font-weight:800;color:#374151;padding-top:8px}.pcv-panel .barrow{display:flex;flex-direction:column;gap:8px;padding:5px 0 12px;border-bottom:1px solid var(--line)}.pcv-panel .bar{height:30px;border-radius:999px;color:white;display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:800;box-shadow:0 6px 14px rgba(37,99,235,.15)}.pcv-panel .b1{background:#2563eb;width:52%}.pcv-panel .b2{background:#7c3aed;width:65%}.pcv-panel .b3{background:#059669;width:46%}.pcv-panel .b4{background:#dc2626;width:38%}.pcv-panel .b5{background:#d97706;width:58%}.pcv-panel .form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pcv-panel .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#374151;font-weight:700}.pcv-panel .form input, .pcv-panel .form select, .pcv-panel .form textarea{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;font:inherit}.pcv-panel .form textarea{min-height:110px;grid-column:1/-1}.pcv-panel .note{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:14px;color:#475569;font-size:14px;line-height:1.55}.pcv-panel .progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}.pcv-panel .progress span{display:block;height:100%;background:var(--primary);border-radius:999px}.pcv-panel .mobilehint{display:none}.pcv-panel .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.pcv-panel .search{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:240px}.pcv-panel .small{font-size:12px;color:var(--muted)}.pcv-panel .editable-input, .pcv-panel .editable-select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;font:inherit}.pcv-panel .editable-input:focus, .pcv-panel .editable-select:focus{outline:2px solid var(--primary-soft);border-color:#93c5fd}.pcv-panel .danger{background:#fee2e2;color:#991b1b}.pcv-panel .btn.smallbtn{padding:7px 10px;border-radius:10px;font-size:12px}.pcv-panel .agreement-summary{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:14px;gap:10px}.pcv-panel .ag-type{padding:13px 15px}.pcv-panel .ag-type .value{font-size:26px}.pcv-panel .ag-type.den{border-color:#1d4ed8;background:#eff6ff}.pcv-panel .ag-type.den .value{color:#1d4ed8}.pcv-panel .ag-rule{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px 18px;margin-bottom:16px;box-shadow:0 8px 20px rgba(15,23,42,.05);--st:#64748b;--stbg:#f1f5f9}.pcv-panel .ag-rule.ok{--st:#15803d;--stbg:#dcfce7}.pcv-panel .ag-rule.bad{--st:#b91c1c;--stbg:#fee2e2}.pcv-panel .ag-rule-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.pcv-panel .ag-rule-title{font-size:16px;font-weight:900;color:var(--ink)}.pcv-panel .ag-rule-sub{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5;font-weight:600}.pcv-panel .ag-rule-badge{flex:none;font-size:14px;font-weight:900;color:var(--st);background:var(--stbg);border:1px solid var(--st);border-radius:999px;padding:7px 16px;white-space:nowrap}.pcv-panel .ag-rule-num{display:flex;align-items:baseline;gap:9px;margin:12px 0 6px}.pcv-panel .ag-rule-num strong{font-size:38px;font-weight:900;color:var(--st);line-height:1;font-variant-numeric:tabular-nums}.pcv-panel .ag-rule-num span{font-size:13px;font-weight:800;color:var(--muted)}.pcv-panel .ag-gauge{position:relative;height:13px;border-radius:999px;background:#eef1f5;margin:6px 0 20px}.pcv-panel .ag-gauge-fill{height:100%;border-radius:999px;background:var(--st);opacity:.9;transition:width .25s}.pcv-panel .ag-gauge-line{position:absolute;left:40%;top:-5px;bottom:-5px;width:2px;background:#111827;opacity:.5}.pcv-panel .ag-gauge-line span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:900;color:var(--muted)}.pcv-panel .ag-rule-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.pcv-panel .ag-mini{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}.pcv-panel .ag-mini span{font-size:11.5px;color:var(--muted);font-weight:700}.pcv-panel .ag-mini strong{font-size:22px;font-weight:900;color:#1f2937;font-variant-numeric:tabular-nums}.pcv-panel .ag-rule-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.pcv-panel .ag-tag{font-size:12px;font-weight:800;border-radius:999px;padding:5px 11px;border:1px solid}.pcv-panel .ag-tag.warn{color:#92400e;background:#fef3c7;border-color:#92400e40}.pcv-panel .ag-tag.miss{color:#475569;background:#eef1f5;border-color:#47556940}.pcv-panel .ag-rule-msg{margin-top:12px;font-size:13px;font-weight:700;line-height:1.5;color:var(--st);background:var(--stbg);border-radius:12px;padding:10px 13px}.pcv-panel .ag-rule-msg.soft{color:var(--muted);background:#f6f7f9}.pcv-panel .ag-inc{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#1f2937;cursor:pointer;user-select:none}.pcv-panel .ag-inc input{width:16px;height:16px;accent-color:#1d4ed8}.pcv-panel .agreement-card.off{opacity:.5}.pcv-panel .agreement-card.off h4{text-decoration:line-through}.pcv-panel .meta-value.beds-small{color:#92400e}.pcv-panel .meta-value.beds-none{color:#9ca3af}@media(max-width:1100px){.pcv-panel .agreement-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.pcv-panel .ag-rule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.pcv-panel .agreement-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;box-shadow:0 8px 20px rgba(15,23,42,.05)}.pcv-panel .agreement-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.pcv-panel .agreement-card h4{margin:0;font-size:18px}.pcv-panel .agreement-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.pcv-panel .meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.pcv-panel .meta-item{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px}.pcv-panel .meta-label{font-size:11px;color:var(--muted);margin-bottom:4px}.pcv-panel .meta-value{font-size:14px;font-weight:800;color:#1f2937}.pcv-panel .card-actions{display:flex;gap:6px;flex-wrap:wrap}.pcv-panel .edit-panel{margin-top:14px;padding:14px;border-radius:16px;background:#f8fafc;border:1px dashed #cbd5e1}.pcv-panel .edit-panel.hidden{display:none}.pcv-panel .edit-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pcv-panel .edit-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;color:#374151}.pcv-panel .edit-form input, .pcv-panel .edit-form select{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff;font:inherit}.pcv-panel .muted-divider{height:1px;background:var(--line);margin:12px 0}.pcv-panel .empty-state{text-align:center;color:var(--muted);padding:28px;border:1px dashed #cbd5e1;border-radius:16px;background:#f8fafc}.pcv-panel .bud-pill{display:inline-block;font-size:12px;font-weight:900;border-radius:999px;padding:4px 12px;border:1px solid}.pcv-panel .bud-pill.ok{color:#15803d;background:#dcfce7;border-color:#15803d}.pcv-panel .bud-pill.bad{color:#b91c1c;background:#fee2e2;border-color:#b91c1c}.pcv-panel .bud-pill.none{color:#64748b;background:#f1f5f9;border-color:#cbd5e1;font-weight:700}.pcv-panel .bud-bar{position:relative;height:8px;border-radius:999px;background:#eef1f5;margin:8px 0 5px}.pcv-panel .bud-bar-fill{height:100%;border-radius:999px}.pcv-panel .bud-bar-fill.ok{background:#15803d}.pcv-panel .bud-bar-fill.bad{background:#b91c1c}.pcv-panel .bud-bar-line{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:#111827;opacity:.5}.pcv-panel .bud-ratio{font-size:11px;font-weight:700;color:#64748b;white-space:nowrap}.pcv-panel .bud-ratio b{color:#1f2937;font-weight:900}.pcv-panel /* 실습기관 협약관리: 가로형 긴 카드 리스트 */
+    }.pcv-panel *{box-sizing:border-box}.pcv-panel body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}.pcv-panel .app{display:flex;min-height:100vh}.pcv-panel .sidebar{width:260px;background:linear-gradient(180deg,var(--nav),var(--nav2));color:white;padding:24px 18px;position:fixed;inset:0 auto 0 0;overflow:auto}.pcv-panel .brand{padding:8px 10px 24px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:18px}.pcv-panel .brand h1{font-size:21px;margin:0 0 8px}.pcv-panel .brand p{font-size:12px;color:#cbd5e1;margin:0;line-height:1.5}.pcv-panel .nav button{width:100%;border:0;background:transparent;color:#d1d5db;text-align:left;padding:13px 14px;border-radius:12px;margin:4px 0;font-size:15px;cursor:pointer}.pcv-panel .nav button:hover, .pcv-panel .nav button.active{background:rgba(255,255,255,.12);color:white}.pcv-panel .main{margin-left:260px;width:calc(100% - 260px);padding:28px}.pcv-panel .topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:22px}.pcv-panel .topbar h2{font-size:28px;margin:0}.pcv-panel .topbar p{margin:6px 0 0;color:var(--muted)}.pcv-panel .actions{display:flex;gap:8px;flex-wrap:wrap}.pcv-panel .btn{border:0;border-radius:12px;padding:10px 14px;background:var(--primary);color:white;font-weight:700;cursor:pointer}.pcv-panel .btn.ghost{background:white;color:var(--ink);border:1px solid var(--line)}.pcv-panel .grid{display:grid;gap:16px}.pcv-panel .kpi{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.pcv-panel .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}.pcv-panel .kpi .card{padding:18px}.pcv-panel .label{font-size:13px;color:var(--muted);margin-bottom:8px}.pcv-panel .value{font-size:30px;font-weight:800}.pcv-panel .sub{font-size:12px;color:var(--muted);margin-top:6px}.pcv-panel .two{grid-template-columns:1.2fr .8fr}.pcv-panel .three{grid-template-columns:repeat(3,minmax(0,1fr))}.pcv-panel .section{display:none}.pcv-panel .section.active{display:block}.pcv-panel .card h3{margin:0 0 14px;font-size:18px}.pcv-panel table{width:100%;border-collapse:collapse;background:white}.pcv-panel th, .pcv-panel td{padding:12px 10px;border-bottom:1px solid var(--line);font-size:14px;text-align:left;vertical-align:middle}.pcv-panel th{color:#374151;background:#f9fafb;font-size:13px}.pcv-panel .pill{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}.pcv-panel .ok{background:#dcfce7;color:#166534}.pcv-panel .warn{background:#fef3c7;color:#92400e}.pcv-panel .bad{background:#fee2e2;color:#991b1b}.pcv-panel .info{background:var(--primary-soft);color:#1e40af}.pcv-panel .purple{background:#ede9fe;color:#5b21b6}.pcv-panel .todo{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.pcv-panel .todo input{width:17px;height:17px}.pcv-panel .calendar{display:grid;grid-template-columns:90px 1fr;gap:8px}.pcv-panel .month{font-weight:800;color:#374151;padding-top:8px}.pcv-panel .barrow{display:flex;flex-direction:column;gap:8px;padding:5px 0 12px;border-bottom:1px solid var(--line)}.pcv-panel .bar{height:30px;border-radius:999px;color:white;display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:800;box-shadow:0 6px 14px rgba(37,99,235,.15)}.pcv-panel .b1{background:#2563eb;width:52%}.pcv-panel .b2{background:#7c3aed;width:65%}.pcv-panel .b3{background:#059669;width:46%}.pcv-panel .b4{background:#dc2626;width:38%}.pcv-panel .b5{background:#d97706;width:58%}.pcv-panel .form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.pcv-panel .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#374151;font-weight:700}.pcv-panel .form input, .pcv-panel .form select, .pcv-panel .form textarea{border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;font:inherit}.pcv-panel .form textarea{min-height:110px;grid-column:1/-1}.pcv-panel .note{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:14px;color:#475569;font-size:14px;line-height:1.55}.pcv-panel .progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}.pcv-panel .progress span{display:block;height:100%;background:var(--primary);border-radius:999px}.pcv-panel .mobilehint{display:none}.pcv-panel .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:10px}.pcv-panel .search{border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:240px}.pcv-panel .small{font-size:12px;color:var(--muted)}.pcv-panel .editable-input, .pcv-panel .editable-select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;background:#fff;font:inherit}.pcv-panel .editable-input:focus, .pcv-panel .editable-select:focus{outline:2px solid var(--primary-soft);border-color:#93c5fd}.pcv-panel .danger{background:#fee2e2;color:#991b1b}.pcv-panel .btn.smallbtn{padding:7px 10px;border-radius:10px;font-size:12px}.pcv-panel .agreement-summary{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:14px;gap:10px}.pcv-panel .ag-type{padding:13px 15px}.pcv-panel .ag-type .value{font-size:26px}.pcv-panel .ag-type.den{border-color:#1d4ed8;background:#eff6ff}.pcv-panel .ag-type.den .value{color:#1d4ed8}.pcv-panel .ag-rule{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px 18px;margin-bottom:16px;box-shadow:0 8px 20px rgba(15,23,42,.05);--st:#64748b;--stbg:#f1f5f9}.pcv-panel .ag-rule.ok{--st:#15803d;--stbg:#dcfce7}.pcv-panel .ag-rule.bad{--st:#b91c1c;--stbg:#fee2e2}.pcv-panel .ag-rule-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.pcv-panel .ag-rule-title{font-size:16px;font-weight:900;color:var(--ink)}.pcv-panel .ag-rule-sub{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5;font-weight:600}.pcv-panel .ag-rule-badge{flex:none;font-size:14px;font-weight:900;color:var(--st);background:var(--stbg);border:1px solid var(--st);border-radius:999px;padding:7px 16px;white-space:nowrap}.pcv-panel .ag-rule-num{display:flex;align-items:baseline;gap:9px;margin:12px 0 6px}.pcv-panel .ag-rule-num strong{font-size:38px;font-weight:900;color:var(--st);line-height:1;font-variant-numeric:tabular-nums}.pcv-panel .ag-rule-num span{font-size:13px;font-weight:800;color:var(--muted)}.pcv-panel .ag-gauge{position:relative;height:13px;border-radius:999px;background:#eef1f5;margin:6px 0 20px}.pcv-panel .ag-gauge-fill{height:100%;border-radius:999px;background:var(--st);opacity:.9;transition:width .25s}.pcv-panel .ag-gauge-line{position:absolute;left:40%;top:-5px;bottom:-5px;width:2px;background:#111827;opacity:.5}.pcv-panel .ag-gauge-line span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:900;color:var(--muted)}.pcv-panel .ag-rule-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.pcv-panel .ag-mini{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}.pcv-panel .ag-mini span{font-size:11.5px;color:var(--muted);font-weight:700}.pcv-panel .ag-mini strong{font-size:22px;font-weight:900;color:#1f2937;font-variant-numeric:tabular-nums}.pcv-panel .ag-rule-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.pcv-panel .ag-tag{font-size:12px;font-weight:800;border-radius:999px;padding:5px 11px;border:1px solid}.pcv-panel .ag-tag.warn{color:#92400e;background:#fef3c7;border-color:#92400e40}.pcv-panel .ag-tag.miss{color:#475569;background:#eef1f5;border-color:#47556940}.pcv-panel .ag-rule-msg{margin-top:12px;font-size:13px;font-weight:700;line-height:1.5;color:var(--st);background:var(--stbg);border-radius:12px;padding:10px 13px}.pcv-panel .ag-rule-msg.soft{color:var(--muted);background:#f6f7f9}.pcv-panel .ag-inc{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#1f2937;cursor:pointer;user-select:none}.pcv-panel .ag-inc input{width:16px;height:16px;accent-color:#1d4ed8}.pcv-panel .agreement-card.off{opacity:.5}.pcv-panel .agreement-card.off h4{text-decoration:line-through}.pcv-panel .meta-value.beds-small{color:#92400e}.pcv-panel .meta-value.beds-none{color:#9ca3af}@media(max-width:1100px){.pcv-panel .agreement-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.pcv-panel .ag-rule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.pcv-panel .agreement-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px;box-shadow:0 8px 20px rgba(15,23,42,.05)}.pcv-panel .agreement-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}.pcv-panel .agreement-card h4{margin:0;font-size:18px}.pcv-panel .agreement-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.pcv-panel .meta-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.pcv-panel .meta-item{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px}.pcv-panel .meta-label{font-size:11px;color:var(--muted);margin-bottom:4px}.pcv-panel .meta-value{font-size:14px;font-weight:800;color:#1f2937}.pcv-panel .card-actions{display:flex;gap:6px;flex-wrap:wrap}.pcv-panel .edit-panel{margin-top:14px;padding:14px;border-radius:16px;background:#f8fafc;border:1px dashed #cbd5e1}.pcv-panel .edit-panel.hidden{display:none}.pcv-panel .edit-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.pcv-panel .edit-form label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:800;color:#374151}.pcv-panel .edit-form input, .pcv-panel .edit-form select{border:1px solid var(--line);border-radius:12px;padding:9px;background:#fff;font:inherit}.pcv-panel .muted-divider{height:1px;background:var(--line);margin:12px 0}.pcv-panel .empty-state{text-align:center;color:var(--muted);padding:28px;border:1px dashed #cbd5e1;border-radius:16px;background:#f8fafc}.pcv-panel .lab-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}.pcv-panel .lab-tab{border:1px solid var(--line);background:#fff;color:#475569;border-radius:999px;padding:8px 18px;font-weight:800;font-size:13.5px;cursor:pointer}.pcv-panel .lab-tab:hover{border-color:#bfdbfe;color:#1d4ed8;background:#eff6ff}.pcv-panel .lab-tab.on{background:var(--primary);border-color:var(--primary);color:#fff}.pcv-panel .lab-rule{border:1px solid var(--line);border-radius:18px;background:#fff;padding:16px 18px;margin-bottom:16px;box-shadow:var(--shadow);--st:#64748b;--stbg:#f1f5f9}.pcv-panel .lab-rule.ok{--st:#15803d;--stbg:#dcfce7}.pcv-panel .lab-rule.bad{--st:#b91c1c;--stbg:#fee2e2}.pcv-panel .lab-rule-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.pcv-panel .lab-rule-title{font-size:16px;font-weight:900}.pcv-panel .lab-rule-sub{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.5;font-weight:600}.pcv-panel .lab-rule-badge{flex:none;font-size:14px;font-weight:900;color:var(--st);background:var(--stbg);border:1px solid var(--st);border-radius:999px;padding:7px 16px;white-space:nowrap}.pcv-panel .lab-rule-num{display:flex;align-items:baseline;gap:8px;margin:12px 0 6px}.pcv-panel .lab-rule-num strong{font-size:38px;font-weight:900;color:var(--st);line-height:1;font-variant-numeric:tabular-nums}.pcv-panel .lab-rule-num span{font-size:13px;font-weight:800;color:var(--muted)}.pcv-panel .lab-gauge{position:relative;height:13px;border-radius:999px;background:#eef1f5;margin:6px 0 18px}.pcv-panel .lab-gauge-fill{height:100%;border-radius:999px;background:var(--st);opacity:.9;transition:width .25s}.pcv-panel .lab-gauge-line{position:absolute;left:50%;top:-5px;bottom:-5px;width:2px;background:#111827;opacity:.5}.pcv-panel .lab-rule-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.pcv-panel .lab-mini{background:#f8fafc;border:1px solid #eef2f7;border-radius:14px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}.pcv-panel .lab-mini span{font-size:11.5px;color:var(--muted);font-weight:700}.pcv-panel .lab-mini em{font-style:normal;opacity:.7}.pcv-panel .lab-mini strong{font-size:21px;font-weight:900;font-variant-numeric:tabular-nums}.pcv-panel .lab-mini input{width:100%;font:inherit;font-size:19px;font-weight:900;border:1px solid var(--line);border-radius:8px;padding:2px 7px;text-align:center;background:#fff}.pcv-panel .lab-checks{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.pcv-panel .lab-check{font-size:12.5px;font-weight:800;border-radius:999px;padding:6px 13px;border:1px solid}.pcv-panel .lab-check.ok{color:#15803d;background:#dcfce7;border-color:#15803d40}.pcv-panel .lab-check.bad{color:#b91c1c;background:#fee2e2;border-color:#b91c1c40}.pcv-panel .lab-msg{margin-top:12px;font-size:13px;font-weight:700;color:var(--st);background:var(--stbg);border-radius:12px;padding:10px 13px}.pcv-panel .lab-table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;min-width:840px}.pcv-panel .lab-table th{background:#f8fafc;color:#374151;font-size:12px;font-weight:800;padding:11px 9px;border-bottom:2px solid #e2e8f0;text-align:left}.pcv-panel .lab-table td{padding:6px 9px;border-bottom:1px solid var(--line);vertical-align:middle}.pcv-panel .lab-table td.c{text-align:center}.pcv-panel .lab-table td.r{text-align:right}.pcv-panel .lab-table td.n{font-variant-numeric:tabular-nums;font-weight:800}.pcv-panel .lab-table tr.shared td.n{color:#92400e}.pcv-panel .lab-table input,.pcv-panel .lab-table select{width:100%;font:inherit;border:1px solid var(--line);border-radius:8px;padding:7px 8px;background:#fff}.pcv-panel .lab-table tfoot td{background:#f8fafc;border-bottom:0;padding:11px 9px;font-size:14px}@media(max-width:1100px){.pcv-panel .lab-rule-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.pcv-panel .bud-pill{display:inline-block;font-size:12px;font-weight:900;border-radius:999px;padding:4px 12px;border:1px solid}.pcv-panel .bud-pill.ok{color:#15803d;background:#dcfce7;border-color:#15803d}.pcv-panel .bud-pill.bad{color:#b91c1c;background:#fee2e2;border-color:#b91c1c}.pcv-panel .bud-pill.none{color:#64748b;background:#f1f5f9;border-color:#cbd5e1;font-weight:700}.pcv-panel .bud-bar{position:relative;height:8px;border-radius:999px;background:#eef1f5;margin:8px 0 5px}.pcv-panel .bud-bar-fill{height:100%;border-radius:999px}.pcv-panel .bud-bar-fill.ok{background:#15803d}.pcv-panel .bud-bar-fill.bad{background:#b91c1c}.pcv-panel .bud-bar-line{position:absolute;left:50%;top:-3px;bottom:-3px;width:2px;background:#111827;opacity:.5}.pcv-panel .bud-ratio{font-size:11px;font-weight:700;color:#64748b;white-space:nowrap}.pcv-panel .bud-ratio b{color:#1f2937;font-weight:900}.pcv-panel /* 실습기관 협약관리: 가로형 긴 카드 리스트 */
     .agreement-list{display:flex;flex-direction:column;gap:12px}.pcv-panel .agreement-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:0;box-shadow:0 8px 20px rgba(15,23,42,.05);overflow:hidden}.pcv-panel .agreement-row{display:grid;grid-template-columns:70px 1.45fr 1.05fr .8fr .72fr .78fr auto;gap:14px;align-items:center;padding:12px 16px}.pcv-panel .agreement-main h4{font-size:17px}.pcv-panel .agreement-main .agreement-region{margin-top:0;display:inline-flex;align-items:center;font-size:12.5px}.pcv-panel .agreement-chips{margin-top:6px;align-items:center}.pcv-panel .order-control{display:flex;align-items:center;gap:8px;min-width:68px}.pcv-panel .order-number{width:34px;height:34px;border-radius:999px;background:#f1f5f9;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;color:#334155}.pcv-panel .order-buttons{display:flex;flex-direction:column;gap:4px}.pcv-panel .order-btn{width:28px;height:24px;border:1px solid var(--line);background:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-weight:900;color:#374151;line-height:1}.pcv-panel .order-btn:hover{background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8}.pcv-panel .order-btn:disabled{opacity:.35;cursor:not-allowed;background:#f8fafc;color:#9ca3af}.pcv-panel .agreement-main h4{margin:0;font-size:19px;letter-spacing:-.02em}.pcv-panel .agreement-main .agreement-region{margin-top:6px;color:var(--muted);font-size:13px;font-weight:700}.pcv-panel .agreement-field{min-width:0}.pcv-panel .agreement-field .meta-label{font-size:11px;color:var(--muted);margin-bottom:5px}.pcv-panel .agreement-field .meta-value{font-size:14px;font-weight:800;color:#1f2937;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pcv-panel .agreement-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.pcv-panel .agreement-period{font-size:14px;font-weight:800;color:#111827}.pcv-panel .agreement-card .card-actions{justify-content:flex-end;align-items:center}.pcv-panel .agreement-subline{border-top:1px solid #f1f5f9;background:#f8fafc;padding:10px 18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:#475569;font-size:13px}.pcv-panel .agreement-subline b{color:#111827}.pcv-panel .agreement-subline span{display:inline-flex;gap:5px;align-items:center}.pcv-panel .agreement-card-head, .pcv-panel .meta-grid{display:none}
     @media(max-width:1100px){.pcv-panel .agreement-row{grid-template-columns:76px 1fr;align-items:start}.pcv-panel .agreement-card .card-actions{justify-content:flex-start}.pcv-panel .agreement-field .meta-value{white-space:normal}.pcv-panel .agreement-subline{display:none}}.pcv-panel /* 실습지도교수 현황: 엑셀형 입력 테이블 */
     .faculty-filter{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.pcv-panel .faculty-filter label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:800;color:#374151}.pcv-panel .faculty-filter select{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff;font:inherit;min-width:140px}.pcv-panel .excel-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;background:#fff}.pcv-panel .excel-table{min-width:1040px;width:100%;border-collapse:separate;border-spacing:0}.pcv-panel .excel-table th{position:sticky;top:0;z-index:1;background:#f8fafc;color:#334155;border-bottom:1px solid var(--line);font-size:12px;font-weight:900}.pcv-panel .excel-table th, .pcv-panel .excel-table td{border-right:1px solid #eef2f7;border-bottom:1px solid #eef2f7;padding:0;vertical-align:middle}.pcv-panel .excel-table th:last-child, .pcv-panel .excel-table td:last-child{border-right:0}.pcv-panel .excel-table tr:last-child td{border-bottom:0}.pcv-panel .excel-cell, .pcv-panel .excel-select, .pcv-panel .excel-memo{width:100%;border:0;background:transparent;padding:10px 9px;font:inherit;font-size:13px;color:#1f2937;min-height:40px}.pcv-panel .excel-cell:focus, .pcv-panel .excel-select:focus, .pcv-panel .excel-memo:focus{outline:2px solid #bfdbfe;background:#eff6ff}.pcv-panel .excel-select{appearance:auto}.pcv-panel .excel-memo{resize:vertical;min-height:42px;line-height:1.35}.pcv-panel .excel-num{width:54px;text-align:center;background:#f8fafc;color:#64748b;font-weight:900;font-size:12px}.pcv-panel .excel-actions{display:flex;gap:6px;justify-content:center;padding:7px}.pcv-panel .excel-add-row{margin-top:12px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.pcv-panel .excel-guide{font-size:13px;color:#64748b}.pcv-panel /* 임상실습 학생 관리 */
@@ -1170,6 +1265,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <button class="side-btn chair-only" data-side-view="committeeMinutes"><span class="ico">📝</span><span class="txt">실습위원회 회의록</span></button>
     <button class="side-btn chair-only" data-side-view="regulations"><span class="ico">📚</span><span class="txt">실습위원회 규정</span></button>
     <button class="side-btn chair-only" data-side-view="budgetReport"><span class="ico">💰</span><span class="txt">실험실습비 결산내역</span></button>
+    <button class="side-btn chair-only" data-side-view="labRooms"><span class="ico">📐</span><span class="txt">실습실 확보 현황</span></button>
     <button class="side-btn admin-only" id="sideAdminAccounts" data-side-view="adminAccounts" style="display:none"><span class="ico">🛠</span><span class="txt">계정 관리(관리자)</span></button>
   </nav>
   <div class="side-section-title">QUICK ACTIONS</div>
@@ -1580,9 +1676,12 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       <div class="faculty-filter">
         <label>연도
           <select id="facultyYear" onchange="renderFacultyAssignments()">
+            <option value="2024">2024</option>
             <option value="2025">2025</option>
             <option value="2026" selected>2026</option>
             <option value="2027">2027</option>
+            <option value="2028">2028</option>
+            <option value="2029">2029</option>
           </select>
         </label>
         <label>학기
@@ -1823,13 +1922,54 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <div class="note" style="margin-top:12px">※ 예산총액(b)·결산총액(c)은 위 [표 1.2.2-3]의 "계"에서 자동 연동됩니다. 재학생 수(a)만 입력하면 집행률(d)과 1인당 실험실습비(e)가 자동 계산됩니다.</div>
   </div>
 
+  <div class="card delay pcv-panel" data-view="labRooms">
+    <div class="topbar">
+      <div>
+        <h2>실습실 확보 현황</h2>
+        <div class="sub">[표 5.2.1-1] 실습실 확보 및 활용 현황. 재학생 규모별 기준 면적과 자동으로 대조합니다.</div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" onclick="copyLabRoomsFromPrevYear()">이전 연도에서 복사</button>
+        <button class="btn ghost" onclick="exportLabRoomsCsv()">엑셀용 CSV</button>
+      </div>
+    </div>
+    <div id="labYearTabs" class="lab-tabs"></div>
+    <div id="labRulePanel"></div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <div style="overflow-x:auto"><table class="lab-table" id="labRoomsTable"></table></div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" onclick="addLabRoom()">+ 실습실 추가</button>
+      <button class="btn ghost" onclick="saveLabRoomsAll()">저장</button>
+    </div>
+    <div class="note" style="margin-top:14px">
+      ※ 기준 면적은 <b>재학생 1인당 면적 <u>또는</u> 총 확보면적</b> 중 <b>하나만 충족하면 됩니다.</b>
+      재학생 수는 전년도 4월 1일 기준이며, 학생현황에 입력된 값을 자동으로 가져옵니다(없으면 편제정원으로 대신 계산).
+      공용 실습실은 <b>면적 × 활용비율</b>로 확보면적을 산정합니다.
+    </div>
+  </div>
+
   <div class="card delay faculty-card" data-view="faculty">
     <div class="faculty-head">
       <div>
         <h2>👩‍🏫 교수 시간표</h2>
-        <div class="sub">교수별 강의·실습 시간표를 좌우 화살표로 확인하고 직접 수정</div>
+        <div class="sub">교수별 강의·실습 시간표를 학기별로 관리합니다. 좌우 화살표로 교수를 넘기고 칸을 직접 수정하세요.</div>
+      </div>
+      <div class="ft-term">
+        <select id="ftYear" title="학년도"></select>
+        <select id="ftSemester" title="학기">
+          <option value="1학기">1학기</option>
+          <option value="2학기">2학기</option>
+          <option value="하계">하계</option>
+          <option value="동계">동계</option>
+        </select>
+        <label class="ft-main"><input type="checkbox" id="ftIsMain"><span>이번 학기</span></label>
+        <button type="button" id="ftCopyPrev" class="ft-btn">직전 학기에서 복사</button>
+        <button type="button" id="ftRosterBtn" class="ft-btn">교수 목록 관리</button>
+        <span class="ft-badge" id="ftMainBadge"></span>
       </div>
     </div>
+    <div class="faculty-roster" id="facultyRosterPanel" style="display:none"></div>
     <div class="faculty-search">
       <input type="text" id="facultySearchInput" list="facultySearchList" placeholder="교수명 검색 예: 금정화">
       <datalist id="facultySearchList"></datalist>
@@ -2000,7 +2140,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
           <select id="poFramework"><option value="2025-03-01">2025.03.01 기준</option></select>
         </label>
         <label>관리 학번
-          <select id="poCohort"><option value="2023">2023학번</option><option value="2024">2024학번</option><option value="compare">전체 비교</option></select>
+          <select id="poCohort"><option value="2023">2023학번</option><option value="2024">2024학번</option><option value="2025">2025학번</option><option value="2026">2026학번</option><option value="2027">2027학번</option><option value="2028">2028학번</option><option value="2029">2029학번</option><option value="compare">전체 비교</option></select>
         </label>
         <label>검색
           <input type="text" id="poSearch" placeholder="PO·과제명·담당자 검색">
@@ -2112,19 +2252,22 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
     <div class="contribution-head">
       <div>
         <h2>🤝 교수 기여도 관리</h2>
-        <div class="sub">추가수당·강의료 없이 수행한 학과 봉사성 업무를 교수별 기여도 점수로 가볍게 관리합니다.</div>
+        <div class="sub">추가수당·강의료 없이 수행한 학과 봉사성 업무를 기록하고, 다음 봉사를 맡을 순서를 기여도가 낮은 교수부터 확인합니다. 점수는 학과장이 활동의 크기를 판단해 직접 입력합니다.</div>
       </div>
     </div>
     <div class="contribution-summary" id="contributionSummary"></div>
+    <div id="contributionPriority"></div>
     <div class="contrib-tabs">
       <button class="contrib-tab on" data-contrib-tab="input">입력·이력</button>
       <button class="contrib-tab" data-contrib-tab="stats">기여도 통계</button>
+      <button class="contrib-tab" data-contrib-tab="position">보직 관리</button>
     </div>
     <div class="contrib-panel on" id="contribInputPanel">
       <div class="contribution-add">
         <select id="contribProfessor"></select>
+        <input type="date" id="contribDate" title="활동일">
         <input type="text" id="contribActivity" placeholder="활동명 예: 무보수 계절학기 운영, 고교 방문, 외부출장">
-        <input type="number" id="contribScore" min="0" step="0.5" placeholder="기여도">
+        <input type="number" id="contribScore" min="0" step="0.5" placeholder="점수(학과장 판단)">
         <button id="contribAdd">추가</button>
         <button id="contribCancel" class="cancel" style="display:none">취소</button>
       </div>
@@ -2136,8 +2279,27 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       </div>
       <div class="contribution-list" id="contributionList"></div>
     </div>
+    <div class="contrib-panel" id="contribPositionPanel">
+      <div class="sub">학과보직과 학교보직의 임기를 기록합니다. <b>진행 중인 보직은 봉사 우선순위 목록에 배지로 표시</b>되며, 가산점은 입력한 경우에만 점수에 반영됩니다.</div>
+      <div class="position-add">
+        <select id="posProfessor"></select>
+        <select id="posKind"><option value="학과">학과보직</option><option value="학교">학교보직</option></select>
+        <input type="text" id="posTitle" placeholder="보직명 예: 실습위원장, RISE 사업단 부단장">
+        <input type="date" id="posStart" title="임기 시작일">
+        <input type="date" id="posEnd" title="임기 종료일(비우면 진행 중)">
+        <input type="number" id="posScore" step="0.5" placeholder="가산점(선택)">
+        <input type="text" id="posNote" placeholder="비고">
+        <button id="posAdd">추가</button>
+        <button id="posCancel" class="cancel" style="display:none">취소</button>
+      </div>
+      <div class="contribution-filter">
+        <select id="posKindFilter"><option value="all">학과·학교 전체</option><option value="학과">학과보직</option><option value="학교">학교보직</option></select>
+        <button id="posExportCsv" class="export">엑셀용 CSV</button>
+      </div>
+      <div class="position-list" id="positionList"></div>
+    </div>
     <div class="contrib-panel" id="contribStatsPanel">
-      <div class="sub">교수별 누적 기여도 점수를 가로 막대그래프로 표시합니다.</div>
+      <div class="sub">전체 교수를 <b>기여도가 낮은 순서</b>로 표시합니다. 봉사 이력이 없는 교수도 모두 포함됩니다.</div>
       <div class="contribution-chart" id="contributionChart"></div>
     </div>
   </div>
@@ -2971,7 +3133,7 @@ loadEvents();
 // ── 교수 시간표: 좌우 화살표 조회 + 직접 수정 ──
 const FACULTY_TIMETABLE_KEY = "nursing_head_dash_faculty_timetable_v1";
 const FACULTY_INDEX_KEY = "nursing_head_dash_faculty_index_v1";
-const DEFAULT_FACULTY_TIMETABLE = [{"name":"금정화","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""}]},{"name":"이재겸","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""}]},{"name":"김기용","rows":[{"time":"09:00~10:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"수업","thu":"","fri":"수업","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"최지연","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"김중경","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"신은희","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"실습지도","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"실습지도","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"김원종","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"김화선","rows":[{"time":"09:00~10:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""}]},{"name":"조아라","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""}]},{"name":"박소영","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"박경선","rows":[{"time":"09:00~10:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"수업","tue":"수업","wed":"","thu":"실습지도","fri":"","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"수업","wed":"수업","thu":"실습지도","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"박다인","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"실습지도","thu":"","fri":"수업","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"실습지도","thu":"","fri":"수업","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"강문희","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"설미진","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"","thu":"수업","fri":"수업","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"","thu":"수업","fri":"수업","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""}]},{"name":"신해진","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"주현","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""}]}];
+const DEFAULT_FACULTY_TIMETABLE = [{"name":"금정화","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""}]},{"name":"이재겸","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""}]},{"name":"김기용","rows":[{"time":"09:00~10:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"수업","thu":"","fri":"수업","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"최지연","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"김중경","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"신은희","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"실습지도","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"실습지도","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"수업","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"김원종","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"김화선","rows":[{"time":"09:00~10:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""}]},{"name":"조아라","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""}]},{"name":"박소영","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"수업","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"박경선","rows":[{"time":"09:00~10:00","mon":"수업","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"수업","tue":"수업","wed":"","thu":"실습지도","fri":"","sat":""},{"time":"11:00~12:00","mon":"수업","tue":"수업","wed":"수업","thu":"실습지도","fri":"","sat":""},{"time":"12:00~13:00","mon":"수업","tue":"수업","wed":"수업","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"박다인","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"실습지도","thu":"","fri":"수업","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"실습지도","thu":"","fri":"수업","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"강문희","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"수업","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"설미진","rows":[{"time":"09:00~10:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"","thu":"수업","fri":"수업","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"","thu":"수업","fri":"수업","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"수업","sat":""}]},{"name":"신해진","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]},{"name":"주현","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"수업","wed":"","thu":"수업","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"수업","fri":"","sat":""},{"time":"14:00~15:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"수업","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"수업","thu":"","fri":"","sat":""}]},{"name":"백승주","rows":[{"time":"09:00~10:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"10:00-11:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"11:00~12:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"12:00~13:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"13:00~14:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"14:00~15:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"15:00~16:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"16:00~17:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""},{"time":"17:00~18:00","mon":"","tue":"","wed":"","thu":"","fri":"","sat":""}]}];
 let facultyTimetable = [];
 let facultyIndex = 0;
 const FACULTY_EXTERNAL_KEY = "nursing_head_dash_faculty_external_events_v1";
@@ -3032,7 +3194,7 @@ function searchFacultyByName(){
     return;
   }
   facultyIndex = idx;
-  saveFacultyTimetable();
+  saveFacultyTerms();
   clearFacExtForm();
   renderFacultyTimetable();
   input.value = facultyTimetable[idx].name || qRaw;
@@ -3073,6 +3235,48 @@ function facExtSort(a,b){
   if(ad !== bd) return ad.localeCompare(bd);
   return String(a.start||"").localeCompare(String(b.start||""));
 }
+
+// ── 외부일정 → 교수 기여도 연동 ──
+// 봉사 성격이 뚜렷한 유형만 기본 제안한다. 학회·연수·휴가는 본인 실적이라 점수를 0으로 제안한다.
+const CONTRIB_TYPE_HINT = {"출장":1, "간담회":1, "회의":1, "학회":0, "연수":0, "휴가":0, "기타":1};
+function contribLinkedTo(eventId){
+  // contributionItems는 이 함수보다 아래에서 let으로 선언되므로 초기화 전 접근을 막는다
+  try{
+    if(!Array.isArray(contributionItems)) return null;
+    return contributionItems.find(c=>c.fromEvent === eventId) || null;
+  }catch(e){ return null; }
+}
+function addContributionFromEvent(eventId){
+  const ev = facultyExternalEvents.find(x=>x.id===eventId);
+  if(!ev) return;
+  if(contribLinkedTo(eventId)){ alert("이미 기여도에 등록된 일정입니다."); return; }
+  const hint = CONTRIB_TYPE_HINT[ev.type] ?? 1;
+  const guide = hint === 0
+    ? `"${ev.type}"은(는) 본인 실적에 해당할 수 있습니다. 학과 봉사로 볼 경우에만 점수를 입력하세요.`
+    : "";
+  const input = prompt(`${ev.faculty} 교수 · ${ev.title}\n\n기여도 점수를 입력하세요.${guide?"\n\n"+guide:""}`, String(hint || 1));
+  if(input === null) return;
+  const score = Number(input);
+  if(!Number.isFinite(score) || score <= 0){ alert("점수는 0보다 큰 숫자로 입력하세요."); return; }
+  const activity = `${ev.title||"외부일정"}${ev.place?` (${ev.place})`:""}${ev.type?` [${ev.type}]`:""}`;
+  contributionItems.push({id:"ct"+Date.now(), professor: ev.faculty, date: ev.date || "", activity, score, fromEvent: eventId});
+  recordWriteDb("교수 기여도 관리", "추가", `${ev.faculty} - ${ev.title}`, `외부일정 연동 · ${score}점`);
+  if(typeof saveContributions === "function") saveContributions();
+  if(typeof renderContributions === "function") renderContributions();
+  renderFacultyExternalEvents();
+  if(typeof updateSidebarCounts === "function") updateSidebarCounts();
+}
+function removeContributionFromEvent(eventId){
+  const item = contribLinkedTo(eventId);
+  if(!item) return;
+  if(!confirm(`"${item.activity}" 기여도 기록(${item.score}점)을 삭제할까요?\n외부일정 자체는 그대로 남습니다.`)) return;
+  contributionItems = contributionItems.filter(c=>c.id!==item.id);
+  recordWriteDb("교수 기여도 관리", "삭제", `${item.professor} - ${item.activity}`, "외부일정 연동 해제");
+  if(typeof saveContributions === "function") saveContributions();
+  if(typeof renderContributions === "function") renderContributions();
+  renderFacultyExternalEvents();
+  if(typeof updateSidebarCounts === "function") updateSidebarCounts();
+}
 function renderFacultyExternalEvents(){
   const box = $("facExtList"), sub = $("facExtSub");
   if(!box) return;
@@ -3091,9 +3295,13 @@ function renderFacultyExternalEvents(){
       <div class="fac-ext-date">${esc(dateText)}<small>${esc(timeText)}</small></div>
       <div><div class="fac-ext-title">${esc(x.title||"외부일정")}<span class="fac-ext-chip">${esc(x.type||"기타")}</span></div>
       <div class="fac-ext-meta">${esc(fname)} 교수${placeText}</div></div>
-      <div class="fac-ext-actions"><button class="edit" data-fac-ext-edit="${x.id}" title="수정">✎</button><button class="copy" data-fac-ext-copy="${x.id}" title="다른 교수에게 복사">복사</button><button class="del" data-fac-ext-del="${x.id}" title="삭제">×</button></div>
+      <div class="fac-ext-actions">${contribLinkedTo(x.id)
+        ? `<button class="contrib-linked" data-fac-ext-unlink="${x.id}" title="기여도에서 빼기">기여도 ${contribLinkedTo(x.id).score}점 ✓</button>`
+        : `<button class="contrib-add" data-fac-ext-contrib="${x.id}" title="교수 기여도에 추가">기여도 추가</button>`}<button class="edit" data-fac-ext-edit="${x.id}" title="수정">✎</button><button class="copy" data-fac-ext-copy="${x.id}" title="다른 교수에게 복사">복사</button><button class="del" data-fac-ext-del="${x.id}" title="삭제">×</button></div>
     </div>`;
   }).join("");
+  box.querySelectorAll("[data-fac-ext-contrib]").forEach(el=>el.onclick=()=>addContributionFromEvent(el.dataset.facExtContrib));
+  box.querySelectorAll("[data-fac-ext-unlink]").forEach(el=>el.onclick=()=>removeContributionFromEvent(el.dataset.facExtUnlink));
   box.querySelectorAll("[data-fac-ext-edit]").forEach(el=>el.onclick=()=>startEditFacExt(el.dataset.facExtEdit));
   box.querySelectorAll("[data-fac-ext-copy]").forEach(el=>el.onclick=()=>copyFacExtToFaculty(el.dataset.facExtCopy));
   box.querySelectorAll("[data-fac-ext-del]").forEach(el=>el.onclick=()=>deleteFacExt(el.dataset.facExtDel));
@@ -3186,6 +3394,334 @@ function rowSortMinutes(row){
   if(!m) return 99999;
   return Number(m[1])*60 + Number(m[2]);
 }
+
+// ── 교수 시간표: 학기별 관리 ──
+const FACULTY_TERMS_KEY = "nursing_head_dash_faculty_timetable_terms_v1";
+const FACULTY_MAIN_TERM_KEY = "nursing_head_dash_faculty_main_term_v1";
+const FT_YEARS = [2024,2025,2026,2027,2028,2029];
+const FT_SEMESTERS = ["1학기","2학기","하계","동계"];
+let facultyTermStore = {};     // { "2026-2학기": [ {name, rows} ] }
+let facultyMainTerm = "2026-2학기";
+let facultyActiveTerm = "2026-2학기";
+function ftKey(year, semester){ return `${year}-${semester}`; }
+function ftParse(key){
+  const m = String(key||"").match(/^(\d{4})-(.+)$/);
+  return m ? {year:Number(m[1]), semester:m[2]} : {year:2026, semester:"2학기"};
+}
+function ftPrevTerm(key){
+  const {year, semester} = ftParse(key);
+  const i = FT_SEMESTERS.indexOf(semester);
+  if(i <= 0) return ftKey(year-1, FT_SEMESTERS[FT_SEMESTERS.length-1]);
+  return ftKey(year, FT_SEMESTERS[i-1]);
+}
+function loadFacultyTerms(){
+  try{
+    const raw = localStorage.getItem(FACULTY_TERMS_KEY);
+    facultyTermStore = raw ? JSON.parse(raw) : {};
+    if(!facultyTermStore || typeof facultyTermStore !== "object") facultyTermStore = {};
+  }catch(e){ facultyTermStore = {}; }
+  const savedMain = localStorage.getItem(FACULTY_MAIN_TERM_KEY);
+  if(savedMain) facultyMainTerm = savedMain;
+  // 기존 단일 시간표를 메인 학기 자료로 옮긴다(최초 1회)
+  if(!facultyTermStore[facultyMainTerm] && Array.isArray(facultyTimetable) && facultyTimetable.length){
+    facultyTermStore[facultyMainTerm] = JSON.parse(JSON.stringify(facultyTimetable));
+  }
+  facultyActiveTerm = facultyMainTerm;
+  applyFacultyTerm(facultyActiveTerm, true);
+}
+function saveFacultyTerms(){
+  try{
+    facultyTermStore[facultyActiveTerm] = JSON.parse(JSON.stringify(facultyTimetable));
+    localStorage.setItem(FACULTY_TERMS_KEY, JSON.stringify(facultyTermStore));
+    localStorage.setItem(FACULTY_MAIN_TERM_KEY, facultyMainTerm);
+    if(window.fbSet){ fbSet(FACULTY_TERMS_KEY, facultyTermStore); fbSet(FACULTY_MAIN_TERM_KEY, facultyMainTerm); }
+    // 메인 학기는 기존 키에도 함께 저장해 다른 화면·백업과 호환을 유지한다
+    if(facultyActiveTerm === facultyMainTerm) saveFacultyTimetable();
+    else markSaved();
+  }catch(e){}
+}
+function applyFacultyTerm(termKey, silent){
+  facultyActiveTerm = termKey;
+  const data = facultyTermStore[termKey];
+  facultyTimetable = Array.isArray(data) && data.length
+    ? JSON.parse(JSON.stringify(data))
+    : (facultyTermStore[facultyMainTerm] ? [] : cloneFacultyDefault());
+  if(!Array.isArray(facultyTimetable)) facultyTimetable = [];
+  if(facultyIndex >= facultyTimetable.length) facultyIndex = 0;
+  if(!silent){ renderFacultyTerm(); renderFacultyTimetable(); }
+}
+function renderFacultyTerm(){
+  const ySel = $("ftYear"), sSel = $("ftSemester"), chk = $("ftIsMain"), badge = $("ftMainBadge");
+  const {year, semester} = ftParse(facultyActiveTerm);
+  if(ySel){
+    ySel.innerHTML = FT_YEARS.map(y=>`<option value="${y}">${y}학년도</option>`).join("");
+    ySel.value = String(year);
+  }
+  if(sSel) sSel.value = semester;
+  if(chk) chk.checked = (facultyActiveTerm === facultyMainTerm);
+  if(badge){
+    const {year:my, semester:ms} = ftParse(facultyMainTerm);
+    const empty = !(facultyTermStore[facultyActiveTerm]||[]).length;
+    badge.innerHTML = (facultyActiveTerm === facultyMainTerm)
+      ? `<b class="on">이번 학기</b>`
+      : `이번 학기: ${my}학년도 ${ms}` + (empty ? ` · <b class="warn">이 학기 시간표 없음</b>` : "");
+  }
+}
+function switchFacultyTerm(){
+  const y = $("ftYear")?.value || 2026;
+  const sem = $("ftSemester")?.value || "2학기";
+  saveFacultyTerms();                 // 현재 학기 내용을 먼저 보관
+  applyFacultyTerm(ftKey(y, sem));
+}
+function toggleFacultyMainTerm(on){
+  if(on){
+    facultyMainTerm = facultyActiveTerm;
+  }else{
+    if(facultyActiveTerm === facultyMainTerm){
+      alert("이번 학기는 하나는 지정되어 있어야 합니다. 다른 학기를 이번 학기로 지정하세요.");
+      $("ftIsMain").checked = true;
+      return;
+    }
+  }
+  saveFacultyTerms();
+  renderFacultyTerm();
+}
+function copyFacultyTermFromPrev(){
+  const prev = ftPrevTerm(facultyActiveTerm);
+  const src = facultyTermStore[prev];
+  if(!Array.isArray(src) || !src.length){
+    const {year, semester} = ftParse(prev);
+    alert(`${year}학년도 ${semester} 시간표가 없습니다.`);
+    return;
+  }
+  const {year:py, semester:ps} = ftParse(prev);
+  const {year:cy, semester:cs} = ftParse(facultyActiveTerm);
+  const keepEmpty = confirm(`${py}학년도 ${ps} 시간표를 ${cy}학년도 ${cs}로 가져옵니다.\n\n확인 = 교수 명단만 가져오고 수업 칸은 비웁니다.\n취소 = 수업 칸까지 그대로 복사합니다.`);
+  facultyTimetable = JSON.parse(JSON.stringify(src));
+  if(keepEmpty){
+    facultyTimetable.forEach(f=>f.rows.forEach(r=>{ ["mon","tue","wed","thu","fri","sat"].forEach(d=>{ r[d]=""; }); }));
+  }
+  facultyIndex = 0;
+  saveFacultyTerms();
+  renderFacultyTerm();
+  renderFacultyTimetable();
+}
+
+
+// ── 교수 목록 관리 (재직·퇴직 상태, 이름 변경, 순서) ──
+const FACULTY_ROSTER_KEY = "nursing_head_dash_faculty_roster_v1";
+let facultyRoster = {};              // { "이름": {status:"퇴직", since:"2026-02-28"} }
+let facultyShowRetired = false;
+let facultyRosterOpen = false;
+function loadFacultyRoster(){
+  try{
+    const raw = localStorage.getItem(FACULTY_ROSTER_KEY);
+    facultyRoster = raw ? JSON.parse(raw) : {};
+    if(!facultyRoster || typeof facultyRoster !== "object") facultyRoster = {};
+  }catch(e){ facultyRoster = {}; }
+}
+function saveFacultyRoster(){
+  try{
+    localStorage.setItem(FACULTY_ROSTER_KEY, JSON.stringify(facultyRoster));
+    markSaved();
+    if(window.fbSet) fbSet(FACULTY_ROSTER_KEY, facultyRoster);
+  }catch(e){}
+}
+function isRetiredFaculty(name){ return facultyRoster[name]?.status === "퇴직"; }
+function activeFacultyNames(){
+  return (Array.isArray(facultyTimetable)?facultyTimetable:[]).map(f=>f.name).filter(n=>n && !isRetiredFaculty(n));
+}
+// 이 교수가 다른 화면에서 참조되는 건수
+function facultyRefCounts(name){
+  const out = {};
+  // 아래에서 let으로 선언되는 변수들이라 초기화 전 접근 시 예외가 난다. 개별 try로 감싼다.
+  const safe = fn => { try{ return fn(); }catch(e){ return 0; } };
+  const cnt = (arr, field) => (Array.isArray(arr)?arr:[]).filter(x=>x && x[field]===name).length;
+  out["기여도"] = safe(()=>cnt(contributionItems, "professor"));
+  out["보직"]   = safe(()=>cnt(facultyPositions, "professor"));
+  out["출장·외부일정"] = safe(()=>cnt(facultyExternalEvents, "faculty"));
+  out["실습기관 담당"] = safe(()=>(Array.isArray(practiceInstitutions)?practiceInstitutions:[]).filter(x=>String(x.professor||"").split(/\s*,\s*/).includes(name)).length);
+  out["학생 지도교수"] = safe(()=>cnt(practiceStudents, "advisor"));
+  out["기관담당교수 배정"] = safe(()=>typeof getFacultyAssignments === "function" ? cnt(getFacultyAssignments(), "professor") : 0);
+  let terms = 0;
+  Object.values(facultyTermStore||{}).forEach(list=>{ if(Array.isArray(list) && list.some(f=>f.name===name)) terms++; });
+  out["시간표 학기"] = terms;
+  return out;
+}
+function facultyRefTotal(name){
+  const c = facultyRefCounts(name);
+  return Object.keys(c).filter(k=>k!=="시간표 학기").reduce((s,k)=>s+(c[k]||0), 0);
+}
+function blankFacultyRows(){
+  const src = (facultyTimetable[0]?.rows) || (cloneFacultyDefault()[0]?.rows) || [];
+  return src.map(r=>({time:r.time, mon:"", tue:"", wed:"", thu:"", fri:"", sat:""}));
+}
+function addFacultyMember(){
+  const name = prompt("추가할 교수 이름을 입력하세요.", "");
+  if(!name) return;
+  const nm = name.trim();
+  if(!nm) return;
+  if(facultyTimetable.some(f=>f.name===nm)){ alert("이미 등록된 교수입니다."); return; }
+  const allTerms = confirm(`${nm} 교수를 어느 학기에 추가할까요?\n\n확인 = 모든 학기에 추가\n취소 = 지금 보는 학기에만 추가`);
+  const row = {name:nm, rows: blankFacultyRows()};
+  facultyTimetable.push(JSON.parse(JSON.stringify(row)));
+  if(allTerms){
+    Object.keys(facultyTermStore).forEach(k=>{
+      if(k === facultyActiveTerm) return;
+      if(Array.isArray(facultyTermStore[k]) && !facultyTermStore[k].some(f=>f.name===nm)){
+        facultyTermStore[k].push(JSON.parse(JSON.stringify(row)));
+      }
+    });
+  }
+  recordWriteDb("교수 목록 관리", "추가", nm, allTerms ? "모든 학기" : facultyActiveTerm);
+  saveFacultyTerms();
+  renderFacultyRoster();
+  renderFacultyTimetable();
+}
+function renameFacultyMember(oldName){
+  const input = prompt(`"${oldName}" 교수의 새 이름을 입력하세요.`, oldName);
+  if(!input) return;
+  const nm = input.trim();
+  if(!nm || nm === oldName) return;
+  if(facultyTimetable.some(f=>f.name===nm)){ alert("같은 이름의 교수가 이미 있습니다."); return; }
+  const refs = facultyRefTotal(oldName);
+  let cascade = false;
+  if(refs > 0){
+    cascade = confirm(`다른 화면에 "${oldName}" 이름으로 된 기록이 ${refs}건 있습니다.\n\n확인 = 그 기록도 모두 "${nm}"으로 함께 변경\n취소 = 시간표 이름만 변경(기존 기록은 옛 이름 유지)`);
+  }
+  // 모든 학기 시간표에서 이름 변경
+  facultyTimetable.forEach(f=>{ if(f.name===oldName) f.name = nm; });
+  Object.keys(facultyTermStore).forEach(k=>{
+    if(Array.isArray(facultyTermStore[k])) facultyTermStore[k].forEach(f=>{ if(f.name===oldName) f.name = nm; });
+  });
+  if(facultyRoster[oldName]){ facultyRoster[nm] = facultyRoster[oldName]; delete facultyRoster[oldName]; saveFacultyRoster(); }
+  if(cascade){
+    const swap = (arr, field, save) => {
+      if(!Array.isArray(arr)) return;
+      let hit = 0;
+      arr.forEach(x=>{ if(x && x[field]===oldName){ x[field] = nm; hit++; } });
+      if(hit && typeof save === "function") save();
+    };
+    swap(typeof contributionItems!=="undefined"?contributionItems:null, "professor", typeof saveContributions==="function"?saveContributions:null);
+    swap(typeof facultyPositions!=="undefined"?facultyPositions:null, "professor", saveFacultyPositions);
+    swap(typeof facultyExternalEvents!=="undefined"?facultyExternalEvents:null, "faculty", typeof saveFacultyExternalEvents==="function"?saveFacultyExternalEvents:null);
+    swap(typeof practiceStudents!=="undefined"?practiceStudents:null, "advisor", typeof savePracticeStudents==="function"?savePracticeStudents:null);
+    if(Array.isArray(typeof practiceInstitutions!=="undefined"?practiceInstitutions:null)){
+      let hit=0;
+      practiceInstitutions.forEach(x=>{
+        const parts = String(x.professor||"").split(/\s*,\s*/);
+        if(parts.includes(oldName)){ x.professor = parts.map(v=>v===oldName?nm:v).join(", "); hit++; }
+      });
+      if(hit && typeof savePracticeInstitutions==="function") savePracticeInstitutions();
+    }
+    try{
+      if(typeof getFacultyAssignments === "function" && typeof setFacultyAssignments === "function"){
+        const fa = getFacultyAssignments();
+        let hit = 0;
+        fa.forEach(x=>{ if(x.professor===oldName){ x.professor = nm; hit++; } });
+        if(hit){ setFacultyAssignments(fa); if(typeof renderFacultyAssignments==="function") renderFacultyAssignments(); }
+      }
+    }catch(e){}
+  }
+  recordWriteDb("교수 목록 관리", "이름 변경", `${oldName} → ${nm}`, cascade ? `연결 기록 ${refs}건 함께 변경` : "시간표만 변경");
+  saveFacultyTerms();
+  renderFacultyRoster();
+  renderFacultyTimetable();
+  if(typeof renderContributions === "function") renderContributions();
+}
+function toggleFacultyRetired(name){
+  if(isRetiredFaculty(name)){
+    delete facultyRoster[name];
+    recordWriteDb("교수 목록 관리", "복직", name, "");
+  }else{
+    if(!confirm(`${name} 교수를 퇴직 처리할까요?\n\n시간표와 봉사 우선순위 후보에서 빠지지만, 지금까지의 기여도·보직·배정 기록은 그대로 남습니다.`)) return;
+    facultyRoster[name] = {status:"퇴직", since: todayStr()};
+    recordWriteDb("교수 목록 관리", "퇴직 처리", name, todayStr());
+  }
+  saveFacultyRoster();
+  renderFacultyRoster();
+  renderFacultyTimetable();
+  if(typeof renderContributions === "function") renderContributions();
+}
+function deleteFacultyMember(name){
+  const refs = facultyRefTotal(name);
+  if(refs > 0){
+    if(!confirm(`⚠ "${name}" 교수는 다른 화면에 ${refs}건의 기록이 연결되어 있습니다.\n\n완전 삭제하면 그 기록들이 주인 없는 자료가 됩니다.\n그만두신 경우라면 삭제 대신 "퇴직" 처리를 권합니다.\n\n그래도 삭제할까요?`)) return;
+  }else{
+    if(!confirm(`"${name}" 교수를 모든 학기 시간표에서 삭제할까요?`)) return;
+  }
+  facultyTimetable = facultyTimetable.filter(f=>f.name!==name);
+  Object.keys(facultyTermStore).forEach(k=>{
+    if(Array.isArray(facultyTermStore[k])) facultyTermStore[k] = facultyTermStore[k].filter(f=>f.name!==name);
+  });
+  delete facultyRoster[name];
+  if(facultyIndex >= facultyTimetable.length) facultyIndex = 0;
+  recordWriteDb("교수 목록 관리", "삭제", name, refs ? `연결 기록 ${refs}건 있음` : "연결 기록 없음");
+  saveFacultyRoster();
+  saveFacultyTerms();
+  renderFacultyRoster();
+  renderFacultyTimetable();
+}
+function moveFacultyMember(name, delta){
+  const i = facultyTimetable.findIndex(f=>f.name===name);
+  const j = i + delta;
+  if(i<0 || j<0 || j>=facultyTimetable.length) return;
+  const [item] = facultyTimetable.splice(i,1);
+  facultyTimetable.splice(j,0,item);
+  saveFacultyTerms();
+  renderFacultyRoster();
+  renderFacultyTimetable();
+}
+function toggleFacultyRosterPanel(){
+  facultyRosterOpen = !facultyRosterOpen;
+  const box = $("facultyRosterPanel");
+  if(box) box.style.display = facultyRosterOpen ? "" : "none";
+  const btn = $("ftRosterBtn");
+  if(btn) btn.textContent = facultyRosterOpen ? "목록 닫기" : "교수 목록 관리";
+  if(facultyRosterOpen) renderFacultyRoster();
+}
+function renderFacultyRoster(){
+  const box = $("facultyRosterPanel");
+  if(!box || !facultyRosterOpen) return;
+  const list = (Array.isArray(facultyTimetable)?facultyTimetable:[]);
+  const activeCnt = list.filter(f=>!isRetiredFaculty(f.name)).length;
+  const retiredCnt = list.length - activeCnt;
+  const rows = list.map((f,i)=>{
+    const retired = isRetiredFaculty(f.name);
+    const refs = facultyRefTotal(f.name);
+    const since = facultyRoster[f.name]?.since;
+    return `<div class="fr-item${retired?" off":""}">
+      <div class="fr-ord">${i+1}</div>
+      <div class="fr-name">${esc(f.name)}${retired?`<span class="fr-state">퇴직 ${since?esc(since.replace(/-/g,". ")):""}</span>`:""}</div>
+      <div class="fr-refs">${refs ? `연결 기록 <b>${refs}</b>건` : `<span class="none">연결 기록 없음</span>`}</div>
+      <div class="fr-acts">
+        <button class="fr-btn" data-fr-up="${esc(f.name)}" ${i===0?"disabled":""} title="위로">↑</button>
+        <button class="fr-btn" data-fr-down="${esc(f.name)}" ${i===list.length-1?"disabled":""} title="아래로">↓</button>
+        <button class="fr-btn" data-fr-rename="${esc(f.name)}">이름 변경</button>
+        <button class="fr-btn ${retired?"restore":"retire"}" data-fr-retire="${esc(f.name)}">${retired?"복직":"퇴직"}</button>
+        <button class="fr-btn del" data-fr-del="${esc(f.name)}">삭제</button>
+      </div>
+    </div>`;
+  }).join("");
+  box.innerHTML = `
+    <div class="fr-head">
+      <div class="fr-title">교수 목록 관리 <span>재직 ${activeCnt}명${retiredCnt?` · 퇴직 ${retiredCnt}명`:""}</span></div>
+      <div class="fr-tools">
+        <label class="fr-show"><input type="checkbox" id="frShowRetired" ${facultyShowRetired?"checked":""}><span>시간표에 퇴직 교수 포함</span></label>
+        <button class="fr-btn add" id="frAdd">+ 교수 추가</button>
+      </div>
+    </div>
+    <div class="fr-note">그만두신 교수는 <b>삭제 대신 "퇴직"</b>을 쓰세요. 시간표와 봉사 우선순위에서는 빠지지만 기여도·보직·배정 기록은 그대로 남습니다.</div>
+    <div class="fr-list">${rows || '<div class="contribution-empty">등록된 교수가 없습니다.</div>'}</div>`;
+  $("frAdd").onclick = addFacultyMember;
+  $("frShowRetired").onchange = e=>{ facultyShowRetired = e.target.checked; renderFacultyTimetable(); };
+  box.querySelectorAll("[data-fr-up]").forEach(el=>el.onclick=()=>moveFacultyMember(el.dataset.frUp,-1));
+  box.querySelectorAll("[data-fr-down]").forEach(el=>el.onclick=()=>moveFacultyMember(el.dataset.frDown,1));
+  box.querySelectorAll("[data-fr-rename]").forEach(el=>el.onclick=()=>renameFacultyMember(el.dataset.frRename));
+  box.querySelectorAll("[data-fr-retire]").forEach(el=>el.onclick=()=>toggleFacultyRetired(el.dataset.frRetire));
+  box.querySelectorAll("[data-fr-del]").forEach(el=>el.onclick=()=>deleteFacultyMember(el.dataset.frDel));
+}
+
 function renderFacultyTimetable(){
   const nameEl=$("facultyName"), countEl=$("facultyCount"), table=$("facultyTable"), todayEl=$("facultyToday");
   if(!nameEl || !countEl || !table || !todayEl) return;
@@ -3215,13 +3751,15 @@ function renderFacultyTimetable(){
       return `<td contenteditable="true" class="${cls}" data-f-row="${ri}" data-f-field="${d.key}">${esc(val)}</td>`;
     }).join("")}
   </tr>`).join("")}</tbody>`;
+  renderFacultyTerm();
+  renderFacultyRoster();
   table.innerHTML = header + body;
   table.querySelectorAll("[contenteditable='true']").forEach(cell=>{
     cell.addEventListener("blur",()=>{
       const ri=Number(cell.dataset.fRow), field=cell.dataset.fField;
       if(!facultyTimetable[facultyIndex] || !facultyTimetable[facultyIndex].rows[ri]) return;
       facultyTimetable[facultyIndex].rows[ri][field] = cell.textContent.trim();
-      saveFacultyTimetable();
+      saveFacultyTerms();
       renderFacultyTimetable();
     });
     cell.addEventListener("keydown",e=>{
@@ -3232,8 +3770,14 @@ function renderFacultyTimetable(){
 }
 function shiftFaculty(delta){
   if(!facultyTimetable.length) return;
-  facultyIndex = (facultyIndex + delta + facultyTimetable.length) % facultyTimetable.length;
-  saveFacultyTimetable();
+  const n = facultyTimetable.length;
+  let i = facultyIndex;
+  for(let k=0;k<n;k++){
+    i = (i + delta + n) % n;
+    if(facultyShowRetired || !isRetiredFaculty(facultyTimetable[i]?.name)) break;
+  }
+  facultyIndex = i;
+  saveFacultyTerms();
   clearFacExtForm();
   renderFacultyTimetable();
 }
@@ -3243,18 +3787,26 @@ function addFacultyRow(){
   if(!time) return;
   const row={time:time.trim(), mon:"", tue:"", wed:"", thu:"", fri:"", sat:""};
   facultyTimetable[facultyIndex].rows.push(row);
-  saveFacultyTimetable();
+  saveFacultyTerms();
   renderFacultyTimetable();
 }
 function resetFacultyTimetable(){
   if(!confirm("교수 시간표를 엑셀 원본 기준으로 초기화할까요? 직접 수정한 내용은 삭제됩니다.")) return;
   facultyTimetable = cloneFacultyDefault();
   facultyIndex = 0;
-  saveFacultyTimetable();
+  saveFacultyTerms();
   renderFacultyTimetable();
 }
 loadFacultyTimetable();
+loadFacultyRoster();
+loadFacultyTerms();
 loadFacultyExternalEvents();
+if($("ftYear")) $("ftYear").addEventListener("change", switchFacultyTerm);
+if($("ftSemester")) $("ftSemester").addEventListener("change", switchFacultyTerm);
+if($("ftIsMain")) $("ftIsMain").addEventListener("change", e=>toggleFacultyMainTerm(e.target.checked));
+if($("ftCopyPrev")) $("ftCopyPrev").onclick = copyFacultyTermFromPrev;
+if($("ftRosterBtn")) $("ftRosterBtn").onclick = toggleFacultyRosterPanel;
+renderFacultyTerm();
 if($("facultyPrev")) $("facultyPrev").onclick=()=>shiftFaculty(-1);
 if($("facultyNext")) $("facultyNext").onclick=()=>shiftFaculty(1);
 if($("facultySearchBtn")) $("facultySearchBtn").onclick=searchFacultyByName;
@@ -4633,7 +5185,9 @@ function saveContributions(){
   try{ localStorage.setItem(CONTRIBUTION_KEY, JSON.stringify(contributionItems)); markSaved(); if(window.fbSet) fbSet(CONTRIBUTION_KEY, contributionItems); }catch(e){}
 }
 function contributionFacultyNames(){
-  const names = Array.isArray(facultyTimetable) ? facultyTimetable.map(f=>f.name).filter(Boolean) : [];
+  const names = Array.isArray(facultyTimetable)
+    ? facultyTimetable.map(f=>f.name).filter(n=>n && !(typeof isRetiredFaculty==="function" && isRetiredFaculty(n)))
+    : [];
   return [...new Set(names)];
 }
 function renderContributionProfessorOptions(){
@@ -4652,6 +5206,7 @@ function renderContributionProfessorOptions(){
 }
 function clearContributionForm(){
   contributionEditingId = null;
+  if($("contribDate")) $("contribDate").value = "";
   if($("contribActivity")) $("contribActivity").value = "";
   if($("contribScore")) $("contribScore").value = "";
   if($("contribAdd")) $("contribAdd").textContent = "추가";
@@ -4667,7 +5222,8 @@ function addContribution(){
   const score = contributionScore($("contribScore")?.value);
   if(!professor || !activity){ alert("교수명과 활동명을 입력하세요."); return; }
   if(!Number.isFinite(score) || score <= 0){ alert("기여도는 0보다 큰 숫자로 입력하세요."); return; }
-  const data = {professor, activity, score};
+  const date = ($("contribDate")?.value || "").trim();
+  const data = {professor, date, activity, score};
   if(contributionEditingId){
     const item = contributionItems.find(x=>x.id===contributionEditingId);
     if(item) Object.assign(item, data);
@@ -4686,6 +5242,7 @@ function startEditContribution(id){
   contributionEditingId = id;
   renderContributionProfessorOptions();
   if($("contribProfessor")) $("contribProfessor").value = item.professor || "";
+  if($("contribDate")) $("contribDate").value = item.date || "";
   if($("contribActivity")) $("contribActivity").value = item.activity || "";
   if($("contribScore")) $("contribScore").value = item.score ?? "";
   if($("contribAdd")) $("contribAdd").textContent = "수정 저장";
@@ -4718,24 +5275,90 @@ function filteredContributions(){
     return terms.every(t=>hay.includes(t));
   });
 }
+// 봉사 우선순위 산정 범위 (전체 / 최근 N년)
+let contributionScopeYears = 0;
+function contributionInScope(x){
+  if(!contributionScopeYears) return true;
+  if(!x.date) return false;               // 날짜 없는 기록은 기간 필터에서 제외
+  const d = new Date(x.date + "T00:00:00");
+  if(isNaN(d)) return false;
+  const limit = new Date();
+  limit.setFullYear(limit.getFullYear() - contributionScopeYears);
+  return d >= limit;
+}
+// 전체 교수 명단을 기준으로 집계한다. 기록이 없는 교수도 0점으로 포함된다.
 function contributionTotals(){
+  const roster = contributionFacultyNames();
   const map = new Map();
-  contributionItems.forEach(x=>{
-    const name = x.professor || "미지정";
-    map.set(name, (map.get(name)||0) + contributionScore(x.score));
+  roster.forEach(n=>map.set(n, {professor:n, score:0, count:0, lastDate:""}));
+  (Array.isArray(typeof facultyPositions!=="undefined"?facultyPositions:null) ? facultyPositions : []).forEach(p=>{
+    const sc = (p.score==="" || p.score==null) ? 0 : Number(p.score)||0;
+    if(!sc) return;
+    if(!contributionInScope({date:p.start})) return;
+    if(!map.has(p.professor)) map.set(p.professor, {professor:p.professor, score:0, count:0, lastDate:""});
+    const e = map.get(p.professor);
+    e.score += sc; e.count += 1;
+    if(p.start && p.start > e.lastDate) e.lastDate = p.start;
   });
-  return [...map.entries()].map(([professor, score])=>({professor, score})).sort((a,b)=>b.score-a.score || a.professor.localeCompare(b.professor));
+  contributionItems.filter(contributionInScope).forEach(x=>{
+    const name = x.professor || "미지정";
+    if(!map.has(name)) map.set(name, {professor:name, score:0, count:0, lastDate:"", off:true});
+    const e = map.get(name);
+    e.score += contributionScore(x.score);
+    e.count += 1;
+    if(x.date && x.date > e.lastDate) e.lastDate = x.date;
+  });
+  let list = [...map.values()];
+  list.forEach(e=>{ e.current = positionsOf(e.professor, true); });
+  if(contributionExcludeOfficers) list = list.filter(e=>e.current.length===0);
+  // 낮은 점수 우선 → 동점이면 마지막 봉사일이 오래된 사람 우선 → 이름순
+  return list.sort((a,b)=>
+    a.score-b.score
+    || (a.lastDate||"").localeCompare(b.lastDate||"")
+    || a.professor.localeCompare(b.professor));
 }
 function renderContributionSummary(){
   const box = $("contributionSummary");
   if(!box) return;
   const totalScore = contributionItems.reduce((sum,x)=>sum+contributionScore(x.score),0);
   const totalCount = contributionItems.length;
-  const top = contributionTotals()[0];
+  const ranking = contributionTotals();
+  const next = ranking[0];
+  const zero = ranking.filter(r=>r.score===0).length;
   box.innerHTML = `
     <div class="contrib-chip"><span>총 기여도</span><strong>${Number.isInteger(totalScore)?totalScore:totalScore.toFixed(1)}</strong><span>점</span></div>
     <div class="contrib-chip"><span>등록 활동</span><strong>${totalCount}</strong><span>건</span></div>
-    <div class="contrib-chip"><span>최고 기여 교수</span><strong style="font-size:18px">${top?esc(top.professor):"-"}</strong><span>${top?`${Number.isInteger(top.score)?top.score:top.score.toFixed(1)}점`:"기록 없음"}</span></div>`;
+    <div class="contrib-chip"><span>봉사 이력 없음</span><strong>${zero}</strong><span>명 / 전체 ${ranking.length}명</span></div>
+    <div class="contrib-chip next"><span>다음 봉사 우선순위</span><strong style="font-size:18px">${next?esc(next.professor):"-"}</strong><span>${next?`${Number.isInteger(next.score)?next.score:next.score.toFixed(1)}점`:"명단 없음"}</span></div>`;
+}
+function renderContributionPriority(){
+  const box = $("contributionPriority");
+  if(!box) return;
+  const ranking = contributionTotals();
+  const top3 = ranking.slice(0,3);
+  const scopeLabel = [[0,"전체 기간"],[1,"최근 1년"],[2,"최근 2년"],[3,"최근 3년"]];
+  box.innerHTML = `<div class="prio">
+    <div class="prio-head">
+      <div>
+        <div class="prio-title">다음 봉사 우선순위</div>
+        <div class="prio-sub">기여도가 낮은 순서입니다. <b>점수가 같으면 마지막 봉사일이 오래된 분</b>이 먼저입니다.</div>
+      </div>
+      <div class="prio-ctrl">
+        <label class="prio-excl"><input type="checkbox" ${contributionExcludeOfficers?"checked":""} onchange="contributionExcludeOfficers=this.checked;renderContributions()"><span>현재 보직자 제외</span></label>
+        <select class="prio-scope" onchange="contributionScopeYears=Number(this.value);renderContributions()">
+          ${scopeLabel.map(([v,l])=>`<option value="${v}"${v===contributionScopeYears?" selected":""}>${l}</option>`).join("")}
+        </select>
+      </div>
+    </div>
+    <div class="prio-cards">${top3.map((r,i)=>`
+      <div class="prio-card${r.score===0?" zero":""}">
+        <div class="prio-rank">${i+1}순위</div>
+        <div class="prio-name">${esc(r.professor)}</div>
+        <div class="prio-score">${Number.isInteger(r.score)?r.score:r.score.toFixed(1)}점 · ${r.count}건</div>
+        <div class="prio-last">${r.lastDate ? "마지막 봉사 "+r.lastDate.replace(/-/g,". ")+"." : "봉사 이력 없음"}</div>
+        ${positionBadgeHtml(r.professor) ? `<div class="prio-pos">${positionBadgeHtml(r.professor)}</div>` : ""}
+      </div>`).join("") || '<div class="contribution-empty">교수 명단이 없습니다.</div>'}</div>
+  </div>`;
 }
 function renderContributionList(){
   const box = $("contributionList");
@@ -4746,7 +5369,7 @@ function renderContributionList(){
     return;
   }
   box.innerHTML = list.map(x=>`<div class="contribution-item">
-    <div class="contrib-prof">${esc(x.professor||"교수 미지정")}</div>
+    <div class="contrib-prof">${esc(x.professor||"교수 미지정")}<small>${x.date?esc(x.date.replace(/-/g,". "))+".":"날짜 미입력"}</small></div>
     <div class="contrib-activity">${esc(x.activity||"활동명 미입력")}</div>
     <div class="contrib-score">${esc(x.score)}점</div>
     <div class="contribution-actions"><button class="edit" data-contrib-edit="${x.id}" title="수정">✎</button><button class="del" data-contrib-del="${x.id}" title="삭제">×</button></div>
@@ -4759,16 +5382,16 @@ function renderContributionChart(){
   if(!box) return;
   const totals = contributionTotals();
   if(totals.length===0){
-    box.innerHTML = `<div class="contribution-empty">통계로 표시할 기여도 기록이 없습니다.</div>`;
+    box.innerHTML = `<div class="contribution-empty">교수 명단이 없습니다. 교수 시간표에 교수를 먼저 등록하세요.</div>`;
     return;
   }
   const max = Math.max(...totals.map(x=>x.score), 1);
-  box.innerHTML = totals.map(x=>{
-    const pct = Math.max(2, Math.round((x.score/max)*100));
+  box.innerHTML = totals.map((x,i)=>{
+    const pct = x.score>0 ? Math.max(4, Math.round((x.score/max)*100)) : 0;
     const scoreText = Number.isInteger(x.score) ? x.score : x.score.toFixed(1);
-    return `<div class="contrib-bar-row">
-      <div class="contrib-bar-name" title="${esc(x.professor)}">${esc(x.professor)}</div>
-      <div class="contrib-bar-track"><div class="contrib-bar-fill" style="width:${pct}%">${scoreText}</div></div>
+    return `<div class="contrib-bar-row${x.score===0?" zero":""}">
+      <div class="contrib-bar-name" title="${esc(x.professor)}">${i+1}. ${esc(x.professor)}${positionBadgeHtml(x.professor)?'<span class="bar-pos">'+positionBadgeHtml(x.professor)+'</span>':''}</div>
+      <div class="contrib-bar-track">${pct?`<div class="contrib-bar-fill" style="width:${pct}%">${scoreText}</div>`:`<span class="contrib-bar-none">봉사 이력 없음</span>`}</div>
       <div class="contrib-bar-score">${scoreText}점</div>
     </div>`;
   }).join("");
@@ -4776,7 +5399,9 @@ function renderContributionChart(){
 function renderContributions(){
   renderContributionProfessorOptions();
   renderContributionSummary();
+  renderContributionPriority();
   renderContributionList();
+  renderFacultyPositions();
   renderContributionChart();
 }
 function switchContributionTab(tab){
@@ -4784,11 +5409,175 @@ function switchContributionTab(tab){
   document.querySelectorAll(".contrib-tab").forEach(btn=>btn.classList.toggle("on", btn.dataset.contribTab===activeContributionTab));
   if($("contribInputPanel")) $("contribInputPanel").classList.toggle("on", activeContributionTab==="input");
   if($("contribStatsPanel")) $("contribStatsPanel").classList.toggle("on", activeContributionTab==="stats");
+  if($("contribPositionPanel")) $("contribPositionPanel").classList.toggle("on", activeContributionTab==="position");
   renderContributionChart();
+  if(activeContributionTab==="position"){ renderPositionProfessorOptions(); renderFacultyPositions(); }
 }
+
+// ── 학과·학교 보직 관리 ──
+const FACULTY_POSITION_KEY = "nursing_head_dash_faculty_positions_v1";
+let facultyPositions = [];
+let positionEditingId = null;
+let contributionExcludeOfficers = false;
+function loadFacultyPositions(){
+  try{
+    const raw = localStorage.getItem(FACULTY_POSITION_KEY);
+    facultyPositions = raw ? JSON.parse(raw) : [];
+    if(!Array.isArray(facultyPositions)) facultyPositions = [];
+  }catch(e){ facultyPositions = []; }
+}
+function saveFacultyPositions(){
+  try{ localStorage.setItem(FACULTY_POSITION_KEY, JSON.stringify(facultyPositions)); markSaved(); if(window.fbSet) fbSet(FACULTY_POSITION_KEY, facultyPositions); }catch(e){}
+}
+function positionIsCurrent(p){
+  const today = todayStr();
+  if(p.start && p.start > today) return false;
+  if(p.end && p.end < today) return false;
+  return true;
+}
+function positionsOf(name, currentOnly){
+  try{
+    if(!Array.isArray(facultyPositions)) return [];
+    return facultyPositions.filter(p=>p.professor===name && (!currentOnly || positionIsCurrent(p)));
+  }catch(e){ return []; }
+}
+function positionDaysLeft(p){
+  if(!p.end) return null;
+  const t = new Date(todayStr()+"T00:00:00");
+  const d = new Date(p.end+"T00:00:00");
+  return Math.ceil((d-t)/(1000*60*60*24));
+}
+function positionBadgeHtml(name){
+  return positionsOf(name, true).map(p=>
+    `<span class="pos-badge ${p.kind==='학교'?'univ':'dept'}">${p.kind==='학교'?'학교':'학과'} · ${esc(p.title||'보직')}</span>`).join("");
+}
+function renderPositionProfessorOptions(){
+  const names = contributionFacultyNames();
+  const sel = $("posProfessor");
+  if(!sel) return;
+  const cur = sel.value || names[0] || "";
+  sel.innerHTML = names.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("");
+  if(names.includes(cur)) sel.value = cur;
+}
+function addFacultyPosition(){
+  const professor = ($("posProfessor")?.value || "").trim();
+  const kind = $("posKind")?.value || "학과";
+  const title = ($("posTitle")?.value || "").trim();
+  const start = ($("posStart")?.value || "").trim();
+  const end = ($("posEnd")?.value || "").trim();
+  const scoreRaw = ($("posScore")?.value || "").trim();
+  const score = scoreRaw === "" ? "" : (Number(scoreRaw) || 0);
+  const note = ($("posNote")?.value || "").trim();
+  if(!professor || !title){ alert("교수와 보직명을 입력하세요."); return; }
+  if(start && end && end < start){ alert("종료일이 시작일보다 빠릅니다."); return; }
+  const data = {professor, kind, title, start, end, score, note};
+  if(positionEditingId){
+    const item = facultyPositions.find(x=>x.id===positionEditingId);
+    if(item) Object.assign(item, data);
+  }else{
+    facultyPositions.push({id:"po"+Date.now(), ...data});
+  }
+  recordWriteDb("보직 관리", positionEditingId ? "수정" : "추가", `${professor} - ${title}`, `${kind}보직 ${start||"시작일 미입력"}~${end||"현재"}`);
+  clearFacultyPositionForm();
+  saveFacultyPositions();
+  renderContributions();
+}
+function startEditFacultyPosition(id){
+  const item = facultyPositions.find(x=>x.id===id);
+  if(!item) return;
+  positionEditingId = id;
+  renderPositionProfessorOptions();
+  if($("posProfessor")) $("posProfessor").value = item.professor || "";
+  if($("posKind")) $("posKind").value = item.kind || "학과";
+  if($("posTitle")) $("posTitle").value = item.title || "";
+  if($("posStart")) $("posStart").value = item.start || "";
+  if($("posEnd")) $("posEnd").value = item.end || "";
+  if($("posScore")) $("posScore").value = item.score ?? "";
+  if($("posNote")) $("posNote").value = item.note || "";
+  if($("posAdd")) $("posAdd").textContent = "수정 저장";
+  if($("posCancel")) $("posCancel").style.display = "";
+  $("posTitle")?.focus();
+}
+function clearFacultyPositionForm(){
+  positionEditingId = null;
+  ["posTitle","posStart","posEnd","posScore","posNote"].forEach(id=>{ if($(id)) $(id).value = ""; });
+  if($("posAdd")) $("posAdd").textContent = "추가";
+  if($("posCancel")) $("posCancel").style.display = "none";
+}
+function deleteFacultyPosition(id){
+  const item = facultyPositions.find(x=>x.id===id);
+  if(!item) return;
+  if(!confirm(`${item.professor} · ${item.title} 보직 기록을 삭제할까요?`)) return;
+  facultyPositions = facultyPositions.filter(x=>x.id!==id);
+  recordWriteDb("보직 관리", "삭제", `${item.professor} - ${item.title}`, `${item.kind}보직`);
+  if(positionEditingId===id) clearFacultyPositionForm();
+  saveFacultyPositions();
+  renderContributions();
+}
+function renderFacultyPositions(){
+  const box = $("positionList");
+  if(!box) return;
+  const kindFilter = $("posKindFilter")?.value || "all";
+  const list = facultyPositions
+    .filter(p=>kindFilter==="all" || p.kind===kindFilter)
+    .slice()
+    .sort((a,b)=>{
+      const ca = positionIsCurrent(a)?0:1, cb = positionIsCurrent(b)?0:1;
+      return ca-cb || (b.start||"").localeCompare(a.start||"") || a.professor.localeCompare(b.professor);
+    });
+  const never = contributionFacultyNames().filter(n=>!facultyPositions.some(p=>p.professor===n));
+  const cur = facultyPositions.filter(positionIsCurrent);
+  const summary = `<div class="pos-summary">
+    <div class="pos-chip"><span>현재 보직자</span><strong>${new Set(cur.map(p=>p.professor)).size}</strong><span>명</span></div>
+    <div class="pos-chip"><span>학과보직</span><strong>${cur.filter(p=>p.kind!=="학교").length}</strong><span>건</span></div>
+    <div class="pos-chip"><span>학교보직</span><strong>${cur.filter(p=>p.kind==="학교").length}</strong><span>건</span></div>
+    <div class="pos-chip"><span>보직 이력 없음</span><strong>${never.length}</strong><span>명</span></div>
+  </div>`;
+  const rows = list.map(p=>{
+    const left = positionDaysLeft(p);
+    const on = positionIsCurrent(p);
+    let badge;
+    if(!on) badge = `<span class="pos-state past">임기 종료</span>`;
+    else if(left===null) badge = `<span class="pos-state now">진행 중</span>`;
+    else if(left<=90) badge = `<span class="pos-state soon">임기 D-${left}</span>`;
+    else badge = `<span class="pos-state now">임기 D-${left}</span>`;
+    return `<div class="position-item${on?"":" past"}">
+      <div class="pos-prof">${esc(p.professor)}</div>
+      <div class="pos-title"><span class="pos-kind ${p.kind==="학교"?"univ":"dept"}">${esc(p.kind||"학과")}</span>${esc(p.title||"")}</div>
+      <div class="pos-term">${p.start?esc(p.start.replace(/-/g,". ")):"시작일 미입력"} ~ ${p.end?esc(p.end.replace(/-/g,". ")):"현재"}</div>
+      <div class="pos-flags">${badge}${p.score!=="" && p.score!=null ? `<span class="pos-state score">가산 ${p.score}점</span>` : ""}</div>
+      <div class="pos-note">${esc(p.note||"")}</div>
+      <div class="contribution-actions"><button class="edit" data-pos-edit="${p.id}" title="수정">✎</button><button class="del" data-pos-del="${p.id}" title="삭제">×</button></div>
+    </div>`;
+  }).join("");
+  box.innerHTML = summary + (rows || `<div class="contribution-empty">등록된 보직이 없습니다. 위 칸에 추가하세요.</div>`)
+    + (never.length ? `<div class="pos-never"><b>보직 이력이 없는 교수 ${never.length}명</b> — ${never.map(esc).join(" · ")}</div>` : "");
+  box.querySelectorAll("[data-pos-edit]").forEach(el=>el.onclick=()=>startEditFacultyPosition(el.dataset.posEdit));
+  box.querySelectorAll("[data-pos-del]").forEach(el=>el.onclick=()=>deleteFacultyPosition(el.dataset.posDel));
+}
+function positionsToCsv(){
+  const headers = ["교수명","구분","보직명","시작일","종료일","가산점","비고","상태"];
+  const rows = facultyPositions.map(p=>[p.professor,p.kind,p.title,p.start,p.end,p.score,p.note,positionIsCurrent(p)?"진행 중":"임기 종료"]);
+  const escCsv = v => `"${String(v??"").replace(/"/g,'""')}"`;
+  return [headers, ...rows].map(r=>r.map(escCsv).join(",")).join("\r\n");
+}
+function exportPositionsCsv(){
+  const blob = new Blob(["﻿"+positionsToCsv()], {type:"text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `faculty_positions_${backupTimestamp ? backupTimestamp() : Date.now()}.csv`;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+loadFacultyPositions();
+if($("posAdd")) $("posAdd").onclick = addFacultyPosition;
+if($("posCancel")) $("posCancel").onclick = ()=>{ clearFacultyPositionForm(); renderFacultyPositions(); };
+if($("posKindFilter")) $("posKindFilter").addEventListener("change", renderFacultyPositions);
+if($("posExportCsv")) $("posExportCsv").onclick = exportPositionsCsv;
+if($("posTitle")) $("posTitle").addEventListener("keydown",e=>{ if(e.key==="Enter") addFacultyPosition(); });
+
 function contributionsToCsv(){
-  const headers = ["교수명","활동명","기여도"];
-  const rows = filteredContributions().map(x=>[x.professor,x.activity,x.score]);
+  const headers = ["교수명","활동일","활동명","기여도"];
+  const rows = filteredContributions().map(x=>[x.professor,x.date,x.activity,x.score]);
   const escCsv = v => `"${String(v||"").replace(/"/g,'""')}"`;
   return [headers, ...rows].map(r=>r.map(escCsv).join(",")).join("\r\n");
 }
@@ -5367,7 +6156,8 @@ const BK_KEYS = {
   satisfaction:               "practiceCommitteeSatisfaction",
   regulations:                "practiceCommitteeRegulations",
   budgetData:                 "practiceCommitteeBudgetData",
-  budgetVisibleYears:         "practiceCommitteeBudgetVisibleYears"
+  budgetVisibleYears:         "practiceCommitteeBudgetVisibleYears",
+  labRooms:                   "practiceCommitteeLabRooms"
 };
 function bkRead(key){
   try{
@@ -5400,6 +6190,9 @@ function dashboardBackupPayload(){
       weeklyTasks: wtodos,
       facultyTimetable,
       facultyIndex,
+      facultyTimetableTerms: facultyTermStore,
+      facultyMainTerm,
+      facultyRoster,
       facultyExternalEvents,
       practiceStudents,
       practiceInstitutions,
@@ -5408,6 +6201,7 @@ function dashboardBackupPayload(){
       writeDbItems,
       accessLogItems,
       accessPresence,
+      facultyPositions,
       scholarshipItems,
       memos: memoData,
       gradeMemos: gradeMemoData,
@@ -5427,7 +6221,8 @@ function dashboardBackupPayload(){
       satisfaction:               bkRead(BK_KEYS.satisfaction),
       regulations:                bkRead(BK_KEYS.regulations),
       budgetData:                 bkRead(BK_KEYS.budgetData),
-      budgetVisibleYears:         bkRead(BK_KEYS.budgetVisibleYears)
+      budgetVisibleYears:         bkRead(BK_KEYS.budgetVisibleYears),
+      labRooms:                   bkRead(BK_KEYS.labRooms)
       // 주의: 계정 정보와 공용 비밀번호는 보안상 백업 파일에 담지 않습니다.
     }
   };
@@ -5463,6 +6258,10 @@ function applyDashboardBackup(payload){
   if(Array.isArray(d.events)){ events = d.events; saveEvents(); }
   if(Array.isArray(d.weeklyTasks)){ wtodos = d.weeklyTasks; saveWT(); }
   if(Array.isArray(d.facultyTimetable)){ facultyTimetable = d.facultyTimetable; facultyIndex = Number(d.facultyIndex || 0); saveFacultyTimetable(); }
+  if(d.facultyTimetableTerms && typeof d.facultyTimetableTerms === "object"){ facultyTermStore = d.facultyTimetableTerms; }
+  if(typeof d.facultyMainTerm === "string" && d.facultyMainTerm){ facultyMainTerm = d.facultyMainTerm; }
+  if(d.facultyRoster && typeof d.facultyRoster === "object"){ facultyRoster = d.facultyRoster; saveFacultyRoster(); }
+  if(d.facultyTimetableTerms || d.facultyMainTerm){ applyFacultyTerm(facultyMainTerm, true); saveFacultyTerms(); }
   if(Array.isArray(d.facultyExternalEvents)){ facultyExternalEvents = d.facultyExternalEvents; saveFacultyExternalEvents(); }
   if(Array.isArray(d.practiceStudents)){ practiceStudents = d.practiceStudents; savePracticeStudents(); }
   if(Array.isArray(d.practiceInstitutions)){ practiceInstitutions = d.practiceInstitutions; savePracticeInstitutions(); }
@@ -5472,6 +6271,7 @@ function applyDashboardBackup(payload){
   if(Array.isArray(d.accessLogItems)){ accessLogItems = d.accessLogItems; saveAccessLog(); }
   if(d.accessPresence && typeof d.accessPresence === "object"){ accessPresence = d.accessPresence; saveAccessLog(); }
   if(Array.isArray(d.scholarshipItems)){ scholarshipItems = d.scholarshipItems; saveScholarships(); }
+  if(Array.isArray(d.facultyPositions)){ facultyPositions = d.facultyPositions; saveFacultyPositions(); }
   if(d.memos && typeof d.memos === "object"){
     Object.keys(MEMO_SECTIONS).forEach(tab=>{
       memoStore[tab] = Array.isArray(d.memos[tab]) ? d.memos[tab] : [];
@@ -5504,7 +6304,8 @@ function applyDashboardBackup(payload){
     ["satisfaction",               "실습 만족도",      Array.isArray],
     ["regulations",                "규정",           Array.isArray],
     ["budgetData",                 "결산내역",        v=>v && typeof v==="object"],
-    ["budgetVisibleYears",         "결산 표시연도",    Array.isArray]
+    ["budgetVisibleYears",         "결산 표시연도",    Array.isArray],
+    ["labRooms",                   "실습실 확보 현황",  v=>v && typeof v==="object"]
   ].forEach(([field, label, ok])=>{
     const v = d[field];
     if(v !== undefined && v !== null && ok(v)){
@@ -5515,7 +6316,7 @@ function applyDashboardBackup(payload){
     "renderStudentStatusTable","renderNationalExamSummary","renderNationalExamTable","renderNationalExamChart",
     "renderFooterNotice","renderAgreements","renderAgreementSummary","renderFacultyAssignments",
     "renderPracticeCalendar","renderSelectedPracticeEvents","renderCommitteeMinutes","renderPracticeChairHome",
-    "renderSatisfactionList","renderRegulations","renderBudgetYearChecks","renderBudgetTables"
+    "renderSatisfactionList","renderRegulations","renderBudgetYearChecks","renderBudgetTables","renderLabRooms"
   ].forEach(fn=>{ try{ if(typeof window[fn] === "function") window[fn](); }catch(e){} });
 
   sel = payload.selectedDate || todayStr();
@@ -6140,6 +6941,9 @@ window.loadAllFromFirestore = async function(){
     [EV_KEY,                  v=>{ if(Array.isArray(v)) events=v; }],
     [FACULTY_TIMETABLE_KEY,   v=>{ if(Array.isArray(v)) facultyTimetable=v; }],
     [FACULTY_INDEX_KEY,       v=>{ if(v!==null) facultyIndex=Number(v)||0; }],
+    [FACULTY_TERMS_KEY,       v=>{ if(v && typeof v==="object") facultyTermStore=v; }],
+    [FACULTY_MAIN_TERM_KEY,   v=>{ if(typeof v==="string" && v) facultyMainTerm=v; }],
+    [FACULTY_ROSTER_KEY,      v=>{ if(v && typeof v==="object") facultyRoster=v; }],
     [FACULTY_EXTERNAL_KEY,    v=>{ if(Array.isArray(v)) facultyExternalEvents=v; }],
     [WT_KEY,                  v=>{ if(Array.isArray(v)) wtodos=v.map(normalizeWTItem); }],
     [PAPER_KEY,               v=>{ if(Array.isArray(v)) paperItems=v; }],
@@ -6150,6 +6954,7 @@ window.loadAllFromFirestore = async function(){
     [ACCESS_LOG_KEY,          v=>{ if(Array.isArray(v)) accessLogItems=mergeAccessLogArrays(v, accessLogItems); }],
     [ACCESS_PRESENCE_KEY,     v=>{ if(v && typeof v === "object") accessPresence=mergeAccessPresenceObjs(v, accessPresence); }],
     [CONTRIBUTION_KEY,        v=>{ if(Array.isArray(v)) contributionItems=v; }],
+    [FACULTY_POSITION_KEY,    v=>{ if(Array.isArray(v)) facultyPositions=v; }],
     [PRACTICE_STUDENT_KEY,    v=>{ if(Array.isArray(v)) practiceStudents=v; }],
     [PRACTICE_INSTITUTION_KEY,v=>{ if(Array.isArray(v)) practiceInstitutions=v; }],
     [MEETING_AGENDA_KEY,      v=>{ if(Array.isArray(v)) meetingAgendaItems=v; }],
@@ -6168,6 +6973,7 @@ window.loadAllFromFirestore = async function(){
     [BUDGET_REPORT_PW_KEY,    v=>{ if(v) localStorage.setItem(BUDGET_REPORT_PW_KEY, v); }],
     [BUDGET_DATA_KEY,          v=>{ if(v && typeof v==="object") localStorage.setItem(BUDGET_DATA_KEY, JSON.stringify(v)); }],
     [BUDGET_VISIBLE_YEARS_KEY, v=>{ if(Array.isArray(v)) localStorage.setItem(BUDGET_VISIBLE_YEARS_KEY, JSON.stringify(v)); }],
+    ['practiceCommitteeLabRooms', v=>{ if(v && typeof v==="object") localStorage.setItem('practiceCommitteeLabRooms', JSON.stringify(v)); }],
     [ACCOUNT_OVERRIDES_KEY,   v=>{
       if(v && typeof v==="object"){
         // 클라우드에서 받아온 데이터로 로컬을 통째로 덮어쓰지 않고, 두 데이터를 합친다.
@@ -6222,6 +7028,7 @@ window.loadAllFromFirestore = async function(){
     if(typeof renderRegulations === "function") renderRegulations();
     if(typeof renderBudgetYearChecks === "function") renderBudgetYearChecks();
     if(typeof renderBudgetTables === "function") renderBudgetTables();
+    if(typeof renderLabRooms === "function") renderLabRooms();
     if(typeof renderAgreements === "function") renderAgreements();
     if(typeof renderFacultyAssignments === "function") renderFacultyAssignments();
     if(typeof renderPracticeCalendar === "function") renderPracticeCalendar();
@@ -6322,6 +7129,7 @@ const VIEW_MAP = {
   nationalExam: ["[data-view='nationalExam']"],
   budgetReport: ["[data-view='budgetReport']"],
   regulations: ["[data-view='regulations']"],
+  labRooms: ["[data-view='labRooms']"],
 };
 // dashboard는 오늘일정 + 이번 주 미니스트립도 포함
 const DASHBOARD_EXTRAS = ["[data-view='dashboard']"];
@@ -6390,6 +7198,7 @@ function setActiveView(view){
     if(view==="budgetReport"){
       if(typeof renderBudgetYearChecks==="function") renderBudgetYearChecks();
       if(typeof renderBudgetTables==="function") renderBudgetTables();
+      if(view==="labRooms" && typeof renderLabRooms==="function") renderLabRooms();
     }
     if(view==="practiceChairHome" && typeof renderPracticeChairHome==="function") renderPracticeChairHome();
     if(view==="adminAccounts" && typeof renderAdminAccountList==="function") renderAdminAccountList();
@@ -7321,7 +8130,7 @@ function renderRegulations(){
 }
 
 // ── 실험실습비 결산내역 ──
-const BUDGET_YEARS_FIXED = [2026,2025,2024,2023,2022];
+const BUDGET_YEARS_FIXED = [2029,2028,2027,2026,2025,2024,2023,2022];
 const BUDGET_DATA_KEY = "practiceCommitteeBudgetData";
 const BUDGET_VISIBLE_YEARS_KEY = "practiceCommitteeBudgetVisibleYears";
 const BUDGET_ROWS = [
@@ -7532,6 +8341,190 @@ function renderBudgetTable4(){
       renderBudgetTables();
     });
   });
+}
+
+
+// ── 실습실 확보 현황 [표 5.2.1-1] ──
+const LAB_ROOMS_KEY = 'practiceCommitteeLabRooms';
+const LAB_YEARS = [2024,2025,2026,2027,2028,2029];
+const LAB_DEFAULT_ROOMS = [
+  {use:'전용', area:64.2, ratio:100, location:'엔젤시티 4층', name:'건강사정실습실'},
+  {use:'전용', area:64.2, ratio:100, location:'엔젤시티 2층', name:'기본간호실습실 1'},
+  {use:'전용', area:63.4, ratio:100, location:'엔젤시티 2층', name:'기본간호실습실 2'},
+  {use:'전용', area:31.7, ratio:100, location:'엔젤시티 2층', name:'응급실'},
+  {use:'전용', area:47.5, ratio:100, location:'엔젤시티 2층', name:'집중치료실'},
+  {use:'전용', area:47.5, ratio:100, location:'엔젤시티 2층', name:'신생아집중치료실'},
+  {use:'전용', area:25.4, ratio:100, location:'엔젤시티 2층', name:'SP 시뮬레이션실'},
+  {use:'전용', area:96.4, ratio:100, location:'엔젤시티 2층', name:'수술실 및 참관실'},
+  {use:'전용', area:32.1, ratio:100, location:'엔젤시티 2층', name:'가족분만실'},
+  {use:'전용', area:32.1, ratio:100, location:'엔젤시티 2층', name:'부인과병동'},
+  {use:'전용', area:63.7, ratio:100, location:'엔젤시티 1층', name:'핵심술기실습실'},
+  {use:'공용', area:92,   ratio:50,  location:'엔젤시티 1층', name:'재난구조 및 BLS실'},
+];
+let labActiveYear = 2024;
+function getLabRooms(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(LAB_ROOMS_KEY));
+    if(saved && typeof saved === 'object') return saved;
+  }catch(e){}
+  const seed = {};
+  LAB_YEARS.forEach(y=>{ seed[y] = {capacity: (y===2024?447:0), rooms: JSON.parse(JSON.stringify(LAB_DEFAULT_ROOMS))}; });
+  return seed;
+}
+function setLabRooms(data){
+  localStorage.setItem(LAB_ROOMS_KEY, JSON.stringify(data));
+  if(window.fbSet) fbSet(LAB_ROOMS_KEY, data);
+}
+function labYearData(y){
+  const d = getLabRooms();
+  if(!d[y]) d[y] = {capacity:0, rooms:[]};
+  if(!Array.isArray(d[y].rooms)) d[y].rooms = [];
+  return d[y];
+}
+function labSecured(r){
+  const a = Number(r.area)||0, p = Number(r.ratio);
+  const ratio = Number.isFinite(p) ? p : 100;
+  return Math.round(a * ratio) / 100;
+}
+// 편람 5.2.1 재학생 1인당 확보면적 기준
+function labStandard(n){
+  if(n<=200) return {band:'200명 이하', per:1.5,  total:null};
+  if(n<=400) return {band:'201명 ~ 400명', per:1.13, total:300};
+  if(n<=600) return {band:'401명 ~ 600명', per:0.99, total:452};
+  return {band:'601명 이상', per:0.75, total:594};
+}
+function labEnrolled(y){
+  try{
+    const row = (typeof getStudentStatus === 'function' ? getStudentStatus() : []).find(r=>Number(r.year)===Number(y));
+    if(row){
+      const n = (Number(row.g1c)||0)+(Number(row.g2c)||0)+(Number(row.g3c)||0)+(Number(row.g4c)||0);
+      if(n>0) return {n, src:'재학생'};
+    }
+  }catch(e){}
+  const cap = Number(labYearData(y).capacity)||0;
+  return cap>0 ? {n:cap, src:'편제정원'} : {n:0, src:'없음'};
+}
+function renderLabYearTabs(){
+  const wrap = document.getElementById('labYearTabs');
+  if(!wrap) return;
+  wrap.innerHTML = LAB_YEARS.map(y=>`<button class="lab-tab${y===labActiveYear?' on':''}" onclick="labActiveYear=${y};renderLabRooms()">${y}</button>`).join('');
+}
+function renderLabRulePanel(){
+  const wrap = document.getElementById('labRulePanel');
+  if(!wrap) return;
+  const y = labActiveYear;
+  const d = labYearData(y);
+  const B = d.rooms.reduce((s,r)=>s+labSecured(r), 0);
+  const cap = Number(d.capacity)||0;
+  const en = labEnrolled(y);
+  const std = labStandard(en.n>0 ? en.n : cap);
+  const perNeed = en.n>0 ? std.per*en.n : 0;
+  const okPer = en.n>0 && (B/en.n) >= std.per;
+  const okTotal = std.total!==null && B >= std.total;
+  const decided = en.n>0 || cap>0;
+  const ok = okPer || okTotal;
+  const state = !decided ? 'none' : (ok?'ok':'bad');
+  const label = !decided ? '재학생 수 입력 필요' : (ok?'충족':'미충족');
+  const target = std.total!==null ? Math.min(perNeed, std.total) : perNeed;
+  const pct = target>0 ? Math.min(100, B/target*50) : 0;
+  wrap.innerHTML = `<div class="lab-rule ${state}">
+    <div class="lab-rule-head">
+      <div>
+        <div class="lab-rule-title">5.2.1 실습실 확보 · ${y}년 기준 면적 대조</div>
+        <div class="lab-rule-sub">적용 구간 <b>${std.band}</b> · 기준 <b>1인당 ${std.per}㎡</b>${std.total!==null?` <b>또는</b> <b>총 ${std.total}㎡</b>`:''} 이상 — <b>둘 중 하나만 충족하면 됩니다</b></div>
+      </div>
+      <div class="lab-rule-badge">${label}</div>
+    </div>
+    <div class="lab-rule-num"><strong>${B.toFixed(2)}</strong><span>㎡ 확보</span></div>
+    <div class="lab-gauge"><div class="lab-gauge-fill" style="width:${pct}%"></div><div class="lab-gauge-line"></div></div>
+    <div class="lab-rule-grid">
+      <div class="lab-mini"><span>편제정원 (A)</span><strong><input type="number" min="0" value="${cap||''}" placeholder="0" onchange="setLabCapacity(${y}, this.value)"></strong></div>
+      <div class="lab-mini"><span>재학생 수 <em>${en.src}</em></span><strong>${en.n||'—'}</strong></div>
+      <div class="lab-mini"><span>확보면적 합계 (B)</span><strong>${B.toFixed(2)}</strong></div>
+      <div class="lab-mini"><span>편제정원 1인당 (B/A)</span><strong>${cap>0?(B/cap).toFixed(2):'—'}</strong></div>
+      <div class="lab-mini"><span>재학생 1인당</span><strong>${en.n>0?(B/en.n).toFixed(2):'—'}</strong></div>
+    </div>
+    ${decided ? `<div class="lab-checks">
+      <span class="lab-check ${okPer?'ok':'bad'}">1인당 기준 ${std.per}㎡ · 필요 ${perNeed.toFixed(1)}㎡ → ${okPer?'충족':'미달'}</span>
+      ${std.total!==null?`<span class="lab-check ${okTotal?'ok':'bad'}">총면적 기준 ${std.total}㎡ → ${okTotal?'충족':'미달'}</span>`:''}
+    </div>` : ''}
+    ${(decided && !ok) ? `<div class="lab-msg">기준을 채우려면 확보면적이 <b>${(Math.min(perNeed, std.total===null?perNeed:std.total)-B).toFixed(1)}㎡</b> 더 필요합니다.</div>` : ''}
+  </div>`;
+}
+function renderLabRoomsTable(){
+  const t = document.getElementById('labRoomsTable');
+  if(!t) return;
+  const d = labYearData(labActiveYear);
+  const B = d.rooms.reduce((s,r)=>s+labSecured(r), 0);
+  const head = `<thead><tr>
+    <th style="width:46px">순번</th><th style="width:96px">전용/공용</th><th style="width:96px">면적(㎡)</th>
+    <th style="width:96px">활용비율(%)</th><th style="width:104px">확보면적</th>
+    <th>위치 (캠퍼스명·건물명·층수)</th><th>종류</th><th style="width:60px"></th>
+  </tr></thead>`;
+  const rows = d.rooms.map((r,i)=>`<tr${labSecured(r)<Number(r.area||0)?' class="shared"':''}>
+    <td class="c">${i+1}</td>
+    <td><select onchange="updLabRoom(${i},'use',this.value)"><option${r.use==='전용'?' selected':''}>전용</option><option${r.use==='공용'?' selected':''}>공용</option></select></td>
+    <td><input type="number" step="0.1" min="0" value="${r.area??''}" onchange="updLabRoom(${i},'area',this.value)"></td>
+    <td><input type="number" step="1" min="0" max="100" value="${r.ratio??100}" onchange="updLabRoom(${i},'ratio',this.value)"></td>
+    <td class="c n">${labSecured(r).toFixed(1)}</td>
+    <td><input type="text" value="${escapeHtml(r.location||'')}" onchange="updLabRoom(${i},'location',this.value)"></td>
+    <td><input type="text" value="${escapeHtml(r.name||'')}" onchange="updLabRoom(${i},'name',this.value)"></td>
+    <td class="c"><button class="btn ghost smallbtn danger" onclick="delLabRoom(${i})">삭제</button></td>
+  </tr>`).join('');
+  const foot = `<tfoot><tr><td colspan="4" class="r"><b>확보면적 합계 (B)</b></td><td class="c n"><b>${B.toFixed(2)}</b></td><td colspan="3"></td></tr></tfoot>`;
+  t.innerHTML = head + `<tbody>${rows || '<tr><td colspan="8" class="c" style="padding:22px;color:var(--muted)">등록된 실습실이 없습니다.</td></tr>'}</tbody>` + foot;
+}
+function renderLabRooms(){ renderLabYearTabs(); renderLabRulePanel(); renderLabRoomsTable(); }
+function updLabRoom(i, field, value){
+  const all = getLabRooms();
+  if(!all[labActiveYear]) all[labActiveYear] = {capacity:0, rooms:[]};
+  const r = all[labActiveYear].rooms[i];
+  if(!r) return;
+  r[field] = (field==='area'||field==='ratio') ? (Number(value)||0) : value;
+  setLabRooms(all); renderLabRooms();
+}
+function setLabCapacity(y, value){
+  const all = getLabRooms();
+  if(!all[y]) all[y] = {capacity:0, rooms:[]};
+  all[y].capacity = Number(value)||0;
+  setLabRooms(all); renderLabRooms();
+}
+function addLabRoom(){
+  const all = getLabRooms();
+  if(!all[labActiveYear]) all[labActiveYear] = {capacity:0, rooms:[]};
+  all[labActiveYear].rooms.push({use:'전용', area:0, ratio:100, location:'', name:''});
+  setLabRooms(all); renderLabRooms();
+}
+function delLabRoom(i){
+  const all = getLabRooms();
+  const r = all[labActiveYear]?.rooms?.[i];
+  if(!r) return;
+  if(!confirm(`${r.name||'이 실습실'} 행을 삭제할까요?`)) return;
+  all[labActiveYear].rooms.splice(i,1);
+  setLabRooms(all); renderLabRooms();
+}
+function copyLabRoomsFromPrevYear(){
+  const prev = labActiveYear-1;
+  const all = getLabRooms();
+  if(!all[prev] || !all[prev].rooms?.length){ alert(`${prev}년 자료가 없습니다.`); return; }
+  if(!confirm(`${prev}년 실습실 목록을 ${labActiveYear}년으로 복사할까요? 현재 ${labActiveYear}년 목록은 대체됩니다.`)) return;
+  if(!all[labActiveYear]) all[labActiveYear] = {capacity:0, rooms:[]};
+  all[labActiveYear].rooms = JSON.parse(JSON.stringify(all[prev].rooms));
+  setLabRooms(all); renderLabRooms();
+}
+function saveLabRoomsAll(){ setLabRooms(getLabRooms()); alert('실습실 확보 현황이 저장되었습니다.'); }
+function exportLabRoomsCsv(){
+  const d = labYearData(labActiveYear);
+  const esc = v => `"${String(v??'').replace(/"/g,'""')}"`;
+  const lines = [['연도','편제정원','전용/공용','면적(㎡)','활용비율(%)','확보면적','위치','종류'].map(esc).join(',')];
+  d.rooms.forEach(r=>lines.push([labActiveYear, d.capacity, r.use, r.area, r.ratio, labSecured(r), r.location, r.name].map(esc).join(',')));
+  const B = d.rooms.reduce((s,r)=>s+labSecured(r),0);
+  lines.push(['','','','','','확보면적 합계', B.toFixed(2),''].map(esc).join(','));
+  const blob = new Blob(['﻿'+lines.join('\n')], {type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `lab_rooms_${labActiveYear}.csv`;
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
 }
 
 // ── 실습위원장 화면 전체 초기화 (role 분기 시 1회 호출) ──
