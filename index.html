@@ -571,6 +571,32 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .wmore{font-size:11.5px;color:var(--accent);font-weight:700;margin-top:8px;text-align:center}
   @media(max-width:960px){.weekdays{grid-template-columns:repeat(2,1fr)} .wday{min-height:130px}}
   @media(max-width:560px){.weekdays{grid-template-columns:1fr}}
+  .schedule-modes{margin:4px 0 2px}
+  .wday-name.sun,.mdow.sun{color:#c0392b}
+  .wday-name.sat,.mdow.sat{color:#2563eb}
+  .month-dow{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:12px}
+  .mdow{text-align:center;font-size:12px;font-weight:800;color:var(--ink-soft);padding:4px 0}
+  .month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:4px}
+  .mday{border:1px solid var(--line);border-radius:12px;background:#fff;min-height:104px;padding:8px 8px 9px;
+    position:relative;overflow:hidden;cursor:pointer;transition:.15s}
+  .mday:hover{border-color:var(--line2)}
+  .mday.other{background:var(--paper);opacity:.55}
+  .mday.today{border-color:var(--accent);box-shadow:0 0 0 3px rgba(138,21,56,.08)}
+  .mday.selday{background:linear-gradient(180deg,rgba(138,21,56,.06),#fff)}
+  .mday-head{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:6px}
+  .mday-date{font-weight:800;font-size:15px;line-height:1;color:var(--ink)}
+  .mday.sun .mday-date{color:#c0392b}
+  .mday.sat .mday-date{color:#2563eb}
+  .mday-count{font-size:10px;font-weight:700;color:var(--ink-soft);background:var(--paper);border-radius:999px;padding:2px 6px}
+  .mday.other .mday-count{background:#fff}
+  .mitem{border-top:1px dashed var(--line2);padding-top:5px;margin-top:5px}
+  .mitem:first-of-type{border-top:none;margin-top:0;padding-top:0}
+  .mitem-time{font-size:10px;font-weight:700;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .mitem-title{font-size:11.5px;font-weight:700;line-height:1.3;word-break:keep-all}
+  .mitem.done .mitem-title,.mitem.done .mitem-time{text-decoration:line-through;color:var(--ink-soft)}
+  .mday-empty{font-size:11px;color:var(--ink-soft);text-align:center;padding-top:12px;opacity:.6}
+  .mmore{font-size:10.5px;color:var(--accent);font-weight:800;margin-top:5px}
+  @media(max-width:760px){.mday{min-height:78px;padding:6px 5px}.mitem-title{font-size:10.5px}.mday-count{display:none}}
 
 
   /* 관리 보드: 논문·심사 / 학사 카운트다운 */
@@ -862,6 +888,35 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   @media(max-width:1280px){.practice-institution-add{grid-template-columns:1fr 1fr}.practice-institution-add button{padding:10px}.practice-institution-item{grid-template-columns:1fr}.practice-institution-actions{justify-content:flex-start}.practice-institution-summary{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.practice-institution-add{grid-template-columns:1fr}.practice-institution-filter input{min-width:0;width:100%}.practice-institution-summary{grid-template-columns:1fr}}
   @media print{
+    body.print-contrib-history *,body.print-contrib-overview *{visibility:hidden!important}
+    body.print-contrib-history .contribution-card,body.print-contrib-overview .contribution-card{position:absolute!important;left:0!important;top:0!important;width:100%!important;box-shadow:none!important;border:none!important;background:#fff!important;padding:0!important;margin:0!important}
+    body.print-contrib-history .contrib-print-title,body.print-contrib-overview .contrib-print-title{display:block!important;visibility:visible!important;font-size:19px;font-weight:900;margin:0 0 14px;color:#000}
+    /* 공통 제외: 요약 칩 · 우선순위 · 탭 · 입력폼 · 검색줄 · 버튼 */
+    body.print-contrib-history .contribution-summary,body.print-contrib-overview .contribution-summary,
+    body.print-contrib-history #contributionPriority,body.print-contrib-overview #contributionPriority,
+    body.print-contrib-history .contrib-tabs,body.print-contrib-overview .contrib-tabs,
+    body.print-contrib-history .contribution-head,body.print-contrib-overview .contribution-head,
+    body.print-contrib-history .contribution-add,body.print-contrib-overview .contribution-add,
+    body.print-contrib-history .contribution-filter,body.print-contrib-overview .contribution-filter,
+    body.print-contrib-history .contribution-actions,body.print-contrib-overview .contribution-actions,
+    body.print-contrib-overview .ov-toolbar,
+    body.print-contrib-history .contrib-panel:not(#contribInputPanel),
+    body.print-contrib-overview .contrib-panel:not(#contribOverviewPanel){display:none!important}
+    body.print-contrib-history #contribInputPanel,body.print-contrib-history #contribInputPanel *,
+    body.print-contrib-overview #contribOverviewPanel,body.print-contrib-overview #contribOverviewPanel *{visibility:visible!important}
+    body.print-contrib-history #contribInputPanel,body.print-contrib-overview #contribOverviewPanel{display:block!important}
+    body.print-contrib-history .contribution-item,body.print-contrib-overview .ov-row{break-inside:avoid;page-break-inside:avoid}
+    body.print-contrib-history .contrib-group{break-inside:avoid-page}
+    body.print-contrib-history .contribution-item button,body.print-contrib-history .contribution-item .del,
+    body.print-contrib-history .contribution-item input,body.print-contrib-history .contribution-item select{display:none!important;visibility:hidden!important}
+    body.print-contrib-overview .ov-stats,body.print-contrib-overview .ov-none{display:none!important;visibility:hidden!important}
+    body.print-contrib-overview .ov-head,body.print-contrib-overview .ov-row{display:grid!important;grid-template-columns:28px 70px 1.1fr minmax(0,1.4fr) 56px 46px 84px!important;font-size:11.5px}
+    body.print-contrib-overview .ov-pos,body.print-contrib-overview .ov-bar,
+    body.print-contrib-overview .ov-cnt,body.print-contrib-overview .ov-last{display:block!important;visibility:visible!important}
+    body.print-contrib-overview .ov-bar{height:14px}
+    body.print-contrib-overview .ov-fill{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+  @media print{
     body.print-practice-institutions *{visibility:hidden!important}
     body.print-practice-institutions .practice-institution-card,body.print-practice-institutions .practice-institution-card *{visibility:visible!important}
     body.print-practice-institutions .practice-institution-card{position:absolute!important;left:0!important;top:0!important;width:100%!important;box-shadow:none!important;border:none!important;background:#fff!important}
@@ -881,7 +936,8 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .contrib-tab:hover{border-color:var(--accent);color:var(--accent)}
   .contrib-tab.on{background:var(--c-meet);border-color:var(--c-meet);color:#fff}
   .contrib-panel{display:none}.contrib-panel.on{display:block}
-  .contribution-add{display:grid;grid-template-columns:150px 1fr 120px auto auto;gap:8px;margin:10px 0 12px;align-items:center}
+  .contribution-add{display:grid;grid-template-columns:126px 150px minmax(0,1fr) 132px auto auto;gap:8px;margin:10px 0 12px;align-items:center}
+  .contribution-add #contribDate{font-size:13px;padding:10px 8px}
   .contribution-add input,.contribution-add select{font-family:inherit;font-size:13.5px;border:1px solid var(--line2);background:#fff;border-radius:10px;padding:10px 11px;color:var(--ink);min-width:0}
   .contribution-add input:focus,.contribution-add select:focus{outline:none;border-color:var(--accent)}
   .contribution-add button{font-family:inherit;font-weight:800;font-size:13px;border:none;cursor:pointer;background:var(--accent);color:#fff;border-radius:10px;padding:10px 14px;transition:.15s;white-space:nowrap}
@@ -962,6 +1018,17 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   .ov-cnt{font-size:12px;font-weight:800;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums}
   .ov-last{font-size:11.5px;font-weight:700;color:var(--ink-soft);text-align:right;font-variant-numeric:tabular-nums}
   @media(max-width:1100px){.ov-stats{grid-template-columns:repeat(2,1fr)}.ov-head{display:none}.ov-row{grid-template-columns:30px 1fr auto}.ov-pos,.ov-bar,.ov-cnt,.ov-last{display:none}}
+  .contrib-group{margin-bottom:12px}
+  .contrib-group-head{display:flex;align-items:baseline;gap:9px;padding:0 4px 5px;border-bottom:1.5px solid var(--line)}
+  .contrib-group-head b{font-size:14.5px;font-weight:900;color:var(--accent)}
+  .contrib-group-head span{font-size:12px;font-weight:800;color:var(--ink-soft)}
+  .contrib-group .contribution-item{border-radius:9px;margin-top:4px}
+  .contrib-prof .only-date{font-size:12.5px;font-weight:800;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  #contribSort{font-family:inherit;font-size:13px;font-weight:800;border:1px solid var(--line2);border-radius:10px;padding:9px 10px;background:#fff;color:var(--ink);cursor:pointer}
+  .contrib-print-title{display:none}
+  .ov-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+  .ov-tools{display:flex;gap:8px;align-items:center}
+  #ovSort{font-family:inherit;font-size:13px;font-weight:800;border:1px solid var(--line2);border-radius:10px;padding:9px 10px;background:#fff;color:var(--ink);cursor:pointer}
   .contrib-chip.next{border-color:var(--accent);background:rgba(138,21,56,.05)}
   .contrib-chip.next strong{color:var(--accent)}
   .prio{border:1px solid var(--line);border-radius:16px;background:#fff;padding:15px 17px;margin:0 0 14px}
@@ -1444,15 +1511,24 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
   <div class="card delay week-schedule-card" style="margin-top:18px" data-view="schedule">
     <div class="week-schedule-head">
       <div>
-        <h2>📆 이번 주 일정</h2>
+        <h2 id="weekScheduleTitle">📆 이번 주 일정</h2>
         <div class="sub" id="weekScheduleSub">선택한 날짜가 포함된 한 주의 전체 일정</div>
       </div>
       <div class="week-schedule-total" id="weekScheduleTotal">—</div>
     </div>
-    <div class="week-schedule-controls">
+    <div class="week-schedule-controls schedule-modes">
+      <button id="schedModeWeek" class="this-week">주간 보기</button>
+      <button id="schedModeMonth">월간 보기</button>
+    </div>
+    <div class="week-schedule-controls" id="weekNavRow">
       <button id="weekSchedulePrev" title="저번주 보기">◀ 저번주</button>
       <button class="this-week" id="weekScheduleThis" title="이번주로 이동">이번주</button>
       <button id="weekScheduleNext" title="다음주 보기">다음주 ▶</button>
+    </div>
+    <div class="week-schedule-controls" id="monthNavRow" style="display:none">
+      <button id="monthSchedulePrev" title="이전달 보기">◀ 이전달</button>
+      <button class="this-week" id="monthScheduleThis" title="이번달로 이동">이번달</button>
+      <button id="monthScheduleNext" title="다음달 보기">다음달 ▶</button>
     </div>
     <div id="weekScheduleList"></div>
   </div>
@@ -2275,6 +2351,7 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
 
 
   <div class="card delay contribution-card" data-view="contribution">
+    <div class="contrib-print-title" id="contribPrintTitle"></div>
     <div class="contribution-head">
       <div>
         <h2>🤝 교수 기여도 관리</h2>
@@ -2301,13 +2378,29 @@ body[data-role="practice_chair"] .mob-nav-btn.chair-only{display:flex;}
       <div class="contribution-filter">
         <input type="text" id="contribSearch" placeholder="교수명·활동명 검색">
         <select id="contribProfessorFilter"><option value="all">전체 교수</option></select>
+        <select id="contribSort" title="정렬 방식">
+          <option value="faculty">교수별 (입사순)</option>
+          <option value="date_desc">날짜 최신순</option>
+          <option value="date_asc">날짜 오래된순</option>
+        </select>
         <button id="contribClearSearch">검색 초기화</button>
         <button id="contribExportCsv" class="export">엑셀용 CSV</button>
+        <button id="contribPrintHistory" class="export">PDF/인쇄</button>
       </div>
       <div class="contribution-list" id="contributionList"></div>
     </div>
     <div class="contrib-panel" id="contribOverviewPanel">
-      <div class="sub">교수별 봉사 실적과 보직을 한 화면에서 봅니다. <b>기여도가 낮은 순</b>으로 정렬되며, 진행 중인 보직이 함께 표시됩니다.</div>
+      <div class="ov-toolbar">
+        <div class="sub" style="margin:0">교수별 봉사 실적과 보직을 한 화면에서 봅니다. 진행 중인 보직이 함께 표시됩니다.</div>
+        <div class="ov-tools">
+          <select id="ovSort" title="정렬 방식">
+            <option value="score">기여도 낮은 순</option>
+            <option value="faculty">교수별 (입사순)</option>
+            <option value="score_desc">기여도 높은 순</option>
+          </select>
+          <button id="contribPrintOverview" class="export">PDF/인쇄</button>
+        </div>
+      </div>
       <div id="contribOverview"></div>
     </div>
     <div class="contrib-panel" id="contribPositionPanel">
@@ -2850,6 +2943,9 @@ function mondayOf(dstr){
   const diff = (wd===0? -6 : 1-wd);
   dt.setDate(dt.getDate()+diff); return ymd(dt);
 }
+function sundayOf(dstr){
+  const dt = parse(dstr); dt.setDate(dt.getDate() - dt.getDay()); return ymd(dt);
+}
 function weekLabel(dstr){
   if(dateInRange(dstr, dashSettings.summerStart, dashSettings.summerEnd)) return "하계방학";
   if(dateInRange(dstr, dashSettings.winterStart, dashSettings.winterEnd)) return "동계방학";
@@ -2867,6 +2963,91 @@ function evOn(dstr){
     if(a.all&&!b.all) return 1; if(b.all&&!a.all) return -1;
     return (a.s||"").localeCompare(b.s||"");
   });
+}
+
+// ── 일정 카드: 주간 / 월간 보기 ─────────────────────────────
+const SCHED_MODE_KEY = "nursing_head_dash_sched_mode_v1";
+let schedMode = "week";
+try{ const sm = localStorage.getItem(SCHED_MODE_KEY); if(sm==="month"||sm==="week") schedMode = sm; }catch(e){}
+let monthAnchor = "";
+let weekSubText = "", weekTotalText = "—", weekViewHtml = "";
+
+function monthAnchorOf(dstr){ return String(dstr||"").slice(0,7) + "-01"; }
+function shiftMonth(n){
+  if(!monthAnchor) monthAnchor = monthAnchorOf(sel);
+  const dt = parse(monthAnchor); dt.setMonth(dt.getMonth()+n, 1);
+  monthAnchor = ymd(dt);
+  renderScheduleCard();
+}
+function buildMonthHtml(){
+  if(!monthAnchor) monthAnchor = monthAnchorOf(sel);
+  const first = parse(monthAnchor);
+  const y = first.getFullYear(), mo = first.getMonth();
+  const gridStart = parse(sundayOf(ymd(first)));
+  const last = new Date(y, mo+1, 0);
+  const gridEnd = parse(sundayOf(ymd(last)));
+  gridEnd.setDate(gridEnd.getDate()+6);
+  const cells = Math.round((gridEnd - gridStart)/86400000) + 1;
+  const today = todayStr();
+  let count = 0;
+  let html = '<div class="month-dow">' + DOW.map((d,i)=>
+    `<div class="mdow ${i===0?'sun':i===6?'sat':''}">${d}</div>`).join('') + '</div><div class="month-grid">';
+  for(let i=0;i<cells;i++){
+    const dd = new Date(gridStart); dd.setDate(gridStart.getDate()+i);
+    const ds = ymd(dd);
+    const other = dd.getMonth() !== mo;
+    const evs = evOn(ds);
+    if(!other) count += evs.length;
+    const wd = dd.getDay();
+    const shown = evs.slice(0,3).map(e=>{
+      const tm = e.all ? "종일" : (e.s||"");
+      return `<div class="mitem ${e.done?'done':''}">
+        <div class="mitem-time">${tm?tm+" · ":""}${TYPE_LABEL[e.type]}</div>
+        <div class="mitem-title">${esc(e.t)}</div></div>`;
+    }).join("");
+    const more = evs.length>3 ? `<div class="mmore">+${evs.length-3}건 더</div>` : "";
+    html += `<div class="mday ${other?'other':''} ${wd===0?'sun':wd===6?'sat':''} ${ds===today?'today':''} ${ds===sel?'selday':''}" data-d="${ds}">
+      <div class="mday-head"><div class="mday-date">${dd.getDate()}</div>${evs.length?`<span class="mday-count">${evs.length}건</span>`:""}</div>
+      ${evs.length? shown+more : (other?"":'<div class="mday-empty">일정 없음</div>')}
+    </div>`;
+  }
+  html += '</div>';
+  return {html, count, y, mo};
+}
+function renderScheduleCard(){
+  const titleEl = $("weekScheduleTitle"), subEl = $("weekScheduleSub"),
+        totEl = $("weekScheduleTotal"), listEl = $("weekScheduleList");
+  if(!listEl) return;
+  const wBtn = $("schedModeWeek"), mBtn = $("schedModeMonth");
+  if(wBtn) wBtn.classList.toggle("this-week", schedMode==="week");
+  if(mBtn) mBtn.classList.toggle("this-week", schedMode==="month");
+  if($("weekNavRow"))  $("weekNavRow").style.display  = schedMode==="week"  ? "" : "none";
+  if($("monthNavRow")) $("monthNavRow").style.display = schedMode==="month" ? "" : "none";
+
+  if(schedMode==="month"){
+    const r = buildMonthHtml();
+    if(titleEl) titleEl.textContent = "🗓 월간 일정";
+    if(subEl)   subEl.textContent   = `${r.y}년 ${r.mo+1}월 전체 일정`;
+    if(totEl)   totEl.textContent   = `${r.count}건`;
+    listEl.innerHTML = r.html;
+    listEl.querySelectorAll(".mday").forEach(el=>el.onclick=()=>{
+      sel = el.dataset.d; monthAnchor = monthAnchorOf(sel); setActiveView("dashboard"); render();
+    });
+  }else{
+    if(titleEl) titleEl.textContent = "📆 이번 주 일정";
+    if(subEl)   subEl.textContent   = weekSubText;
+    if(totEl)   totEl.textContent   = weekTotalText;
+    listEl.innerHTML = weekViewHtml;
+    listEl.querySelectorAll(".wday").forEach(el=>el.onclick=()=>{
+      sel = el.dataset.d; setActiveView("dashboard"); render();
+    });
+  }
+}
+function setSchedMode(mode){
+  schedMode = mode;
+  try{ localStorage.setItem(SCHED_MODE_KEY, mode); }catch(e){}
+  if(mode==="month" && !monthAnchor) monthAnchor = monthAnchorOf(sel);
+  renderScheduleCard();
 }
 
 function render(){
@@ -2936,11 +3117,13 @@ function render(){
     }).join("");
   bindRows(ul);
 
-  // 주간 스트립
-  const m = parse(mondayOf(sel));
+  // 주간 스트립 (일요일 시작)
+  const m = parse(sundayOf(sel));
   const mendStrip = new Date(m); mendStrip.setDate(m.getDate()+6);
+  const weekAnchor = new Date(m); weekAnchor.setDate(m.getDate()+1);   // 그 주의 월요일 = 학사 주차 기준
+  const weekRowLabel = weekLabel(ymd(weekAnchor));
   document.getElementById("weekRange").textContent =
-    `${m.getMonth()+1}/${m.getDate()} ~ ${mendStrip.getMonth()+1}/${mendStrip.getDate()} · ${weekLabel(sel)}`;
+    `${m.getMonth()+1}/${m.getDate()} ~ ${mendStrip.getMonth()+1}/${mendStrip.getDate()} · ${weekRowLabel}`;
   let strip="";
   for(let i=0;i<7;i++){
     const dd = new Date(m); dd.setDate(m.getDate()+i); const ds = ymd(dd);
@@ -2971,15 +3154,15 @@ function render(){
       </div>`;
     }).join("");
     weekHtml += `<div class="wday ${ds===todayStr()?"today":""} ${ds===sel?"selday":""}" data-d="${ds}">
-      <div class="wday-head"><div><div class="wday-name">${DOW[dd.getDay()]}요일</div><div class="wday-date">${dd.getDate()}</div></div><span class="wday-count">${evs.length}건</span></div>
+      <div class="wday-head"><div><div class="wday-name ${dd.getDay()===0?'sun':dd.getDay()===6?'sat':''}">${DOW[dd.getDay()]}요일</div><div class="wday-date">${dd.getDate()}</div></div><span class="wday-count">${evs.length}건</span></div>
       ${evs.length? shown : `<div class="wday-empty">일정 없음</div>`}
     </div>`;
   }
   weekHtml += `</div>`;
-  document.getElementById("weekScheduleSub").textContent = `${m.getMonth()+1}/${m.getDate()} ~ ${mend.getMonth()+1}/${mend.getDate()} · ${weekLabel(sel)}`;
-  document.getElementById("weekScheduleTotal").textContent = `${weekEvents.length}건`;
-  document.getElementById("weekScheduleList").innerHTML = weekHtml;
-  document.querySelectorAll(".wday").forEach(el=>el.onclick=()=>{sel=el.dataset.d; setActiveView("dashboard"); render();});
+  weekSubText = `${m.getMonth()+1}/${m.getDate()} ~ ${mend.getMonth()+1}/${mend.getDate()} · ${weekRowLabel}`;
+  weekTotalText = `${weekEvents.length}건`;
+  weekViewHtml = weekHtml;
+  renderScheduleCard();
   renderSearch();
 }
 
@@ -3047,6 +3230,11 @@ document.getElementById("todayBtn").onclick=()=>{sel=todayStr();render();};
 document.getElementById("weekSchedulePrev").onclick=()=>shift(-7);
 document.getElementById("weekScheduleNext").onclick=()=>shift(7);
 document.getElementById("weekScheduleThis").onclick=()=>{sel=todayStr();render();};
+if($("schedModeWeek"))  $("schedModeWeek").onclick  = ()=>setSchedMode("week");
+if($("schedModeMonth")) $("schedModeMonth").onclick = ()=>setSchedMode("month");
+if($("monthSchedulePrev")) $("monthSchedulePrev").onclick = ()=>shiftMonth(-1);
+if($("monthScheduleNext")) $("monthScheduleNext").onclick = ()=>shiftMonth(1);
+if($("monthScheduleThis")) $("monthScheduleThis").onclick = ()=>{ monthAnchor = monthAnchorOf(todayStr()); renderScheduleCard(); };
 document.getElementById("picker").onchange=e=>{sel=e.target.value;render();};
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   curCat=t.dataset.cat;
@@ -5362,11 +5550,24 @@ function renderContributionSummary(){
     <div class="contrib-chip"><span>봉사 이력 없음</span><strong>${zero}</strong><span>명 / 전체 ${ranking.length}명</span></div>
     <div class="contrib-chip next"><span>다음 봉사 우선순위</span><strong style="font-size:18px">${next?esc(next.professor):"-"}</strong><span>${next?`${Number.isInteger(next.score)?next.score:next.score.toFixed(1)}점`:"명단 없음"}</span></div>`;
 }
+function contribPrint(mode){
+  const t = $("contribPrintTitle");
+  const today = todayStr().replace(/-/g,". ")+".";
+  if(t) t.textContent = (mode==="overview" ? "교수 기여도 종합 현황" : "교수 기여도 활동 이력") + "  ·  " + today + " 기준";
+  document.body.classList.add(mode==="overview" ? "print-contrib-overview" : "print-contrib-history");
+  window.print();
+  setTimeout(()=>{
+    document.body.classList.remove("print-contrib-overview","print-contrib-history");
+  }, 500);
+}
 function renderContributionOverview(){
   const box = $("contribOverview");
   if(!box) return;
-  const ranking = contributionTotals();
+  let ranking = contributionTotals();
   if(!ranking.length){ box.innerHTML = `<div class="contribution-empty">교수 명단이 없습니다.</div>`; return; }
+  const ovSort = $("ovSort")?.value || "score";
+  if(ovSort === "faculty") ranking = ranking.slice().sort((a,b)=>facultyOrderIndex(a.professor)-facultyOrderIndex(b.professor) || a.professor.localeCompare(b.professor));
+  else if(ovSort === "score_desc") ranking = ranking.slice().reverse();
   const total = ranking.reduce((s,r)=>s+r.score, 0);
   const acts  = ranking.reduce((s,r)=>s+r.count, 0);
   const zero  = ranking.filter(r=>r.score===0).length;
@@ -5434,6 +5635,20 @@ function renderContributionPriority(){
       </div>`).join("") || '<div class="contribution-empty">교수 명단이 없습니다.</div>'}</div>
   </div>`;
 }
+let contributionSort = "faculty";
+function facultyOrderIndex(name){
+  const i = (Array.isArray(facultyTimetable)?facultyTimetable:[]).findIndex(f=>f.name===name);
+  return i < 0 ? 9999 : i;   // 시간표 순서 = 입사순
+}
+function contributionRowHtml(x, hideName){
+  const dateText = x.date ? esc(x.date.replace(/-/g,". "))+"." : "날짜 미입력";
+  return `<div class="contribution-item">
+    <div class="contrib-prof">${hideName ? `<span class="only-date">${dateText}</span>` : `${esc(x.professor||"교수 미지정")}<small>${dateText}</small>`}</div>
+    <div class="contrib-activity">${esc(x.activity||"활동명 미입력")}</div>
+    <div class="contrib-score">${esc(x.score)}점</div>
+    <div class="contribution-actions"><button class="edit" data-contrib-edit="${x.id}" title="수정">✎</button><button class="del" data-contrib-del="${x.id}" title="삭제">×</button></div>
+  </div>`;
+}
 function renderContributionList(){
   const box = $("contributionList");
   if(!box) return;
@@ -5442,14 +5657,40 @@ function renderContributionList(){
     box.innerHTML = `<div class="contribution-empty">등록된 교수 기여도 기록이 없습니다. 위 칸에 가볍게 추가하세요.</div>`;
     return;
   }
+  if(contributionSort === "faculty"){
+    const groups = new Map();
+    list.forEach(x=>{
+      const n = x.professor || "교수 미지정";
+      if(!groups.has(n)) groups.set(n, []);
+      groups.get(n).push(x);
+    });
+    const names = [...groups.keys()].sort((a,b)=>facultyOrderIndex(a)-facultyOrderIndex(b) || a.localeCompare(b));
+    box.innerHTML = names.map(n=>{
+      const items = groups.get(n).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+      const sum = items.reduce((s,x)=>s+contributionScore(x.score), 0);
+      const sumText = Number.isInteger(sum) ? sum : sum.toFixed(1);
+      return `<div class="contrib-group">
+        <div class="contrib-group-head"><b>${esc(n)}</b><span>${items.length}건 · ${sumText}점</span></div>
+        ${items.map(x=>contributionRowHtml(x, true)).join("")}
+      </div>`;
+    }).join("");
+  }else{
+    const dir = contributionSort === "date_asc" ? 1 : -1;
+    const sorted = list.slice().sort((a,b)=>dir*((a.date||"").localeCompare(b.date||"")) || a.professor.localeCompare(b.professor));
+    box.innerHTML = sorted.map(x=>contributionRowHtml(x, false)).join("");
+  }
+  box.querySelectorAll("[data-contrib-edit]").forEach(el=>el.onclick=()=>startEditContribution(el.dataset.contribEdit));
+  box.querySelectorAll("[data-contrib-del]").forEach(el=>el.onclick=()=>deleteContribution(el.dataset.contribDel));
+}
+function _unusedContributionList(){
+  const box = $("contributionList");
+  const list = [];
   box.innerHTML = list.map(x=>`<div class="contribution-item">
     <div class="contrib-prof">${esc(x.professor||"교수 미지정")}<small>${x.date?esc(x.date.replace(/-/g,". "))+".":"날짜 미입력"}</small></div>
     <div class="contrib-activity">${esc(x.activity||"활동명 미입력")}</div>
     <div class="contrib-score">${esc(x.score)}점</div>
-    <div class="contribution-actions"><button class="edit" data-contrib-edit="${x.id}" title="수정">✎</button><button class="del" data-contrib-del="${x.id}" title="삭제">×</button></div>
+    <div class="contribution-actions"></div>
   </div>`).join("");
-  box.querySelectorAll("[data-contrib-edit]").forEach(el=>el.onclick=()=>startEditContribution(el.dataset.contribEdit));
-  box.querySelectorAll("[data-contrib-del]").forEach(el=>el.onclick=()=>deleteContribution(el.dataset.contribDel));
 }
 function renderContributionChart(){
   const box = $("contributionChart");
@@ -5673,9 +5914,12 @@ loadContributions();
 document.querySelectorAll(".contrib-tab").forEach(btn=>btn.onclick=()=>switchContributionTab(btn.dataset.contribTab));
 if($("contribAdd")) $("contribAdd").onclick = addContribution;
 if($("contribCancel")) $("contribCancel").onclick = ()=>{ clearContributionForm(); renderContributions(); };
-["contribSearch","contribProfessorFilter"].forEach(id=>{ if($(id)) $(id).addEventListener(id==="contribSearch"?"input":"change", renderContributions); });
+["contribSearch","contribProfessorFilter","contribSort"].forEach(id=>{ if($(id)) $(id).addEventListener(id==="contribSearch"?"input":"change", ()=>{ if($("contribSort")) contributionSort = $("contribSort").value; renderContributions(); }); });
 if($("contribClearSearch")) $("contribClearSearch").onclick = ()=>{ $("contribSearch").value=""; $("contribProfessorFilter").value="all"; renderContributions(); };
 if($("contribExportCsv")) $("contribExportCsv").onclick = exportContributionsCsv;
+if($("contribPrintHistory")) $("contribPrintHistory").onclick = ()=>contribPrint("history");
+if($("contribPrintOverview")) $("contribPrintOverview").onclick = ()=>contribPrint("overview");
+if($("ovSort")) $("ovSort").addEventListener("change", renderContributionOverview);
 if($("contribActivity")) $("contribActivity").addEventListener("keydown",e=>{ if(e.key==="Enter") addContribution(); });
 if($("contribScore")) $("contribScore").addEventListener("keydown",e=>{ if(e.key==="Enter") addContribution(); });
 renderContributions();
